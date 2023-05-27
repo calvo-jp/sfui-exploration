@@ -1,0 +1,94 @@
+import {
+  Avatar,
+  AvatarBadge,
+  Drawer,
+  DrawerBody,
+  DrawerCloseButton,
+  DrawerContent,
+  DrawerOverlay,
+  Flex,
+  HStack,
+  Heading,
+  Icon,
+  IconButton,
+  Menu,
+  MenuButton,
+  MenuDivider,
+  MenuItem,
+  MenuList,
+  Portal,
+  Spacer,
+  useDisclosure,
+} from '@chakra-ui/react';
+import {
+  BellIcon,
+  Cog6ToothIcon,
+  PowerIcon,
+} from '@heroicons/react/24/outline';
+import { Link } from 'react-router-dom';
+
+export function Navbar() {
+  return (
+    <Flex
+      as="header"
+      h="75px"
+      px={4}
+      py={2}
+      border="1px solid"
+      borderColor="neutral.200"
+      alignItems="center"
+    >
+      <Heading as={Link} to="/" size="header-5">
+        Logo
+      </Heading>
+
+      <Spacer />
+
+      <HStack spacing={4} alignItems="center">
+        <Notification />
+
+        <Menu>
+          <MenuButton>
+            <Avatar size="lg" src="https://i.pravatar.cc/300" name="John Doe">
+              <AvatarBadge />
+            </Avatar>
+          </MenuButton>
+
+          <Portal>
+            <MenuList>
+              <MenuItem icon={<Icon as={Cog6ToothIcon} />}>Settings</MenuItem>
+              <MenuDivider />
+              <MenuItem icon={<Icon as={PowerIcon} />}>Logout</MenuItem>
+            </MenuList>
+          </Portal>
+        </Menu>
+      </HStack>
+    </Flex>
+  );
+}
+
+function Notification() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  return (
+    <>
+      <IconButton
+        variant="unstyled"
+        display="flex"
+        alignItems="center"
+        icon={<Icon as={BellIcon} w={8} h={8} />}
+        aria-label="View notifications"
+        onClick={onOpen}
+        rounded="full"
+      />
+
+      <Drawer isOpen={isOpen} onClose={onClose}>
+        <DrawerOverlay mt="75px" />
+        <DrawerContent mt="75px">
+          <DrawerCloseButton />
+          <DrawerBody />
+        </DrawerContent>
+      </Drawer>
+    </>
+  );
+}
