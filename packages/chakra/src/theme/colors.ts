@@ -1,5 +1,7 @@
 export const colors = {
-  /* remove chakra colors */
+  /*
+   * REMOVING CHAKRA COLORS HERE
+   */
   red: null,
   teal: null,
   cyan: null,
@@ -11,20 +13,59 @@ export const colors = {
   whatsapp: null,
   telegram: null,
   messenger: null,
+
+  /*
+   * THIS COLORS ARE HDS SPECIFIC,
+   * OUR DESIGNERS CREATED THIS.
+   */
   neutral: {
-    950: "#0F0F0F",
-    900: "#141414",
-    800: "#292929",
-    700: "#424242",
-    600: "#525252",
-    500: "#737373",
-    400: "#A3A3A3",
+    900: "#0F0F0F",
+    800: "#2E2E2E",
+    700: "#525252",
+    600: "#7A7A7A",
+    500: "#A3A3A3",
+    400: "#B8B8B8",
     300: "#D6D6D6",
-    200: "#E5E5E5",
-    100: "#F5F5F5",
-    50: "#FAFAFA",
-    25: "#FCFCFC",
+    200: "#F0F0F0",
+    100: "#FCFCFC",
   },
+  primary: {
+    900: "#520187",
+    800: "#5E1C9E",
+    700: "#7224BF",
+    600: "#C188F9",
+    500: "#DDBBFE",
+    300: "#D6BBFB",
+    200: "#E9D7FE",
+    100: "#F4EBFF",
+    50: "#F9F5FF",
+  },
+  error: {
+    900: "#800C05",
+    800: "#9E241C",
+    700: "#DC180C",
+    600: "#FCD2CF",
+    500: "#FCEAE8",
+  },
+  success: {
+    900: "#008005",
+    800: "#139E19",
+    700: "#00C408",
+    600: "#A3F0A7",
+    500: "#E8FCE9",
+  },
+  warning: {
+    900: "#CC8900",
+    800: "#E59A00",
+    700: "#FFAB00",
+    600: "#FCDFA2",
+    500: "#FCEFD4",
+  },
+
+  /*
+   * THIS ARE FROM UNTITLED
+   * WHICH HDS USES UNMODIFIED
+   */
   gray: {
     950: "#0C111D",
     900: "#101828",
@@ -38,61 +79,6 @@ export const colors = {
     100: "#F2F4F7",
     50: "#F9FAFB",
     25: "#FCFCFD",
-  },
-  primary: {
-    950: "#2C1C5F",
-    900: "#42307D",
-    800: "#53389E",
-    700: "#6941C6",
-    600: "#7F56D9",
-    500: "#9E77ED",
-    400: "#B692F6",
-    300: "#D6BBFB",
-    200: "#E9D7FE",
-    100: "#F4EBFF",
-    50: "#F9F5FF",
-  },
-  error: {
-    950: "#55160C",
-    900: "#7A271A",
-    800: "#912018",
-    700: "#B42318",
-    600: "#D92D20",
-    500: "#F04438",
-    400: "#F97066",
-    300: "#FDA29B",
-    200: "#FECDCA",
-    100: "#FEE4E2",
-    50: "#FEF3F2",
-    25: "#FFFBFA",
-  },
-  success: {
-    950: "#053321",
-    900: "#074D31",
-    800: "#085D3A",
-    700: "#067647",
-    600: "#079455",
-    500: "#17B26A",
-    400: "#47CD89",
-    300: "#75E0A7",
-    200: "#A9EFC5",
-    100: "#D1FADF",
-    50: "#ECFDF3",
-    25: "#F6FEF9",
-  },
-  warning: {
-    950: "#4E1D09",
-    900: "#7A2E0E",
-    800: "#93370D",
-    700: "#B54708",
-    600: "#DC6803",
-    500: "#F79009",
-    400: "#FDB022",
-    300: "#FEC84B",
-    200: "#FEDF89",
-    100: "#FEF0C7",
-    50: "#FFFAEB",
-    25: "#FFFCF5",
   },
   blue: {
     950: "#102A56",
