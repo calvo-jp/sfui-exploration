@@ -104,10 +104,6 @@ export const colors = {
     50: "#FFFAEB",
   },
 
-  black: "#000000",
-  white: "#ffffff",
-  overlay: "rgba(52, 64, 84, 0.7)",
-
   blue: {
     700: "#175CD3",
     500: "#2E90FA",
@@ -155,4 +151,8 @@ export const colors = {
     500: "#EF6820",
     50: "#FEF6EE",
   },
+
+  black: "#000000",
+  white: "#ffffff",
+  overlay: "rgba(52, 64, 84, 0.7)",
 };
