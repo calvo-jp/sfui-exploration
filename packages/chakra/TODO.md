@@ -12,7 +12,7 @@
   - [ ] form-error
   - [ ] form-label
   - [ ] form
-  - [ ] heading
+  - [x] heading
   - [ ] input
   - [ ] menu
   - [ ] progress
