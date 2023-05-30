@@ -63,8 +63,12 @@ export const colors = {
   },
 
   /*
+   *
    * THIS ARE FROM UNTITLED
    * WHICH HDS USES UNMODIFIED
+   *
+   * ref: https://www.figma.com/file/bEe3Kq0mDSAicRU8E44pk8/HDS-Component-Library?type=design&node-id=1052-489&t=mcrQ9hTpTGbj9CiI-0
+   *
    */
   gray: {
     950: "#0C111D",
