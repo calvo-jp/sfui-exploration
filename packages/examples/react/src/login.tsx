@@ -14,6 +14,7 @@ import {
   RangeSliderFilledTrack,
   RangeSliderThumb,
   RangeSliderTrack,
+  Spinner,
   Switch,
   Tag,
   TagCloseButton,
@@ -118,6 +119,10 @@ export function Login() {
 
       <Box mt={4}>
         <Progress value={80} />
+      </Box>
+
+      <Box mt={4}>
+        <Spinner size="lg" />
       </Box>
     </Box>
   );

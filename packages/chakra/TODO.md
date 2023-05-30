@@ -19,7 +19,7 @@
   - [ ] select
   - [x] skeleton
   - [x] slider
-  - [ ] spinner
+  - [x] spinner
   - [x] switch
   - [ ] table
   - [ ] tabs
