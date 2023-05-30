@@ -46,6 +46,8 @@ export const colors = {
     700: "#DC180C",
     600: "#FCD2CF",
     500: "#FCEAE8",
+    100: "#FEE4E2",
+    50: "#FEF3F2",
   },
   success: {
     900: "#008005",
@@ -53,6 +55,8 @@ export const colors = {
     700: "#00C408",
     600: "#A3F0A7",
     500: "#E8FCE9",
+    100: "#D1FADF",
+    50: "#ECFDF3",
   },
   warning: {
     900: "#CC8900",
@@ -60,6 +64,8 @@ export const colors = {
     700: "#FFAB00",
     600: "#FCDFA2",
     500: "#FCEFD4",
+    100: "#FEF0C7",
+    50: "#FFFAEB",
   },
 
   /*
