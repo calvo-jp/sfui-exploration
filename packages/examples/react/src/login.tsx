@@ -6,6 +6,7 @@ import {
   FormHelperText,
   FormLabel,
   Input,
+  Progress,
   RangeSlider,
   RangeSliderFilledTrack,
   RangeSliderThumb,
@@ -104,6 +105,10 @@ export function Login() {
           <RangeSliderThumb index={0} />
           <RangeSliderThumb index={1} />
         </RangeSlider>
+      </Box>
+
+      <Box mt={4}>
+        <Progress value={80} />
       </Box>
     </Box>
   );

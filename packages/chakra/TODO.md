@@ -15,7 +15,7 @@
   - [x] heading
   - [ ] input
   - [x] menu
-  - [ ] progress
+  - [x] progress
   - [ ] select
   - [x] skeleton
   - [x] slider
