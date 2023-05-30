@@ -121,11 +121,11 @@ export function Landing() {
                 <Td>{user.email}</Td>
                 <Td>
                   <AvatarGroup max={3} size="sm">
-                    <Avatar />
-                    <Avatar />
-                    <Avatar />
-                    <Avatar />
-                    <Avatar />
+                    {new Array(5).fill(null).map((_, index) => {
+                      return (
+                        <Avatar src={`https://i.pravatar.cc/150?u=${index}`} />
+                      );
+                    })}
                   </AvatarGroup>
                 </Td>
                 <Td>

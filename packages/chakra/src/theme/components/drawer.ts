@@ -14,5 +14,29 @@ export const Drawer: MultiStyleConfig = {
     overlay: {
       bgColor: "rgba(52, 64, 84, 0.7)",
     },
+    dialog: {
+      p: 6,
+    },
+    body: {
+      p: 0,
+    },
+    header: {
+      p: 0,
+    },
+    footer: {
+      p: 0,
+    },
+    closeButton: {
+      p: 1.5,
+      w: "fit-content",
+      h: "fit-content",
+      top: 3,
+      right: 3,
+      color: "neutral.600",
+      _hover: {
+        bg: "blackAlpha.100",
+        color: "neutral.700",
+      },
+    },
   },
 };

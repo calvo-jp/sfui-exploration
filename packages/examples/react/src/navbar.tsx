@@ -18,6 +18,7 @@ import {
   MenuList,
   Portal,
   Spacer,
+  Text,
   useDisclosure,
 } from "@chakra-ui/react";
 import {
@@ -86,7 +87,12 @@ function Notification() {
         <DrawerOverlay mt="75px" />
         <DrawerContent mt="75px">
           <DrawerCloseButton />
-          <DrawerBody />
+          <DrawerBody>
+            <Text size="paragraph-xs" lineHeight="tight">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod quas
+              sed, ipsa eaque reiciendis quis!
+            </Text>
+          </DrawerBody>
         </DrawerContent>
       </Drawer>
     </>

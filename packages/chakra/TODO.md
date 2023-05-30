@@ -8,7 +8,7 @@
   - [ ] breadcrumb
   - [ ] button
   - [x] checkbox
-  - [ ] drawer
+  - [x] drawer
   - [x] form-error
   - [x] form-label
   - [x] form
