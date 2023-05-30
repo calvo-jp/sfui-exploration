@@ -12,7 +12,7 @@ export const Drawer: MultiStyleConfig = {
   ],
   baseStyle: {
     overlay: {
-      bgColor: "rgba(52, 64, 84, 0.7)",
+      bgColor: "overlay",
     },
     dialog: {
       p: 6,
