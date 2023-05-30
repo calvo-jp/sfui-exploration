@@ -14,7 +14,7 @@
   - [ ] form
   - [x] heading
   - [ ] input
-  - [ ] menu
+  - [x] menu
   - [ ] progress
   - [ ] select
   - [ ] skeleton

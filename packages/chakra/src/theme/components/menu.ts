@@ -4,25 +4,25 @@ export const Menu: MultiStyleConfig = {
   parts: ["button", "list", "item", "groupTitle", "command", "divider"],
   baseStyle: {
     list: {
-      p: "0px",
-      minW: "175px",
+      padding: "0px",
       border: "1px",
-      borderColor: "Gray.100",
-      rounded: 2,
+      borderColor: "gray.100",
+      rounded: "8px",
       overflow: "hidden",
+      minWidth: "175px",
       boxShadow:
         "0px 12px 16px -4px rgba(16, 24, 40, 0.08)," +
         "0px 4px 6px -2px rgba(16, 24, 40, 0.03)",
     },
     item: {
-      px: 4,
-      py: 3,
-      gap: 3,
-      minW: "full",
-      color: "neutral.900",
-      fontSize: "sm",
+      gap: "12px",
+      fontSize: "14px",
       lineHeight: "14px",
       letterSpacing: "0.02em",
+      paddingY: "12px",
+      paddingX: "16px",
+      minWidth: "full",
+      color: "neutral.900",
       _hover: {
         bgColor: "neutral.100",
       },
@@ -30,26 +30,24 @@ export const Menu: MultiStyleConfig = {
         bgColor: "neutral.100",
       },
 
-      /* classnames for icon and it's wrapper can be found here -> https://github.com/chakra-ui/chakra-ui/blob/main/packages/components/menu/src/menu-icon.tsx
-       */
-      ".chakra-menu__icon-wrapper": {
-        m: 0,
-      },
       ".chakra-menu__icon": {
-        w: 4,
-        h: 4,
-        color: "Gray.700",
+        width: 4,
+        height: 4,
+        color: "gray.700",
+      },
+      ".chakra-menu__icon-wrapper": {
+        margin: "0px",
       },
     },
     command: {
       color: "neutral.700",
-      fontSize: "xs",
+      fontSize: "12px",
       lineHeight: "12px",
       letterSpacing: "0.02em",
     },
     divider: {
-      m: 0,
       borderColor: "neutral.200",
+      margin: "0px",
     },
   },
 };
