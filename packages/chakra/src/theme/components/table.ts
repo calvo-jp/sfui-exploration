@@ -23,7 +23,7 @@ export const Table: MultiStyleConfig = {
       whiteSpace: "nowrap",
       WebkitOverflowScrolling: "touch",
       border: "1px",
-      borderColor: "Gray.200",
+      borderColor: "gray.200",
       rounded: "lg",
     },
     header: {
@@ -32,15 +32,14 @@ export const Table: MultiStyleConfig = {
     footer: {
       padding: 4,
     },
-
     thead: {
-      bgColor: "Gray.50",
+      bgColor: "gray.50",
     },
     th: {
       px: 3,
       py: 6,
       textTransform: "unset",
-      color: "Gray.500",
+      color: "gray.500",
       fontSize: "xs",
       lineHeight: "18px",
       fontWeight: "medium",
@@ -60,21 +59,21 @@ export const Table: MultiStyleConfig = {
       tr: {
         _first: {
           borderTop: "1px",
-          borderColor: "Gray.200",
+          borderColor: "gray.200",
         },
       },
       th: {
-        borderColor: "Gray.200",
+        borderColor: "gray.200",
       },
       td: {
-        borderColor: "Gray.200",
+        borderColor: "gray.200",
       },
     },
     bordered: {
       table: {},
       th: {
         border: "1px",
-        borderColor: "Gray.200",
+        borderColor: "gray.200",
         _first: {
           borderLeft: "none",
         },
@@ -84,7 +83,7 @@ export const Table: MultiStyleConfig = {
       },
       td: {
         border: "1px",
-        borderColor: "Gray.200",
+        borderColor: "gray.200",
         _first: {
           borderLeft: "none",
         },
