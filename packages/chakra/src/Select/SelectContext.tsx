@@ -1,7 +1,6 @@
 import { SystemStyleObject, useControllableState } from "@chakra-ui/react";
 import { createContext } from "@chakra-ui/react-context";
 import * as React from "react";
-import { Nullable } from "vitest";
 import { noop } from "../utils";
 
 export const [SelectStylesProvider, useSelectStyles] = createContext<
@@ -13,23 +12,14 @@ export const [SelectStylesProvider, useSelectStyles] = createContext<
     "Seems you forgot to wrap the components in '<Select />'",
 });
 
-interface Option {
-  value: string;
-  label?: string;
-}
-
 interface SelectState {
   value: string;
   onChange(newValue: string): void;
-  selectOption(option: Nullable<Option>): void;
-  selectedOption: Nullable<Option>;
 }
 
 export const SelectContext = React.createContext<SelectState>({
   value: "",
   onChange: noop,
-  selectOption: noop,
-  selectedOption: null,
 });
 
 interface SelectProviderProps {
@@ -60,4 +50,20 @@ export function SelectProvider({
       {children}
     </SelectContext.Provider>
   );
+}
+
+export function withSelectContext<T extends SelectProviderProps>(
+  Component: (props: T) => JSX.Element,
+) {
+  return function Wrapper(props: T) {
+    return (
+      <SelectProvider
+        value={props.value}
+        onChange={props.onChange}
+        defaultValue={props.defaultValue}
+      >
+        <Component {...props} />
+      </SelectProvider>
+    );
+  };
 }
