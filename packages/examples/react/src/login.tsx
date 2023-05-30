@@ -24,6 +24,7 @@ import {
 } from "@chakra-ui/react";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Multiline } from "@scaleforge-ui/chakra";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
@@ -83,6 +84,11 @@ export function Login() {
           )}
         </FormControl>
 
+        <FormControl mt={4}>
+          <FormLabel>Message</FormLabel>
+          <Multiline placeholder="Type here" />
+        </FormControl>
+
         <Tooltip label="This is a tooltip" hasArrow>
           <Button
             w="full"
@@ -96,34 +102,24 @@ export function Login() {
         </Tooltip>
       </chakra.form>
 
-      <Box mt={4}>
-        <Switch />
-      </Box>
+      <Switch mt={4} />
 
-      <Box mt={4}>
-        <Tag>
-          <TagLabel>Hello</TagLabel>
-          <TagCloseButton />
-        </Tag>
-      </Box>
+      <Tag mt={4}>
+        <TagLabel>Hello</TagLabel>
+        <TagCloseButton />
+      </Tag>
 
-      <Box mt={4}>
-        <RangeSlider defaultValue={[10, 30]}>
-          <RangeSliderTrack>
-            <RangeSliderFilledTrack />
-          </RangeSliderTrack>
-          <RangeSliderThumb index={0} />
-          <RangeSliderThumb index={1} />
-        </RangeSlider>
-      </Box>
+      <RangeSlider mt={4} defaultValue={[10, 30]}>
+        <RangeSliderTrack>
+          <RangeSliderFilledTrack />
+        </RangeSliderTrack>
+        <RangeSliderThumb index={0} />
+        <RangeSliderThumb index={1} />
+      </RangeSlider>
 
-      <Box mt={4}>
-        <Progress value={80} />
-      </Box>
+      <Progress mt={4} value={80} />
 
-      <Box mt={4}>
-        <Spinner size="lg" />
-      </Box>
+      <Spinner mt={4} size="lg" />
     </Box>
   );
 }

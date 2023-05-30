@@ -26,7 +26,7 @@
   - [ ] tabs
   - [x] tag
   - [x] text
-  - [ ] textarea
+  - [x] textarea
   - [x] tooltip
 
 - components
