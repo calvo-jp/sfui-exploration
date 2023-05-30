@@ -20,7 +20,7 @@
   - [x] skeleton
   - [ ] slider
   - [ ] spinner
-  - [ ] switch
+  - [x] switch
   - [ ] table
   - [ ] tabs
   - [ ] tag

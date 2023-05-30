@@ -6,6 +6,7 @@ import {
   FormHelperText,
   FormLabel,
   Input,
+  Switch,
   Tooltip,
   chakra,
 } from "@chakra-ui/react";
@@ -76,6 +77,10 @@ export function Login() {
           </Button>
         </Tooltip>
       </chakra.form>
+
+      <Box mt={4}>
+        <Switch />
+      </Box>
     </Box>
   );
 }
