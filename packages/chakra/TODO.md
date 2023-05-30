@@ -17,7 +17,7 @@
   - [x] menu
   - [ ] progress
   - [ ] select
-  - [ ] skeleton
+  - [x] skeleton
   - [ ] slider
   - [ ] spinner
   - [ ] switch
