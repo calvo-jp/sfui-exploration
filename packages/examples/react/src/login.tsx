@@ -6,6 +6,10 @@ import {
   FormHelperText,
   FormLabel,
   Input,
+  RangeSlider,
+  RangeSliderFilledTrack,
+  RangeSliderThumb,
+  RangeSliderTrack,
   Switch,
   Tag,
   TagCloseButton,
@@ -90,6 +94,16 @@ export function Login() {
           <TagLabel>Hello</TagLabel>
           <TagCloseButton />
         </Tag>
+      </Box>
+
+      <Box mt={4}>
+        <RangeSlider defaultValue={[10, 30]}>
+          <RangeSliderTrack>
+            <RangeSliderFilledTrack />
+          </RangeSliderTrack>
+          <RangeSliderThumb index={0} />
+          <RangeSliderThumb index={1} />
+        </RangeSlider>
       </Box>
     </Box>
   );
