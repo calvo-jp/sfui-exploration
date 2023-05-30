@@ -84,7 +84,7 @@ export function Landing() {
             <Tr>
               <Th>
                 <HStack spacing={3}>
-                  <Checkbox />
+                  <Checkbox size="sm" />
                   <Text fontSize="inherit">User</Text>
                 </HStack>
               </Th>
@@ -99,7 +99,7 @@ export function Landing() {
               <Tr key={user.id}>
                 <Td>
                   <HStack spacing={3}>
-                    <Checkbox />
+                    <Checkbox size="sm" />
                     <HStack>
                       <Avatar src={user.avatar} name={user.name} />
                       <Box>
