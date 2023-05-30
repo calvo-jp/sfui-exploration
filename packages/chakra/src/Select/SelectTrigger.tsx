@@ -2,7 +2,7 @@ import { HTMLChakraProps, chakra } from "@chakra-ui/react";
 import * as React from "react";
 import { Merge } from "../types";
 
-type SelectTriggerProps = Merge<HTMLChakraProps<"button">, {}>;
+export type SelectTriggerProps = Merge<HTMLChakraProps<"button">, {}>;
 
 export const SelectTrigger = React.forwardRef<
   HTMLButtonElement,

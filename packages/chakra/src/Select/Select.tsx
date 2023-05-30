@@ -1,12 +1,29 @@
 import { ThemingProps, useMultiStyleConfig } from "@chakra-ui/react";
-import { PropsWithChildren } from "react";
+import * as React from "react";
 import { Merge } from "../types";
-import { SelectStylesProvider } from "./SelectContext";
+import { runIfFn } from "../utils";
+import {
+  SelectProviderProps,
+  SelectStylesProvider,
+  withSelectContext,
+} from "./SelectContext";
 
-type SelectProps = Merge<ThemingProps<"Select">, {}>;
+type Children = React.ReactNode | ((ctx: {}) => React.ReactNode);
 
-export function Select({ children, ...props }: PropsWithChildren<SelectProps>) {
+export type SelectProps = Merge<
+  ThemingProps<"Select"> & SelectProviderProps,
+  { children: Children }
+>;
+
+export const Select = withSelectContext(function Select({
+  children,
+  ...props
+}: SelectProps) {
   const styles = useMultiStyleConfig("Select", props);
 
-  return <SelectStylesProvider value={styles}>{children}</SelectStylesProvider>;
-}
+  const c = runIfFn(children, {
+    /* pass context here eg. selected option */
+  });
+
+  return <SelectStylesProvider value={styles}>{c}</SelectStylesProvider>;
+});

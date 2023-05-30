@@ -22,7 +22,7 @@ export const SelectContext = React.createContext<SelectState>({
   onChange: noop,
 });
 
-interface SelectProviderProps {
+export interface SelectProviderProps {
   value?: string;
   onChange?(newValue: string): void;
   defaultValue?: string;
