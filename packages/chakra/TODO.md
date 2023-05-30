@@ -15,6 +15,7 @@
   - [x] heading
   - [x] input
   - [x] menu
+  - [x] modal
   - [x] progress
   - [ ] select
   - [x] skeleton
