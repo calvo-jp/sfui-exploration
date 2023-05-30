@@ -16,6 +16,7 @@
   - [x] input
   - [x] menu
   - [x] modal
+  - [ ] popover (Not available in HDS)
   - [x] progress
   - [ ] select
   - [x] skeleton

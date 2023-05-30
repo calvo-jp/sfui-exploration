@@ -12,6 +12,7 @@ import { Heading } from "./heading";
 import { Input } from "./input";
 import { Menu } from "./menu";
 import { Modal } from "./modal";
+import { Popover } from "./popover";
 import { Progress } from "./progress";
 import { Select } from "./select";
 import { Skeleton } from "./skeleton";
@@ -40,6 +41,7 @@ export const components = {
   Input,
   Menu,
   Modal,
+  Popover,
   Progress,
   Select,
   Skeleton,
