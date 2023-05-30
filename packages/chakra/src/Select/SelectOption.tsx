@@ -1,6 +1,24 @@
-import { chakra } from "@chakra-ui/react";
+import { HTMLChakraProps, chakra } from "@chakra-ui/react";
 import { forwardRef } from "react";
+import { Merge } from "../types";
 
-export const SelectOption = forwardRef(function SelectOption() {
-  return <chakra.div></chakra.div>;
-});
+export type SelectOptionProps = Merge<
+  HTMLChakraProps<"div">,
+  {
+    label?: string;
+    value: string;
+  }
+>;
+
+export const SelectOption = forwardRef<HTMLDivElement, SelectOptionProps>(
+  function SelectOption(props, ref) {
+    const { label, value, children, ...others } = props;
+
+    return (
+      <chakra.div ref={ref} {...others}>
+        {label}
+        {children}
+      </chakra.div>
+    );
+  },
+);
