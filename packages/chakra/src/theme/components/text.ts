@@ -40,66 +40,66 @@ export const Text: StyleConfig = {
       letterSpacing: "-0.015em",
     },
     /* Paragraphs */
-    "paragraph-xxl-default": {
+    "paragraph-xxl": {
       fontSize: "32px",
       lineHeight: "48px",
     },
-    "paragraph-xl-default": {
+    "paragraph-xl": {
       fontSize: "24px",
       lineHeight: "36px",
     },
-    "paragraph-lg-default": {
+    "paragraph-lg": {
       fontSize: "20px",
       lineHeight: "32px",
     },
-    "paragraph-md-default": {
+    "paragraph-md": {
       fontSize: "18px",
       lineHeight: "28px",
     },
-    "paragraph-sm-default": {
+    "paragraph-sm": {
       fontSize: "16px",
       lineHeight: "24px",
       letterSpacing: "0.02em",
     },
-    "paragraph-xs-default": {
+    "paragraph-xs": {
       fontSize: "14px",
       lineHeight: "20px",
       letterSpacing: "0.02em",
     },
-    "paragraph-xxs-default": {
+    "paragraph-xxs": {
       fontSize: "12px",
       fontWeight: 400,
       lineHeight: "16px",
     },
     /* Labels */
-    "label-xl-default": {
+    "label-xl": {
       fontSize: "32px",
       lineHeight: "32px",
     },
-    "label-lg-default": {
+    "label-lg": {
       fontSize: "28px",
       lineHeight: "28px",
     },
-    "label-md-default": {
+    "label-md": {
       fontSize: "20px",
       lineHeight: "20px",
     },
-    "label-sm-default": {
+    "label-sm": {
       fontSize: "18px",
       lineHeight: "18px",
     },
-    "label-xs-default": {
+    "label-xs": {
       fontSize: "14px",
       lineHeight: "14px",
       letterSpacing: "0.02em",
     },
-    "label-xxs-default": {
+    "label-xxs": {
       fontSize: "12px",
       lineHeight: "12px",
       letterSpacing: "0.02em",
     },
   },
   defaultProps: {
-    size: "paragraph-md-default",
+    size: "paragraph-md",
   },
 };

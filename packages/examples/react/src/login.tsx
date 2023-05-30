@@ -8,7 +8,7 @@ import {
   Icon,
   Input,
   InputGroup,
-  InputRightAddon,
+  InputRightElement,
   Progress,
   RangeSlider,
   RangeSliderFilledTrack,
@@ -65,9 +65,9 @@ export function Login() {
           <FormLabel>Email</FormLabel>
           <InputGroup>
             <Input placeholder="johndoe@dumm.y" {...register("email")} />
-            <InputRightAddon>
+            <InputRightElement>
               <Icon as={MagnifyingGlassIcon} w={5} h={5} />
-            </InputRightAddon>
+            </InputRightElement>
           </InputGroup>
           <FormErrorMessage>{formState.errors.email?.message}</FormErrorMessage>
         </FormControl>

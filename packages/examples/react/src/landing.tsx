@@ -31,7 +31,11 @@ import {
 import { faker } from "@faker-js/faker";
 import { ChevronRightIcon, PlusIcon } from "@heroicons/react/20/solid";
 import { HomeIcon } from "@heroicons/react/24/outline";
-import { TableContainer, TableHeader } from "@scaleforge-ui/chakra";
+import {
+  TableContainer,
+  TableFooter,
+  TableHeader,
+} from "@scaleforge-ui/chakra";
 import { formatDistanceToNow } from "date-fns";
 import { Link } from "react-router-dom";
 
@@ -103,8 +107,8 @@ export function Landing() {
                     <HStack>
                       <Avatar src={user.avatar} name={user.name} />
                       <Box>
-                        <Text size="paragraph-xs-default">{user.name}</Text>
-                        <Text size="label-xxs-default" color="neutral.600">
+                        <Text size="paragraph-xs">{user.name}</Text>
+                        <Text size="label-xxs" color="neutral.600">
                           @{user.username}
                         </Text>
                       </Box>
@@ -140,6 +144,12 @@ export function Landing() {
             ))}
           </Tbody>
         </Table>
+
+        <TableFooter>
+          <Text size="paragraph-xxs" color="neutral.700">
+            Hello world
+          </Text>
+        </TableFooter>
       </TableContainer>
     </Box>
   );
