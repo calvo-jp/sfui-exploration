@@ -4,6 +4,7 @@
   "license": "MIT",
   "scripts": {
     "start:react": "npx nx serve react",
+    "generate:chakra-typings": "npx @chakra-ui/cli tokens packages/chakra/src/theme/index.ts",
     "sync-deps": "node ./scripts/sync-deps.js"
   },
   "private": true,

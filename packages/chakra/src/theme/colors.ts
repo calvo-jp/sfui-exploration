@@ -9,19 +9,23 @@ export const colors = {
     300: "#D6D6D6",
     200: "#F0F0F0",
     100: "#FCFCFC",
+    50: "",
   },
+
   Gray: {
     900: "#101828",
     800: "#1D2939",
     700: "#344054",
     600: "#475467",
     500: "#667085",
+    400: "",
     300: "#D0D5DD",
     200: "#EAECF0",
     100: "#F2F4F7",
     50: "#F9FAFB",
     25: "#FCFCFD",
   },
+
   gray: {
     900: "#111827",
     800: "#1F2937",
@@ -34,17 +38,20 @@ export const colors = {
     100: "#EDF2F7",
     50: "#F7FAFC",
   },
+
   primary: {
     900: "#520187",
     800: "#5E1C9E",
     700: "#7224BF",
     600: "#C188F9",
     500: "#DDBBFE",
+    400: "",
     300: "#D6BBFB",
     200: "#E9D7FE",
     100: "#F4EBFF",
     50: "#F9F5FF",
   },
+
   error: {
     900: "#800C05",
     800: "#9E241C",
@@ -52,6 +59,7 @@ export const colors = {
     600: "#FCD2CF",
     500: "#FCEAE8",
   },
+
   success: {
     900: "#008005",
     800: "#139E19",
@@ -59,6 +67,7 @@ export const colors = {
     600: "#A3F0A7",
     500: "#E8FCE9",
   },
+
   warning: {
     900: "#CC8900",
     800: "#E59A00",
@@ -66,4 +75,25 @@ export const colors = {
     600: "#FCDFA2",
     500: "#FCEFD4",
   },
+
+  black: "#000000",
+  white: "#ffffff",
+  overlay: "rgba(52, 64, 84, 0.7)",
+
+  /* replace/remove chakra colors */
+  red: null,
+  blue: null,
+  teal: null,
+  cyan: null,
+  pink: null,
+  green: null,
+  purple: null,
+  yellow: null,
+  orange: null,
+  twitter: null,
+  linkedin: null,
+  facebook: null,
+  whatsapp: null,
+  telegram: null,
+  messenger: null,
 };
