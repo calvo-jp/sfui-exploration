@@ -3,7 +3,6 @@ import { MultiStyleConfig } from "@chakra-ui/react";
 export const Breadcrumb: MultiStyleConfig = {
   parts: ["container", "link", "list", "separator"],
   baseStyle: {
-    container: {},
     list: {
       fontSize: "sm",
       lineHeight: "14px",
@@ -22,7 +21,7 @@ export const Breadcrumb: MultiStyleConfig = {
     separator: {
       mx: 3.5,
       color: "neutral.300",
-      svg: {
+      ".chakra-icon": {
         w: 5,
         h: 5,
       },
