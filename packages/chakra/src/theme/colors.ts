@@ -110,7 +110,7 @@ export const colors = {
     50: "#EFF8FF",
   },
 
-  "gray-blue": {
+  "blue-gray": {
     700: "#363F72",
     500: "#4E5BA6",
     50: "#F8F9FC",
