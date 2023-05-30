@@ -1,5 +1,4 @@
-import { MultiStyleConfig } from "@chakra-ui/react";
-import { calc, cssVar } from "@chakra-ui/theme-tools";
+import { MultiStyleConfig, calc, cssVar } from "@chakra-ui/react";
 
 const $width = cssVar("switch-track-width");
 const $height = cssVar("switch-track-height");

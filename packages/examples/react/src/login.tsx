@@ -7,6 +7,9 @@ import {
   FormLabel,
   Input,
   Switch,
+  Tag,
+  TagCloseButton,
+  TagLabel,
   Tooltip,
   chakra,
 } from "@chakra-ui/react";
@@ -80,6 +83,13 @@ export function Login() {
 
       <Box mt={4}>
         <Switch />
+      </Box>
+
+      <Box mt={4}>
+        <Tag>
+          <TagLabel>Hello</TagLabel>
+          <TagCloseButton />
+        </Tag>
       </Box>
     </Box>
   );

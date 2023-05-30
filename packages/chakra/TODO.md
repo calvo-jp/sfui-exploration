@@ -23,7 +23,7 @@
   - [x] switch
   - [ ] table
   - [ ] tabs
-  - [ ] tag
+  - [x] tag
   - [x] text
   - [ ] textarea
   - [x] tooltip
