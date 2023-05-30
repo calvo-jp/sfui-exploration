@@ -4,7 +4,7 @@
 
   - [ ] alert
   - [ ] avatar
-  - [ ] badge
+  - [x] badge
   - [ ] breadcrumb
   - [ ] button
   - [x] checkbox
