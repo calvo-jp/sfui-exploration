@@ -119,7 +119,7 @@ export function Login() {
 
       <Progress mt={4} value={80} />
 
-      <Spinner mt={4} size="lg" />
+      <Spinner mt={6} />
     </Box>
   );
 }
