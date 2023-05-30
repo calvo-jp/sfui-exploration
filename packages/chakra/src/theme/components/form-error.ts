@@ -10,7 +10,7 @@ export const FormError: MultiStyleConfig = {
       mt: 1.5,
       color: "error.700",
       fontSize: "sm",
-      lineHeight: 3.5,
+      lineHeight: "14px",
       letterSpacing: "0.02em",
     },
   },

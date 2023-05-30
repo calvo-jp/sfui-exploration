@@ -21,7 +21,7 @@ export const Menu: MultiStyleConfig = {
       minW: "full",
       color: "neutral.900",
       fontSize: "sm",
-      lineHeight: 3.5,
+      lineHeight: "14px",
       letterSpacing: "0.02em",
       _hover: {
         bgColor: "neutral.100",
@@ -44,7 +44,7 @@ export const Menu: MultiStyleConfig = {
     command: {
       color: "neutral.700",
       fontSize: "xs",
-      lineHeight: 3,
+      lineHeight: "12px",
       letterSpacing: "0.02em",
     },
     divider: {

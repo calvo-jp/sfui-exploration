@@ -7,7 +7,7 @@ export const FormLabel: StyleConfig = {
     width: "fit-content",
     fontSize: "sm",
     fontWeight: "semibold",
-    lineHeight: 3.5,
+    lineHeight: "14px",
     letterSpacing: "0.02em",
     userSelect: "none",
     _disabled: {},

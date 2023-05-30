@@ -7,6 +7,7 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
   Button,
+  Checkbox,
   Flex,
   HStack,
   Heading,
@@ -18,7 +19,6 @@ import {
   ModalOverlay,
   Spacer,
   Table,
-  TableContainer,
   Tbody,
   Td,
   Text,
@@ -31,6 +31,7 @@ import {
 import { faker } from "@faker-js/faker";
 import { ChevronRightIcon, PlusIcon } from "@heroicons/react/20/solid";
 import { HomeIcon } from "@heroicons/react/24/outline";
+import { TableContainer, TableHeader } from "@scaleforge-ui/chakra";
 import { formatDistanceToNow } from "date-fns";
 import { Link } from "react-router-dom";
 
@@ -64,22 +65,29 @@ export function Landing() {
         </BreadcrumbItem>
       </Breadcrumb>
 
-      <Flex alignItems="center" mt={6}>
-        <Box>
-          <Heading>Users</Heading>
-          <Text color="neutral.600">Manage users</Text>
-        </Box>
-
-        <Spacer />
-
-        <CreateUser />
-      </Flex>
-
       <TableContainer mt={4}>
+        <TableHeader>
+          <Flex alignItems="center">
+            <Box>
+              <Heading>Users</Heading>
+              <Text color="neutral.600">Manage users</Text>
+            </Box>
+
+            <Spacer />
+
+            <CreateUser />
+          </Flex>
+        </TableHeader>
+
         <Table>
           <Thead>
             <Tr>
-              <Th>User</Th>
+              <Th>
+                <HStack spacing={3}>
+                  <Checkbox />
+                  <Text fontSize="inherit">User</Text>
+                </HStack>
+              </Th>
               <Th>Email</Th>
               <Th>Friends</Th>
               <Th>Teams</Th>
@@ -90,14 +98,17 @@ export function Landing() {
             {users.map((user) => (
               <Tr key={user.id}>
                 <Td>
-                  <HStack>
-                    <Avatar src={user.avatar} name={user.name} />
-                    <Box>
-                      <Text size="paragraph-xs-default">{user.name}</Text>
-                      <Text size="label-xxs-default" color="neutral.600">
-                        @{user.username}
-                      </Text>
-                    </Box>
+                  <HStack spacing={3}>
+                    <Checkbox />
+                    <HStack>
+                      <Avatar src={user.avatar} name={user.name} />
+                      <Box>
+                        <Text size="paragraph-xs-default">{user.name}</Text>
+                        <Text size="label-xxs-default" color="neutral.600">
+                          @{user.username}
+                        </Text>
+                      </Box>
+                    </HStack>
                   </HStack>
                 </Td>
                 <Td>{user.email}</Td>
@@ -113,7 +124,9 @@ export function Landing() {
                 <Td>
                   <HStack spacing={2}>
                     {user.teams.map((team) => (
-                      <Badge key={team}>{team}</Badge>
+                      <Badge key={team} colorScheme="success">
+                        {team}
+                      </Badge>
                     ))}
                   </HStack>
                 </Td>

@@ -6,7 +6,7 @@ export const Breadcrumb: MultiStyleConfig = {
     container: {},
     list: {
       fontSize: "sm",
-      lineHeight: 3.5,
+      lineHeight: "14px",
     },
     link: {
       color: "neutral.600",

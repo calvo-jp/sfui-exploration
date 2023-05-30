@@ -18,6 +18,6 @@ export const Tooltip: StyleConfig = {
     rounded: 2,
     fontSize: "sm",
     fontWeight: "medium",
-    lineHeight: 4.5,
+    lineHeight: "18px",
   },
 };

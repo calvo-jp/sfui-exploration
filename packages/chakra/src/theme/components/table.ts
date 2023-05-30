@@ -15,6 +15,24 @@ export const Table: MultiStyleConfig = {
     "td",
   ],
   baseStyle: {
+    container: {
+      display: "block",
+      overflowX: "auto",
+      overflowY: "hidden",
+      maxWidth: "full",
+      whiteSpace: "nowrap",
+      WebkitOverflowScrolling: "touch",
+      border: "1px",
+      borderColor: "Gray.200",
+      rounded: "lg",
+    },
+    header: {
+      padding: 4,
+    },
+    footer: {
+      padding: 4,
+    },
+
     thead: {
       bgColor: "Gray.50",
     },
@@ -24,7 +42,7 @@ export const Table: MultiStyleConfig = {
       textTransform: "unset",
       color: "Gray.500",
       fontSize: "xs",
-      lineHeight: 4.5,
+      lineHeight: "18px",
       fontWeight: "medium",
     },
     td: {
@@ -32,12 +50,13 @@ export const Table: MultiStyleConfig = {
       px: 6,
       color: "neutrals.600",
       fontSize: "sm",
-      lineHeight: 5,
+      lineHeight: "20px",
       letterSpacing: "0.02em",
     },
   },
   variants: {
     simple: {
+      table: {},
       tr: {
         _first: {
           borderTop: "1px",
@@ -52,6 +71,7 @@ export const Table: MultiStyleConfig = {
       },
     },
     bordered: {
+      table: {},
       th: {
         border: "1px",
         borderColor: "Gray.200",

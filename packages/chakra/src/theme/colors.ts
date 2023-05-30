@@ -1,4 +1,17 @@
 export const colors = {
+  /* remove chakra colors */
+  red: null,
+  teal: null,
+  cyan: null,
+  green: null,
+  yellow: null,
+  twitter: null,
+  linkedin: null,
+  facebook: null,
+  whatsapp: null,
+  telegram: null,
+  messenger: null,
+
   neutral: {
     900: "#0F0F0F",
     800: "#2E2E2E",
@@ -18,7 +31,7 @@ export const colors = {
     700: "#344054",
     600: "#475467",
     500: "#667085",
-    400: "",
+    400: "#98A2B3",
     300: "#D0D5DD",
     200: "#EAECF0",
     100: "#F2F4F7",
@@ -58,6 +71,11 @@ export const colors = {
     700: "#DC180C",
     600: "#FCD2CF",
     500: "#FCEAE8",
+    400: "",
+    300: "",
+    200: "",
+    100: "#FEE4E2",
+    50: "#FEF3F2",
   },
 
   success: {
@@ -66,6 +84,11 @@ export const colors = {
     700: "#00C408",
     600: "#A3F0A7",
     500: "#E8FCE9",
+    400: "",
+    300: "",
+    200: "",
+    100: "#D1FADF",
+    50: "#ECFDF3",
   },
 
   warning: {
@@ -74,26 +97,62 @@ export const colors = {
     700: "#FFAB00",
     600: "#FCDFA2",
     500: "#FCEFD4",
+    400: "",
+    300: "",
+    200: "",
+    100: "#FEF0C7",
+    50: "#FFFAEB",
   },
 
   black: "#000000",
   white: "#ffffff",
   overlay: "rgba(52, 64, 84, 0.7)",
 
-  /* replace/remove chakra colors */
-  red: null,
-  blue: null,
-  teal: null,
-  cyan: null,
-  pink: null,
-  green: null,
-  purple: null,
-  yellow: null,
-  orange: null,
-  twitter: null,
-  linkedin: null,
-  facebook: null,
-  whatsapp: null,
-  telegram: null,
-  messenger: null,
+  blue: {
+    700: "#175CD3",
+    500: "#2E90FA",
+    50: "#EFF8FF",
+  },
+
+  "gray-blue": {
+    700: "#363F72",
+    500: "#4E5BA6",
+    50: "#F8F9FC",
+  },
+
+  "blue-light": {
+    700: "#026AA2",
+    500: "#0BA5EC",
+    50: "#F0F9FF",
+  },
+
+  indigo: {
+    700: "#3538CD",
+    500: "#6172F3",
+    50: "#EEF4FF",
+  },
+
+  purple: {
+    700: "#5925DC",
+    500: "#7A5AF8",
+    50: "#F4F3FF",
+  },
+
+  pink: {
+    700: "#C11574",
+    500: "#EE46BC",
+    50: "#FDF2FA",
+  },
+
+  rose: {
+    700: "#C01048",
+    500: "#F63D68",
+    50: "#FFF1F3",
+  },
+
+  orange: {
+    700: "#B93815",
+    500: "#EF6820",
+    50: "#FEF6EE",
+  },
 };
