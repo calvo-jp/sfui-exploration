@@ -1,4 +1,11 @@
 import {
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogCloseButton,
+  AlertDialogContent,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogOverlay,
   Avatar,
   AvatarGroup,
   Badge,
@@ -12,11 +19,6 @@ import {
   HStack,
   Heading,
   Icon,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalOverlay,
   Spacer,
   Table,
   Tbody,
@@ -37,6 +39,7 @@ import {
   TableHeader,
 } from "@scaleforge-ui/chakra";
 import { formatDistanceToNow } from "date-fns";
+import * as React from "react";
 import { Link } from "react-router-dom";
 
 export function Landing() {
@@ -156,21 +159,37 @@ export function Landing() {
 }
 
 function CreateUser() {
+  const ref = React.useRef<HTMLButtonElement>(null);
+
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <>
-      <Button leftIcon={<Icon as={PlusIcon} />} onClick={onOpen}>
+      <Button ref={ref} leftIcon={<Icon as={PlusIcon} />} onClick={onOpen}>
         Add new
       </Button>
 
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalCloseButton />
-          <ModalBody>Hello world</ModalBody>
-        </ModalContent>
-      </Modal>
+      <AlertDialog isOpen={isOpen} onClose={onClose} leastDestructiveRef={ref}>
+        <AlertDialogOverlay />
+        <AlertDialogContent>
+          <AlertDialogCloseButton />
+          <AlertDialogHeader>
+            <Heading>Hello</Heading>
+          </AlertDialogHeader>
+          <AlertDialogBody mt={4}>
+            <Text size="paragraph-xs" color="neutral.800">
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam
+              similique ipsam praesentium, dolore suscipit ratione ducimus
+              libero excepturi numquam distinctio.
+            </Text>
+          </AlertDialogBody>
+          <AlertDialogFooter mt={4}>
+            <Flex justifyContent="flex-end">
+              <Button onClick={onClose}>Okay</Button>
+            </Flex>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </>
   );
 }
