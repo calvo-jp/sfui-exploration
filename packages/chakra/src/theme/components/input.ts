@@ -3,7 +3,7 @@ import { MultiStyleConfig } from "@chakra-ui/react";
 export const Input: MultiStyleConfig = {
   parts: ["field", "addon", "element"],
   variants: {
-    outline({ colorScheme }) {
+    outline() {
       return {
         field: {
           boxShadow: "0px 1px 2px rgba(16, 24, 40, 0.05)",
@@ -15,7 +15,7 @@ export const Input: MultiStyleConfig = {
             borderColor: "neutral.300",
           },
           _focus: {
-            borderColor: `${colorScheme}.700`,
+            borderColor: "primary.700",
             boxShadow: "0px 1px 2px rgba(16, 24, 40, 0.05)",
           },
           _invalid: {
