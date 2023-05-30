@@ -5,6 +5,16 @@ export const Input: MultiStyleConfig = {
   variants: {
     outline() {
       return {
+        addon: {
+          bg: "white",
+          color: "neutral.700",
+          _hover: {
+            bg: "neutral.50",
+          },
+        },
+        element: {
+          color: "neutral.500",
+        },
         field: {
           boxShadow: "0px 1px 2px rgba(16, 24, 40, 0.05)",
           borderColor: "neutral.200",
@@ -19,11 +29,10 @@ export const Input: MultiStyleConfig = {
             boxShadow: "0px 1px 2px rgba(16, 24, 40, 0.05)",
           },
           _invalid: {
-            boxShadow: "none",
+            boxShadow: "0px 1px 2px rgba(16, 24, 40, 0.05)",
             borderColor: "error.700",
             _focus: {
               borderColor: "error.700",
-              boxShadow: "0px 1px 2px rgba(16, 24, 40, 0.05)",
             },
           },
           _disabled: {
@@ -41,20 +50,27 @@ export const Input: MultiStyleConfig = {
       };
     },
   },
-
   sizes: {
     sm: {
+      addon: {
+        h: "40px",
+      },
       field: {
+        h: "40px",
+        py: "8px",
+        px: "12px",
+
         rounded: "4px",
       },
     },
     md: {
-      field: {
-        rounded: "4px",
+      addon: {
+        h: "44px",
       },
-    },
-    lg: {
       field: {
+        h: "44px",
+        py: "10px",
+        px: "14px",
         rounded: "4px",
       },
     },

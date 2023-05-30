@@ -5,7 +5,10 @@ import {
   FormErrorMessage,
   FormHelperText,
   FormLabel,
+  Icon,
   Input,
+  InputGroup,
+  InputRightAddon,
   Progress,
   RangeSlider,
   RangeSliderFilledTrack,
@@ -18,6 +21,7 @@ import {
   Tooltip,
   chakra,
 } from "@chakra-ui/react";
+import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -58,7 +62,12 @@ export function Login() {
       >
         <FormControl isInvalid={!!formState.errors.email}>
           <FormLabel>Email</FormLabel>
-          <Input placeholder="johndoe@dumm.y" {...register("email")} />
+          <InputGroup>
+            <Input placeholder="johndoe@dumm.y" {...register("email")} />
+            <InputRightAddon>
+              <Icon as={MagnifyingGlassIcon} w={5} h={5} />
+            </InputRightAddon>
+          </InputGroup>
           <FormErrorMessage>{formState.errors.email?.message}</FormErrorMessage>
         </FormControl>
 

@@ -13,7 +13,7 @@
   - [x] form-label
   - [x] form
   - [x] heading
-  - [ ] input
+  - [x] input
   - [x] menu
   - [x] progress
   - [ ] select
