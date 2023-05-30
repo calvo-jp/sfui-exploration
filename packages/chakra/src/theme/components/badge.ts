@@ -1,8 +1,8 @@
-import { StyleConfig } from '@chakra-ui/react';
+import { StyleConfig } from "@chakra-ui/react";
 
 export const Badge: StyleConfig = {
   defaultProps: {
-    colorScheme: 'primary',
-    size: 'md',
+    colorScheme: "primary",
+    size: "md",
   },
 };

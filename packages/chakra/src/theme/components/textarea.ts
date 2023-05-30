@@ -1,3 +1,3 @@
-import { StyleConfig } from '@chakra-ui/react';
+import { StyleConfig } from "@chakra-ui/react";
 
 export const Textarea: StyleConfig = {};

@@ -1,5 +1,5 @@
-import { MultiStyleConfig } from '@chakra-ui/react';
+import { MultiStyleConfig } from "@chakra-ui/react";
 
 export const Slider: MultiStyleConfig = {
-  parts: ['container', 'track', 'thumb', 'filledTrack', 'mark'],
+  parts: ["container", "track", "thumb", "filledTrack", "mark"],
 };

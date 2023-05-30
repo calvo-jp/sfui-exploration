@@ -1,5 +1,5 @@
-import { MultiStyleConfig } from '@chakra-ui/react';
+import { MultiStyleConfig } from "@chakra-ui/react";
 
 export const Checkbox: MultiStyleConfig = {
-  parts: ['control', 'icon', 'container', 'label'],
+  parts: ["control", "icon", "container", "label"],
 };

@@ -1,5 +1,5 @@
-import { MultiStyleConfig } from '@chakra-ui/react';
+import { MultiStyleConfig } from "@chakra-ui/react";
 
 export const Progress: MultiStyleConfig = {
-  parts: ['label', 'filledTrack', 'track'],
+  parts: ["label", "filledTrack", "track"],
 };

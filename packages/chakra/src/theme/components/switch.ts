@@ -1,5 +1,5 @@
-import { MultiStyleConfig } from '@chakra-ui/react';
+import { MultiStyleConfig } from "@chakra-ui/react";
 
 export const Switch: MultiStyleConfig = {
-  parts: ['container', 'thumb', 'track'],
+  parts: ["container", "thumb", "track"],
 };

@@ -1,5 +1,5 @@
-import { MultiStyleConfig } from '@chakra-ui/react';
+import { MultiStyleConfig } from "@chakra-ui/react";
 
 export const Alert: MultiStyleConfig = {
-  parts: ['container', 'title', 'description', 'icon', 'spinner'],
+  parts: ["container", "title", "description", "icon", "spinner"],
 };

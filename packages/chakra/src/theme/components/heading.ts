@@ -1,9 +1,9 @@
-import { StyleConfig } from '@chakra-ui/react';
-import { Text } from './text';
+import { StyleConfig } from "@chakra-ui/react";
+import { Text } from "./text";
 
 export const Heading: StyleConfig = {
   sizes: Text.sizes,
   defaultProps: {
-    size: 'header-6',
+    size: "header-6",
   },
 };

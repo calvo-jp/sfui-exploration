@@ -1,5 +1,5 @@
-import { breakpoints } from './breakpoints';
-import { space } from './space';
+import { breakpoints } from "./breakpoints";
+import { space } from "./space";
 
 export const sizes = {
   ...space,

@@ -1,9 +1,9 @@
-import { StyleConfig, cssVar } from '@chakra-ui/react';
-import { colors } from '../colors';
+import { StyleConfig, cssVar } from "@chakra-ui/react";
+import { colors } from "../colors";
 
-const $fgColor = cssVar('tooltip-fg');
-const $bgColor = cssVar('tooltip-bg');
-const $arrowBg = cssVar('popper-arrow-bg');
+const $fgColor = cssVar("tooltip-fg");
+const $bgColor = cssVar("tooltip-bg");
+const $arrowBg = cssVar("popper-arrow-bg");
 
 export const Tooltip: StyleConfig = {
   baseStyle: {
@@ -16,8 +16,8 @@ export const Tooltip: StyleConfig = {
     color: $fgColor.reference,
     bgColor: $bgColor.reference,
     rounded: 2,
-    fontSize: 'sm',
-    fontWeight: 'medium',
+    fontSize: "sm",
+    fontWeight: "medium",
     lineHeight: 4.5,
   },
 };

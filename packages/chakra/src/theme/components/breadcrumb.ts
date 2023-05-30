@@ -1,27 +1,27 @@
-import { MultiStyleConfig } from '@chakra-ui/react';
+import { MultiStyleConfig } from "@chakra-ui/react";
 
 export const Breadcrumb: MultiStyleConfig = {
-  parts: ['container', 'link', 'list', 'separator'],
+  parts: ["container", "link", "list", "separator"],
   baseStyle: {
     container: {},
     list: {
-      fontSize: 'sm',
+      fontSize: "sm",
       lineHeight: 3.5,
     },
     link: {
-      color: 'neutral.600',
-      letterSpacing: '0.02em',
-      textDecoration: 'none',
+      color: "neutral.600",
+      letterSpacing: "0.02em",
+      textDecoration: "none",
       _hover: {
-        color: 'neutral.800',
+        color: "neutral.800",
       },
       _activeLink: {
-        color: 'primary.900',
+        color: "primary.900",
       },
     },
     separator: {
       mx: 3.5,
-      color: 'neutral.300',
+      color: "neutral.300",
       svg: {
         w: 5,
         h: 5,

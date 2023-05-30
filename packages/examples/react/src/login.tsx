@@ -8,11 +8,11 @@ import {
   Input,
   Tooltip,
   chakra,
-} from '@chakra-ui/react';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
-import { z } from 'zod';
+} from "@chakra-ui/react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { z } from "zod";
 
 export function Login() {
   const navigate = useNavigate();
@@ -23,10 +23,10 @@ export function Login() {
       shouldUnregister: true,
       shouldFocusError: true,
       defaultValues: {
-        email: '',
-        password: '',
+        email: "",
+        password: "",
       },
-    }
+    },
   );
 
   return (
@@ -44,18 +44,18 @@ export function Login() {
       <chakra.form
         onSubmit={handleSubmit(async () => {
           await sleep();
-          navigate('/');
+          navigate("/");
         })}
       >
         <FormControl isInvalid={!!formState.errors.email}>
           <FormLabel>Email</FormLabel>
-          <Input placeholder="johndoe@dumm.y" {...register('email')} />
+          <Input placeholder="johndoe@dumm.y" {...register("email")} />
           <FormErrorMessage>{formState.errors.email?.message}</FormErrorMessage>
         </FormControl>
 
         <FormControl isInvalid={!!formState.errors.password} mt={4}>
           <FormLabel>Password</FormLabel>
-          <Input placeholder="Enter password" {...register('password')} />
+          <Input placeholder="Enter password" {...register("password")} />
           <FormErrorMessage>
             {formState.errors.password?.message}
           </FormErrorMessage>

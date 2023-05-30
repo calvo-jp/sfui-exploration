@@ -27,12 +27,12 @@ import {
   Tr,
   VisuallyHidden,
   useDisclosure,
-} from '@chakra-ui/react';
-import { faker } from '@faker-js/faker';
-import { ChevronRightIcon, PlusIcon } from '@heroicons/react/20/solid';
-import { HomeIcon } from '@heroicons/react/24/outline';
-import { formatDistanceToNow } from 'date-fns';
-import { Link } from 'react-router-dom';
+} from "@chakra-ui/react";
+import { faker } from "@faker-js/faker";
+import { ChevronRightIcon, PlusIcon } from "@heroicons/react/20/solid";
+import { HomeIcon } from "@heroicons/react/24/outline";
+import { formatDistanceToNow } from "date-fns";
+import { Link } from "react-router-dom";
 
 export function Landing() {
   return (

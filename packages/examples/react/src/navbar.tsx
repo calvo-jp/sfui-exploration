@@ -19,13 +19,13 @@ import {
   Portal,
   Spacer,
   useDisclosure,
-} from '@chakra-ui/react';
+} from "@chakra-ui/react";
 import {
   BellIcon,
   Cog6ToothIcon,
   PowerIcon,
-} from '@heroicons/react/24/outline';
-import { Link } from 'react-router-dom';
+} from "@heroicons/react/24/outline";
+import { Link } from "react-router-dom";
 
 export function Navbar() {
   return (
