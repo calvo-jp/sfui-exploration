@@ -24,9 +24,9 @@
   - [ ] table
   - [ ] tabs
   - [ ] tag
-  - [ ] text
+  - [x] text
   - [ ] textarea
-  - [ ] tooltip
+  - [x] tooltip
 
 - components
   - [ ] Combobox
