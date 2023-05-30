@@ -9,9 +9,9 @@
   - [ ] button
   - [x] checkbox
   - [ ] drawer
-  - [ ] form-error
-  - [ ] form-label
-  - [ ] form
+  - [x] form-error
+  - [x] form-label
+  - [x] form
   - [x] heading
   - [ ] input
   - [x] menu
