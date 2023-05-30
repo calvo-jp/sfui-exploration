@@ -7,23 +7,41 @@ import {
 } from "@chakra-ui/react";
 import * as React from "react";
 import { Merge } from "../types";
-import { PaginationStylesProvider } from "./PaginationContext";
+import {
+  PaginationProvider,
+  PaginationProviderProps,
+  PaginationStylesProvider,
+} from "./PaginationContext";
 
 export type PaginationProps = Merge<
   HTMLChakraProps<"div"> & ThemingProps<"Pagination">,
-  {}
+  PaginationProviderProps
 >;
 
 export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
   function Pagination(props, ref) {
     const styles = useMultiStyleConfig("Pagination", props);
 
-    const { children, ...others } = omitThemingProps(props);
+    const {
+      total = 0,
+      value,
+      onChange,
+      defaultValue,
+      children,
+      ...others
+    } = omitThemingProps(props);
 
     return (
       <chakra.div ref={ref} __css={styles.container} {...others}>
         <PaginationStylesProvider value={styles}>
-          {children}
+          <PaginationProvider
+            value={value}
+            onChange={onChange}
+            defaultValue={defaultValue}
+            total={total}
+          >
+            {children}
+          </PaginationProvider>
         </PaginationStylesProvider>
       </chakra.div>
     );
