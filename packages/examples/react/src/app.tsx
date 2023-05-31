@@ -25,6 +25,18 @@ export default function App() {
             950: "#082f49",
           },
         },
+       
+        components: {
+          Input: {
+            variants: {
+              filled: {
+                field: {
+                  bgColor: "neutral.200",
+                },
+              },
+            },
+          },
+        },
         */
       })}
       toastOptions={defaultToastOptions}
