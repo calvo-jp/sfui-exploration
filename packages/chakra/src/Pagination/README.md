@@ -19,7 +19,7 @@ function Component() {
             <PaginationNextPageTrigger />
 
             {pages.map((page) => (
-              <PaginationPageTrigger {...page} />
+              <PaginationPageTrigger isReadOnly {...page} />
             ))}
           </>
         )}
