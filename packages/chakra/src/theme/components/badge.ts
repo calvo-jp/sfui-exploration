@@ -1,10 +1,8 @@
 import { StyleConfig } from "@chakra-ui/react";
 
 export const Badge: StyleConfig = {
-  baseStyle({ colorScheme }) {
+  baseStyle() {
     return {
-      color: `${colorScheme}.700`,
-      bgColor: `${colorScheme}.50`,
       rounded: "16px",
       fontSize: "14px",
       fontWeight: "normal",
@@ -12,6 +10,14 @@ export const Badge: StyleConfig = {
       letterSpacing: "0.02em",
       textTransform: "none",
     };
+  },
+  variants: {
+    subtle({ colorScheme }) {
+      return {
+        color: `${colorScheme}.700`,
+        bgColor: `${colorScheme}.50`,
+      };
+    },
   },
   sizes: {
     sm: {
@@ -29,6 +35,7 @@ export const Badge: StyleConfig = {
   },
   defaultProps: {
     size: "md",
+    variant: "subtle",
     colorScheme: "primary",
   },
 };
