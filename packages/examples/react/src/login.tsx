@@ -9,6 +9,14 @@ import {
   Input,
   InputGroup,
   InputRightElement,
+  Popover,
+  PopoverArrow,
+  PopoverBody,
+  PopoverCloseButton,
+  PopoverContent,
+  PopoverFooter,
+  PopoverHeader,
+  PopoverTrigger,
   Progress,
   RangeSlider,
   RangeSliderFilledTrack,
@@ -122,6 +130,23 @@ export function Login() {
       <Progress mt={4} value={80} />
 
       <Spinner mt={6} />
+
+      <Box mt={4}>
+        <Popover>
+          <PopoverTrigger>
+            <chakra.button>
+              <Icon />
+            </chakra.button>
+          </PopoverTrigger>
+          <PopoverContent>
+            <PopoverArrow />
+            <PopoverCloseButton />
+            <PopoverHeader>Hello</PopoverHeader>
+            <PopoverBody>Hello</PopoverBody>
+            <PopoverFooter>Hello</PopoverFooter>
+          </PopoverContent>
+        </Popover>
+      </Box>
     </Box>
   );
 }
