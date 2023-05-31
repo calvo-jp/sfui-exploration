@@ -39,6 +39,9 @@ export const Switch: MultiStyleConfig = {
           _hover: {
             bgColor: getThemeColor(theme, colorScheme, 900),
           },
+          _focus: {
+            bgColor: getThemeColor(theme, colorScheme, 700),
+          },
         },
         _disabled: {
           opacity: 1,
