@@ -23,6 +23,17 @@ export const Toast: MultiStyleConfig = {
           rounded: "8px",
           display: "flex",
           alignItems: "center",
+
+          /* [WORKARROUND] neutral pallete has different contrast */
+          ...(colorScheme === "neutral" && {
+            bg: "neutral.100",
+            borderColor: "neutral.300",
+          }),
+          /* [WORKARROUND] blue pallete has different contrast */
+          ...(colorScheme === "blue" && {
+            bg: "blue.100",
+            borderColor: "blue.300",
+          }),
         },
         icon: {
           color: `${colorScheme}.800`,

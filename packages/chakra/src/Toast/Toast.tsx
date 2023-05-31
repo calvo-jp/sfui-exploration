@@ -77,7 +77,7 @@ function statusToColorScheme(key: ToastProps["status"]) {
     case "error":
       return "error";
     case "loading":
-      return "gray";
+      return "neutral";
     case "success":
       return "success";
     case "warning":
