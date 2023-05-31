@@ -26,29 +26,28 @@ export const Switch: MultiStyleConfig = {
         transition:
           "background-color 300ms ease-in-out, box-shadow 300ms ease-in-out",
 
-        _light: {
-          bgColor: "neutral.200",
+        bgColor: "neutral.200",
+        _hover: {
+          bgColor: "neutral.100",
+        },
+        _focus: {
+          bgColor: "gray.50",
+          boxShadow: $shadow.reference,
+        },
+        _checked: {
+          bgColor: getThemeColor(theme, colorScheme, 700),
           _hover: {
-            bgColor: "neutral.100",
-          },
-          _focus: {
-            bgColor: "gray.50",
-            boxShadow: $shadow.reference,
-          },
-          _checked: {
-            bgColor: getThemeColor(theme, colorScheme, 700),
-            _hover: {
-              bgColor: getThemeColor(theme, colorScheme, 900),
-            },
-          },
-          _disabled: {
-            opacity: 1,
-            bgColor: "neutral.200",
-            _hover: {
-              bgColor: "neutral.200",
-            },
+            bgColor: getThemeColor(theme, colorScheme, 900),
           },
         },
+        _disabled: {
+          opacity: 1,
+          bgColor: "neutral.200",
+          _hover: {
+            bgColor: "neutral.200",
+          },
+        },
+
         _dark: {
           bgColor: getThemeColor(theme, colorScheme, 50),
           _hover: {

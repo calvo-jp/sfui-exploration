@@ -18,7 +18,7 @@ export const Menu: MultiStyleConfig = {
 
         [$shadow.variable]: [
           "0px 12px 16px -4px " + lighten(theme.colors.gray[900], 8),
-          "0px 4px 6px -2px " + +lighten(theme.colors.gray[900], 3),
+          "0px 4px 6px -2px " + lighten(theme.colors.gray[900], 3),
         ].join(),
       },
       item: {
