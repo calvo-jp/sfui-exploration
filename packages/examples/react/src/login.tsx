@@ -22,6 +22,7 @@ import {
   RangeSliderFilledTrack,
   RangeSliderThumb,
   RangeSliderTrack,
+  Select,
   Spinner,
   Switch,
   Tag,
@@ -91,6 +92,15 @@ export function Login() {
           {!formState.errors.password && (
             <FormHelperText>This is a hint</FormHelperText>
           )}
+        </FormControl>
+
+        <FormControl mt={4}>
+          <FormLabel>Select</FormLabel>
+          <Select>
+            <option>One</option>
+            <option>Two</option>
+            <option>Three</option>
+          </Select>
         </FormControl>
 
         <FormControl mt={4}>

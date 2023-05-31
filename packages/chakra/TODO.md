@@ -18,6 +18,7 @@
   - [x] modal
   - [x] popover `(Uses tooltip ui)`
   - [x] progress
+  - [x] select `(native)`
   - [ ] select
   - [x] skeleton
   - [x] slider
