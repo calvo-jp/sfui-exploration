@@ -1,4 +1,5 @@
 import { StyleConfig } from "@chakra-ui/react";
+import { lighten } from "../../utils";
 
 export const Button: StyleConfig = {
   baseStyle: {
@@ -9,15 +10,16 @@ export const Button: StyleConfig = {
       return {
         color: "neutral.100",
         transition: "all 300ms ease-in-out",
-        boxShadow: "0px 1px 2px rgba(16, 24, 40, 0.05)",
+        boxShadow: "0px 1px 2px " + lighten(theme.colors.gray[900], 5),
         bgColor: `${colorScheme}.700`,
         _hover: {
           bgColor: `${colorScheme}.900`,
         },
         _focus: {
-          boxShadow:
-            "0px 1px 2px rgba(16, 24, 40, 0.05), 0px 0px 0px 4px " +
-            theme.colors[colorScheme][100],
+          boxShadow: [
+            "0px 1px 2px " + lighten(theme.colors.gray[900], 5),
+            "0px 0px 0px 4px " + theme.colors[colorScheme][100],
+          ].join(),
         },
         _disabled: {
           bgColor: `${colorScheme}.500`,

@@ -51,7 +51,8 @@ export const Input: MultiStyleConfig = {
             },
           },
 
-          [$shadow.variable]: lighten(theme.colors.gray[900], 5),
+          [$shadow.variable]:
+            "0px 1px 2px " + lighten(theme.colors.gray[900], 5),
         },
       };
     },

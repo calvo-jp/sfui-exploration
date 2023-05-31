@@ -2,36 +2,39 @@ import { MultiStyleConfig } from "@chakra-ui/react";
 
 export const Avatar: MultiStyleConfig = {
   parts: ["badge", "container", "excessLabel", "group", "label"],
-  baseStyle: {
-    container: {
-      p: 0,
-      bgColor: "Gray.50",
-      ".chakra-avatar__svg": {
-        color: "Gray.600",
+  baseStyle() {
+    return {
+      container: {
+        p: 0,
+        color: "gray.600",
+        bgColor: "gray.50",
+        [ChakraAvatarSvgClassname]: {
+          color: "gray.600",
+        },
       },
-    },
-    badge: {
-      border: "1.5px solid",
-      borderColor: "white",
-      bgColor: "success.700",
-      right: "unset",
-      bottom: "unset",
-      transform: "unset",
-    },
-    label: {
-      fontWeight: "medium",
-    },
-    excessLabel: {
-      color: "Gray.600",
-      bgColor: "Gray.50",
-      border: "2px solid",
-      borderColor: "white",
-      fontWeight: "medium",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-    },
-    group: {},
+      badge: {
+        border: "1.5px solid",
+        borderColor: "white",
+        bgColor: "success.700",
+        right: "unset",
+        bottom: "unset",
+        transform: "unset",
+      },
+      label: {
+        fontWeight: "medium",
+      },
+      excessLabel: {
+        color: "gray.600",
+        bgColor: "gray.50",
+        border: "2px solid",
+        borderColor: "white",
+        fontWeight: "medium",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      },
+      group: {},
+    };
   },
   sizes: {
     xs: {
@@ -196,3 +199,5 @@ export const Avatar: MultiStyleConfig = {
     size: "md",
   },
 };
+
+const ChakraAvatarSvgClassname = ".chakra-avatar__svg";

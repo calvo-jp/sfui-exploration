@@ -2,6 +2,7 @@ import { MultiStyleConfig, calc, cssVar } from "@chakra-ui/react";
 
 const $width = cssVar("switch-track-width");
 const $height = cssVar("switch-track-height");
+const $shadow = cssVar("switch-track-shadow");
 const $diff = cssVar("switch-track-diff");
 const diffValue = calc.subtract($width, $height);
 const $translateX = cssVar("switch-thumb-x");
@@ -13,6 +14,7 @@ export const Switch: MultiStyleConfig = {
       container: {
         [$diff.variable]: diffValue,
         [$translateX.variable]: $diff.reference,
+        [$shadow.variable]: "0px 0px 0px 4px " + theme.colors.primary[100],
       },
       track: {
         padding: 0.5,
@@ -28,7 +30,7 @@ export const Switch: MultiStyleConfig = {
           },
           _focus: {
             bgColor: "gray.50",
-            boxShadow: "0px 0px 0px 4px " + theme.colors.primary[100],
+            boxShadow: $shadow.reference,
           },
           _checked: {
             bgColor: "primary.700",
@@ -50,7 +52,7 @@ export const Switch: MultiStyleConfig = {
             bgColor: "primary.100",
           },
           _focus: {
-            boxShadow: "0px 0px 0px 4px " + theme.colors.primary[100],
+            boxShadow: $shadow.reference,
           },
           _checked: {
             bgColor: "primary.200",
