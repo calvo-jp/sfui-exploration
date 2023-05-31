@@ -1,4 +1,7 @@
-import { MultiStyleConfig } from "@chakra-ui/react";
+import { MultiStyleConfig, cssVar } from "@chakra-ui/react";
+import { colors } from "../colors";
+
+const $border = cssVar("table-border");
 
 export const Table: MultiStyleConfig = {
   parts: [
@@ -16,6 +19,8 @@ export const Table: MultiStyleConfig = {
   ],
   baseStyle: {
     container: {
+      [$border.variable]: colors.gray[200],
+
       display: "block",
       overflowX: "auto",
       overflowY: "hidden",
@@ -23,8 +28,15 @@ export const Table: MultiStyleConfig = {
       whiteSpace: "nowrap",
       WebkitOverflowScrolling: "touch",
       border: "1px",
-      borderColor: "gray.200",
+      borderColor: $border.reference,
       rounded: "lg",
+    },
+    table: {
+      /*
+       * Also need to pass this here
+       * just in case they don't use TableContainer
+       */
+      [$border.variable]: colors.neutral[200],
     },
     header: {
       pos: "sticky",
@@ -63,21 +75,20 @@ export const Table: MultiStyleConfig = {
       tr: {
         _first: {
           borderTop: "1px",
-          borderColor: "gray.200",
+          borderColor: $border.reference,
         },
       },
       th: {
-        borderColor: "gray.200",
+        borderColor: $border.reference,
       },
       td: {
-        borderColor: "gray.200",
+        borderColor: $border.reference,
       },
     },
     bordered: {
-      table: {},
       th: {
         border: "1px",
-        borderColor: "gray.200",
+        borderColor: $border.reference,
         _first: {
           borderLeft: "none",
         },
@@ -87,7 +98,7 @@ export const Table: MultiStyleConfig = {
       },
       td: {
         border: "1px",
-        borderColor: "gray.200",
+        borderColor: $border.reference,
         _first: {
           borderLeft: "none",
         },

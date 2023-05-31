@@ -83,7 +83,7 @@ export function Landing() {
         </BreadcrumbItem>
       </Breadcrumb>
 
-      <TableContainer mt={4}>
+      <TableContainer mt={4} variant="bordered">
         <TableHeader>
           <Flex alignItems="center">
             <Box>
