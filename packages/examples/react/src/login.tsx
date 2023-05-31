@@ -31,6 +31,7 @@ import {
   chakra,
 } from "@chakra-ui/react";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
+import { CloudIcon } from "@heroicons/react/24/outline";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Multiline } from "@scaleforge-ui/chakra";
 import { useForm } from "react-hook-form";
@@ -135,7 +136,7 @@ export function Login() {
         <Popover>
           <PopoverTrigger>
             <chakra.button>
-              <Icon />
+              <Icon as={CloudIcon} w={5} h={5} />
             </chakra.button>
           </PopoverTrigger>
           <PopoverContent>
