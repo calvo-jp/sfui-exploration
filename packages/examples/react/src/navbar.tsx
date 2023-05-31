@@ -35,7 +35,7 @@ export function Navbar() {
       h="75px"
       px={4}
       py={2}
-      border="1px solid"
+      borderBottom="1px"
       borderColor="neutral.200"
       alignItems="center"
     >
