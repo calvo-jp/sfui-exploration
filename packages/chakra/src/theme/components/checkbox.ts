@@ -6,7 +6,7 @@ export const Checkbox: MultiStyleConfig = {
     return {};
   },
   variants: {
-    outline() {
+    outline({ theme }) {
       return {
         control: {
           border: "1px",
@@ -17,7 +17,7 @@ export const Checkbox: MultiStyleConfig = {
           },
           _focus: {
             borderColor: "primary.500",
-            boxShadow: "0px 0px 0px 4px #F4EBFF",
+            boxShadow: "0px 0px 0px 4px " + theme.colors.primary[100],
             _hover: {
               bgColor: "primary.500",
               borderColor: "primary.700",
@@ -33,7 +33,7 @@ export const Checkbox: MultiStyleConfig = {
             },
             _focus: {
               borderColor: "primary.700",
-              boxShadow: "0px 0px 0px 4px #F4EBFF",
+              boxShadow: "0px 0px 0px 4px " + theme.colors.primary[100],
             },
           },
         },

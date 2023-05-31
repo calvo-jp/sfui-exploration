@@ -39,3 +39,43 @@ export function clamp(value: number, min: number, max: number) {
 }
 
 export const noop = (..._args: any): any => undefined;
+
+/**
+ *
+ * Add opacity to rgba or hex color
+ *
+ * @param color hex or rgba color
+ * @param opacity the alpha value. 0 is the smallest and 100 is the highest
+ *
+ */
+export function lighten(color: string, opacity: number) {
+  color = color.trim().toLowerCase();
+
+  if (color.startsWith("#")) {
+    color = color.slice(1);
+
+    if (color.length === 3) {
+      color = color.replace(/./g, "$&$&");
+    }
+
+    const red = parseInt(color.substring(0, 2), 16);
+    const green = parseInt(color.substring(2, 4), 16);
+    const blue = parseInt(color.substring(4, 6), 16);
+    const alpha = opacity / 100;
+
+    return `rgba(${red}, ${green}, ${blue}, ${alpha})`;
+  }
+
+  if (color.startsWith("rgb(")) {
+    const rgb = color.substring(4, color.length - 1).split(",");
+
+    const red = parseInt(rgb[0]);
+    const green = parseInt(rgb[1]);
+    const blue = parseInt(rgb[2]);
+    const alpha = opacity / 100;
+
+    return `rgba(${red}, ${green}, ${blue}, ${alpha})`;
+  }
+
+  return color;
+}

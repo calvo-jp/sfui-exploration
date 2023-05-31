@@ -104,10 +104,12 @@ export function Login() {
 
       <Switch mt={4} />
 
-      <Tag mt={4}>
-        <TagLabel>Hello</TagLabel>
-        <TagCloseButton />
-      </Tag>
+      <Box mt={4}>
+        <Tag>
+          <TagLabel>Hello</TagLabel>
+          <TagCloseButton />
+        </Tag>
+      </Box>
 
       <RangeSlider mt={4} defaultValue={[10, 30]}>
         <RangeSliderTrack>

@@ -17,6 +17,16 @@ export const Tag: MultiStyleConfig = {
       m: 0,
       color: "neutral.400",
       display: "flex",
+      rounded: "md",
+      _hover: {
+        bg: "neutral.100",
+        color: "neutral.500",
+      },
+      _focus: {
+        bg: "neutral.100",
+        color: "neutral.500",
+        boxShadow: "none",
+      },
     },
   },
   sizes: {
