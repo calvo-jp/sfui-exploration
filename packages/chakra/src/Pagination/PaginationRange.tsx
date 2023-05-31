@@ -1,7 +1,21 @@
+import { chakra } from "@chakra-ui/react";
 import { clamp } from "../utils";
+import { usePaginationContext, usePaginationStyles } from "./PaginationContext";
 
 export function PaginationRange() {
-  return null;
+  const styles = usePaginationStyles();
+  const context = usePaginationContext();
+
+  return (
+    <chakra.div __css={styles.range}>
+      {getRange(
+        //
+        context.value.page,
+        context.value.size,
+        context.total,
+      )}
+    </chakra.div>
+  );
 }
 
 export function getRange(page: number, size: number, total: number) {

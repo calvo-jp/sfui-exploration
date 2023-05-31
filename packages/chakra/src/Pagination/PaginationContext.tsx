@@ -1,7 +1,7 @@
 import { SystemStyleObject, useControllableState } from "@chakra-ui/react";
 import { createContext } from "@chakra-ui/react-context";
 import * as React from "react";
-import { noop } from "../utils";
+import { invariant, noop } from "../utils";
 
 export const [PaginationStylesProvider, usePaginationStyles] = createContext<
   Record<string, SystemStyleObject>
@@ -19,7 +19,7 @@ interface Value {
 
 export interface PaginationState {
   value: Value;
-  onChange(newValue: Value): void;
+  onChange: React.Dispatch<React.SetStateAction<Value>>;
   total: number;
 }
 
@@ -34,7 +34,10 @@ export const PaginationContext = React.createContext<PaginationState>({
   total: 0,
 });
 
-export type PaginationProviderProps = Partial<PaginationState> & {
+export type PaginationProviderProps = {
+  value?: Value;
+  onChange?(newValue: Value): void;
+  total?: number;
   defaultValue?: Value;
 };
 
@@ -62,4 +65,16 @@ export function PaginationProvider({
       {children}
     </PaginationContext.Provider>
   );
+}
+
+export function usePaginationContext() {
+  const context = React.useContext(PaginationContext);
+
+  invariant(
+    context,
+    "'usePaginationContext' returned 'undefined'. " +
+      "Seems you forgot to wrap the components in '<Pagination />'",
+  );
+
+  return context;
 }
