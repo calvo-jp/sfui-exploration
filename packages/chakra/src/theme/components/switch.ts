@@ -3,12 +3,12 @@ import { lighten } from "../../utils";
 import { colors } from "../colors";
 import { getThemeColor } from "./_utils";
 
-const $width = cssVar("switch-track-width");
-const $height = cssVar("switch-track-height");
-const $shadow = cssVar("switch-track-shadow");
-const $diff = cssVar("switch-track-diff");
+const $width = cssVar("sf-switch-track-width");
+const $height = cssVar("sf-switch-track-height");
+const $shadow = cssVar("sf-switch-track-shadow");
+const $diff = cssVar("sf-switch-track-diff");
 const diffValue = calc.subtract($width, $height);
-const $translateX = cssVar("switch-thumb-x");
+const $translateX = cssVar("sf-switch-thumb-x");
 
 export const Switch: MultiStyleConfig = {
   parts: ["container", "thumb", "track"],

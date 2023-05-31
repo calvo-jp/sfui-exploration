@@ -7,11 +7,15 @@ import {
 } from "@chakra-ui/react";
 import * as React from "react";
 import { Merge } from "../types";
-import { TableStylesProvider } from "./TableContext";
+import {
+  TableProvider,
+  TableProviderProps,
+  TableStylesProvider,
+} from "./TableContext";
 
 export type TableContainerProps = Merge<
   HTMLChakraProps<"div"> & ThemingProps<"Table">,
-  {}
+  TableProviderProps
 >;
 
 export const TableContainer = React.forwardRef<
@@ -25,6 +29,7 @@ export const TableContainer = React.forwardRef<
     orientation,
     styleConfig,
     children,
+    isLoading,
     ...others
   } = props;
 
@@ -37,22 +42,37 @@ export const TableContainer = React.forwardRef<
   });
 
   return (
-    <TableStylesProvider value={styles}>
-      <chakra.div ref={ref} __css={styles.container} {...others}>
-        {React.Children.map(children, (child) => {
-          if (React.isValidElement(child) && child.type === Table) {
-            return React.cloneElement<any>(child, {
-              size,
-              variant,
-              colorScheme,
-              styleConfig,
-              orientation,
-            });
-          }
+    <TableProvider isLoading={isLoading}>
+      <TableStylesProvider value={styles}>
+        <chakra.div ref={ref} __css={styles.container} {...others}>
+          {React.Children.map(children, (child) => {
+            if (React.isValidElement(child) && child.type === Table) {
+              return (
+                <chakra.div
+                  __css={{
+                    maxW: "full",
+                    display: "block",
+                    overflowX: "auto",
+                    overflowY: "hidden",
+                    whiteSpace: "nowrap",
+                    WebkitOverflowScrolling: "touch",
+                  }}
+                >
+                  {React.cloneElement<any>(child, {
+                    size,
+                    variant,
+                    colorScheme,
+                    styleConfig,
+                    orientation,
+                  })}
+                </chakra.div>
+              );
+            }
 
-          return child;
-        })}
-      </chakra.div>
-    </TableStylesProvider>
+            return child;
+          })}
+        </chakra.div>
+      </TableStylesProvider>
+    </TableProvider>
   );
 });

@@ -1,4 +1,11 @@
-import { MultiStyleConfig } from "@chakra-ui/react";
+import { MultiStyleConfig, cssVar } from "@chakra-ui/react";
+import { createObjectFromKeys } from "../../utils";
+
+const $size = cssVar("sf-avatar-size");
+const $fontSize = cssVar("sf-avatar-fontsize");
+const $lineHeight = cssVar("sf-avatar-lineheight");
+const $letterSpacing = cssVar("sf-avatar-letterspacing");
+const $badgeSize = cssVar("sf-avatar-badge-size");
 
 export const Avatar: MultiStyleConfig = {
   parts: ["badge", "container", "excessLabel", "group", "label"],
@@ -6,6 +13,8 @@ export const Avatar: MultiStyleConfig = {
     return {
       container: {
         p: 0,
+        w: $size.reference,
+        h: $size.reference,
         color: "gray.600",
         bgColor: "gray.50",
         [ChakraAvatarSvgClassname]: {
@@ -13,6 +22,8 @@ export const Avatar: MultiStyleConfig = {
         },
       },
       badge: {
+        w: $badgeSize.reference,
+        h: $badgeSize.reference,
         border: "1.5px solid",
         borderColor: "white",
         bgColor: "success.700",
@@ -21,178 +32,175 @@ export const Avatar: MultiStyleConfig = {
         transform: "unset",
       },
       label: {
+        fontSize: $fontSize.reference,
         fontWeight: "medium",
+        lineHeight: $lineHeight.reference,
+        letterSpacing: $letterSpacing.reference,
       },
       excessLabel: {
+        m: 0,
+        w: $size.reference,
+        h: $size.reference,
         color: "gray.600",
         bgColor: "gray.50",
         border: "2px solid",
         borderColor: "white",
+        fontSize: $fontSize.reference,
         fontWeight: "medium",
+        lineHeight: $lineHeight.reference,
+        letterSpacing: $letterSpacing.reference,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        zIndex: 1,
+        order: 1,
       },
-      group: {},
+      group: {
+        display: "flex",
+        flexDir: "unset",
+        "& > *": {
+          m: 0,
+          order: 0,
+          _notFirst: {
+            mr: "-8px",
+          },
+        },
+      },
     };
   },
   sizes: {
     xs: {
-      container: {
-        width: "24px",
-        height: "24px",
-      },
-      label: {
-        fontSize: "12px",
-        lineHeight: "18px",
-      },
+      ...createObjectFromKeys(
+        {
+          [$size.variable]: "24px",
+          [$fontSize.variable]: "12px",
+          [$lineHeight.variable]: "18px",
+          [$badgeSize.variable]: "6px",
+        },
+        "group",
+        "container",
+      ),
       badge: {
-        width: "6px",
-        height: "6px",
         left: "18px",
         top: "18px",
       },
-      excessLabel: {
-        width: "24px",
-        height: "24px",
-        fontSize: "12px",
-        lineHeight: "18px",
-      },
     },
     sm: {
-      container: {
-        width: "32px",
-        height: "32px",
-      },
-      label: {
-        fontSize: "14px",
-        lineHeight: "20px",
-      },
+      ...createObjectFromKeys(
+        {
+          [$size.variable]: "32px",
+          [$fontSize.variable]: "14px",
+          [$lineHeight.variable]: "20px",
+          [$badgeSize.variable]: "8px",
+        },
+        "group",
+        "container",
+      ),
       badge: {
-        width: "8px",
-        height: "8px",
         left: "24px",
         top: "24px",
       },
-      excessLabel: {
-        width: "32px",
-        height: "32px",
-        fontSize: "14px",
-        lineHeight: "20px",
-      },
     },
     md: {
-      container: {
-        width: "40px",
-        height: "40px",
-      },
-      label: {
-        fontSize: "16px",
-        lineHeight: "24px",
-      },
+      ...createObjectFromKeys(
+        {
+          [$size.variable]: "40px",
+          [$fontSize.variable]: "16px",
+          [$lineHeight.variable]: "24px",
+          [$badgeSize.variable]: "10px",
+        },
+        "group",
+        "container",
+      ),
       badge: {
-        width: "10px",
-        height: "10px",
         left: "30px",
         top: "30px",
       },
-      excessLabel: {
-        width: "40px",
-        height: "40px",
-        fontSize: "16px",
-        lineHeight: "24px",
-      },
     },
     lg: {
-      container: {
-        width: "48px",
-        height: "48px",
-      },
-      label: {
-        fontSize: "18px",
-        lineHeight: "28px",
-      },
+      ...createObjectFromKeys(
+        {
+          [$size.variable]: "48px",
+          [$fontSize.variable]: "18px",
+          [$lineHeight.variable]: "28px",
+          [$badgeSize.variable]: "12px",
+        },
+        "group",
+        "container",
+      ),
       badge: {
-        width: "12px",
-        height: "12px",
         left: "36px",
         top: "36px",
       },
     },
     xl: {
-      container: {
-        width: "56px",
-        height: "56px",
-      },
-      label: {
-        fontSize: "20px",
-        lineHeight: "30px",
-      },
+      ...createObjectFromKeys(
+        {
+          [$size.variable]: "56px",
+          [$fontSize.variable]: "20px",
+          [$lineHeight.variable]: "30px",
+          [$badgeSize.variable]: "14px",
+        },
+        "group",
+        "container",
+      ),
       badge: {
-        width: "14px",
-        height: "14px",
         left: "42px",
         top: "42px",
       },
     },
     "2xl": {
-      container: {
-        width: "64px",
-        height: "64px",
-      },
-      label: {
-        fontSize: "24px",
-        lineHeight: "32px",
-      },
+      ...createObjectFromKeys(
+        {
+          [$size.variable]: "64px",
+          [$fontSize.variable]: "24px",
+          [$lineHeight.variable]: "32px",
+          [$badgeSize.variable]: "16px",
+        },
+        "group",
+        "container",
+      ),
       badge: {
-        width: "16px",
-        height: "16px",
         left: "50px",
         top: "50px",
       },
     },
     "3xl": {
-      container: {
-        width: "72px",
-        height: "72px",
-      },
-      label: {
-        fontSize: "28px",
-        lineHeight: "28px",
-      },
-      badge: {
-        width: "18px",
-        height: "18px",
-      },
+      ...createObjectFromKeys(
+        {
+          [$size.variable]: "72px",
+          [$fontSize.variable]: "28px",
+          [$lineHeight.variable]: "28px",
+          [$badgeSize.variable]: "18px",
+        },
+        "group",
+        "container",
+      ),
     },
     "4xl": {
-      container: {
-        width: "96px",
-        height: "96px",
-      },
-      label: {
-        fontSize: "32px",
-        lineHeight: "32px",
-      },
-      badge: {
-        width: "20px",
-        height: "20px",
-      },
+      ...createObjectFromKeys(
+        {
+          [$size.variable]: "96px",
+          [$fontSize.variable]: "32px",
+          [$lineHeight.variable]: "32px",
+          [$badgeSize.variable]: "20px",
+        },
+        "group",
+        "container",
+      ),
     },
     "5xl": {
-      container: {
-        width: "160px",
-        height: "160px",
-      },
-      label: {
-        fontSize: "56px",
-        lineHeight: "64px",
-        letterSpacing: "-0.02em",
-      },
-      badge: {
-        width: "22px",
-        height: "22px",
-      },
+      ...createObjectFromKeys(
+        {
+          [$size.variable]: "160px",
+          [$fontSize.variable]: "56px",
+          [$lineHeight.variable]: "64px",
+          [$letterSpacing.variable]: "-0.02em",
+          [$badgeSize.variable]: "22px",
+        },
+        "group",
+        "container",
+      ),
     },
   },
   defaultProps: {

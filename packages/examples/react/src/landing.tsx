@@ -23,6 +23,7 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
+  Portal,
   Spacer,
   Table,
   Tbody,
@@ -83,7 +84,7 @@ export function Landing() {
         </BreadcrumbItem>
       </Breadcrumb>
 
-      <TableContainer mt={4} variant="bordered">
+      <TableContainer mt={4}>
         <TableHeader>
           <Flex alignItems="center">
             <Box>
@@ -132,8 +133,8 @@ export function Landing() {
                 </Td>
                 <Td>{user.email}</Td>
                 <Td>
-                  <AvatarGroup max={3} size="sm">
-                    {new Array(5).fill(null).map((_, index) => {
+                  <AvatarGroup max={5} size="sm">
+                    {new Array(10).fill(null).map((_, index) => {
                       return (
                         <Avatar
                           key={index}
@@ -176,27 +177,29 @@ export function Landing() {
                         h={5}
                       />
                     </MenuButton>
-                    <MenuList>
-                      <MenuItem icon={<Icon as={PencilSquareIcon} />}>
-                        Edit
-                      </MenuItem>
-                      <MenuItem
-                        icon={<Icon as={TrashIcon} />}
-                        onClick={() => {
-                          toast({
-                            description: "This is an error toast",
-                            status: "warning",
-                          });
-                          toast({
-                            description: "This is an error toast",
-                            status: "error",
-                          });
-                          toast({ description: "This is a success toast" });
-                        }}
-                      >
-                        Delete
-                      </MenuItem>
-                    </MenuList>
+                    <Portal>
+                      <MenuList>
+                        <MenuItem icon={<Icon as={PencilSquareIcon} />}>
+                          Edit
+                        </MenuItem>
+                        <MenuItem
+                          icon={<Icon as={TrashIcon} />}
+                          onClick={() => {
+                            toast({
+                              description: "This is an error toast",
+                              status: "warning",
+                            });
+                            toast({
+                              description: "This is an error toast",
+                              status: "error",
+                            });
+                            toast({ description: "This is a success toast" });
+                          }}
+                        >
+                          Delete
+                        </MenuItem>
+                      </MenuList>
+                    </Portal>
                   </Menu>
                 </Td>
               </Tr>

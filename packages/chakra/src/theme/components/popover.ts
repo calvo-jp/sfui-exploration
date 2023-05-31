@@ -1,10 +1,10 @@
 import { MultiStyleConfig, cssVar } from "@chakra-ui/react";
 import { lighten } from "../../utils";
 
-const $bg = cssVar("popover-bg");
-const $fg1 = cssVar("popover-fg");
-const $fg2 = cssVar("popover-fg-secondary");
-const $shadow = cssVar("popover-shadow");
+const $bg = cssVar("sf-popover-bg");
+const $fg1 = cssVar("sf-popover-fg");
+const $fg2 = cssVar("sf-popover-fg-secondary");
+const $shadow = cssVar("sf-popover-shadow");
 const $arrowBg = cssVar("popper-arrow-bg");
 
 export const Popover: MultiStyleConfig = {

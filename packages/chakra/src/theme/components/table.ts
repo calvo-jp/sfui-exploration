@@ -8,7 +8,6 @@ export const Table: MultiStyleConfig = {
     "container",
     "footer",
     "header",
-    "loader",
     "table",
     "thead",
     "tbody",
@@ -21,12 +20,8 @@ export const Table: MultiStyleConfig = {
     container: {
       [$border.variable]: colors.gray[200],
 
-      display: "block",
-      overflowX: "auto",
-      overflowY: "hidden",
-      maxWidth: "full",
-      whiteSpace: "nowrap",
-      WebkitOverflowScrolling: "touch",
+      w: "full",
+      pos: "relative",
       border: "1px",
       borderColor: $border.reference,
       rounded: "lg",
@@ -39,14 +34,10 @@ export const Table: MultiStyleConfig = {
       [$border.variable]: colors.neutral[200],
     },
     header: {
-      pos: "sticky",
-      left: 0,
-      padding: 4,
+      p: 4,
     },
     footer: {
-      pos: "sticky",
-      left: "0",
-      padding: 4,
+      p: 4,
     },
     thead: {
       bgColor: "gray.50",

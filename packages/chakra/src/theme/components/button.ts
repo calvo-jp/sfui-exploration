@@ -7,15 +7,15 @@ import {
   isUntitledColorScheme,
 } from "./_utils";
 
-const $outlineBg = cssVar("button-bg");
-const $outlineFg = cssVar("button-fg");
-const $outlineBorder = cssVar("button-border");
-const $outlineShadow = cssVar("button-shadow");
-const $outlineBgHover = cssVar("button-bg--hover");
-const $outlineFgHover = cssVar("button-fg--hover");
-const $outlineFgFocus = cssVar("button-fg--focus");
-const $outlineBorderFocus = cssVar("button-border--focus");
-const $outlineShadowFocus = cssVar("button-shadow--focus");
+const $outlineBg = cssVar("sf-button-bg");
+const $outlineFg = cssVar("sf-button-fg");
+const $outlineBorder = cssVar("sf-button-border");
+const $outlineShadow = cssVar("sf-button-shadow");
+const $outlineBgHover = cssVar("sf-button-bg--hover");
+const $outlineFgHover = cssVar("sf-button-fg--hover");
+const $outlineFgFocus = cssVar("sf-button-fg--focus");
+const $outlineBorderFocus = cssVar("sf-button-border--focus");
+const $outlineShadowFocus = cssVar("sf-button-shadow--focus");
 
 export const Button: StyleConfig = {
   baseStyle: {
