@@ -1,8 +1,5 @@
 import { MultiStyleConfig } from "@chakra-ui/react";
 import { lighten } from "../../utils";
-import { colors } from "../colors";
-
-console.log(lighten(colors.primary[100], 50));
 
 export const Slider: MultiStyleConfig = {
   parts: ["container", "track", "thumb", "filledTrack", "mark"],

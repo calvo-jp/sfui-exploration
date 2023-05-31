@@ -123,15 +123,18 @@ export function Landing() {
                   <AvatarGroup max={3} size="sm">
                     {new Array(5).fill(null).map((_, index) => {
                       return (
-                        <Avatar src={`https://i.pravatar.cc/150?u=${index}`} />
+                        <Avatar
+                          key={index}
+                          src={`https://i.pravatar.cc/150?u=${index}`}
+                        />
                       );
                     })}
                   </AvatarGroup>
                 </Td>
                 <Td>
                   <HStack spacing={2}>
-                    {user.teams.map((team) => (
-                      <Badge key={team} colorScheme="pink">
+                    {user.teams.map((team, index) => (
+                      <Badge key={index} colorScheme="pink">
                         {team}
                       </Badge>
                     ))}

@@ -1,5 +1,7 @@
 import { MultiStyleConfig } from "@chakra-ui/react";
 
+const chakraIconClassname = ".chakra-icon";
+
 export const Breadcrumb: MultiStyleConfig = {
   parts: ["container", "link", "list", "separator"],
   baseStyle: {
@@ -21,7 +23,7 @@ export const Breadcrumb: MultiStyleConfig = {
     separator: {
       mx: 3.5,
       color: "neutral.300",
-      ".chakra-icon": {
+      [chakraIconClassname]: {
         w: 5,
         h: 5,
       },
