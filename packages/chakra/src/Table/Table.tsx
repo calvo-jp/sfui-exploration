@@ -1,0 +1,16 @@
+export {
+  Table,
+  Tbody,
+  Td,
+  Tfoot,
+  Th,
+  Thead,
+  Tr,
+  type TableProps,
+  type TableBodyProps as TbodyProps,
+  type TableCellProps as TdProps,
+  type TableFooterProps as TfootProps,
+  type TableColumnHeaderProps as ThProps,
+  type TableHeadProps as TheadProps,
+  type TableRowProps as TrProps,
+} from "@chakra-ui/react";
