@@ -253,7 +253,7 @@ function CreateUser() {
   );
 }
 
-const users = new Array(5).fill(null).map(() => {
+const users = new Array(10).fill(null).map(() => {
   return {
     id: faker.string.uuid(),
     name: faker.person.fullName(),

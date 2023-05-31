@@ -27,9 +27,15 @@ export const Table: MultiStyleConfig = {
       rounded: "lg",
     },
     header: {
+      w: "full",
+      pos: "sticky",
+      left: 0,
       padding: 4,
     },
     footer: {
+      w: "full",
+      pos: "sticky",
+      left: "0",
       padding: 4,
     },
     thead: {
