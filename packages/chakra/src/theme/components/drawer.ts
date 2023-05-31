@@ -13,6 +13,7 @@ export const Drawer: MultiStyleConfig = {
   baseStyle: {
     overlay: {
       bgColor: "overlay",
+      backdropFilter: "blur(8px)",
     },
     dialog: {
       p: 6,
