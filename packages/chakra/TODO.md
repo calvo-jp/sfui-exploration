@@ -16,7 +16,7 @@
   - [x] input
   - [x] menu
   - [x] modal
-  - [ ] popover `(Not available in HDS)`
+  - [x] popover `(Uses tooltip ui)`
   - [x] progress
   - [ ] select
   - [x] skeleton
