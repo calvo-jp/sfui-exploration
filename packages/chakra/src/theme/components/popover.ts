@@ -30,10 +30,12 @@ export const Popover: MultiStyleConfig = {
         bg: $bg.reference,
         color: $fg1.reference,
         rounded: "8px",
-        boxShadow: "none",
         fontSize: "12px",
         fontWeight: "normal",
         lineHeight: "18px",
+        boxShadow:
+          "0px 12px 16px -4px rgba(16, 24, 40, 0.08)," +
+          "0px 4px 6px -2px rgba(16, 24, 40, 0.03)",
 
         [$bg.variable]: theme.colors.neutral[900],
         [$fg1.variable]: theme.colors.neutral[100],
@@ -45,6 +47,9 @@ export const Popover: MultiStyleConfig = {
           [$fg1.variable]: theme.colors.neutral[700],
           [$fg2.variable]: theme.colors.neutral[600],
           [$arrowBg.variable]: $bg.reference,
+
+          border: "1px",
+          borderColor: theme.colors.gray[100],
         },
       },
       header: {
