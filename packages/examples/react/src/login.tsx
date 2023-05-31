@@ -152,6 +152,7 @@ export function Login() {
       <Box mt={4}>
         <Toast
           description="Hello world"
+          colorScheme="warning"
           onClose={() => {
             //
           }}
