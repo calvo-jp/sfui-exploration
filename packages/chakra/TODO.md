@@ -47,3 +47,8 @@
   - [ ] Select
   - [ ] Table
   - [x] Toast `(custom)`
+
+- Refactors
+
+  - [ ] move components to single folder
+  - [ ] move utils to single folder and have one file for each util
