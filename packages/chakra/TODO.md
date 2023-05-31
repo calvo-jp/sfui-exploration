@@ -39,6 +39,3 @@
   - [ ] Pagination
   - [ ] Select
   - [ ] Table
-
-- hooks
-  - [ ] useTable
