@@ -6,7 +6,7 @@
 function Component() {
   return (
     <Pagination>
-      <PaginationSummary /* Page 1-10 of 100 */ />
+      <PaginationRange /* Page 1-10 of 100 */ />
 
       <Spacer />
 
