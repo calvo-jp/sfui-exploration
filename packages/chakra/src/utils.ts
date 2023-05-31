@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { Callable } from "./types";
 
 export function arrayChunk<T extends Array<unknown>>(array: T, size: number) {
@@ -78,4 +79,25 @@ export function lighten(color: string, opacity: number) {
   }
 
   return color;
+}
+
+export function getJsxTextContent(element: ReactNode): string {
+  try {
+    /* null, undefined, boolean */
+    if (!element || typeof element === "boolean") return "";
+
+    /* string, number */
+    if (typeof element === "string" || typeof element === "number")
+      return element.toString();
+
+    /* ignore fragment */
+    const children = "props" in element ? element.props.children : "";
+
+    if (Array.isArray(children))
+      return children.map(getJsxTextContent).join("").trim();
+  } catch {
+    /* TODO: log? */
+  }
+
+  return "";
 }

@@ -4,6 +4,7 @@ import {
   useMultiStyleConfig,
 } from "@chakra-ui/react";
 import { Pretty } from "../types";
+import { getJsxTextContent } from "../utils";
 import {
   CheckCircleIcon,
   ExclamationCircleIcon,
@@ -44,7 +45,11 @@ export function Toast(props: ToastProps) {
   });
 
   return (
-    <chakra.div role="alert" __css={styles.container}>
+    <chakra.div
+      role="alert"
+      aria-label={getJsxTextContent(description)}
+      __css={styles.container}
+    >
       <chakra.svg as={getIcon(status)} __css={styles.icon} />
 
       <chakra.div __css={styles.content}>
