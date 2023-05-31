@@ -1,4 +1,5 @@
 import { StyleConfig } from "@chakra-ui/react";
+import { getThemeColor } from "./_utils";
 
 export const Badge: StyleConfig = {
   baseStyle() {
@@ -12,10 +13,10 @@ export const Badge: StyleConfig = {
     };
   },
   variants: {
-    subtle({ colorScheme }) {
+    subtle({ theme, colorScheme }) {
       return {
-        color: `${colorScheme}.700`,
-        bgColor: `${colorScheme}.50`,
+        color: getThemeColor(theme, colorScheme, 700),
+        bgColor: getThemeColor(theme, colorScheme, 50),
       };
     },
   },

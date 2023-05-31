@@ -1,9 +1,10 @@
 import { MultiStyleConfig } from "@chakra-ui/react";
 import { lighten } from "../../utils";
+import { getThemeColor } from "./_utils";
 
 export const Slider: MultiStyleConfig = {
   parts: ["container", "track", "thumb", "filledTrack", "mark"],
-  baseStyle({ theme }) {
+  baseStyle({ theme, colorScheme }) {
     return {
       track: {
         h: "8px",
@@ -11,7 +12,7 @@ export const Slider: MultiStyleConfig = {
         rounded: "4px",
       },
       filledTrack: {
-        bg: "primary.700",
+        bg: getThemeColor(theme, colorScheme, 700),
       },
       thumb: {
         w: "24px",
@@ -21,9 +22,13 @@ export const Slider: MultiStyleConfig = {
         borderColor: "primary.700",
         _focus: {
           boxShadow:
-            "0px 0px 0px 3px " + lighten(theme.colors.primary[100], 80),
+            "0px 0px 0px 3px " +
+            lighten(getThemeColor(theme, colorScheme, 100), 80),
         },
       },
     };
+  },
+  defaultProps: {
+    colorScheme: "primary",
   },
 };

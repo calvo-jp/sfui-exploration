@@ -1,45 +1,44 @@
 import { MultiStyleConfig, cssVar } from "@chakra-ui/react";
+import { getThemeColor } from "./_utils";
 
 const $shadow = cssVar("checkbox-shadow");
 
 export const Checkbox: MultiStyleConfig = {
   parts: ["control", "icon", "container", "label"],
-  baseStyle() {
-    return {};
-  },
   variants: {
-    outline({ theme }) {
+    outline({ theme, colorScheme }) {
       return {
         control: {
           border: "1px",
           borderColor: "neutral.300",
           _hover: {
-            bgColor: "primary.500",
-            borderColor: "primary.700",
+            bgColor: getThemeColor(theme, colorScheme, 500),
+            borderColor: getThemeColor(theme, colorScheme, 700),
           },
           _focus: {
-            borderColor: "primary.500",
+            borderColor: getThemeColor(theme, colorScheme, 500),
             boxShadow: $shadow.reference,
             _hover: {
-              bgColor: "primary.500",
-              borderColor: "primary.700",
+              bgColor: getThemeColor(theme, colorScheme, 500),
+              borderColor: getThemeColor(theme, colorScheme, 700),
             },
           },
           _checked: {
-            color: "primary.700",
-            bgColor: "primary.500",
-            borderColor: "primary.700",
+            color: getThemeColor(theme, colorScheme, 700),
+            bgColor: getThemeColor(theme, colorScheme, 500),
+            borderColor: getThemeColor(theme, colorScheme, 700),
             _hover: {
-              bgColor: "primary.500",
-              borderColor: "primary.700",
+              bgColor: getThemeColor(theme, colorScheme, 500),
+              borderColor: getThemeColor(theme, colorScheme, 700),
             },
             _focus: {
-              borderColor: "primary.700",
+              borderColor: getThemeColor(theme, colorScheme, 700),
               boxShadow: $shadow.reference,
             },
           },
-
-          [$shadow.variable]: "0px 0px 0px 4px " + theme.colors.primary[100],
+          [$shadow.variable]:
+            "0px 0px 0px 4px " +
+            theme.colorsgetThemeColor(theme, colorScheme, 100),
         },
       };
     },
@@ -63,5 +62,6 @@ export const Checkbox: MultiStyleConfig = {
   defaultProps: {
     size: "md",
     variant: "outline",
+    colorScheme: "primary",
   },
 };

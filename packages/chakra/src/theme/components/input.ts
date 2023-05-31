@@ -1,12 +1,13 @@
 import { MultiStyleConfig, cssVar } from "@chakra-ui/react";
 import { lighten } from "../../utils";
+import { getThemeColor } from "./_utils";
 
 const $shadow = cssVar("input-field-shadow");
 
 export const Input: MultiStyleConfig = {
   parts: ["field", "addon", "element"],
   variants: {
-    outline({ theme }) {
+    outline({ theme, colorScheme }) {
       return {
         addon: {
           bg: "white",
@@ -29,7 +30,7 @@ export const Input: MultiStyleConfig = {
             borderColor: "neutral.300",
           },
           _focus: {
-            borderColor: "primary.700",
+            borderColor: getThemeColor(theme, colorScheme, 700),
             boxShadow: $shadow.reference,
           },
           _invalid: {
@@ -52,7 +53,7 @@ export const Input: MultiStyleConfig = {
           },
 
           [$shadow.variable]:
-            "0px 1px 2px " + lighten(theme.colors.gray[900], 5),
+            "0px 1px 2px " + lighten(getThemeColor(theme, "gray", 900), 5),
         },
       };
     },

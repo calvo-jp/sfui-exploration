@@ -1,8 +1,9 @@
 import { MultiStyleConfig } from "@chakra-ui/react";
+import { getThemeColor } from "./_utils";
 
 export const Breadcrumb: MultiStyleConfig = {
   parts: ["container", "link", "list", "separator"],
-  baseStyle() {
+  baseStyle({ theme, colorScheme }) {
     return {
       list: {
         fontSize: "sm",
@@ -16,7 +17,7 @@ export const Breadcrumb: MultiStyleConfig = {
           color: "neutral.800",
         },
         _activeLink: {
-          color: "primary.900",
+          color: getThemeColor(theme, colorScheme, 900),
         },
       },
       separator: {
@@ -28,6 +29,9 @@ export const Breadcrumb: MultiStyleConfig = {
         },
       },
     };
+  },
+  defaultProps: {
+    colorScheme: "primary",
   },
 };
 

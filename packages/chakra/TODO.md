@@ -7,6 +7,11 @@
   - [x] badge
   - [x] breadcrumb
   - [ ] button
+    - [x] solid
+    - [x] outline
+    - [ ] subtle
+    - [ ] ghost
+    - [ ] link
   - [x] checkbox
   - [x] drawer
   - [x] form-error

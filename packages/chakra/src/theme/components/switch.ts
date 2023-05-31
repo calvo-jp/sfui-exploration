@@ -1,4 +1,7 @@
 import { MultiStyleConfig, calc, cssVar } from "@chakra-ui/react";
+import { lighten } from "../../utils";
+import { colors } from "../colors";
+import { getThemeColor } from "./_utils";
 
 const $width = cssVar("switch-track-width");
 const $height = cssVar("switch-track-height");
@@ -9,7 +12,7 @@ const $translateX = cssVar("switch-thumb-x");
 
 export const Switch: MultiStyleConfig = {
   parts: ["container", "thumb", "track"],
-  baseStyle({ theme }) {
+  baseStyle({ theme, colorScheme }) {
     return {
       container: {
         [$diff.variable]: diffValue,
@@ -33,9 +36,9 @@ export const Switch: MultiStyleConfig = {
             boxShadow: $shadow.reference,
           },
           _checked: {
-            bgColor: "primary.700",
+            bgColor: getThemeColor(theme, colorScheme, 700),
             _hover: {
-              bgColor: "primary.900",
+              bgColor: getThemeColor(theme, colorScheme, 900),
             },
           },
           _disabled: {
@@ -47,17 +50,17 @@ export const Switch: MultiStyleConfig = {
           },
         },
         _dark: {
-          bgColor: "primary.50",
+          bgColor: getThemeColor(theme, colorScheme, 50),
           _hover: {
-            bgColor: "primary.100",
+            bgColor: getThemeColor(theme, colorScheme, 100),
           },
           _focus: {
             boxShadow: $shadow.reference,
           },
           _checked: {
-            bgColor: "primary.200",
+            bgColor: getThemeColor(theme, colorScheme, 200),
             _hover: {
-              bgColor: "primary.300",
+              bgColor: getThemeColor(theme, colorScheme, 300),
             },
           },
           _disabled: {
@@ -74,8 +77,10 @@ export const Switch: MultiStyleConfig = {
         height: [$height.reference],
         bgColor: "white",
         transition: "all 300ms ease-in-out",
-        boxShadow:
-          "0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06)",
+        boxShadow: [
+          "0px 1px 3px " + lighten(colors.gray[900], 10),
+          +"0px 1px 2px " + lighten(colors.gray[900], 6),
+        ].join(),
         _checked: {
           transform: `translateX(${$translateX.reference})`,
         },
@@ -98,6 +103,6 @@ export const Switch: MultiStyleConfig = {
   },
   defaultProps: {
     size: "md",
-    colorScheme: "dark",
+    colorScheme: "primary",
   },
 };

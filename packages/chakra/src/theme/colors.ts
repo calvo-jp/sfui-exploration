@@ -90,7 +90,7 @@ export const colors = {
    * These colors are from Untitled
    * which is also being used in HDS, UNMODIFIED! Thank god. 😶
    *
-   * ref: https://www.figma.com/file/bEe3Kq0mDSAicRU8E44pk8/HDS-Component-Library?type=design&node-id=1052-489&t=mcrQ9hTpTGbj9CiI-0
+   * ref: https://www.figma.com/file/OdF2bqIg4sqa2lbz0omeoN/%E2%9D%96-PREVIEW-%E2%9D%96-Untitled-UI-%E2%80%93-PRO-(v3.2)?type=design&node-id=1023-36350&t=OkL0hRgT47oaPXcc-0
    *
    */
   gray: {
@@ -223,4 +223,18 @@ export const colors = {
   black: "#000000",
   white: "#FFFFFF",
   overlay: "#344054b3" /* gray[700] w/ 0.7 opacity */,
+
+  /* ⚠️ [TESTING ONLY] */
+  nexius: {
+    900: "#1C6599",
+    800: "#1F72AD",
+    700: "#2380C2",
+    600: "#278DD6",
+    500: "#42A4EB",
+    400: "#63BAF7",
+    300: "#81C6F7",
+    200: "#9ED2F7",
+    100: "#BCDFF7",
+    50: "#E0F2FF",
+  },
 };

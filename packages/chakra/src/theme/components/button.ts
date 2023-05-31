@@ -1,5 +1,21 @@
-import { StyleConfig } from "@chakra-ui/react";
+import { StyleConfig, cssVar } from "@chakra-ui/react";
 import { lighten } from "../../utils";
+import {
+  getThemeColor,
+  isHdsColorSchemeButNotNuetral,
+  isHdsNeutralColorScheme,
+  isUntitledColorScheme,
+} from "./_utils";
+
+const $outlineBg = cssVar("button-bg");
+const $outlineFg = cssVar("button-fg");
+const $outlineBorder = cssVar("button-border");
+const $outlineShadow = cssVar("button-shadow");
+const $outlineBgHover = cssVar("button-bg--hover");
+const $outlineFgHover = cssVar("button-fg--hover");
+const $outlineFgFocus = cssVar("button-fg--focus");
+const $outlineBorderFocus = cssVar("button-border--focus");
+const $outlineShadowFocus = cssVar("button-shadow--focus");
 
 export const Button: StyleConfig = {
   baseStyle: {
@@ -18,7 +34,7 @@ export const Button: StyleConfig = {
         _focus: {
           boxShadow: [
             "0px 1px 2px " + lighten(theme.colors.gray[900], 5),
-            "0px 0px 0px 4px " + theme.colors[colorScheme][100],
+            "0px 0px 0px 4px " + getThemeColor(theme, colorScheme, 100),
           ].join(),
         },
         _disabled: {
@@ -27,8 +43,90 @@ export const Button: StyleConfig = {
         },
       };
     },
-    outline() {
-      return {};
+    outline({ theme, colorScheme }) {
+      return {
+        ...(isHdsColorSchemeButNotNuetral(colorScheme) && {
+          [$outlineBg.variable]: "white",
+          [$outlineFg.variable]: getThemeColor(theme, colorScheme, 700),
+          [$outlineBorder.variable]: getThemeColor(theme, colorScheme, 700),
+          [$outlineShadow.variable]:
+            "0px 1px 2px " + lighten(theme.colors.gray[900], 5),
+          [$outlineBgHover.variable]: getThemeColor(theme, colorScheme, 500),
+          [$outlineFgHover.variable]: getThemeColor(theme, colorScheme, 900),
+          [$outlineFgFocus.variable]: getThemeColor(theme, colorScheme, 900),
+          [$outlineBorderFocus.variable]: getThemeColor(
+            theme,
+            colorScheme,
+            700,
+          ),
+          [$outlineShadowFocus.variable]: [
+            "0px 1px 2px " + lighten(getThemeColor(theme, colorScheme, 900), 5),
+            "0px 0px 0px 4px " + getThemeColor(theme, colorScheme, 100),
+          ].join(),
+        }),
+
+        ...(isHdsNeutralColorScheme(colorScheme) && {
+          [$outlineBg.variable]: "white",
+          [$outlineFg.variable]: getThemeColor(theme, colorScheme, 700),
+          [$outlineBorder.variable]: getThemeColor(theme, colorScheme, 300),
+          [$outlineShadow.variable]:
+            "0px 1px 2px " + lighten(theme.colors.gray[900], 5),
+          [$outlineBgHover.variable]: getThemeColor(theme, colorScheme, 100),
+          [$outlineFgHover.variable]: getThemeColor(theme, colorScheme, 700),
+          [$outlineFgFocus.variable]: getThemeColor(theme, colorScheme, 700),
+          [$outlineBorderFocus.variable]: getThemeColor(
+            theme,
+            colorScheme,
+            300,
+          ),
+          [$outlineShadowFocus.variable]: [
+            "0px 1px 2px " + lighten(getThemeColor(theme, colorScheme, 900), 5),
+            "0px 0px 0px 4px " + getThemeColor(theme, colorScheme, 100),
+          ].join(),
+        }),
+
+        ...(isUntitledColorScheme(colorScheme) && {
+          [$outlineBg.variable]: "white",
+          [$outlineFg.variable]: getThemeColor(theme, colorScheme, 700),
+          [$outlineBorder.variable]: getThemeColor(theme, colorScheme, 700),
+          [$outlineShadow.variable]:
+            "0px 1px 2px " + lighten(theme.colors.gray[900], 5),
+          [$outlineBgHover.variable]: getThemeColor(theme, colorScheme, 50),
+          [$outlineFgHover.variable]: getThemeColor(theme, colorScheme, 700),
+          [$outlineFgFocus.variable]: getThemeColor(theme, colorScheme, 600),
+          [$outlineBorderFocus.variable]: getThemeColor(
+            theme,
+            colorScheme,
+            600,
+          ),
+          [$outlineShadowFocus.variable]: [
+            "0px 1px 2px " + lighten(getThemeColor(theme, colorScheme, 900), 5),
+            "0px 0px 0px 4px " + getThemeColor(theme, colorScheme, 50),
+          ].join(),
+        }),
+
+        bg: $outlineBg.reference,
+        color: $outlineFg.reference,
+        border: "1px",
+        outline: "none",
+        boxShadow: $outlineShadow.reference,
+        borderColor: $outlineBorder.reference,
+
+        _hover: {
+          bg: $outlineBgHover.reference,
+          color: $outlineFgHover.reference,
+        },
+
+        _focus: {
+          color: $outlineFgFocus.reference,
+          boxShadow: $outlineShadowFocus.reference,
+          borderColor: $outlineBorderFocus.reference,
+        },
+
+        _active: {
+          bg: "white",
+        },
+      };
     },
     subtle() {
       return {};

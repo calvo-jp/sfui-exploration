@@ -1,9 +1,10 @@
 import { StyleConfig } from "@chakra-ui/react";
+import { getThemeColor } from "./_utils";
 
 export const Spinner: StyleConfig = {
-  baseStyle({ colorScheme }) {
+  baseStyle({ theme, colorScheme }) {
     return {
-      color: `${colorScheme}.700`,
+      color: getThemeColor(theme, colorScheme, 700),
     };
   },
   defaultProps: {
