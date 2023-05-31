@@ -37,8 +37,7 @@ export const Checkbox: MultiStyleConfig = {
             },
           },
           [$shadow.variable]:
-            "0px 0px 0px 4px " +
-            theme.colorsgetThemeColor(theme, colorScheme, 100),
+            "0px 0px 0px 4px " + getThemeColor(theme, colorScheme, 100),
         },
       };
     },

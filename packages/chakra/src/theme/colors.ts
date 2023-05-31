@@ -223,18 +223,4 @@ export const colors = {
   black: "#000000",
   white: "#FFFFFF",
   overlay: "#344054b3" /* gray[700] w/ 0.7 opacity */,
-
-  /* ⚠️ [TESTING ONLY] */
-  nexius: {
-    900: "#1C6599",
-    800: "#1F72AD",
-    700: "#2380C2",
-    600: "#278DD6",
-    500: "#42A4EB",
-    400: "#63BAF7",
-    300: "#81C6F7",
-    200: "#9ED2F7",
-    100: "#BCDFF7",
-    50: "#E0F2FF",
-  },
 };

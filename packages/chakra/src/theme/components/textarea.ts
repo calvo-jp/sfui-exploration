@@ -17,8 +17,10 @@ export const Textarea: StyleConfig = {
     md: {
       ...runIfFn(Input.sizes?.md)?.field,
     },
-    lg: {
-      ...runIfFn(Input.sizes?.lg)?.field,
-    },
+  },
+  defaultProps: {
+    size: "md",
+    variant: "outline",
+    colorScheme: "primary",
   },
 };

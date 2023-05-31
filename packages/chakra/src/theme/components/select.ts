@@ -31,4 +31,9 @@ export const Select: MultiStyleConfig = {
       },
     },
   },
+  defaultProps: {
+    size: "md",
+    variant: "outline",
+    colorScheme: "primary",
+  },
 };

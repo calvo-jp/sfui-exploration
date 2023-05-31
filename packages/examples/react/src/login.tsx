@@ -120,10 +120,6 @@ export function Login() {
         </Tooltip>
       </chakra.form>
 
-      <Button w="full" mt={4} variant="outline" colorScheme="error">
-        Login
-      </Button>
-
       <Switch mt={4} />
 
       <Box mt={4}>
