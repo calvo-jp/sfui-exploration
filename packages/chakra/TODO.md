@@ -3,7 +3,7 @@
 - theme
 
   - [ ] alert
-  - [ ] avatar
+  - [x] avatar
   - [x] badge
   - [x] breadcrumb
   - [ ] button
