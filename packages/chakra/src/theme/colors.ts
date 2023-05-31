@@ -28,6 +28,7 @@ export const colors = {
     300: "#D6D6D6",
     200: "#F0F0F0",
     100: "#FCFCFC",
+    50: "",
   },
   primary: {
     900: "#520187",
@@ -215,5 +216,5 @@ export const colors = {
 
   black: "#000000",
   white: "#FFFFFF",
-  overlay: "#344054b3" /* rgba(52, 64, 84, 0.7) */,
+  overlay: "#344054b3" /* gray[700] w/ 0.7 opacity */,
 };
