@@ -1,5 +1,5 @@
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
-import { defaultToastOptions, theme } from "@scaleforge-ui/chakra";
+import { defaultToastOptions, theme } from "@sfui/chakra";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Landing } from "./landing";
 import { Layout } from "./layout";

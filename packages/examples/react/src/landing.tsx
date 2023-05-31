@@ -46,11 +46,7 @@ import {
   PencilSquareIcon,
   TrashIcon,
 } from "@heroicons/react/24/outline";
-import {
-  TableContainer,
-  TableFooter,
-  TableHeader,
-} from "@scaleforge-ui/chakra";
+import { TableContainer, TableFooter, TableHeader } from "@sfui/chakra";
 import { formatDistanceToNow } from "date-fns";
 import * as React from "react";
 import { Link } from "react-router-dom";

@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@scaleforge-ui/chakra": ["packages/chakra/src/index.ts"]
+      "@sfui/chakra": ["packages/chakra/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
