@@ -104,7 +104,6 @@ export function Login() {
             mt={6}
             type="submit"
             isLoading={formState.isSubmitting}
-            colorScheme="primary"
           >
             Login
           </Button>
