@@ -33,7 +33,7 @@ export function Toast(props: ToastProps) {
     ...others
   } = props;
 
-  const colorScheme = others.colorScheme ?? statusToColorScheme(status);
+  const colorScheme = others.colorScheme ?? getColorScheme(status);
 
   const styles = useMultiStyleConfig("Toast", {
     size,
@@ -70,8 +70,8 @@ export function Toast(props: ToastProps) {
   );
 }
 
-function statusToColorScheme(key: ToastProps["status"]) {
-  switch (key) {
+function getColorScheme(status: ToastProps["status"]) {
+  switch (status) {
     case "info":
       return "blue";
     case "error":
@@ -85,8 +85,8 @@ function statusToColorScheme(key: ToastProps["status"]) {
   }
 }
 
-function getIcon(key: ToastProps["status"]) {
-  switch (key) {
+function getIcon(status: ToastProps["status"]) {
+  switch (status) {
     case "error":
       return ExclamationCircleIcon;
     case "info":
