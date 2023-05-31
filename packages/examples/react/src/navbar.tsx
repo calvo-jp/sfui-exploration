@@ -50,7 +50,7 @@ export function Navbar() {
 
         <Menu>
           <MenuButton>
-            <Avatar size="lg" src="https://i.pravatar.cc/300" name="John Doe">
+            <Avatar src="https://i.pravatar.cc/300" name="John Doe">
               <AvatarBadge />
             </Avatar>
           </MenuButton>

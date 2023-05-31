@@ -7,7 +7,18 @@ import { Login } from "./login";
 
 export default function App() {
   return (
-    <ChakraProvider theme={theme}>
+    <ChakraProvider
+      theme={theme}
+      toastOptions={{
+        defaultOptions: {
+          status: "success",
+          variant: "subtle",
+          position: "top",
+          duration: 5000,
+          isClosable: true,
+        },
+      }}
+    >
       <BrowserRouter>
         <Routes>
           <Route path="/" Component={Layout}>

@@ -19,6 +19,10 @@ import {
   HStack,
   Heading,
   Icon,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
   Spacer,
   Table,
   Tbody,
@@ -29,10 +33,19 @@ import {
   Tr,
   VisuallyHidden,
   useDisclosure,
+  useToast,
 } from "@chakra-ui/react";
 import { faker } from "@faker-js/faker";
-import { ChevronRightIcon, PlusIcon } from "@heroicons/react/20/solid";
-import { HomeIcon } from "@heroicons/react/24/outline";
+import {
+  ChevronRightIcon,
+  EllipsisVerticalIcon,
+  PlusIcon,
+} from "@heroicons/react/20/solid";
+import {
+  HomeIcon,
+  PencilSquareIcon,
+  TrashIcon,
+} from "@heroicons/react/24/outline";
 import {
   TableContainer,
   TableFooter,
@@ -43,6 +56,8 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 
 export function Landing() {
+  const toast = useToast();
+
   return (
     <Box
       p={{
@@ -98,6 +113,7 @@ export function Landing() {
               <Th>Email</Th>
               <Th>Friends</Th>
               <Th>Teams</Th>
+              <Th>Date Joined</Th>
               <Th>Actions</Th>
             </Tr>
           </Thead>
@@ -145,6 +161,38 @@ export function Landing() {
                     addSuffix: true,
                     includeSeconds: true,
                   })}
+                </Td>
+                <Td>
+                  <Menu>
+                    <MenuButton
+                      as={Button}
+                      variant="unstyled"
+                      minH="unset"
+                      h="fit-content"
+                    >
+                      <Icon
+                        display="flex"
+                        as={EllipsisVerticalIcon}
+                        w={5}
+                        h={5}
+                      />
+                    </MenuButton>
+                    <MenuList>
+                      <MenuItem icon={<Icon as={PencilSquareIcon} />}>
+                        Edit
+                      </MenuItem>
+                      <MenuItem
+                        icon={<Icon as={TrashIcon} />}
+                        onClick={() => {
+                          toast({
+                            description: "User has been deleted",
+                          });
+                        }}
+                      >
+                        Delete
+                      </MenuItem>
+                    </MenuList>
+                  </Menu>
                 </Td>
               </Tr>
             ))}
