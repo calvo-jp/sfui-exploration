@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start:react": "npx nx serve react",
+    "start:react": "npx nx serve examples-react",
     "generate:chakra-typings": "npx @chakra-ui/cli tokens packages/chakra/src/theme/index.ts",
     "sync-deps": "node ./scripts/sync-deps.js"
   },
