@@ -144,7 +144,7 @@ export function Login() {
       <Box mt={4}>
         <Popover>
           <PopoverTrigger>
-            <chakra.button>
+            <chakra.button display="flex">
               <Icon as={CloudIcon} w={5} h={5} />
             </chakra.button>
           </PopoverTrigger>
