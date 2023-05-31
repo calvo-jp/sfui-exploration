@@ -7,11 +7,8 @@ function Component() {
   return (
     <Pagination>
       <PaginationRange /* Page 1-10 of 100 */ />
-
       <Spacer />
-
-      <PaginationSizeControl />
-
+      <PaginationSizeControl sizes={[5, 25, 50, 100]} />
       <PaginationTriggers>
         {({ pages }) => (
           <>
