@@ -1,6 +1,6 @@
 export const colors = {
   /*
-   * REMOVING CHAKRA COLORS HERE
+   * Removing chakra colors here
    */
   red: null,
   teal: null,
@@ -15,8 +15,14 @@ export const colors = {
   messenger: null,
 
   /*
-   * THIS COLORS ARE HDS SPECIFIC,
-   * OUR DESIGNERS CREATED THIS.
+   * 💡💡💡
+   *
+   * These colors are HDS specific.
+   * Our designers are the ones who chose these.
+   * These have different contrast from Untitled's.
+   * Also, neutral's contrast is different
+   * from primary, error, warning and success. 😒
+   *
    */
   neutral: {
     900: "#0F0F0F",
@@ -81,8 +87,8 @@ export const colors = {
 
   /*
    *
-   * THIS ARE FROM UNTITLED
-   * WHICH HDS USES UNMODIFIED
+   * These colors are from Untitled
+   * which is also being used in HDS, UNMODIFIED! Thank god. 😶
    *
    * ref: https://www.figma.com/file/bEe3Kq0mDSAicRU8E44pk8/HDS-Component-Library?type=design&node-id=1052-489&t=mcrQ9hTpTGbj9CiI-0
    *
