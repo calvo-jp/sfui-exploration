@@ -183,11 +183,15 @@ export function Landing() {
                       <MenuItem
                         icon={<Icon as={TrashIcon} />}
                         onClick={() => {
-                          toast({ description: "This is a success toast" });
+                          toast({
+                            description: "This is an error toast",
+                            status: "warning",
+                          });
                           toast({
                             description: "This is an error toast",
                             status: "error",
                           });
+                          toast({ description: "This is a success toast" });
                         }}
                       >
                         Delete
