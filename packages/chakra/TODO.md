@@ -28,6 +28,7 @@
   - [x] tag
   - [x] text
   - [x] textarea
+  - [x] toast
   - [x] tooltip
 
 - components
@@ -39,3 +40,4 @@
   - [ ] Pagination
   - [ ] Select
   - [ ] Table
+  - [x] Toast `(custom)`

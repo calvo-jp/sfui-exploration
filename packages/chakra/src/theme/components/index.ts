@@ -24,6 +24,7 @@ import { Tabs } from "./tabs";
 import { Tag } from "./tag";
 import { Text } from "./text";
 import { Textarea } from "./textarea";
+import { Toast } from "./toast";
 import { Tooltip } from "./tooltip";
 
 export const components = {
@@ -53,5 +54,6 @@ export const components = {
   Text,
   Tag,
   Textarea,
+  Toast,
   Tooltip,
 };

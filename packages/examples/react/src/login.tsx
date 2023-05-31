@@ -34,6 +34,7 @@ import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import { CloudIcon } from "@heroicons/react/24/outline";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Multiline } from "@scaleforge-ui/chakra";
+import { Toast } from "packages/chakra/src/Toast";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
@@ -146,6 +147,15 @@ export function Login() {
             <PopoverFooter>Hello</PopoverFooter>
           </PopoverContent>
         </Popover>
+      </Box>
+
+      <Box mt={4}>
+        <Toast
+          description="Hello world"
+          onClose={() => {
+            //
+          }}
+        />
       </Box>
     </Box>
   );
