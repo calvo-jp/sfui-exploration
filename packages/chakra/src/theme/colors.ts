@@ -214,6 +214,6 @@ export const colors = {
   },
 
   black: "#000000",
-  white: "#ffffff",
-  overlay: "rgba(52, 64, 84, 0.7)",
+  white: "#FFFFFF",
+  overlay: "#344054b3" /* rgba(52, 64, 84, 0.7) */,
 };
