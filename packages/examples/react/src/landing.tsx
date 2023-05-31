@@ -150,7 +150,10 @@ export function Landing() {
                 <Td>
                   <HStack spacing={2}>
                     {user.teams.map((team, index) => (
-                      <Badge key={index} colorScheme="pink">
+                      <Badge
+                        key={index}
+                        colorScheme={["pink", "blue", "orange"][index]}
+                      >
                         {team}
                       </Badge>
                     ))}
