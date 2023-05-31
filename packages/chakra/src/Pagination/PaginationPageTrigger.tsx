@@ -14,6 +14,7 @@ export type PaginationPageTriggerProps =
 
 export const PaginationPageTrigger = forwardRef(function PaginationPageTrigger(
   props: PaginationPageTriggerProps,
+  ref,
 ) {
   const styles = usePaginationStyles();
   const context = usePaginationContext();
