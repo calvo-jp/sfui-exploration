@@ -5,4 +5,5 @@ export * from "./Multiline";
 export * from "./Pagination";
 export * from "./Select";
 export * from "./Table";
+export * from "./config";
 export * from "./theme";

@@ -1,5 +1,5 @@
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
-import { theme } from "@scaleforge-ui/chakra";
+import { defaultToastOptions, theme } from "@scaleforge-ui/chakra";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Landing } from "./landing";
 import { Layout } from "./layout";
@@ -27,15 +27,7 @@ export default function App() {
         },
         */
       })}
-      toastOptions={{
-        defaultOptions: {
-          status: "success",
-          variant: "subtle",
-          position: "top",
-          duration: 5000,
-          isClosable: true,
-        },
-      }}
+      toastOptions={defaultToastOptions}
     >
       <BrowserRouter>
         <Routes>
