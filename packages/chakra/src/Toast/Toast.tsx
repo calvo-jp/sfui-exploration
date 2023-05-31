@@ -58,7 +58,6 @@ export function Toast(props: ToastProps) {
       {isClosable && (
         <chakra.button
           type="button"
-          role="button"
           aria-label="Close alert"
           onClick={onClose}
           __css={styles.closeButton}
