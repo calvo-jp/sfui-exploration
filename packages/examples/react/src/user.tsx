@@ -74,7 +74,7 @@ export function User() {
 
         <TabPanels>
           <TabPanel>
-            <Alert status="loading">
+            <Alert>
               <AlertIcon />
 
               <Box flexGrow={1}>
