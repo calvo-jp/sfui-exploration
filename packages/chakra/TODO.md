@@ -12,6 +12,7 @@
     - [ ] subtle
     - [ ] ghost
     - [ ] link
+    - [ ] group - we could also use this in `tab`, `pagination`, etc...
   - [x] checkbox
   - [x] drawer
   - [x] form-error

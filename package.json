@@ -5,7 +5,8 @@
   "scripts": {
     "start:react": "npx nx serve examples-react",
     "generate:chakra-typings": "npx @chakra-ui/cli tokens packages/chakra/src/theme/index.ts",
-    "sync-deps": "node ./scripts/sync-deps.js"
+    "sync-deps": "node ./scripts/sync-deps.js",
+    "postinstall": "npm run generate:chakra-typings"
   },
   "private": true,
   "devDependencies": {

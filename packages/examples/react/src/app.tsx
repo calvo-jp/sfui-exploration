@@ -3,7 +3,8 @@ import { defaultToastOptions, theme } from "@sfui/chakra";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Landing } from "./landing";
 import { Layout } from "./layout";
-import { Login } from "./login";
+import { User } from "./user";
+import { Users } from "./users";
 
 export default function App() {
   return (
@@ -45,9 +46,9 @@ export default function App() {
         <Routes>
           <Route path="/" Component={Layout}>
             <Route path="/" element={<Landing />} />
+            <Route path="/users" element={<Users />} />
+            <Route path="/users/:id" element={<User />} />
           </Route>
-
-          <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>
     </ChakraProvider>

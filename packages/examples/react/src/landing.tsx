@@ -1,269 +1,173 @@
 import {
-  AlertDialog,
-  AlertDialogBody,
-  AlertDialogCloseButton,
-  AlertDialogContent,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogOverlay,
-  Avatar,
-  AvatarGroup,
-  Badge,
   Box,
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
   Button,
-  Checkbox,
-  Flex,
-  HStack,
-  Heading,
+  FormControl,
+  FormErrorMessage,
+  FormHelperText,
+  FormLabel,
   Icon,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
-  Portal,
-  Spacer,
-  Table,
-  Tbody,
-  Td,
-  Text,
-  Th,
-  Thead,
-  Tr,
-  VisuallyHidden,
-  useDisclosure,
-  useToast,
+  Input,
+  InputGroup,
+  InputRightElement,
+  Popover,
+  PopoverArrow,
+  PopoverBody,
+  PopoverCloseButton,
+  PopoverContent,
+  PopoverFooter,
+  PopoverHeader,
+  PopoverTrigger,
+  Progress,
+  RangeSlider,
+  RangeSliderFilledTrack,
+  RangeSliderThumb,
+  RangeSliderTrack,
+  Select,
+  Spinner,
+  Switch,
+  Tag,
+  TagCloseButton,
+  TagLabel,
+  Tooltip,
+  chakra,
 } from "@chakra-ui/react";
-import { faker } from "@faker-js/faker";
-import {
-  ChevronRightIcon,
-  EllipsisVerticalIcon,
-  PlusIcon,
-} from "@heroicons/react/20/solid";
-import {
-  HomeIcon,
-  PencilSquareIcon,
-  TrashIcon,
-} from "@heroicons/react/24/outline";
-import { TableContainer, TableFooter, TableHeader } from "@sfui/chakra";
-import { formatDistanceToNow } from "date-fns";
-import * as React from "react";
-import { Link } from "react-router-dom";
+import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
+import { CloudIcon } from "@heroicons/react/24/outline";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Multiline } from "@sfui/chakra";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { z } from "zod";
 
 export function Landing() {
-  const toast = useToast();
+  const navigate = useNavigate();
+
+  const { register, handleSubmit, formState } = useForm<z.infer<typeof schema>>(
+    {
+      resolver: zodResolver(schema),
+      shouldUnregister: true,
+      shouldFocusError: true,
+      defaultValues: {
+        email: "",
+        password: "",
+      },
+    },
+  );
 
   return (
     <Box
-      p={{
-        base: 4,
-        md: 5,
-        lg: 6,
+      w="400px"
+      maxW="full"
+      mx="auto"
+      p={4}
+      pt={{
+        base: 12,
+        md: 16,
+        lg: 24,
       }}
     >
-      <Breadcrumb separator={<Icon as={ChevronRightIcon} />}>
-        <BreadcrumbItem>
-          <BreadcrumbLink as={Link} to="/">
-            <Icon as={HomeIcon} w={4} h={4} />
-            <VisuallyHidden>Home</VisuallyHidden>
-          </BreadcrumbLink>
-        </BreadcrumbItem>
+      <chakra.form
+        onSubmit={handleSubmit(async () => {
+          await sleep();
+          navigate("/");
+        })}
+      >
+        <FormControl isInvalid={!!formState.errors.email}>
+          <FormLabel>Email</FormLabel>
+          <InputGroup>
+            <Input placeholder="johndoe@dumm.y" {...register("email")} />
+            <InputRightElement>
+              <Icon as={MagnifyingGlassIcon} w={5} h={5} />
+            </InputRightElement>
+          </InputGroup>
+          <FormErrorMessage>{formState.errors.email?.message}</FormErrorMessage>
+        </FormControl>
 
-        <BreadcrumbItem>
-          <BreadcrumbLink as={Link} to="/users">
-            Users
-          </BreadcrumbLink>
-        </BreadcrumbItem>
+        <FormControl isInvalid={!!formState.errors.password} mt={4}>
+          <FormLabel>Password</FormLabel>
+          <Input placeholder="Enter password" {...register("password")} />
+          <FormErrorMessage>
+            {formState.errors.password?.message}
+          </FormErrorMessage>
+          {!formState.errors.password && (
+            <FormHelperText>This is a hint</FormHelperText>
+          )}
+        </FormControl>
 
-        <BreadcrumbItem isCurrentPage>
-          <BreadcrumbLink as={Link} to="/users/1">
-            johndoe
-          </BreadcrumbLink>
-        </BreadcrumbItem>
-      </Breadcrumb>
+        <FormControl mt={4}>
+          <FormLabel>Select</FormLabel>
+          <Select>
+            <option>One</option>
+            <option>Two</option>
+            <option>Three</option>
+          </Select>
+        </FormControl>
 
-      <TableContainer mt={4}>
-        <TableHeader>
-          <Flex alignItems="center">
-            <Box>
-              <Heading>Users</Heading>
-              <Text color="neutral.600">Manage users</Text>
-            </Box>
+        <FormControl mt={4}>
+          <FormLabel>Message</FormLabel>
+          <Multiline placeholder="Type here" />
+        </FormControl>
 
-            <Spacer />
+        <Tooltip label="This is a tooltip" hasArrow>
+          <Button
+            w="full"
+            mt={6}
+            type="submit"
+            isLoading={formState.isSubmitting}
+          >
+            Login
+          </Button>
+        </Tooltip>
+      </chakra.form>
 
-            <CreateUser />
-          </Flex>
-        </TableHeader>
+      <Switch mt={4} />
 
-        <Table>
-          <Thead>
-            <Tr>
-              <Th>
-                <HStack spacing={3}>
-                  <Checkbox size="sm" />
-                  <Text fontSize="inherit">User</Text>
-                </HStack>
-              </Th>
-              <Th>Email</Th>
-              <Th>Friends</Th>
-              <Th>Teams</Th>
-              <Th>Date Joined</Th>
-              <Th>Actions</Th>
-            </Tr>
-          </Thead>
-          <Tbody>
-            {users.map((user) => (
-              <Tr key={user.id}>
-                <Td>
-                  <HStack spacing={3}>
-                    <Checkbox size="sm" />
-                    <HStack>
-                      <Avatar src={user.avatar} name={user.name} />
-                      <Box>
-                        <Text size="paragraph-xs">{user.name}</Text>
-                        <Text size="label-xxs" color="neutral.600">
-                          @{user.username}
-                        </Text>
-                      </Box>
-                    </HStack>
-                  </HStack>
-                </Td>
-                <Td>{user.email}</Td>
-                <Td>
-                  <AvatarGroup max={5} size="sm">
-                    {new Array(10).fill(null).map((_, index) => {
-                      return (
-                        <Avatar
-                          key={index}
-                          src={`https://i.pravatar.cc/150?u=${index}`}
-                        />
-                      );
-                    })}
-                  </AvatarGroup>
-                </Td>
-                <Td>
-                  <HStack spacing={2}>
-                    {user.teams.map((team, index) => (
-                      <Badge
-                        key={index}
-                        colorScheme={["pink", "blue", "orange"][index]}
-                      >
-                        {team}
-                      </Badge>
-                    ))}
-                  </HStack>
-                </Td>
-                <Td>
-                  {formatDistanceToNow(new Date(user.createdAt), {
-                    addSuffix: true,
-                    includeSeconds: true,
-                  })}
-                </Td>
-                <Td>
-                  <Menu>
-                    <MenuButton
-                      as={Button}
-                      variant="unstyled"
-                      minH="unset"
-                      h="fit-content"
-                    >
-                      <Icon
-                        display="flex"
-                        as={EllipsisVerticalIcon}
-                        w={5}
-                        h={5}
-                      />
-                    </MenuButton>
-                    <Portal>
-                      <MenuList>
-                        <MenuItem icon={<Icon as={PencilSquareIcon} />}>
-                          Edit
-                        </MenuItem>
-                        <MenuItem
-                          icon={<Icon as={TrashIcon} />}
-                          onClick={() => {
-                            toast({
-                              description: "This is an error toast",
-                              status: "warning",
-                            });
-                            toast({
-                              description: "This is an error toast",
-                              status: "error",
-                            });
-                            toast({ description: "This is a success toast" });
-                          }}
-                        >
-                          Delete
-                        </MenuItem>
-                      </MenuList>
-                    </Portal>
-                  </Menu>
-                </Td>
-              </Tr>
-            ))}
-          </Tbody>
-        </Table>
+      <Box mt={4}>
+        <Tag>
+          <TagLabel>Hello</TagLabel>
+          <TagCloseButton />
+        </Tag>
+      </Box>
 
-        <TableFooter>
-          <Text size="paragraph-xxs" color="neutral.700">
-            Hello world
-          </Text>
-        </TableFooter>
-      </TableContainer>
+      <RangeSlider mt={4} defaultValue={[10, 30]}>
+        <RangeSliderTrack>
+          <RangeSliderFilledTrack />
+        </RangeSliderTrack>
+        <RangeSliderThumb index={0} />
+        <RangeSliderThumb index={1} />
+      </RangeSlider>
+
+      <Progress mt={4} value={80} />
+
+      <Spinner mt={6} />
+
+      <Box mt={4}>
+        <Popover>
+          <PopoverTrigger>
+            <chakra.button display="flex">
+              <Icon as={CloudIcon} w={5} h={5} />
+            </chakra.button>
+          </PopoverTrigger>
+          <PopoverContent>
+            <PopoverArrow />
+            <PopoverCloseButton />
+            <PopoverHeader>Hello</PopoverHeader>
+            <PopoverBody>Hello</PopoverBody>
+            <PopoverFooter>Hello</PopoverFooter>
+          </PopoverContent>
+        </Popover>
+      </Box>
     </Box>
   );
 }
 
-function CreateUser() {
-  const ref = React.useRef<HTMLButtonElement>(null);
-
-  const { isOpen, onOpen, onClose } = useDisclosure();
-
-  return (
-    <>
-      <Button ref={ref} leftIcon={<Icon as={PlusIcon} />} onClick={onOpen}>
-        Add new
-      </Button>
-
-      <AlertDialog isOpen={isOpen} onClose={onClose} leastDestructiveRef={ref}>
-        <AlertDialogOverlay />
-        <AlertDialogContent>
-          <AlertDialogCloseButton />
-          <AlertDialogHeader>
-            <Heading>Hello</Heading>
-          </AlertDialogHeader>
-          <AlertDialogBody mt={4}>
-            <Text size="paragraph-xs" color="neutral.800">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam
-              similique ipsam praesentium, dolore suscipit ratione ducimus
-              libero excepturi numquam distinctio.
-            </Text>
-          </AlertDialogBody>
-          <AlertDialogFooter mt={4}>
-            <Flex justifyContent="flex-end" gap={3}>
-              <Button onClick={onClose} variant="outline" colorScheme="neutral">
-                Cancel
-              </Button>
-              <Button onClick={onClose}>Okay</Button>
-            </Flex>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
-    </>
-  );
-}
-
-const users = new Array(10).fill(null).map(() => {
-  return {
-    id: faker.string.uuid(),
-    name: faker.person.fullName(),
-    username: faker.internet.userName(),
-    email: faker.internet.email(),
-    teams: new Array(3).fill(null).map(() => faker.color.human()),
-    createdAt: faker.date.recent(),
-    avatar: faker.internet.avatar(),
-  };
+const schema = z.object({
+  email: z.string().email(),
+  password: z.string().min(5).max(50),
 });
+
+function sleep(seconds = 2.5) {
+  return new Promise<void>((resolve) => {
+    setTimeout(resolve, seconds * 1000);
+  });
+}
