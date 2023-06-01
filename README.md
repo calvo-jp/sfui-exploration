@@ -1,11 +1,12 @@
 # SFUI Exploration
 
-Reason for this exploration is due to the problems we've encountered when using HDS
+Reason for this exploration is due to the problems we've encountered in development while using HDS
 
 ## Current HDS problem
 
 - Not themable
 - Not flexible
+- Bloats html. eg. for a single input, HDS adds 2 html elements
 - Can't add styles on the fly. eg:
 
   In HDS we do this
