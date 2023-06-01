@@ -27,12 +27,12 @@ Reason for this exploration is due to the problems we've encountered in developm
 
 - Harder to maintain due to the logic being explicit to particular requirements instead of being flexible (which chakra provides out-of-the-box) to cover most if not all of use-cases
 
-## Solution
+## Proposed Solution
 
-- Chakra which has a default HDS theme (This eliminates writing redundant global theme like input margin, padding, size, etc)
-- Focus on complex components which are not available in chakra currently rather than abstracting non complex ones (let users abstract it on app-level based on thier requirements like what they used to do)
+- HDS theme as a library (This eliminates writing redundant global theme like input margin, padding, size, etc)
+- Focus on complex components which are not available in chakra rather than abstracting non complex ones (let users abstract it on how they want to abstract it on app-level to match thier reqs)
 
-  These are the components which are in HDS but not in chakra, just yet.
+  These are the components which are in HDS but not in chakra at the time of writing.
 
   - Select (Custom)
   - MultiSelect
@@ -41,7 +41,7 @@ Reason for this exploration is due to the problems we've encountered in developm
   - DatePicker/RangeDatePicker
   - Pagination
 
-- Design complex components in a `chakra-ish` way. eg
+- Design new components in a `chakra-ish` way. eg
 
   ```tsx
   <Pagination>
@@ -63,7 +63,11 @@ Reason for this exploration is due to the problems we've encountered in developm
   </Pagination>
   ```
 
+  This way, the user have access to all component parts where they could move parts of the component accordingly to suit their needs. They could also add styles on the fly 😉
+
 - Ensure new components can be themed globally in a chakra way. Refer to [this](https://chakra-ui.com/docs/components/alert/theming)
+
+  New components will also have a default global theme which is based on HDS (overridable of course 👌)
 
 ## Development
 
