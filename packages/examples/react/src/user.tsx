@@ -1,9 +1,14 @@
 import {
+  Alert,
+  AlertDescription,
+  AlertIcon,
+  AlertTitle,
   Avatar,
   Box,
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
+  CloseButton,
   HStack,
   Heading,
   Icon,
@@ -68,7 +73,21 @@ export function User() {
         </TabList>
 
         <TabPanels>
-          <TabPanel>Tab 1</TabPanel>
+          <TabPanel>
+            <Alert status="loading">
+              <AlertIcon />
+
+              <Box flexGrow={1}>
+                <AlertTitle>Hello world</AlertTitle>
+                <AlertDescription>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Officia, eaque?
+                </AlertDescription>
+              </Box>
+
+              <CloseButton />
+            </Alert>
+          </TabPanel>
           <TabPanel>Tab 2</TabPanel>
           <TabPanel>Tab 3</TabPanel>
         </TabPanels>
