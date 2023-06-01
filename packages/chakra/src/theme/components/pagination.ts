@@ -36,15 +36,15 @@ export const Pagination: MultiStyleConfig = {
         lineHeight: "20px",
         fontWeight: "medium",
         /*
-        boxShadow: "0px 1px 2px " + applyOpacity(colors.gray[900], 5),
-        */
+         * boxShadow: "0px 1px 2px " + applyOpacity(colors.gray[900], 5),
+         */
         _disabled: {
           color: "neutral.500",
           cursor: "not-allowed",
         },
       },
-      "_",
-    )._;
+      "$$",
+    ).$$;
 
     return {
       container: {
@@ -113,7 +113,7 @@ export const Pagination: MultiStyleConfig = {
         lineHeight: "20px",
         outline: "none",
         _selected: {
-          bg: "red",
+          bg: "neutral.100",
         },
       },
 

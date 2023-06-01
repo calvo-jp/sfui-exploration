@@ -29,7 +29,5 @@ export function getRange(page: number, size: number, total: number) {
   start = clamp(start, 1, total);
   until = clamp(until, 1, total);
 
-  console.log({ start, until });
-
   return `Page ${start}-${until} to ${total}`;
 }
