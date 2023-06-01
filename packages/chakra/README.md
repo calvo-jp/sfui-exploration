@@ -51,8 +51,3 @@ Chakra extension based w/ theme reset based on HDS
   - [ ] Select
   - [ ] Table
   - [x] Toast `(custom)`
-
-- Refactors
-
-  - [x] move components to single folder
-  - [x] move utils to single folder and have one file for each util
