@@ -21,7 +21,7 @@ Reason for this exploration is due to the problems we've encountered in developm
   <FormControl>
     <FormLabel mb={2} color="blue.600">label<FormLabel> // On the fly styles
     <Input />
-    <FormErrorMessage mt={4} color="dange.700">Error</FormErrorMessage> // Also here
+    <FormErrorMessage mt={4} color="danger.700">Error</FormErrorMessage> // Also here
   </FormControl>
   ```
 
