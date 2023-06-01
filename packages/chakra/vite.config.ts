@@ -21,9 +21,12 @@ export default defineConfig({
   build: {
     ssr: true,
     lib: {
-      entry: "src/index.ts",
       name: "chakra",
-      fileName: "index",
+      entry: {
+        index: "src/index.ts",
+        theme: "src/theme/index.ts",
+        components: "src/components/index.ts",
+      },
       formats: ["es", "cjs"],
     },
     rollupOptions: {

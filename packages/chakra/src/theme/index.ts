@@ -5,3 +5,5 @@ export const theme = {
   ...foundation,
   ...components,
 };
+
+export type Theme = typeof theme;
