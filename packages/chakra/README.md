@@ -1,4 +1,8 @@
-# Todos
+# HDS Chakra
+
+Chakra extension based w/ theme reset based on HDS
+
+## Todos
 
 - theme
 
