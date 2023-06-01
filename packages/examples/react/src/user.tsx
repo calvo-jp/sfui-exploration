@@ -8,6 +8,8 @@ import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
+  Button,
+  ButtonGroup,
   CloseButton,
   HStack,
   Heading,
@@ -86,10 +88,22 @@ export function User() {
           <TabPanel>
             <TabTwo />
           </TabPanel>
-          <TabPanel>Tab 3</TabPanel>
+          <TabPanel>
+            <TabThree />
+          </TabPanel>
         </TabPanels>
       </Tabs>
     </Box>
+  );
+}
+
+function TabThree() {
+  return (
+    <ButtonGroup isAttached variant="outline" colorScheme="neutral">
+      <Button>1</Button>
+      <Button>2</Button>
+      <Button>3</Button>
+    </ButtonGroup>
   );
 }
 
