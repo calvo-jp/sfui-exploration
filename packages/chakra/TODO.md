@@ -25,7 +25,6 @@
   - [x] popover `(Uses tooltip ui)`
   - [x] progress
   - [x] select `(native)`
-  - [ ] select `(custom)`
   - [x] skeleton
   - [x] slider
   - [x] spinner
