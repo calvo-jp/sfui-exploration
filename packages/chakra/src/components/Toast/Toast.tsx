@@ -1,6 +1,7 @@
 import {
   ToastProviderProps,
   chakra,
+  useId,
   useMultiStyleConfig,
 } from "@chakra-ui/react";
 import { Pretty } from "../../types";
@@ -44,8 +45,14 @@ export function Toast(props: ToastProps) {
     styleConfig,
   });
 
+  const uuid = useId();
+  const rootId = others.id?.toString() ?? uuid;
+  const descId = rootId + "-desc";
+  const titleId = rootId + "-title";
+
   return (
     <chakra.div
+      id={rootId}
       role="alert"
       aria-label={getJsxTextContent(description)}
       __css={styles.container}
@@ -53,10 +60,16 @@ export function Toast(props: ToastProps) {
       <chakra.svg as={getIcon(status)} __css={styles.icon} />
 
       <chakra.div __css={styles.content}>
-        {title && <chakra.div __css={styles.title}>{title}</chakra.div>}
+        {title && (
+          <chakra.div id={titleId} __css={styles.title}>
+            {title}
+          </chakra.div>
+        )}
 
         {description && (
-          <chakra.div __css={styles.description}>{description}</chakra.div>
+          <chakra.div id={descId} __css={styles.description}>
+            {description}
+          </chakra.div>
         )}
       </chakra.div>
 
