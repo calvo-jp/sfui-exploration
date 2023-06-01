@@ -7,7 +7,7 @@ import {
 } from "@chakra-ui/react";
 import * as React from "react";
 import { Merge } from "../../types";
-import { runIfFn } from "../../utils";
+import { runIfCallable } from "../../utils";
 import {
   PaginationProvider,
   PaginationProviderProps,
@@ -49,7 +49,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
             defaultValue={defaultValue}
             total={total}
           >
-            {runIfFn(children, {})}
+            {runIfCallable(children, {})}
           </PaginationProvider>
         </PaginationStylesProvider>
       </chakra.div>

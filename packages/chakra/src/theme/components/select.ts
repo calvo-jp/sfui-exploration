@@ -1,5 +1,5 @@
 import { MultiStyleConfig } from "@chakra-ui/react";
-import { runIfFn } from "../../utils";
+import { runIfCallable } from "../../utils";
 import { Input } from "./input";
 
 export const Select: MultiStyleConfig = {
@@ -14,7 +14,7 @@ export const Select: MultiStyleConfig = {
     outline(context) {
       return {
         field: {
-          ...runIfFn(Input.variants?.outline, context)?.field,
+          ...runIfCallable(Input.variants?.outline, context)?.field,
         },
       };
     },
@@ -22,12 +22,12 @@ export const Select: MultiStyleConfig = {
   sizes: {
     sm: {
       field: {
-        ...runIfFn(Input.sizes?.sm)?.field,
+        ...runIfCallable(Input.sizes?.sm)?.field,
       },
     },
     md: {
       field: {
-        ...runIfFn(Input.sizes?.md)?.field,
+        ...runIfCallable(Input.sizes?.md)?.field,
       },
     },
   },

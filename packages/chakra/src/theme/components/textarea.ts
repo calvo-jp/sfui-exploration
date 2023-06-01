@@ -1,21 +1,21 @@
 import { StyleConfig } from "@chakra-ui/react";
-import { runIfFn } from "../../utils";
+import { runIfCallable } from "../../utils";
 import { Input } from "./input";
 
 export const Textarea: StyleConfig = {
   variants: {
     outline(props) {
       return {
-        ...runIfFn(Input.variants?.outline, props)?.field,
+        ...runIfCallable(Input.variants?.outline, props)?.field,
       };
     },
   },
   sizes: {
     sm: {
-      ...runIfFn(Input.sizes?.sm)?.field,
+      ...runIfCallable(Input.sizes?.sm)?.field,
     },
     md: {
-      ...runIfFn(Input.sizes?.md)?.field,
+      ...runIfCallable(Input.sizes?.md)?.field,
     },
   },
   defaultProps: {
