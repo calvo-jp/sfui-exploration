@@ -31,7 +31,7 @@
   - [x] spinner
   - [x] switch
   - [ ] table
-  - [ ] tabs
+  - [x] tabs
   - [x] tag
   - [x] text
   - [x] textarea
