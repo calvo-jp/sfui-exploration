@@ -1,5 +1,5 @@
 import { MultiStyleConfig, cssVar } from "@chakra-ui/react";
-import { createObjectFromKeys } from "../../utils";
+import { assignPropsToKeys } from "../../utils";
 
 const $size = cssVar("sf-avatar-size");
 const $fontSize = cssVar("sf-avatar-fontsize");
@@ -70,7 +70,7 @@ export const Avatar: MultiStyleConfig = {
   },
   sizes: {
     xs: {
-      ...createObjectFromKeys(
+      ...assignPropsToKeys(
         {
           [$size.variable]: "24px",
           [$fontSize.variable]: "12px",
@@ -86,7 +86,7 @@ export const Avatar: MultiStyleConfig = {
       },
     },
     sm: {
-      ...createObjectFromKeys(
+      ...assignPropsToKeys(
         {
           [$size.variable]: "32px",
           [$fontSize.variable]: "14px",
@@ -102,7 +102,7 @@ export const Avatar: MultiStyleConfig = {
       },
     },
     md: {
-      ...createObjectFromKeys(
+      ...assignPropsToKeys(
         {
           [$size.variable]: "40px",
           [$fontSize.variable]: "16px",
@@ -118,7 +118,7 @@ export const Avatar: MultiStyleConfig = {
       },
     },
     lg: {
-      ...createObjectFromKeys(
+      ...assignPropsToKeys(
         {
           [$size.variable]: "48px",
           [$fontSize.variable]: "18px",
@@ -134,7 +134,7 @@ export const Avatar: MultiStyleConfig = {
       },
     },
     xl: {
-      ...createObjectFromKeys(
+      ...assignPropsToKeys(
         {
           [$size.variable]: "56px",
           [$fontSize.variable]: "20px",
@@ -150,7 +150,7 @@ export const Avatar: MultiStyleConfig = {
       },
     },
     "2xl": {
-      ...createObjectFromKeys(
+      ...assignPropsToKeys(
         {
           [$size.variable]: "64px",
           [$fontSize.variable]: "24px",
@@ -166,7 +166,7 @@ export const Avatar: MultiStyleConfig = {
       },
     },
     "3xl": {
-      ...createObjectFromKeys(
+      ...assignPropsToKeys(
         {
           [$size.variable]: "72px",
           [$fontSize.variable]: "28px",
@@ -178,7 +178,7 @@ export const Avatar: MultiStyleConfig = {
       ),
     },
     "4xl": {
-      ...createObjectFromKeys(
+      ...assignPropsToKeys(
         {
           [$size.variable]: "96px",
           [$fontSize.variable]: "32px",
@@ -190,7 +190,7 @@ export const Avatar: MultiStyleConfig = {
       ),
     },
     "5xl": {
-      ...createObjectFromKeys(
+      ...assignPropsToKeys(
         {
           [$size.variable]: "160px",
           [$fontSize.variable]: "56px",
