@@ -76,6 +76,6 @@ npm install
 npm run start:react
 ```
 
-- You should now have access to the page
+- Go to http://localhost:4200/users
 
 ![screenshot](/docs/screenshot.jpeg)
