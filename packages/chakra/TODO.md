@@ -29,7 +29,7 @@
   - [x] slider
   - [x] spinner
   - [x] switch
-  - [ ] table
+  - [x] table
   - [x] tabs
   - [x] tag
   - [x] text
