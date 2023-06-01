@@ -3,8 +3,8 @@ import {
   chakra,
   useMultiStyleConfig,
 } from "@chakra-ui/react";
-import { Pretty } from "../types";
-import { getJsxTextContent } from "../utils";
+import { Pretty } from "../../types";
+import { getJsxTextContent } from "../../utils";
 import {
   CheckCircleIcon,
   ExclamationCircleIcon,

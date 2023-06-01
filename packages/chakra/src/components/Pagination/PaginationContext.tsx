@@ -1,7 +1,7 @@
 import { SystemStyleObject, useControllableState } from "@chakra-ui/react";
 import { createContext } from "@chakra-ui/react-context";
 import * as React from "react";
-import { invariant, noop } from "../utils";
+import { invariant, noop } from "../../utils";
 
 export const [PaginationStylesProvider, usePaginationStyles] = createContext<
   Record<string, SystemStyleObject>

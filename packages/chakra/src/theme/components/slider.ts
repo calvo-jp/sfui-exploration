@@ -1,5 +1,5 @@
 import { MultiStyleConfig } from "@chakra-ui/react";
-import { lighten } from "../../utils";
+import { applyOpacity } from "../../utils";
 import { getThemeColor } from "./_utils";
 
 export const Slider: MultiStyleConfig = {
@@ -23,7 +23,7 @@ export const Slider: MultiStyleConfig = {
         _focus: {
           boxShadow:
             "0px 0px 0px 3px " +
-            lighten(getThemeColor(theme, colorScheme, 100), 80),
+            applyOpacity(getThemeColor(theme, colorScheme, 100), 80),
         },
       },
     };

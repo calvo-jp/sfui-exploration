@@ -1,5 +1,5 @@
 import { MultiStyleConfig, cssVar } from "@chakra-ui/react";
-import { lighten } from "../../utils";
+import { applyOpacity } from "../../utils";
 
 const $bg = cssVar("sf-popover-bg");
 const $fg1 = cssVar("sf-popover-fg");
@@ -34,8 +34,8 @@ export const Popover: MultiStyleConfig = {
         [$fg2.variable]: theme.colors.neutral[300],
         [$arrowBg.variable]: $bg.reference,
         [$shadow.variable]: [
-          "0px 12px 16px -4px " + lighten(theme.colors.gray[900], 8),
-          "0px 4px 6px -2px " + lighten(theme.colors.gray[900], 3),
+          "0px 12px 16px -4px " + applyOpacity(theme.colors.gray[900], 8),
+          "0px 4px 6px -2px " + applyOpacity(theme.colors.gray[900], 3),
         ].join(),
 
         _dark: {

@@ -1,5 +1,5 @@
 import { ToastProviderProps } from "@chakra-ui/react";
-import { Toast } from "../Toast";
+import { Toast } from "../components";
 
 export const defaultToastOptions: ToastProviderProps = {
   defaultOptions: {

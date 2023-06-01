@@ -1,7 +1,7 @@
 import { SystemStyleObject, useControllableState } from "@chakra-ui/react";
 import { createContext } from "@chakra-ui/react-context";
 import * as React from "react";
-import { noop } from "../utils";
+import { noop } from "../../utils";
 
 export const [SelectStylesProvider, useSelectStyles] = createContext<
   Record<string, SystemStyleObject>

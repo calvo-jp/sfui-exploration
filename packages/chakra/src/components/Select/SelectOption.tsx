@@ -1,6 +1,6 @@
 import { HTMLChakraProps, chakra } from "@chakra-ui/react";
 import * as React from "react";
-import { Merge } from "../types";
+import { Merge } from "../../types";
 
 export type SelectOptionProps = Merge<
   HTMLChakraProps<"div">,

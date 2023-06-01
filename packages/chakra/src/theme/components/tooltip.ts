@@ -1,5 +1,5 @@
 import { StyleConfig, cssVar } from "@chakra-ui/react";
-import { lighten } from "../../utils";
+import { applyOpacity } from "../../utils";
 import { colors } from "../colors";
 
 const $fgColor = cssVar("sf-tooltip-fg");
@@ -24,8 +24,8 @@ export const Tooltip: StyleConfig = {
       [$bgColor.variable]: colors.neutral[900],
       [$arrowBg.variable]: $bgColor.reference,
       [$shadow.variable]: [
-        "0px 12px 16px -4px " + lighten(theme.colors.gray[900], 8),
-        "0px 4px 6px -2px " + lighten(theme.colors.gray[900], 3),
+        "0px 12px 16px -4px " + applyOpacity(theme.colors.gray[900], 8),
+        "0px 4px 6px -2px " + applyOpacity(theme.colors.gray[900], 3),
       ].join(),
 
       _dark: {

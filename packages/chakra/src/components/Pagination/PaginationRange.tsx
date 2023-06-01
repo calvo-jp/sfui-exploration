@@ -1,5 +1,5 @@
 import { chakra } from "@chakra-ui/react";
-import { clamp } from "../utils";
+import { clamp } from "../../utils";
 import { usePaginationContext, usePaginationStyles } from "./PaginationContext";
 
 export function PaginationRange() {

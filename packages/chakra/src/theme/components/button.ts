@@ -1,5 +1,5 @@
 import { StyleConfig, cssVar } from "@chakra-ui/react";
-import { lighten } from "../../utils";
+import { applyOpacity } from "../../utils";
 import {
   getThemeColor,
   isHdsColorSchemeButNotNuetral,
@@ -26,14 +26,14 @@ export const Button: StyleConfig = {
       return {
         color: "neutral.100",
         transition: "all 300ms ease-in-out",
-        boxShadow: "0px 1px 2px " + lighten(theme.colors.gray[900], 5),
+        boxShadow: "0px 1px 2px " + applyOpacity(theme.colors.gray[900], 5),
         bgColor: `${colorScheme}.700`,
         _hover: {
           bgColor: `${colorScheme}.900`,
         },
         _focus: {
           boxShadow: [
-            "0px 1px 2px " + lighten(theme.colors.gray[900], 5),
+            "0px 1px 2px " + applyOpacity(theme.colors.gray[900], 5),
             "0px 0px 0px 4px " + getThemeColor(theme, colorScheme, 100),
           ].join(),
         },
@@ -50,7 +50,7 @@ export const Button: StyleConfig = {
           [$outlineFg.variable]: getThemeColor(theme, colorScheme, 700),
           [$outlineBorder.variable]: getThemeColor(theme, colorScheme, 700),
           [$outlineShadow.variable]:
-            "0px 1px 2px " + lighten(theme.colors.gray[900], 5),
+            "0px 1px 2px " + applyOpacity(theme.colors.gray[900], 5),
           [$outlineBgHover.variable]: getThemeColor(theme, colorScheme, 500),
           [$outlineFgHover.variable]: getThemeColor(theme, colorScheme, 900),
           [$outlineFgFocus.variable]: getThemeColor(theme, colorScheme, 900),
@@ -60,7 +60,8 @@ export const Button: StyleConfig = {
             700,
           ),
           [$outlineShadowFocus.variable]: [
-            "0px 1px 2px " + lighten(getThemeColor(theme, colorScheme, 900), 5),
+            "0px 1px 2px " +
+              applyOpacity(getThemeColor(theme, colorScheme, 900), 5),
             "0px 0px 0px 4px " + getThemeColor(theme, colorScheme, 100),
           ].join(),
         }),
@@ -70,7 +71,7 @@ export const Button: StyleConfig = {
           [$outlineFg.variable]: getThemeColor(theme, colorScheme, 700),
           [$outlineBorder.variable]: getThemeColor(theme, colorScheme, 300),
           [$outlineShadow.variable]:
-            "0px 1px 2px " + lighten(theme.colors.gray[900], 5),
+            "0px 1px 2px " + applyOpacity(theme.colors.gray[900], 5),
           [$outlineBgHover.variable]: getThemeColor(theme, colorScheme, 100),
           [$outlineFgHover.variable]: getThemeColor(theme, colorScheme, 700),
           [$outlineFgFocus.variable]: getThemeColor(theme, colorScheme, 700),
@@ -80,7 +81,8 @@ export const Button: StyleConfig = {
             300,
           ),
           [$outlineShadowFocus.variable]: [
-            "0px 1px 2px " + lighten(getThemeColor(theme, colorScheme, 900), 5),
+            "0px 1px 2px " +
+              applyOpacity(getThemeColor(theme, colorScheme, 900), 5),
             "0px 0px 0px 4px " + getThemeColor(theme, colorScheme, 100),
           ].join(),
         }),
@@ -90,7 +92,7 @@ export const Button: StyleConfig = {
           [$outlineFg.variable]: getThemeColor(theme, colorScheme, 700),
           [$outlineBorder.variable]: getThemeColor(theme, colorScheme, 700),
           [$outlineShadow.variable]:
-            "0px 1px 2px " + lighten(theme.colors.gray[900], 5),
+            "0px 1px 2px " + applyOpacity(theme.colors.gray[900], 5),
           [$outlineBgHover.variable]: getThemeColor(theme, colorScheme, 50),
           [$outlineFgHover.variable]: getThemeColor(theme, colorScheme, 700),
           [$outlineFgFocus.variable]: getThemeColor(theme, colorScheme, 600),
@@ -100,7 +102,8 @@ export const Button: StyleConfig = {
             600,
           ),
           [$outlineShadowFocus.variable]: [
-            "0px 1px 2px " + lighten(getThemeColor(theme, colorScheme, 900), 5),
+            "0px 1px 2px " +
+              applyOpacity(getThemeColor(theme, colorScheme, 900), 5),
             "0px 0px 0px 4px " + getThemeColor(theme, colorScheme, 50),
           ].join(),
         }),

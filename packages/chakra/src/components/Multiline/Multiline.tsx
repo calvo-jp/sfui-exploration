@@ -1,7 +1,7 @@
 import { Textarea, TextareaProps } from "@chakra-ui/react";
 import { forwardRef } from "react";
 import Autosize from "react-textarea-autosize";
-import { Merge } from "../types";
+import { Merge } from "../../types";
 
 export type MultilineProps = Merge<
   TextareaProps,

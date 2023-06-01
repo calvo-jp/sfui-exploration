@@ -1,5 +1,5 @@
 import { MultiStyleConfig, calc, cssVar } from "@chakra-ui/react";
-import { lighten } from "../../utils";
+import { applyOpacity } from "../../utils";
 import { colors } from "../colors";
 import { getThemeColor } from "./_utils";
 
@@ -80,8 +80,8 @@ export const Switch: MultiStyleConfig = {
         bgColor: "white",
         transition: "all 300ms ease-in-out",
         boxShadow: [
-          "0px 1px 3px " + lighten(colors.gray[900], 10),
-          +"0px 1px 2px " + lighten(colors.gray[900], 6),
+          "0px 1px 3px " + applyOpacity(colors.gray[900], 10),
+          +"0px 1px 2px " + applyOpacity(colors.gray[900], 6),
         ].join(),
         _checked: {
           transform: `translateX(${$translateX.reference})`,

@@ -6,7 +6,7 @@ import {
   useMultiStyleConfig,
 } from "@chakra-ui/react";
 import * as React from "react";
-import { Merge } from "../types";
+import { Merge } from "../../types";
 import {
   TableProvider,
   TableProviderProps,

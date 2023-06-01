@@ -1,7 +1,7 @@
 import { ThemingProps, useMultiStyleConfig } from "@chakra-ui/react";
 import * as React from "react";
-import { Merge } from "../types";
-import { runIfFn } from "../utils";
+import { Merge } from "../../types";
+import { runIfFn } from "../../utils";
 import {
   SelectProviderProps,
   SelectStylesProvider,
