@@ -23,7 +23,6 @@ function Component() {
         <Thead>
           <Tr>
             <Th>
-              <TableCheckbox master />
               <Text>User</Text>
             </Th>
           </Tr>
@@ -34,7 +33,6 @@ function Component() {
             return (
               <Tr key={user.id}>
                 <Td>
-                  <TableCheckbox />
                   <Text>{user.name}</Text>
                 </Td>
               </Tr>
