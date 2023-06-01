@@ -1,5 +1,5 @@
 import { MultiStyleConfig, cssVar } from "@chakra-ui/react";
-import { colors } from "../colors";
+import { colors } from "../foundation";
 
 const $border = cssVar("table-border");
 

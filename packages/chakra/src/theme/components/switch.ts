@@ -1,6 +1,6 @@
 import { MultiStyleConfig, calc, cssVar } from "@chakra-ui/react";
 import { applyOpacity } from "../../utils";
-import { colors } from "../colors";
+import { colors } from "../foundation";
 import { getThemeColor } from "./__utils";
 
 const $width = cssVar("sf-switch-track-width");
