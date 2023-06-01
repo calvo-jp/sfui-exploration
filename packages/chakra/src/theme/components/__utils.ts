@@ -19,10 +19,13 @@ export function isUntitledColorScheme<T extends string>(key?: T) {
   return !isHdsColorSchemeButNotNuetral(key) && !isHdsNeutralColorScheme(key);
 }
 
+type Dict = Record<string, any>;
+type Key = string | number;
+
 export function getThemeColor(
-  theme: Record<string, any>,
+  theme: Dict,
   pallete: string,
-  key: string | number,
+  key: Key,
   fallback = "",
 ) {
   return theme.colors?.[pallete]?.[key] ?? fallback;
