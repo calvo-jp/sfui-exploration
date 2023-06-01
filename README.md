@@ -28,7 +28,7 @@ Reason for this exploration is due to the problems we've encountered when using 
 
 ## Solution
 
-- Distributable HDS Theme
+- Chakra which has a default HDS theme
 - Focus on complex components rather than abstracting non complex ones
 - Design complex components in a `chakra-ish` way. eg
 
