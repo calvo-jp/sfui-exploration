@@ -16,7 +16,7 @@ export const Tabs: MultiStyleConfig = {
     },
     tabpanel: {
       px: 0,
-      pl: 0,
+      pb: 0,
       pt: 4,
     },
   },
