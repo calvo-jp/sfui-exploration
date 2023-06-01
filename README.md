@@ -25,7 +25,7 @@ Reason for this exploration is due to the problems we've encountered in developm
   </FormControl>
   ```
 
-- Hard to maintain due to supporting explicit requirements instead of being flexible (which chakra provides out-of-the-box) to cater most if not all of use-cases
+- Harder to maintain due to the logic being explicit to particular requirements instead of being flexible (which chakra provides out-of-the-box) to cover most if not all of use-cases
 
 ## Solution
 
