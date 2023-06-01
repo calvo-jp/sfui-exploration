@@ -25,19 +25,52 @@ export const Table: MultiStyleConfig = {
       border: "1px",
       borderColor: $border.reference,
       rounded: "lg",
+      overflow: "hidden",
+
+      th: {
+        _first: {
+          borderLeft: "none",
+        },
+        _last: {
+          borderRight: "none",
+        },
+      },
+
+      td: {
+        _first: {
+          borderLeft: "none",
+        },
+        _last: {
+          borderRight: "none",
+        },
+      },
+
+      tr: {
+        _last: {
+          td: {
+            borderBottom: "none",
+          },
+        },
+        _first: {
+          th: {
+            borderTop: "none",
+          },
+          td: {
+            borderTop: "none",
+          },
+        },
+      },
     },
     table: {
-      /*
-       * Also need to pass this here
-       * just in case they don't use TableContainer
-       */
-      [$border.variable]: colors.neutral[200],
+      [$border.variable]: colors.gray[200],
     },
     header: {
-      p: 4,
+      borderBottom: "1px",
+      borderColor: $border.reference,
     },
     footer: {
-      p: 4,
+      borderTop: "1px",
+      borderColor: $border.reference,
     },
     thead: {
       bgColor: "gray.50",
@@ -61,45 +94,70 @@ export const Table: MultiStyleConfig = {
     },
   },
   variants: {
-    simple: {
-      table: {},
-      tr: {
+    default: {
+      td: {
+        borderY: "1px",
+        borderColor: $border.reference,
         _first: {
-          borderTop: "1px",
+          borderLeft: "1px",
+          borderColor: $border.reference,
+        },
+        _last: {
+          borderRight: "1px",
           borderColor: $border.reference,
         },
       },
+
       th: {
+        borderY: "1px",
         borderColor: $border.reference,
-      },
-      td: {
-        borderColor: $border.reference,
+        _first: {
+          borderLeft: "1px",
+          borderColor: $border.reference,
+        },
+        _last: {
+          borderRight: "1px",
+          borderColor: $border.reference,
+        },
       },
     },
     bordered: {
-      th: {
-        border: "1px",
-        borderColor: $border.reference,
-        _first: {
-          borderLeft: "none",
-        },
-        _last: {
-          borderRight: "none",
-        },
-      },
       td: {
         border: "1px",
         borderColor: $border.reference,
-        _first: {
-          borderLeft: "none",
-        },
-        _last: {
-          borderRight: "none",
-        },
+      },
+
+      th: {
+        border: "1px",
+        borderColor: $border.reference,
+      },
+    },
+  },
+  sizes: {
+    md: {
+      header: {
+        p: 4,
+      },
+      footer: {
+        p: 4,
+      },
+      th: {
+        py: 3,
+        px: 4,
+        fontSize: "xs",
+        lineHeight: "18px",
+        fontWeight: "medium",
+      },
+      td: {
+        p: 4,
+        fontSize: "sm",
+        lineHeight: "20px",
+        letterSpacing: "0.02em",
       },
     },
   },
   defaultProps: {
-    variant: "simple",
+    size: "md",
+    variant: "default",
   },
 };

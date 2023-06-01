@@ -16,13 +16,20 @@ import {
   TabList,
   TabPanel,
   TabPanels,
+  Table,
   Tabs,
+  Tbody,
+  Td,
   Text,
+  Th,
+  Thead,
+  Tr,
   VisuallyHidden,
 } from "@chakra-ui/react";
 import { faker } from "@faker-js/faker";
 import { ChevronRightIcon } from "@heroicons/react/20/solid";
 import { HomeIcon } from "@heroicons/react/24/outline";
+import { TableContainer } from "@sfui/chakra";
 import { Link } from "react-router-dom";
 
 export function User() {
@@ -74,25 +81,67 @@ export function User() {
 
         <TabPanels>
           <TabPanel>
-            <Alert>
-              <AlertIcon />
-
-              <Box flexGrow={1}>
-                <AlertTitle>Hello world</AlertTitle>
-                <AlertDescription>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Officia, eaque?
-                </AlertDescription>
-              </Box>
-
-              <CloseButton />
-            </Alert>
+            <TabOne />
           </TabPanel>
-          <TabPanel>Tab 2</TabPanel>
+          <TabPanel>
+            <TabTwo />
+          </TabPanel>
           <TabPanel>Tab 3</TabPanel>
         </TabPanels>
       </Tabs>
     </Box>
+  );
+}
+
+function TabTwo() {
+  return (
+    <TableContainer>
+      <Table>
+        <Thead>
+          <Tr>
+            <Th>Brand</Th>
+            <Th>Name</Th>
+            <Th>Price</Th>
+          </Tr>
+        </Thead>
+        <Tbody>
+          {products.map((product) => (
+            <Tr key={product.id}>
+              <Td>{product.brand}</Td>
+              <Td>{product.name}</Td>
+              <Td>{product.price}</Td>
+            </Tr>
+          ))}
+        </Tbody>
+      </Table>
+    </TableContainer>
+  );
+}
+
+const products = new Array(5).fill(null).map(() => {
+  return {
+    id: faker.string.uuid(),
+    name: faker.commerce.productName(),
+    brand: faker.commerce.product(),
+    price: faker.commerce.price(),
+  };
+});
+
+function TabOne() {
+  return (
+    <Alert>
+      <AlertIcon />
+
+      <Box flexGrow={1}>
+        <AlertTitle>Hello world</AlertTitle>
+        <AlertDescription>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia,
+          eaque?
+        </AlertDescription>
+      </Box>
+
+      <CloseButton />
+    </Alert>
   );
 }
 

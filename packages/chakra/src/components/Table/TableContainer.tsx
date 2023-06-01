@@ -55,7 +55,6 @@ export const TableContainer = React.forwardRef<
                     overflowX: "auto",
                     overflowY: "hidden",
                     whiteSpace: "nowrap",
-                    WebkitOverflowScrolling: "touch",
                   }}
                 >
                   {React.cloneElement<any>(child, {
