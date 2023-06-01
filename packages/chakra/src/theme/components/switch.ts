@@ -1,7 +1,7 @@
 import { MultiStyleConfig, calc, cssVar } from "@chakra-ui/react";
 import { applyOpacity } from "../../utils";
 import { colors } from "../colors";
-import { getThemeColor } from "./_utils";
+import { getThemeColor } from "./__utils";
 
 const $width = cssVar("sf-switch-track-width");
 const $height = cssVar("sf-switch-track-height");

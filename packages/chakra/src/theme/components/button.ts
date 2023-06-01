@@ -5,7 +5,7 @@ import {
   isHdsColorSchemeButNotNuetral,
   isHdsNeutralColorScheme,
   isUntitledColorScheme,
-} from "./_utils";
+} from "./__utils";
 
 const $outlineBg = cssVar("sf-button-bg");
 const $outlineFg = cssVar("sf-button-fg");

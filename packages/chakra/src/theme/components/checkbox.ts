@@ -1,5 +1,5 @@
 import { MultiStyleConfig, cssVar } from "@chakra-ui/react";
-import { getThemeColor } from "./_utils";
+import { getThemeColor } from "./__utils";
 
 const $shadow = cssVar("sf-checkbox-shadow");
 

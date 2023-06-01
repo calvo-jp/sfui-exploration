@@ -1,5 +1,5 @@
 import { MultiStyleConfig } from "@chakra-ui/react";
-import { getThemeColor } from "./_utils";
+import { getThemeColor } from "./__utils";
 
 export const Breadcrumb: MultiStyleConfig = {
   parts: ["container", "link", "list", "separator"],

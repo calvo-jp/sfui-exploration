@@ -1,6 +1,6 @@
 import { MultiStyleConfig } from "@chakra-ui/react";
 import { applyOpacity } from "../../utils";
-import { getThemeColor } from "./_utils";
+import { getThemeColor } from "./__utils";
 
 export const Slider: MultiStyleConfig = {
   parts: ["container", "track", "thumb", "filledTrack", "mark"],
