@@ -9,20 +9,7 @@
       "require": "./index.js"
     }
   },
-  "keywords": [
-    "chakra",
-    "datepicker",
-    "range datepicker",
-    "combobox",
-    "select",
-    "multiline",
-    "multiselect",
-    "markdown",
-    "markdown editor",
-    "pagination",
-    "table",
-    "pagination"
-  ],
+  "keywords": [],
   "peerDependencies": {
     "@chakra-ui/react": "^2.6.1",
     "@emotion/react": "^11.11.0",
