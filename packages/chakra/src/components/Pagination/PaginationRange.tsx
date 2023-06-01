@@ -1,23 +1,30 @@
-import { HTMLChakraProps, chakra } from "@chakra-ui/react";
+import { HTMLChakraProps, chakra, forwardRef } from "@chakra-ui/react";
+import { useMemo } from "react";
 import { Pretty } from "../../types";
 import { clamp } from "../../utils";
 import { usePaginationContext, usePaginationStyles } from "./PaginationContext";
 
-export type PaginationRangeProps = Pretty<
-  Omit<HTMLChakraProps<"div">, "children">
->;
+export type PaginationRangeProps = Pretty<HTMLChakraProps<"div">>;
 
-export function PaginationRange(props: PaginationRangeProps) {
+export const PaginationRange = forwardRef(function PaginationRange(
+  props: PaginationRangeProps,
+  ref,
+) {
+  const { children, ...others } = props;
+
   const styles = usePaginationStyles();
   const context = usePaginationContext();
-  const range = getRange(context.value.page, context.value.size, context.total);
+
+  const range = useMemo(() => {
+    return getRange(context.value.page, context.value.size, context.total);
+  }, [context.total, context.value.page, context.value.size]);
 
   return (
-    <chakra.div __css={styles.range} {...props}>
-      {range}
+    <chakra.div ref={ref} __css={styles.range} {...others}>
+      {children ?? range}
     </chakra.div>
   );
-}
+});
 
 export function getRange(page: number, size: number, total: number) {
   let start: number;

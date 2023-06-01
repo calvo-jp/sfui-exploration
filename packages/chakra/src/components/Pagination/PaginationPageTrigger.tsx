@@ -1,36 +1,44 @@
-import { chakra } from "@chakra-ui/react";
-import { forwardRef } from "react";
+import { HTMLChakraProps, chakra, forwardRef } from "@chakra-ui/react";
+import { Merge } from "../../types";
 import { usePaginationContext, usePaginationStyles } from "./PaginationContext";
 
-export type PaginationPageTriggerProps =
+export type PaginationPageTriggerProps = Merge<
+  HTMLChakraProps<"button">,
   | {
-      type: "page";
-      value: number;
+      _type: "page";
+      _value: number;
     }
   | {
-      type: "ellipsis";
-    };
+      _type: "ellipsis";
+      _value?: null;
+    }
+>;
 
 export const PaginationPageTrigger = forwardRef(function PaginationPageTrigger(
   props: PaginationPageTriggerProps,
   ref,
 ) {
+  const { _type, _value, children, ...others } = props;
+
   const styles = usePaginationStyles();
   const context = usePaginationContext();
 
-  if (props.type === "ellipsis") return null;
+  if (props._type === "ellipsis") return null;
 
   return (
     <chakra.button
-      __css={styles.page}
+      ref={ref}
+      type="button"
       onClick={() => {
         context.onChange(({ size, page }) => ({
           size,
           page: page + 1,
         }));
       }}
+      __css={styles.page}
+      {...others}
     >
-      {props.value}
+      {children ?? props.value ?? "..."}
     </chakra.button>
   );
 });
