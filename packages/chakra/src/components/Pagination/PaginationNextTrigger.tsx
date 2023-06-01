@@ -8,11 +8,11 @@ export const PaginationNextTrigger = forwardRef(
     const styles = usePaginationStyles();
     const context = usePaginationContext();
 
-    const isLastPage = context.value.page >= context.total;
+    const isLastPage = context.value.page * context.value.size >= context.total;
 
     return (
       <chakra.button
-        __css={styles.nextPageTrigger}
+        __css={styles.next}
         disabled={isLastPage}
         onClick={() => {
           context.onChange(({ size, page }) => ({
@@ -23,7 +23,9 @@ export const PaginationNextTrigger = forwardRef(
       >
         <chakra.svg
           as={ChevronRightIcon}
-          className="pagination-nextpage-trigger__svg"
+          w={4}
+          h={4}
+          className="pagination-nexttrigger__svg"
         />
       </chakra.button>
     );

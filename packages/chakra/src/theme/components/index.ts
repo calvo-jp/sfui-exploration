@@ -12,6 +12,7 @@ import { Heading } from "./heading";
 import { Input } from "./input";
 import { Menu } from "./menu";
 import { Modal } from "./modal";
+import { Pagination } from "./pagination";
 import { Popover } from "./popover";
 import { Progress } from "./progress";
 import { Select } from "./select";
@@ -42,6 +43,7 @@ export const components = {
   Input,
   Menu,
   Modal,
+  Pagination,
   Popover,
   Progress,
   Select,

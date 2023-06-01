@@ -2,7 +2,7 @@
 
 Chakra extension based w/ theme reset based on HDS
 
-## Todos
+## Todo MVP
 
 - theme
 

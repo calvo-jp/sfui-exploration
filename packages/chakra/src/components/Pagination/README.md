@@ -34,10 +34,12 @@ function Component() {
     <Pagination>
       {({ pages /* , page, size */ }) => (
         <>
-          <PaginationRange /* Page 1-10 of 100 */ />
           <Spacer />
-          <PaginationSizeControl sizes={[5, 25, 50, 100]} />
+
+          <PaginationRange /* Page 1-10 of 100 */ />
+
           <PaginationTriggerGroup>
+            <PaginationSizeControl sizes={[5, 25, 50, 100]} />
             <PaginationPrevPageTrigger />
             <PaginationNextPageTrigger />
 

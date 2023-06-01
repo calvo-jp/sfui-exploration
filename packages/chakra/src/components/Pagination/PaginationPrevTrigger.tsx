@@ -12,18 +12,20 @@ export const PaginationPrevTrigger = forwardRef(
 
     return (
       <chakra.button
-        __css={styles.prevPageTrigger}
+        __css={styles.prev}
         disabled={isFirstPage}
         onClick={() => {
           context.onChange(({ size, page }) => ({
             size,
-            page: page + 1,
+            page: page - 1,
           }));
         }}
       >
         <chakra.svg
           as={ChevronLeftIcon}
-          className="pagination-prevpage-trigger__svg"
+          w={4}
+          h={4}
+          className="pagination-prevtrigger__svg"
         />
       </chakra.button>
     );

@@ -47,7 +47,18 @@ import {
   PencilSquareIcon,
   TrashIcon,
 } from "@heroicons/react/24/outline";
-import { TableContainer, TableFooter, TableHeader } from "@sfui/chakra";
+import {
+  Pagination,
+  PaginationNextTrigger,
+  PaginationPageTrigger,
+  PaginationPrevTrigger,
+  PaginationRange,
+  PaginationSizeControl,
+  PaginationTriggerGroup,
+  TableContainer,
+  TableFooter,
+  TableHeader,
+} from "@sfui/chakra";
 import { formatDistanceToNow } from "date-fns";
 import * as React from "react";
 import { Link } from "react-router-dom";
@@ -202,9 +213,23 @@ export function Users() {
         </Table>
 
         <TableFooter>
-          <Text size="paragraph-xxs" color="neutral.700">
-            Hello world
-          </Text>
+          <Pagination
+            defaultValue={{
+              page: 1,
+              size: 10,
+            }}
+            total={100}
+          >
+            <PaginationRange />
+            <Spacer />
+            <PaginationSizeControl />
+            <PaginationTriggerGroup>
+              <PaginationPrevTrigger />
+              <PaginationPageTrigger type="page" value={1} />
+              <PaginationPageTrigger type="page" value={2} />
+              <PaginationNextTrigger />
+            </PaginationTriggerGroup>
+          </Pagination>
         </TableFooter>
       </TableContainer>
     </Box>

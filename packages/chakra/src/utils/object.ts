@@ -22,7 +22,7 @@
  *    }
  * }
  */
-export function assignPropsToKeys<
+export function assignCommonPropsToKeys<
   T extends Record<string, any>,
   K extends string,
 >(props: T, ...keys: K[]) {

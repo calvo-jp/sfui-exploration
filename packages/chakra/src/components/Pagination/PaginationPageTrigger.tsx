@@ -1,7 +1,6 @@
 import { chakra } from "@chakra-ui/react";
 import { forwardRef } from "react";
 import { usePaginationContext, usePaginationStyles } from "./PaginationContext";
-import { ChevronRightIcon } from "./icons";
 
 export type PaginationPageTriggerProps =
   | {
@@ -19,9 +18,11 @@ export const PaginationPageTrigger = forwardRef(function PaginationPageTrigger(
   const styles = usePaginationStyles();
   const context = usePaginationContext();
 
+  if (props.type === "ellipsis") return null;
+
   return (
     <chakra.button
-      __css={styles.pageTrigger}
+      __css={styles.page}
       onClick={() => {
         context.onChange(({ size, page }) => ({
           size,
@@ -29,10 +30,7 @@ export const PaginationPageTrigger = forwardRef(function PaginationPageTrigger(
         }));
       }}
     >
-      <chakra.svg
-        as={ChevronRightIcon}
-        className="pagination-page-trigger__svg"
-      />
+      {props.value}
     </chakra.button>
   );
 });
