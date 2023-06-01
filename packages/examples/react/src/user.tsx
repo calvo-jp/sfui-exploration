@@ -95,7 +95,7 @@ export function User() {
 
 function TabTwo() {
   return (
-    <TableContainer>
+    <TableContainer variant="bordered">
       <Table>
         <Thead>
           <Tr>
