@@ -1,4 +1,4 @@
 export * from "./Select";
-export * from "./SelectMenu";
-export * from "./SelectMenuItem";
+export * from "./SelectOption";
+export * from "./SelectOptions";
 export * from "./SelectTrigger";

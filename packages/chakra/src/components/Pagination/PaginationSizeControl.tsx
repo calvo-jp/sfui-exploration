@@ -3,9 +3,9 @@ import {
   FloatingPortal,
   autoUpdate,
   flip,
-  size as floatingSize,
   offset,
   shift,
+  size,
   useClick,
   useDismiss,
   useFloating,
@@ -49,7 +49,7 @@ export function PaginationSizeControl(props: PaginationSizeControlProps) {
       shift({
         padding: 6,
       }),
-      floatingSize({
+      size({
         apply({ rects, elements }) {
           Object.assign(elements.floating.style, {
             minWidth: `${rects.reference.width}px`,

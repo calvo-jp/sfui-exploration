@@ -18,3 +18,9 @@ export function getJsxTextContent(node: React.ReactNode): string {
     return "";
   }
 }
+
+export function removeParentFragment(subject: React.ReactNode) {
+  return React.isValidElement(subject) && subject.type === React.Fragment
+    ? subject.props.children
+    : subject;
+}

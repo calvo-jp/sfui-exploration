@@ -12,11 +12,11 @@ function Component() {
             {selectedOption.label ?? "Select option"}
           </SelectTrigger>
 
-          <SelectMenu>
-            <SelectMenuItem label="Option 1" value="1" />
-            <SelectMenuItem label="Option 2" value="2" />
-            <SelectMenuItem label="Option 3" value="3" />
-          </SelectMenu>
+          <SelectOptions>
+            <SelectOption label="Option 1" value="1" />
+            <SelectOption label="Option 2" value="2" />
+            <SelectOption label="Option 3" value="3" />
+          </SelectOptions>
         </>
       )}
     </Select>

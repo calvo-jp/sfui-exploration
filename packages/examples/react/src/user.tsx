@@ -31,7 +31,13 @@ import {
 import { faker } from "@faker-js/faker";
 import { ChevronRightIcon } from "@heroicons/react/20/solid";
 import { HomeIcon } from "@heroicons/react/24/outline";
-import { TableContainer } from "@sfui/chakra";
+import {
+  Select,
+  SelectOption,
+  SelectOptions,
+  SelectTrigger,
+  TableContainer,
+} from "@sfui/chakra";
 import { Link } from "react-router-dom";
 
 export function User() {
@@ -99,11 +105,35 @@ export function User() {
 
 function TabThree() {
   return (
-    <ButtonGroup isAttached variant="outline" colorScheme="neutral">
-      <Button>1</Button>
-      <Button>2</Button>
-      <Button>3</Button>
-    </ButtonGroup>
+    <Box>
+      <Box>
+        <Select>
+          {() => (
+            <>
+              <SelectTrigger>Choose Option</SelectTrigger>
+
+              <SelectOptions>
+                <SelectOption key={1} value="1">
+                  One
+                </SelectOption>
+                <SelectOption key={2} value="2">
+                  Two
+                </SelectOption>
+                <SelectOption key={3} value="3">
+                  Three
+                </SelectOption>
+              </SelectOptions>
+            </>
+          )}
+        </Select>
+      </Box>
+
+      <ButtonGroup mt={4} isAttached variant="outline" colorScheme="neutral">
+        <Button>1</Button>
+        <Button>2</Button>
+        <Button>3</Button>
+      </ButtonGroup>
+    </Box>
   );
 }
 

@@ -1,7 +1,7 @@
 import { ThemingProps, useMultiStyleConfig } from "@chakra-ui/react";
 import * as React from "react";
 import { Merge } from "../../types";
-import { runIfCallable } from "../../utils";
+import { removeParentFragment, runIfCallable } from "../../utils";
 import {
   SelectProviderProps,
   SelectStylesProvider,
@@ -20,10 +20,7 @@ export const Select = withSelectContext(function Select({
   ...props
 }: SelectProps) {
   const styles = useMultiStyleConfig("Select", props);
+  const nodes = removeParentFragment(runIfCallable(children, {}));
 
-  const c = runIfCallable(children, {
-    /* pass context here eg. selected option */
-  });
-
-  return <SelectStylesProvider value={styles}>{c}</SelectStylesProvider>;
+  return <SelectStylesProvider value={styles}>{nodes}</SelectStylesProvider>;
 });
