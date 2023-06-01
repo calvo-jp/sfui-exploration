@@ -30,6 +30,16 @@ Reason for this exploration is due to the problems we've encountered when using 
 
 - Chakra which has a default HDS theme (This eliminates writing redundant global theme like input margin, padding, size, etc)
 - Focus on complex components which are not available in chakra currently rather than abstracting non complex ones (let users abstract it on app-level based on thier requirements like what they used to do)
+
+  These are the components which are in HDS but not in chakra, just yet.
+
+  - Select (Custom)
+  - MultiSelect
+  - Multiline
+  - Combobox
+  - DatePicker/RangeDatePicker
+  - Pagination
+
 - Design complex components in a `chakra-ish` way. eg
 
   ```tsx
