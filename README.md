@@ -75,3 +75,7 @@ Reason for this exploration is due to the problems we've encountered in developm
 npm install
 npm run start:react
 ```
+
+- You should now have access to the page
+
+![screenshot](/docs/screenshot.jpeg)
