@@ -1,22 +1,20 @@
 import * as React from "react";
+import { isArray, isBoolean, isNil, isNumber, isString } from "./is";
 
-export function getJsxTextContent(element: React.ReactNode): string {
+export function getJsxTextContent(node: React.ReactNode): string {
   try {
-    /* null, undefined, boolean */
-    if (!element || typeof element === "boolean") return "";
+    if (isNil(node)) return "";
+    if (isBoolean(node)) return "";
+    if (isString(node)) return node;
+    if (isNumber(node)) return node.toString();
 
-    /* string, number */
-    if (typeof element === "string" || typeof element === "number")
-      return element.toString();
+    /* ignores <Fragment /> */
+    const children = "props" in node ? node.props.children : "";
 
-    /* ignore fragment */
-    const children = "props" in element ? element.props.children : "";
+    if (!isArray(children)) return "";
 
-    if (Array.isArray(children))
-      return children.map(getJsxTextContent).join("").trim();
+    return children.map(getJsxTextContent).join("").trim();
   } catch {
-    /* TODO: log? */
+    return "";
   }
-
-  return "";
 }
