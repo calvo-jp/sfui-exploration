@@ -12,7 +12,7 @@ import {
   PaginationProvider,
   PaginationProviderProps,
   PaginationStylesProvider,
-} from "./PaginationContext";
+} from "./pagination-context";
 
 interface RenderChildrenContext {}
 

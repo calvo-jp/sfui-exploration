@@ -18,8 +18,11 @@ import { useRef, useState } from "react";
 import { v4 as uuid } from "uuid";
 import { FloatingUiPortalId } from "../../constants";
 import { Merge } from "../../types";
-import { usePaginationContext, usePaginationStyles } from "./PaginationContext";
 import { ChevronDownIcon } from "./icons";
+import {
+  usePaginationContext,
+  usePaginationStyles,
+} from "./pagination-context";
 
 export type PaginationSizeControlProps = Merge<
   HTMLChakraProps<"button">,

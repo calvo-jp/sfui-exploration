@@ -9,18 +9,18 @@ function Component() {
       <PaginationRange /* Page 1-10 of 100 */ />
       <Spacer />
       <PaginationSizeControl sizes={[5, 25, 50, 100]} />
-      <PaginationTriggerGroup>
+      <PaginationControlGroup>
         {({ pages }) => (
           <>
-            <PaginationPrevPageTrigger />
-            <PaginationNextPageTrigger />
+            <PaginationPrevControl />
+            <PaginationNextControl />
 
             {pages.map((page) => (
-              <PaginationPageTrigger isReadOnly {...page} />
+              <PaginationPageControl isReadOnly {...page} />
             ))}
           </>
         )}
-      </PaginationTriggerGroup>
+      </PaginationControlGroup>
     </Pagination>
   );
 }
@@ -38,15 +38,16 @@ function Component() {
 
           <PaginationRange /* Page 1-10 of 100 */ />
 
-          <PaginationTriggerGroup>
+          <PaginationControlGroup>
             <PaginationSizeControl sizes={[5, 25, 50, 100]} />
-            <PaginationPrevPageTrigger />
-            <PaginationNextPageTrigger />
+            <PaginationPrevControl />
 
             {pages.map((page) => (
-              <PaginationPageTrigger isReadOnly {...page} />
+              <PaginationPageControl isReadOnly {...page} />
             ))}
-          </PaginationTriggerGroup>
+
+            <PaginationNextControl />
+          </PaginationControlGroup>
         </>
       )}
     </Pagination>

@@ -2,7 +2,10 @@ import { HTMLChakraProps, chakra, forwardRef } from "@chakra-ui/react";
 import { useMemo } from "react";
 import { Pretty } from "../../types";
 import { clamp } from "../../utils";
-import { usePaginationContext, usePaginationStyles } from "./PaginationContext";
+import {
+  usePaginationContext,
+  usePaginationStyles,
+} from "./pagination-context";
 
 export type PaginationRangeProps = Pretty<HTMLChakraProps<"div">>;
 

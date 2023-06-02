@@ -1,8 +1,11 @@
 import { HTMLChakraProps, chakra, forwardRef } from "@chakra-ui/react";
 import { Merge } from "../../types";
-import { usePaginationContext, usePaginationStyles } from "./PaginationContext";
+import {
+  usePaginationContext,
+  usePaginationStyles,
+} from "./pagination-context";
 
-export type PaginationPageTriggerProps = Merge<
+export type PaginationPageControlProps = Merge<
   HTMLChakraProps<"button">,
   | {
       _type: "page";
@@ -14,8 +17,8 @@ export type PaginationPageTriggerProps = Merge<
     }
 >;
 
-export const PaginationPageTrigger = forwardRef(function PaginationPageTrigger(
-  props: PaginationPageTriggerProps,
+export const PaginationPageControl = forwardRef(function PaginationPageControl(
+  props: PaginationPageControlProps,
   ref,
 ) {
   const { _type, _value, children, ...others } = props;

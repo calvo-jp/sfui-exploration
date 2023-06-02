@@ -1,11 +1,11 @@
 import { HTMLChakraProps, chakra, forwardRef } from "@chakra-ui/react";
 import { Pretty } from "../../types";
-import { usePaginationStyles } from "./PaginationContext";
+import { usePaginationStyles } from "./pagination-context";
 
-export type PaginationTriggerGroupProps = Pretty<HTMLChakraProps<"div">>;
+export type PaginationControlGroupProps = Pretty<HTMLChakraProps<"div">>;
 
-export const PaginationTriggerGroup = forwardRef(
-  function PaginationTriggerGroup(props: PaginationTriggerGroupProps, ref) {
+export const PaginationControlGroup = forwardRef(
+  function PaginationControlGroup(props: PaginationControlGroupProps, ref) {
     const { children, ...others } = props;
 
     const styles = usePaginationStyles();

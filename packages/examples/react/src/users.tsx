@@ -49,12 +49,12 @@ import {
 } from "@heroicons/react/24/outline";
 import {
   Pagination,
-  PaginationNextTrigger,
-  PaginationPageTrigger,
-  PaginationPrevTrigger,
+  PaginationControlGroup,
+  PaginationNextControl,
+  PaginationPageControl,
+  PaginationPrevControl,
   PaginationRange,
   PaginationSizeControl,
-  PaginationTriggerGroup,
   TableContainer,
   TableFooter,
   TableHeader,
@@ -223,12 +223,12 @@ export function Users() {
             <PaginationRange />
             <Spacer />
             <PaginationSizeControl />
-            <PaginationTriggerGroup>
-              <PaginationPrevTrigger />
-              <PaginationPageTrigger type="page" value={1} />
-              <PaginationPageTrigger type="page" value={2} />
-              <PaginationNextTrigger />
-            </PaginationTriggerGroup>
+            <PaginationControlGroup>
+              <PaginationPrevControl />
+              <PaginationPageControl _type="page" _value={1} />
+              <PaginationPageControl _type="page" _value={2} />
+              <PaginationNextControl />
+            </PaginationControlGroup>
           </Pagination>
         </TableFooter>
       </TableContainer>
