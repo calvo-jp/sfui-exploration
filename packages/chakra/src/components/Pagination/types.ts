@@ -17,3 +17,12 @@ export interface Range {
   start: number;
   until: number;
 }
+
+export interface Details {
+  page: number;
+  size: number;
+  total: number;
+  range: Range;
+  pages: Page[];
+  numOfPages: number;
+}

@@ -1,18 +1,34 @@
 import { HTMLChakraProps, chakra, forwardRef } from "@chakra-ui/react";
-import { Pretty } from "../../types";
-import { usePaginationStyles } from "./pagination-context";
+import { ReactNode } from "react";
+import { Merge } from "../../types";
+import { runIfCallable } from "../../utils";
+import {
+  usePaginationContext,
+  usePaginationStyles,
+} from "./pagination-context";
+import { Details } from "./types";
 
-export type PaginationControlGroupProps = Pretty<HTMLChakraProps<"div">>;
+type Children = ReactNode | ((details: Details) => ReactNode);
+
+interface PaginationControlGroupBaseProps {
+  children?: Children;
+}
+
+export type PaginationControlGroupProps = Merge<
+  HTMLChakraProps<"div">,
+  PaginationControlGroupBaseProps
+>;
 
 export const PaginationControlGroup = forwardRef(
   function PaginationControlGroup(props: PaginationControlGroupProps, ref) {
     const { children, ...others } = props;
 
     const styles = usePaginationStyles();
+    const context = usePaginationContext();
 
     return (
       <chakra.div ref={ref} __css={styles.group} {...others}>
-        {children}
+        {runIfCallable(children, context.details)}
       </chakra.div>
     );
   },

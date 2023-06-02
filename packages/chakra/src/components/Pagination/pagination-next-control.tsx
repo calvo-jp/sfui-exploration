@@ -30,7 +30,8 @@ export const PaginationNextControl = forwardRef(function PaginationNextControl(
   const styles = usePaginationStyles();
   const context = usePaginationContext();
 
-  const isLastPage = context.value.page * context.value.size >= context.total;
+  const isLastPage =
+    context.value.page * context.value.size >= context.details.total;
   const shouldDisable = disabled || isLastPage;
 
   return (

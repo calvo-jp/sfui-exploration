@@ -1,10 +1,16 @@
-import { SystemStyleObject, useControllableState } from "@chakra-ui/react";
+import {
+  As,
+  ComponentWithAs,
+  SystemStyleObject,
+  forwardRef,
+  useControllableState,
+} from "@chakra-ui/react";
 import { createContext } from "@chakra-ui/react-context";
 import * as React from "react";
 import { UseSelectPopperReturn, useSelectPopper } from "../../hooks";
 import { invariant, noop } from "../../utils";
-import { Page, Value } from "./types";
-import { usePages } from "./utils";
+import { Details, Value } from "./types";
+import { usePagination } from "./utils";
 
 export const [PaginationStylesProvider, usePaginationStyles] = createContext<
   Record<string, SystemStyleObject>
@@ -18,9 +24,8 @@ export const [PaginationStylesProvider, usePaginationStyles] = createContext<
 export interface PaginationState {
   value: Value;
   onChange: React.Dispatch<React.SetStateAction<Value>>;
-  total: number;
-  pages: Page[];
   popper: UseSelectPopperReturn;
+  details: Details;
 }
 
 const internalDefaultValue: Value = {
@@ -31,15 +36,14 @@ const internalDefaultValue: Value = {
 export const PaginationContext = React.createContext<PaginationState>({
   value: internalDefaultValue,
   onChange: noop,
-  total: 0,
-  pages: [],
   popper: {} as any,
+  details: {} as any,
 });
 
 export type PaginationProviderProps = {
+  total?: number;
   value?: Value;
   onChange?(newValue: Value): void;
-  total?: number;
   defaultValue?: Value;
   siblingCount?: number;
 };
@@ -58,7 +62,8 @@ export function PaginationProvider({
     defaultValue: !value && !defaultValue ? internalDefaultValue : defaultValue,
   });
 
-  const pages = usePages({
+  const details = usePagination({
+    page: controllableState[0].page,
     size: controllableState[0].size,
     total,
     siblingCount,
@@ -69,11 +74,10 @@ export function PaginationProvider({
   return (
     <PaginationContext.Provider
       value={{
-        total,
-        pages,
         value: controllableState[0],
         onChange: controllableState[1],
         popper,
+        details,
       }}
     >
       {children}
@@ -91,4 +95,22 @@ export function usePaginationContext() {
   );
 
   return context;
+}
+
+export function withPaginationContext<T extends PaginationProviderProps>(
+  Comp: ComponentWithAs<As, T>,
+) {
+  return forwardRef(function Wrapped(props: T, ref) {
+    return (
+      <PaginationProvider
+        total={props.total}
+        value={props.value}
+        onChange={props.onChange}
+        defaultValue={props.defaultValue}
+        siblingCount={props.siblingCount}
+      >
+        <Comp ref={ref} {...(props as any)} />
+      </PaginationProvider>
+    );
+  });
 }

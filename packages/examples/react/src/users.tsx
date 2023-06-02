@@ -215,21 +215,32 @@ export function Users() {
 
         <TableFooter>
           <Pagination
+            total={87}
             defaultValue={{
               page: 1,
               size: 10,
             }}
-            total={87}
           >
-            <PaginationRange />
-            <PaginationSpacer />
-            <PaginationSizeControl />
-            <PaginationControlGroup>
-              <PaginationPrevControl />
-              <PaginationPageControl page={{ type: "page", value: 1 }} />
-              <PaginationPageControl page={{ type: "page", value: 2 }} />
-              <PaginationNextControl />
-            </PaginationControlGroup>
+            {({ pages }) => {
+              console.log("mapped: ", { pages });
+
+              return (
+                <>
+                  <PaginationRange />
+                  <PaginationSpacer />
+                  <PaginationSizeControl />
+                  <PaginationControlGroup>
+                    <PaginationPrevControl />
+
+                    {pages.map((page, index) => (
+                      <PaginationPageControl key={index} {...page} />
+                    ))}
+
+                    <PaginationNextControl />
+                  </PaginationControlGroup>
+                </>
+              );
+            }}
           </Pagination>
         </TableFooter>
       </TableContainer>

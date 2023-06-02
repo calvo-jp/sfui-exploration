@@ -1,5 +1,6 @@
 import {
   chakra,
+  forwardRef,
   HTMLChakraProps,
   omitThemingProps,
   ThemingProps,
@@ -9,57 +10,48 @@ import * as React from "react";
 import { Merge } from "../../types";
 import { runIfCallable } from "../../utils";
 import {
-  PaginationProvider,
   PaginationProviderProps,
   PaginationStylesProvider,
   usePaginationContext,
+  withPaginationContext,
 } from "./pagination-context";
-import { Page } from "./types";
+import { Details } from "./types";
 
-interface RenderChildrenContext {
-  pages: Page[];
+type Children = ((context: Details) => React.ReactNode) | React.ReactNode;
+
+interface PaginationBaseProps extends PaginationProviderProps {
+  children: Children;
 }
-
-type Children =
-  | ((context: RenderChildrenContext) => React.ReactNode)
-  | React.ReactNode;
 
 export type PaginationProps = Merge<
   HTMLChakraProps<"div"> & ThemingProps<"Pagination">,
-  PaginationProviderProps & {
-    children: Children;
-  }
+  PaginationBaseProps
 >;
 
-export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
-  function Pagination(props, ref) {
-    const styles = useMultiStyleConfig("Pagination", props);
-    const context = usePaginationContext();
+export const Component = forwardRef(function Pagination(
+  props: PaginationProps,
+  ref,
+) {
+  const styles = useMultiStyleConfig("Pagination", props);
+  const context = usePaginationContext();
 
-    const {
-      total,
-      value,
-      onChange,
-      defaultValue,
-      siblingCount,
-      children,
-      ...others
-    } = omitThemingProps(props);
+  const {
+    total,
+    value,
+    onChange,
+    defaultValue,
+    siblingCount,
+    children,
+    ...others
+  } = omitThemingProps(props);
 
-    return (
-      <chakra.div ref={ref} __css={styles.container} {...others}>
-        <PaginationStylesProvider value={styles}>
-          <PaginationProvider
-            total={total}
-            value={value}
-            onChange={onChange}
-            siblingCount={siblingCount}
-            defaultValue={defaultValue}
-          >
-            {runIfCallable(children, { pages: context.pages })}
-          </PaginationProvider>
-        </PaginationStylesProvider>
-      </chakra.div>
-    );
-  },
-);
+  return (
+    <chakra.div ref={ref} __css={styles.container} {...others}>
+      <PaginationStylesProvider value={styles}>
+        {runIfCallable(children, context.details)}
+      </PaginationStylesProvider>
+    </chakra.div>
+  );
+});
+
+export const Pagination = withPaginationContext(Component);

@@ -1,7 +1,7 @@
 import { HTMLChakraProps, chakra, forwardRef } from "@chakra-ui/react";
 import { ReactNode } from "react";
 import { Merge } from "../../types";
-import { clamp, runIfCallable } from "../../utils";
+import { runIfCallable } from "../../utils";
 import {
   usePaginationContext,
   usePaginationStyles,
@@ -28,36 +28,14 @@ export const PaginationRange = forwardRef(function PaginationRange(
   const styles = usePaginationStyles();
   const context = usePaginationContext();
 
-  const range = getRange(context.value.page, context.value.size, context.total);
-  const label = !children
-    ? range.toString()
-    : runIfCallable(children, {
-        start: range.start,
-        until: range.until,
-      });
+  const defaultLabel = `Page %s-%u to %t`
+    .replace("%s", context.details.range.start.toString())
+    .replace("%u", context.details.range.until.toString())
+    .replace("%t", context.details.total.toString());
 
   return (
     <chakra.div ref={ref} __css={styles.range} {...others}>
-      {label}
+      {runIfCallable(children, context.details.range) ?? defaultLabel}
     </chakra.div>
   );
 });
-
-export function getRange(page: number, size: number, total: number) {
-  let start: number;
-  let until: number;
-
-  start = (page - 1) * size + 1;
-  until = start + size - 1;
-
-  start = clamp(start, 1, total);
-  until = clamp(until, 1, total);
-
-  return {
-    start,
-    until,
-    toString() {
-      return `Page ${start}-${until} to ${until}`;
-    },
-  };
-}
