@@ -24,9 +24,6 @@ export const SelectTrigger = React.forwardRef<
       __css={styles.trigger}
       {...others}
       {...context.popper.getReferenceProps({})}
-      {...(context.popper.isOpen && {
-        "data-focus": "",
-      })}
     >
       <chakra.span flexGrow={1}>{children}</chakra.span>
       <chakra.svg as={ChevronDownIcon} __css={styles.icon} />

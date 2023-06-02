@@ -48,13 +48,19 @@ export const Select: MultiStyleConfig = {
   },
   variants: {
     outline(context) {
+      const commons =
+        runIfCallable(Input.variants?.outline, context ?? {})?.field ?? {};
+
       return {
         field: {
-          ...runIfCallable(Input.variants?.outline, context)?.field,
+          ...commons,
         },
         trigger: {
-          ...runIfCallable(Input.variants?.outline, context)?.field,
+          ...commons,
           _placeholder: {},
+          _expanded: {
+            ...("_focus" in commons ? commons["_focus"] : {}),
+          },
         },
       };
     },

@@ -24,6 +24,7 @@ export const Input: MultiStyleConfig = {
           border: "1px",
           boxShadow: $shadow.reference,
           borderColor: "neutral.200",
+          transition: "border-color 300ms ease-in-out",
           _placeholder: {
             color: "neutral.500",
           },
