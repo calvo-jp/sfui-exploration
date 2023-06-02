@@ -26,16 +26,7 @@ export const PaginationSizeControl = forwardRef(function PaginationSizeControl(
   props: PaginationSizeControlProps,
   ref,
 ) {
-  const {
-    sizes = [10, 25, 50, 100],
-    children,
-    onClick,
-    onKeyUp,
-    onKeyDown,
-    onMouseUp,
-    onMouseDown,
-    ...others
-  } = props;
+  const { sizes = [10, 25, 50, 100], children, ...others } = props;
 
   const styles = usePaginationStyles();
   const context = usePaginationContext();
@@ -57,13 +48,7 @@ export const PaginationSizeControl = forwardRef(function PaginationSizeControl(
         ref={mergedRef}
         type="button"
         __css={styles.size}
-        {...context.popper.getReferenceProps({
-          onClick,
-          onKeyUp,
-          onKeyDown,
-          onMouseUp,
-          onMouseDown,
-        })}
+        {...context.popper.getReferenceProps()}
         {...others}
       >
         <chakra.span>
@@ -107,7 +92,6 @@ export const PaginationSizeControl = forwardRef(function PaginationSizeControl(
                     onKeyDown(event) {
                       if (event.key === "Enter") {
                         event.preventDefault();
-
                         handleSelect(index);
                       }
                     },

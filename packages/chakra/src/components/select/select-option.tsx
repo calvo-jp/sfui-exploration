@@ -1,7 +1,7 @@
-import { HTMLChakraProps, chakra } from "@chakra-ui/react";
+import { HTMLChakraProps, chakra, forwardRef } from "@chakra-ui/react";
 import { useMergeRefs } from "@floating-ui/react";
-import * as React from "react";
 import { Merge } from "../../types";
+import { runIfCallable } from "../../utils";
 import { CheckIcon } from "./icons";
 import { useSelectContext, useSelectStyles } from "./select-context";
 
@@ -16,9 +16,17 @@ export type SelectOptionProps = Merge<
   SelectOptionBaseProps
 >;
 
-export const SelectOption = React.forwardRef<HTMLDivElement, SelectOptionProps>(
+export const SelectOption = forwardRef<SelectOptionProps, "div">(
   function SelectOption(props, ref) {
-    const { __index = 0, value, label, children, ...others } = props;
+    const {
+      __index = 0,
+      value,
+      label,
+      onClick,
+      onKeyDown,
+      children,
+      ...others
+    } = props;
 
     const styles = useSelectStyles();
     const context = useSelectContext();
@@ -30,7 +38,7 @@ export const SelectOption = React.forwardRef<HTMLDivElement, SelectOptionProps>(
       },
     ]);
 
-    const onClick = () => {
+    const handleClick = () => {
       context.popper.setActiveIndex(__index);
       context.popper.setIsOpen(false);
       context.onChange(value);
@@ -49,12 +57,22 @@ export const SelectOption = React.forwardRef<HTMLDivElement, SelectOptionProps>(
         __css={styles.option}
         {...others}
         {...context.popper.getItemProps({
-          onClick,
+          onClick(event) {
+            handleClick();
+            runIfCallable(
+              onClick,
+              event as React.MouseEvent<HTMLDivElement, MouseEvent>,
+            );
+          },
           onKeyDown(event) {
             if (event.key === "Enter") {
               event.preventDefault();
 
-              onClick();
+              handleClick();
+              runIfCallable(
+                onKeyDown,
+                event as React.KeyboardEvent<HTMLDivElement>,
+              );
             }
           },
         })}

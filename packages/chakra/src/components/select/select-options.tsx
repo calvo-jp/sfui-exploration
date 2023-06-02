@@ -1,4 +1,4 @@
-import { HTMLChakraProps, chakra } from "@chakra-ui/react";
+import { HTMLChakraProps, chakra, forwardRef } from "@chakra-ui/react";
 import {
   FloatingFocusManager,
   FloatingPortal,
@@ -11,42 +11,39 @@ import { useSelectContext, useSelectStyles } from "./select-context";
 
 export type SelectOptionsProps = Pretty<HTMLChakraProps<"div">>;
 
-export const SelectOptions = React.forwardRef<
-  HTMLDivElement,
-  SelectOptionsProps
->(function SelectOptions(props, ref) {
-  const { children, ...others } = props;
+export const SelectOptions = forwardRef<SelectOptionsProps, "div">(
+  function SelectOptions(props, ref) {
+    const { children, ...others } = props;
 
-  const styles = useSelectStyles();
-  const context = useSelectContext();
-  const mergedRef = useMergeRefs([ref, context.popper.refs.setFloating]);
+    const styles = useSelectStyles();
+    const context = useSelectContext();
+    const mergedRef = useMergeRefs([ref, context.popper.refs.setFloating]);
 
-  const clones = React.Children.map(children, (child, __index) => {
-    return React.isValidElement(child)
-      ? React.cloneElement<any>(child, { __index })
-      : child;
-  });
+    const clones = React.Children.map(children, (child, __index) => {
+      return React.isValidElement(child)
+        ? React.cloneElement<any>(child, { __index })
+        : child;
+    });
 
-  if (!context.popper.isMounted) return null;
-
-  return (
-    <FloatingPortal id={FloatingUiPortalId}>
-      <FloatingFocusManager context={context.popper.context}>
-        <chakra.div
-          ref={mergedRef}
-          __css={{
-            pos: context.popper.strategy,
-            top: context.popper.y + "px",
-            left: context.popper.x + "px",
-            ...context.popper.styles,
-            ...styles.options,
-          }}
-          {...others}
-          {...context.popper.getFloatingProps()}
-        >
-          {clones}
-        </chakra.div>
-      </FloatingFocusManager>
-    </FloatingPortal>
-  );
-});
+    return !context.popper.isMounted ? null : (
+      <FloatingPortal id={FloatingUiPortalId}>
+        <FloatingFocusManager context={context.popper.context}>
+          <chakra.div
+            ref={mergedRef}
+            __css={{
+              pos: context.popper.strategy,
+              top: context.popper.y + "px",
+              left: context.popper.x + "px",
+              ...context.popper.styles,
+              ...styles.options,
+            }}
+            {...others}
+            {...context.popper.getFloatingProps()}
+          >
+            {clones}
+          </chakra.div>
+        </FloatingFocusManager>
+      </FloatingPortal>
+    );
+  },
+);

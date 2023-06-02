@@ -1,4 +1,9 @@
-import { ThemingProps, useMultiStyleConfig } from "@chakra-ui/react";
+import {
+  FormControlOptions,
+  HTMLChakraProps,
+  ThemingProps,
+  useMultiStyleConfig,
+} from "@chakra-ui/react";
 import * as React from "react";
 import { Merge } from "../../types";
 import { removeParentFragment, runIfCallable } from "../../utils";
@@ -9,6 +14,7 @@ import {
   useSelectContext,
   withSelectContext,
 } from "./select-context";
+import { SelectTrigger } from "./select-trigger";
 
 interface RenderChildrenContext {
   selectedOption?: Option;
@@ -22,11 +28,21 @@ interface SelectBaseProps {
   children?: Children;
 }
 
+type Omitted = "disabled" | "required" | "readOnly" | "size";
+
 export type SelectProps = Merge<
-  ThemingProps<"Select"> & SelectProviderProps,
+  Omit<HTMLChakraProps<"button">, Omitted> &
+    ThemingProps<"Select"> &
+    SelectProviderProps &
+    FormControlOptions,
   SelectBaseProps
 >;
 
+/**
+ *
+ * Props passed to this component will be forwarded to `SelectTrigger`
+ *
+ */
 export const Select = withSelectContext(function Select({
   children,
   ...props
@@ -39,7 +55,13 @@ export const Select = withSelectContext(function Select({
     }),
   );
 
-  console.log(styles);
+  const clones = React.Children.map(nodes, (child) => {
+    if (React.isValidElement(child) && child.type === SelectTrigger) {
+      return React.cloneElement<any>(child, props);
+    }
 
-  return <SelectStylesProvider value={styles}>{nodes}</SelectStylesProvider>;
+    return child;
+  });
+
+  return <SelectStylesProvider value={styles}>{clones}</SelectStylesProvider>;
 });

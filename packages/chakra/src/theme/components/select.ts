@@ -57,10 +57,13 @@ export const Select: MultiStyleConfig = {
         },
         trigger: {
           ...commons,
-          _placeholder: {},
           _expanded: {
             ...("_focus" in commons ? commons["_focus"] : {}),
+            _invalid: {
+              ...("_invalid" in commons ? commons["_invalid"] : {}),
+            },
           },
+          _placeholder: {},
         },
       };
     },
