@@ -72,8 +72,6 @@ function getPages({
 }): Page[] {
   if (numOfPages <= 0) return [];
 
-  console.log({ page });
-
   /**
    * eg:
    *
