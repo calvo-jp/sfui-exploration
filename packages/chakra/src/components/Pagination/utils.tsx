@@ -109,7 +109,10 @@ function getPages({
     return [
       ...Array.from<unknown, Page>(
         { length: doubledSiblingCount + 1 },
-        (_, i) => ({ type: "page", value: i + 1 }),
+        (_, i) => ({
+          type: "page",
+          value: i + 1,
+        }),
       ),
       {
         type: "ellipsis",
