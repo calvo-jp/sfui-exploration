@@ -1,6 +1,7 @@
 import { SystemStyleObject, useControllableState } from "@chakra-ui/react";
 import { createContext } from "@chakra-ui/react-context";
 import * as React from "react";
+import { UseSelectPopperReturn, useSelectPopper } from "../../hooks";
 import { invariant, noop } from "../../utils";
 import { Page, Value } from "./types";
 import { usePages } from "./utils";
@@ -19,6 +20,7 @@ export interface PaginationState {
   onChange: React.Dispatch<React.SetStateAction<Value>>;
   total: number;
   pages: Page[];
+  popper: UseSelectPopperReturn;
 }
 
 const internalDefaultValue: Value = {
@@ -31,6 +33,7 @@ export const PaginationContext = React.createContext<PaginationState>({
   onChange: noop,
   total: 0,
   pages: [],
+  popper: {} as any,
 });
 
 export type PaginationProviderProps = {
@@ -61,6 +64,8 @@ export function PaginationProvider({
     siblingCount,
   });
 
+  const popper = useSelectPopper();
+
   return (
     <PaginationContext.Provider
       value={{
@@ -68,6 +73,7 @@ export function PaginationProvider({
         pages,
         value: controllableState[0],
         onChange: controllableState[1],
+        popper,
       }}
     >
       {children}

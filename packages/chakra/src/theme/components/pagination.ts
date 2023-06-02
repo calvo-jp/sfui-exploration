@@ -1,5 +1,4 @@
 import { MultiStyleConfig } from "@chakra-ui/react";
-import { assignCommonPropsToKeys } from "../../utils";
 
 export const Pagination: MultiStyleConfig = {
   parts: [
@@ -20,31 +19,29 @@ export const Pagination: MultiStyleConfig = {
     "sizeoption",
   ],
   baseStyle() {
-    const commonCss = assignCommonPropsToKeys(
-      {
-        w: 10,
-        h: 10,
-        gap: 2,
-        border: "1px",
-        borderColor: "neutral.200",
-        rounded: "8px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        color: "neutral.900",
-        fontSize: "14px",
-        lineHeight: "20px",
-        fontWeight: "medium",
-        /*
-         * boxShadow: "0px 1px 2px " + applyOpacity(colors.gray[900], 5),
-         */
-        _disabled: {
-          color: "neutral.500",
-          cursor: "not-allowed",
-        },
+    const controlsCommonCss = {
+      w: 10,
+      h: 10,
+      gap: 2,
+      outline: "none",
+      border: "1px",
+      borderColor: "neutral.200",
+      rounded: "8px",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      color: "neutral.900",
+      fontSize: "14px",
+      lineHeight: "20px",
+      fontWeight: "medium",
+      /*
+       * boxShadow: "0px 1px 2px " + applyOpacity(colors.gray[900], 5),
+       */
+      _disabled: {
+        color: "neutral.500",
+        cursor: "not-allowed",
       },
-      "$$",
-    ).$$;
+    };
 
     return {
       container: {
@@ -80,18 +77,25 @@ export const Pagination: MultiStyleConfig = {
       },
 
       page: {
-        ...commonCss,
+        ...controlsCommonCss,
       },
       next: {
-        ...commonCss,
+        ...controlsCommonCss,
       },
       prev: {
-        ...commonCss,
+        ...controlsCommonCss,
       },
       size: {
-        ...commonCss,
+        ...controlsCommonCss,
         w: "auto",
         px: 4,
+        transition: "border-color 300ms ease-in-out",
+        _focus: {
+          borderColor: "neutral.300",
+        },
+        _expanded: {
+          borderColor: "neutral.300",
+        },
       },
 
       sizeoptions: {
