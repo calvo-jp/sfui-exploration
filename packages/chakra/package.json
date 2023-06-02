@@ -8,13 +8,9 @@
       "import": "./index.mjs",
       "require": "./index.js"
     },
-    "./theme": {
-      "import": "./theme.mjs",
-      "require": "./theme.js"
-    },
-    "./components": {
-      "import": "./components.mjs",
-      "require": "./components.js"
+    "./future": {
+      "import": "./future.mjs",
+      "require": "./future.js"
     }
   },
   "keywords": [],

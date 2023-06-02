@@ -24,8 +24,7 @@ export default defineConfig({
       name: "chakra",
       entry: {
         index: "src/index.ts",
-        theme: "src/theme/index.ts",
-        components: "src/components/index.ts",
+        future: "src/future/index.ts",
       },
       formats: ["es", "cjs"],
     },
