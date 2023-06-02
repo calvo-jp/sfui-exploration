@@ -68,12 +68,13 @@ Reason for this exploration is due to the problems we've encountered in developm
 
 - Focus on complex components which are not available in chakra rather than abstracting non-complex ones. eg
 
-  - Select (Custom)
-  - MultiSelect
-  - Multiline
-  - Combobox
-  - DatePicker/RangeDatePicker
-  - Pagination
+  - `Select (Custom)`
+  - `MultiSelect`
+  - `Multiline`
+  - `Combobox`
+  - `Pagination`
+  - `DatePicker`
+  - `RangeDatePicker`
 
 - Design new components in a `chakra-ish` way. eg
 
