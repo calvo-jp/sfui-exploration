@@ -8,7 +8,7 @@ import { useSelectContext, useSelectStyles } from "./select-context";
 interface SelectOptionBaseProps {
   value: string;
   label?: string;
-  $$index?: number;
+  __index?: number;
 }
 
 export type SelectOptionProps = Merge<
@@ -18,7 +18,7 @@ export type SelectOptionProps = Merge<
 
 export const SelectOption = React.forwardRef<HTMLDivElement, SelectOptionProps>(
   function SelectOption(props, ref) {
-    const { $$index = 0, value, label, children, ...others } = props;
+    const { __index = 0, value, label, children, ...others } = props;
 
     const styles = useSelectStyles();
     const context = useSelectContext();
@@ -26,12 +26,12 @@ export const SelectOption = React.forwardRef<HTMLDivElement, SelectOptionProps>(
     const mergedRef = useMergeRefs([
       ref,
       function (node: HTMLDivElement) {
-        context.popper.listRef.current[$$index] = node;
+        context.popper.listRef.current[__index] = node;
       },
     ]);
 
     const onClick = () => {
-      context.popper.setActiveIndex($$index);
+      context.popper.setActiveIndex(__index);
       context.popper.setIsOpen(false);
       context.onChange(value);
       context.setSelectedOption({
@@ -45,7 +45,7 @@ export const SelectOption = React.forwardRef<HTMLDivElement, SelectOptionProps>(
         ref={mergedRef}
         role="option"
         tabIndex={0}
-        aria-selected={context.popper.activeIndex === $$index}
+        aria-selected={context.popper.activeIndex === __index}
         __css={styles.option}
         {...others}
         {...context.popper.getItemProps({

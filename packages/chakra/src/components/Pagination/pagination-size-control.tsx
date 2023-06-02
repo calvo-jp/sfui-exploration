@@ -57,7 +57,6 @@ export const PaginationSizeControl = forwardRef(function PaginationSizeControl(
         ref={mergedRef}
         type="button"
         __css={styles.size}
-        {...others}
         {...context.popper.getReferenceProps({
           onClick,
           onKeyUp,
@@ -65,6 +64,7 @@ export const PaginationSizeControl = forwardRef(function PaginationSizeControl(
           onMouseUp,
           onMouseDown,
         })}
+        {...others}
       >
         <chakra.span>
           {children ?? `Show ${context.value.size} entries`}
