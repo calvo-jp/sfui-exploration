@@ -108,20 +108,16 @@ function TabThree() {
     <Box>
       <Box>
         <Select>
-          {() => (
+          {({ selectedOption }) => (
             <>
-              <SelectTrigger>Choose Option</SelectTrigger>
+              <SelectTrigger>
+                {selectedOption?.label ?? "Choose Option"}
+              </SelectTrigger>
 
               <SelectOptions>
-                <SelectOption key={1} value="1">
-                  One
-                </SelectOption>
-                <SelectOption key={2} value="2">
-                  Two
-                </SelectOption>
-                <SelectOption key={3} value="3">
-                  Three
-                </SelectOption>
+                <SelectOption key={1} value="1" label="One" />
+                <SelectOption key={2} value="2" label="Two" />
+                <SelectOption key={3} value="3" label="Three" />
               </SelectOptions>
             </>
           )}

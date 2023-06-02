@@ -3,6 +3,7 @@ import { useMergeRefs } from "@floating-ui/react";
 import * as React from "react";
 import { Merge } from "../../types";
 import { useSelectContext, useSelectStyles } from "./SelectContext";
+import { ChevronDownIcon } from "./icons";
 
 export type SelectTriggerProps = Merge<HTMLChakraProps<"button">, {}>;
 
@@ -22,9 +23,13 @@ export const SelectTrigger = React.forwardRef<
       type="button"
       __css={styles.trigger}
       {...others}
-      {...context.popper.getReferenceProps()}
+      {...context.popper.getReferenceProps({})}
+      {...(context.popper.isOpen && {
+        "data-focus": "",
+      })}
     >
-      {children}
+      <chakra.span flexGrow={1}>{children}</chakra.span>
+      <chakra.svg as={ChevronDownIcon} __css={styles.icon} />
     </chakra.button>
   );
 });

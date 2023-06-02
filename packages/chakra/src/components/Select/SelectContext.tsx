@@ -26,16 +26,24 @@ export const [SelectStylesProvider, useSelectStyles] = createContext<
     "Seems you forgot to wrap the components in '<Select />'",
 });
 
+export interface Option {
+  label?: string;
+  value: string;
+}
+
 export interface SelectState {
   value: string;
   onChange(newValue: string): void;
   popper: ReturnType<typeof usePopper>;
+  selectedOption?: Option;
+  setSelectedOption: React.Dispatch<React.SetStateAction<Option | undefined>>;
 }
 
 export const SelectContext = React.createContext<SelectState>({
   value: "",
   onChange: noop,
   popper: {} as any,
+  setSelectedOption: noop,
 });
 
 export interface SelectProviderProps {
@@ -57,12 +65,17 @@ export function SelectProvider({
   });
 
   const popper = usePopper();
+  const [selectedOption, setSelectedOption] = React.useState<Option>();
+
+  console.log(selectedOption);
 
   return (
     <SelectContext.Provider
       value={{
         value: controllable[0],
         onChange: controllable[1],
+        selectedOption,
+        setSelectedOption,
         popper,
       }}
     >

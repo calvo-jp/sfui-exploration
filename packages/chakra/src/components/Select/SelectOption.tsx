@@ -15,7 +15,7 @@ export type SelectOptionProps = Merge<
 
 export const SelectOption = React.forwardRef<HTMLDivElement, SelectOptionProps>(
   function SelectOption(props, ref) {
-    const { $$index = 0, value, children, ...others } = props;
+    const { $$index = 0, value, label, children, ...others } = props;
 
     const styles = useSelectStyles();
     const context = useSelectContext();
@@ -27,6 +27,16 @@ export const SelectOption = React.forwardRef<HTMLDivElement, SelectOptionProps>(
       },
     ]);
 
+    const onClick = () => {
+      context.popper.setActiveIndex($$index);
+      context.popper.setIsOpen(false);
+      context.onChange(value);
+      context.setSelectedOption({
+        value,
+        label,
+      });
+    };
+
     return (
       <chakra.div
         ref={mergedRef}
@@ -36,21 +46,17 @@ export const SelectOption = React.forwardRef<HTMLDivElement, SelectOptionProps>(
         __css={styles.option}
         {...others}
         {...context.popper.getItemProps({
-          onClick() {
-            context.popper.setActiveIndex($$index);
-            context.popper.setIsOpen(false);
-          },
+          onClick,
           onKeyDown(event) {
             if (event.key === "Enter") {
               event.preventDefault();
 
-              context.popper.setActiveIndex($$index);
-              context.popper.setIsOpen(false);
+              onClick();
             }
           },
         })}
       >
-        {children}
+        {children ?? label}
       </chakra.div>
     );
   },
