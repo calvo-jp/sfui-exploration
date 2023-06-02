@@ -215,15 +215,13 @@ export function Users() {
 
         <TableFooter>
           <Pagination
-            total={87}
+            total={200}
             defaultValue={{
               page: 1,
               size: 10,
             }}
           >
             {({ pages }) => {
-              console.log("mapped: ", { pages });
-
               return (
                 <>
                   <PaginationRange />

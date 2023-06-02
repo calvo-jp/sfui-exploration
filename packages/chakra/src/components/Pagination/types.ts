@@ -13,6 +13,9 @@ export interface Range {
 }
 
 export interface Details {
+  /**
+   * The current page
+   */
   page: number;
   size: number;
   total: number;

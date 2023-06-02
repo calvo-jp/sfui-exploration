@@ -48,7 +48,7 @@ export function PaginationProvider({
   value,
   onChange,
   defaultValue,
-  siblingCount = 2,
+  siblingCount = 1,
   children,
 }: React.PropsWithChildren<PaginationProviderProps>) {
   const controllableState = useControllableState({
