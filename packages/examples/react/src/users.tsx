@@ -55,6 +55,7 @@ import {
   PaginationPrevControl,
   PaginationRange,
   PaginationSizeControl,
+  PaginationSpacer,
   TableContainer,
   TableFooter,
   TableHeader,
@@ -218,15 +219,15 @@ export function Users() {
               page: 1,
               size: 10,
             }}
-            total={100}
+            total={87}
           >
             <PaginationRange />
-            <Spacer />
+            <PaginationSpacer />
             <PaginationSizeControl />
             <PaginationControlGroup>
               <PaginationPrevControl />
-              <PaginationPageControl _type="page" _value={1} />
-              <PaginationPageControl _type="page" _value={2} />
+              <PaginationPageControl page={{ type: "page", value: 1 }} />
+              <PaginationPageControl page={{ type: "page", value: 2 }} />
               <PaginationNextControl />
             </PaginationControlGroup>
           </Pagination>

@@ -7,8 +7,6 @@ import {
   FormLabel,
   Icon,
   Input,
-  InputGroup,
-  InputRightElement,
   Popover,
   PopoverArrow,
   PopoverBody,
@@ -31,7 +29,6 @@ import {
   Tooltip,
   chakra,
 } from "@chakra-ui/react";
-import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import { CloudIcon } from "@heroicons/react/24/outline";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Multiline } from "@sfui/chakra";
@@ -72,16 +69,7 @@ export function Landing() {
           navigate("/");
         })}
       >
-        <FormControl isInvalid={!!formState.errors.email}>
-          <FormLabel>Email</FormLabel>
-          <InputGroup>
-            <Input placeholder="johndoe@dumm.y" {...register("email")} />
-            <InputRightElement>
-              <Icon as={MagnifyingGlassIcon} w={5} h={5} />
-            </InputRightElement>
-          </InputGroup>
-          <FormErrorMessage>{formState.errors.email?.message}</FormErrorMessage>
-        </FormControl>
+        <Input placeholder="johndoe@dumm.y" {...register("email")} />
 
         <FormControl isInvalid={!!formState.errors.password} mt={4}>
           <FormLabel>Password</FormLabel>
@@ -114,6 +102,7 @@ export function Landing() {
             mt={6}
             type="submit"
             isLoading={formState.isSubmitting}
+            /* colorScheme="error" */
           >
             Login
           </Button>

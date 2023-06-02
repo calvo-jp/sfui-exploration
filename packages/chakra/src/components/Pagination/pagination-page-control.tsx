@@ -4,44 +4,41 @@ import {
   usePaginationContext,
   usePaginationStyles,
 } from "./pagination-context";
+import { Page } from "./types";
 
 export type PaginationPageControlProps = Merge<
   HTMLChakraProps<"button">,
-  | {
-      _type: "page";
-      _value: number;
-    }
-  | {
-      _type: "ellipsis";
-      _value?: null;
-    }
+  { page: Page }
 >;
 
 export const PaginationPageControl = forwardRef(function PaginationPageControl(
   props: PaginationPageControlProps,
   ref,
 ) {
-  const { _type, _value, children, ...others } = props;
+  const { page, children, disabled, onClick, ...others } = props;
 
   const styles = usePaginationStyles();
   const context = usePaginationContext();
-
-  if (props._type === "ellipsis") return null;
 
   return (
     <chakra.button
       ref={ref}
       type="button"
-      onClick={() => {
-        context.onChange(({ size, page }) => ({
+      onClick={(e) => {
+        onClick?.(e);
+
+        if (page.type === "ellipsis") return;
+
+        context.onChange(({ size }) => ({
           size,
-          page: page + 1,
+          page: page.value,
         }));
       }}
+      disabled={disabled || page.type === "ellipsis"}
       __css={styles.page}
       {...others}
     >
-      {children ?? props.value ?? "..."}
+      {children ?? (page.type === "page" ? page.value : "...")}
     </chakra.button>
   );
 });

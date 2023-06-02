@@ -24,11 +24,13 @@ import {
   usePaginationStyles,
 } from "./pagination-context";
 
+interface PaginationSizeControlBaseProps {
+  sizes?: number[];
+}
+
 export type PaginationSizeControlProps = Merge<
   HTMLChakraProps<"button">,
-  {
-    sizes?: number[];
-  }
+  PaginationSizeControlBaseProps
 >;
 
 export function PaginationSizeControl(props: PaginationSizeControlProps) {

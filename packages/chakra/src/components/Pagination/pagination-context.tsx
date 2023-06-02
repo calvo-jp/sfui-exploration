@@ -2,6 +2,8 @@ import { SystemStyleObject, useControllableState } from "@chakra-ui/react";
 import { createContext } from "@chakra-ui/react-context";
 import * as React from "react";
 import { invariant, noop } from "../../utils";
+import { Page, Value } from "./types";
+import { usePages } from "./utils";
 
 export const [PaginationStylesProvider, usePaginationStyles] = createContext<
   Record<string, SystemStyleObject>
@@ -12,18 +14,14 @@ export const [PaginationStylesProvider, usePaginationStyles] = createContext<
     "Seems you forgot to wrap the components in '<Pagination />'",
 });
 
-interface Value {
-  page: number;
-  size: number;
-}
-
 export interface PaginationState {
   value: Value;
   onChange: React.Dispatch<React.SetStateAction<Value>>;
   total: number;
+  pages: Page[];
 }
 
-const internalDefaultValue = {
+const internalDefaultValue: Value = {
   page: 1,
   size: 10,
 };
@@ -32,6 +30,7 @@ export const PaginationContext = React.createContext<PaginationState>({
   value: internalDefaultValue,
   onChange: noop,
   total: 0,
+  pages: [],
 });
 
 export type PaginationProviderProps = {
@@ -39,13 +38,15 @@ export type PaginationProviderProps = {
   onChange?(newValue: Value): void;
   total?: number;
   defaultValue?: Value;
+  siblingCount?: number;
 };
 
 export function PaginationProvider({
+  total = 0,
   value,
   onChange,
   defaultValue,
-  total = 0,
+  siblingCount = 2,
   children,
 }: React.PropsWithChildren<PaginationProviderProps>) {
   const controllableState = useControllableState({
@@ -54,10 +55,17 @@ export function PaginationProvider({
     defaultValue: !value && !defaultValue ? internalDefaultValue : defaultValue,
   });
 
+  const pages = usePages({
+    size: controllableState[0].size,
+    total,
+    siblingCount,
+  });
+
   return (
     <PaginationContext.Provider
       value={{
         total,
+        pages,
         value: controllableState[0],
         onChange: controllableState[1],
       }}

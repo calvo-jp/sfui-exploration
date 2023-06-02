@@ -48,7 +48,7 @@ Chakra extension based w/ theme reset based on HDS
   - [ ] DatePicker
   - [x] Multiline
   - [ ] MultiSelect
-  - [ ] Pagination
-  - [ ] Select
-  - [ ] Table
+  - [ ] Pagination `(ongoing)`
+  - [ ] Select `(ongoing)`
+  - [x] Table
   - [x] Toast `(custom)`

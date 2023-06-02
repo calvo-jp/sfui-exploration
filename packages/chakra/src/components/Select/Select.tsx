@@ -35,5 +35,7 @@ export const Select = withSelectContext(function Select({
     }),
   );
 
+  console.log(styles);
+
   return <SelectStylesProvider value={styles}>{nodes}</SelectStylesProvider>;
 });

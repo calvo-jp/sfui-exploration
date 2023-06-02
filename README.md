@@ -88,12 +88,12 @@ Reason for this exploration is due to the problems we've encountered in developm
               {selectedOption.label ?? "Select option"}
             </SelectTrigger>
 
-            <SelectOptions>
+            <SelectOptions p={4} /* 👈 custom on-the-fly styling */>
               <SelectOption label="Option 1" value="1" />
               <SelectOption label="Option 2" value="2" />
               <SelectOption label="Option 3" value="3">
                 <Box>
-                  <Text>I Can customize this</Text>
+                  <Text>I Can customize this</Text> /* 👈 custom render */
                 </Box>
               </SelectOption>
             </SelectOptions>

@@ -12,9 +12,13 @@ import {
   PaginationProvider,
   PaginationProviderProps,
   PaginationStylesProvider,
+  usePaginationContext,
 } from "./pagination-context";
+import { Page } from "./types";
 
-interface RenderChildrenContext {}
+interface RenderChildrenContext {
+  pages: Page[];
+}
 
 type Children =
   | ((context: RenderChildrenContext) => React.ReactNode)
@@ -30,12 +34,14 @@ export type PaginationProps = Merge<
 export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
   function Pagination(props, ref) {
     const styles = useMultiStyleConfig("Pagination", props);
+    const context = usePaginationContext();
 
     const {
-      total = 0,
+      total,
       value,
       onChange,
       defaultValue,
+      siblingCount,
       children,
       ...others
     } = omitThemingProps(props);
@@ -44,12 +50,13 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
       <chakra.div ref={ref} __css={styles.container} {...others}>
         <PaginationStylesProvider value={styles}>
           <PaginationProvider
+            total={total}
             value={value}
             onChange={onChange}
+            siblingCount={siblingCount}
             defaultValue={defaultValue}
-            total={total}
           >
-            {runIfCallable(children, {})}
+            {runIfCallable(children, { pages: context.pages })}
           </PaginationProvider>
         </PaginationStylesProvider>
       </chakra.div>

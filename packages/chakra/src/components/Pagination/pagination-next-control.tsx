@@ -13,6 +13,7 @@ export const PaginationNextControl = forwardRef(function PaginationNextControl(
   ref,
 ) {
   const {
+    disabled,
     children = (
       <chakra.svg
         as={ChevronRightIcon}
@@ -28,12 +29,13 @@ export const PaginationNextControl = forwardRef(function PaginationNextControl(
   const context = usePaginationContext();
 
   const isLastPage = context.value.page * context.value.size >= context.total;
+  const shouldDisable = disabled || isLastPage;
 
   return (
     <chakra.button
       ref={ref}
       type="button"
-      disabled={isLastPage}
+      disabled={shouldDisable}
       onClick={() => {
         context.onChange(({ size, page }) => ({
           size,
