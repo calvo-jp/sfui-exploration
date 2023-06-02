@@ -1,3 +1,4 @@
+export * from "./multi-select";
 export * from "./multiline";
 export * from "./pagination";
 export * from "./select";
