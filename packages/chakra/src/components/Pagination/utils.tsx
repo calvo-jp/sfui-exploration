@@ -16,32 +16,26 @@ export function usePagination({
   siblingCount,
 }: UsePaginationArg): Details {
   const range = useMemo(() => {
-    return getRange(page, size, total);
-  }, [
-    /* */
-    page,
-    size,
-    total,
-  ]);
+    return getRange({
+      page,
+      size,
+      total,
+    });
+  }, [page, size, total]);
 
   const numOfPages = useMemo(() => {
     return Math.ceil(total / size);
-  }, [
-    /* */
-    size,
-    total,
-  ]);
+  }, [size, total]);
 
   const pages = useMemo(() => {
-    return getPages(page, size, total, siblingCount, numOfPages);
-  }, [
-    /* */
-    page,
-    size,
-    total,
-    numOfPages,
-    siblingCount,
-  ]);
+    return getPages({
+      page,
+      size,
+      total,
+      siblingCount,
+      numOfPages,
+    });
+  }, [page, size, total, numOfPages, siblingCount]);
 
   const isFirstPage = page === 1;
   const isLastPage = page >= numOfPages;
@@ -60,19 +54,33 @@ export function usePagination({
   };
 }
 
-function getPages(
-  page: number,
-  size: number,
-  total: number,
-  siblingCount: number,
-  numOfPages: number,
-): Page[] {
+function getPages({
+  page,
+  size,
+  total,
+  numOfPages,
+  siblingCount,
+}: {
+  page: number;
+  size: number;
+  total: number;
+  siblingCount: number;
+  numOfPages: number;
+}): Page[] {
   const pages: Page[] = [];
 
   return pages;
 }
 
-function getRange(page: number, size: number, total: number) {
+function getRange({
+  page,
+  size,
+  total,
+}: {
+  page: number;
+  size: number;
+  total: number;
+}) {
   let start: number;
   let until: number;
 
