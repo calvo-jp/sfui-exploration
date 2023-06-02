@@ -18,9 +18,13 @@ type Children =
   | React.ReactNode
   | ((ctx: RenderChildrenContext) => React.ReactNode);
 
+interface SelectBaseProps {
+  children?: Children;
+}
+
 export type SelectProps = Merge<
   ThemingProps<"Select"> & SelectProviderProps,
-  { children: Children }
+  SelectBaseProps
 >;
 
 export const Select = withSelectContext(function Select({

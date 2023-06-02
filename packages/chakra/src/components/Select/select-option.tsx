@@ -5,13 +5,15 @@ import { Merge } from "../../types";
 import { CheckIcon } from "./icons";
 import { useSelectContext, useSelectStyles } from "./select-context";
 
+interface SelectOptionBaseProps {
+  value: string;
+  label?: string;
+  $$index?: number;
+}
+
 export type SelectOptionProps = Merge<
   HTMLChakraProps<"div">,
-  {
-    value: string;
-    label?: string;
-    $$index?: number;
-  }
+  SelectOptionBaseProps
 >;
 
 export const SelectOption = React.forwardRef<HTMLDivElement, SelectOptionProps>(

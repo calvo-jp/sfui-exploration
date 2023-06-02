@@ -1,20 +1,8 @@
 import { SystemStyleObject, useControllableState } from "@chakra-ui/react";
 import { createContext } from "@chakra-ui/react-context";
-import {
-  autoUpdate,
-  flip,
-  offset,
-  shift,
-  size,
-  useClick,
-  useDismiss,
-  useFloating,
-  useInteractions,
-  useListNavigation,
-  useRole,
-  useTransitionStyles,
-} from "@floating-ui/react";
 import * as React from "react";
+import { UseSelectPopperReturn, useSelectPopper } from "../../hooks";
+import { Callable } from "../../types";
 import { invariant, noop } from "../../utils";
 
 export const [SelectStylesProvider, useSelectStyles] = createContext<
@@ -34,7 +22,7 @@ export interface Option {
 export interface SelectState {
   value: string;
   onChange(newValue: string): void;
-  popper: ReturnType<typeof usePopper>;
+  popper: UseSelectPopperReturn;
   selectedOption?: Option;
   setSelectedOption: React.Dispatch<React.SetStateAction<Option | undefined>>;
 }
@@ -64,7 +52,7 @@ export function SelectProvider({
     defaultValue: !value && !defaultValue ? "" : defaultValue,
   });
 
-  const popper = usePopper();
+  const popper = useSelectPopper();
   const [selectedOption, setSelectedOption] = React.useState<Option>();
 
   return (
@@ -95,7 +83,7 @@ export function useSelectContext() {
 }
 
 export function withSelectContext<T extends SelectProviderProps>(
-  Component: (props: T) => JSX.Element,
+  Component: Callable<JSX.Element, [T]>,
 ) {
   return function Wrapper(props: T) {
     return (
@@ -107,64 +95,5 @@ export function withSelectContext<T extends SelectProviderProps>(
         <Component {...props} />
       </SelectProvider>
     );
-  };
-}
-
-export function usePopper() {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
-  const [selectedIndex, setSelectedIndex] = React.useState<number | null>(null);
-
-  const floating = useFloating({
-    open: isOpen,
-    onOpenChange: setIsOpen,
-    whileElementsMounted: autoUpdate,
-    strategy: "fixed",
-    middleware: [
-      offset(4),
-      flip(),
-      shift({ padding: 6 }),
-      size({
-        apply({ rects, elements }) {
-          Object.assign(elements.floating.style, {
-            minWidth: `${rects.reference.width}px`,
-          });
-        },
-      }),
-    ],
-  });
-
-  const listRef = React.useRef<(HTMLElement | null)[]>([]);
-  const listNav = useListNavigation(floating.context, {
-    loop: true,
-    listRef,
-    activeIndex,
-    selectedIndex,
-    onNavigate: setActiveIndex,
-  });
-
-  const role = useRole(floating.context, { role: "listbox" });
-  const click = useClick(floating.context, { event: "mousedown" });
-  const dismiss = useDismiss(floating.context);
-  const interactions = useInteractions([dismiss, role, listNav, click]);
-  const transitionStyles = useTransitionStyles(floating.context, {
-    duration: {
-      open: 150,
-      close: 100,
-    },
-  });
-
-  return {
-    ...floating,
-    ...interactions,
-    ...transitionStyles,
-
-    listRef,
-    isOpen,
-    setIsOpen,
-    activeIndex,
-    setActiveIndex,
-    selectedIndex,
-    setSelectedIndex,
   };
 }

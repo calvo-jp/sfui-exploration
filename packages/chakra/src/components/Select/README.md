@@ -1,5 +1,7 @@
 # Select
 
+Replacement to native select to have a consistent UI across browsers
+
 ## Usage
 
 ```tsx
