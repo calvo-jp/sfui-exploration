@@ -26,7 +26,17 @@ export const SelectTrigger = React.forwardRef<
       {...context.popper.getReferenceProps({})}
     >
       <chakra.span flexGrow={1}>{children}</chakra.span>
-      <chakra.svg as={ChevronDownIcon} __css={styles.icon} />
+      <chakra.svg
+        as={ChevronDownIcon}
+        __css={{
+          ...styles.icon,
+          transform: "rotate(0deg)",
+          transition: "transform 300ms ease-in-out",
+          ...(context.popper.isOpen && {
+            transform: "rotate(180deg)",
+          }),
+        }}
+      />
     </chakra.button>
   );
 });
