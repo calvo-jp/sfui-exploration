@@ -76,7 +76,7 @@ Reason for this exploration is due to the problems we've encountered in developm
   - `DatePicker`
   - `RangeDatePicker`
 
-- Design new components in a `chakra-ish` way. eg
+- Design new components in a `chakra-ish` way. eg for a custom `Select` component
 
   ```tsx
   function Component() {
