@@ -36,6 +36,8 @@ export const Select: MultiStyleConfig = {
     option: {
       py: 1.5,
       cursor: "pointer",
+      display: "flex",
+      alignItems: "center",
       fontSize: "14px",
       lineHeight: "20px",
       outline: "none",
@@ -76,6 +78,7 @@ export const Select: MultiStyleConfig = {
       ),
       option: {
         px: 3.5,
+        display: "flex",
       },
     },
   },

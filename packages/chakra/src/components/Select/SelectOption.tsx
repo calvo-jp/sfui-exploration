@@ -3,6 +3,7 @@ import { useMergeRefs } from "@floating-ui/react";
 import * as React from "react";
 import { Merge } from "../../types";
 import { useSelectContext, useSelectStyles } from "./SelectContext";
+import { CheckIcon } from "./icons";
 
 export type SelectOptionProps = Merge<
   HTMLChakraProps<"div">,
@@ -56,7 +57,12 @@ export const SelectOption = React.forwardRef<HTMLDivElement, SelectOptionProps>(
           },
         })}
       >
-        {children ?? label}
+        <chakra.span flexGrow={1}>{children ?? label}</chakra.span>
+
+        {!children /* only render check as default */ &&
+          value === context.value && (
+            <chakra.svg as={CheckIcon} w={4} h={4} stroke="success.600" />
+          )}
       </chakra.div>
     );
   },

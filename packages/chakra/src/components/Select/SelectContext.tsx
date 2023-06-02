@@ -67,8 +67,6 @@ export function SelectProvider({
   const popper = usePopper();
   const [selectedOption, setSelectedOption] = React.useState<Option>();
 
-  console.log(selectedOption);
-
   return (
     <SelectContext.Provider
       value={{
