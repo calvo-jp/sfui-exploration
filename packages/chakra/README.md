@@ -26,9 +26,9 @@ Chakra extension based w/ theme reset based on HDS
   - [x] menu
   - [x] modal
   - [ ] pin-input
-  - [x] popover `(Uses tooltip ui)`
+  - [x] popover
   - [x] progress
-  - [x] select `(native)`
+  - [x] select
   - [x] skeleton
   - [x] slider
   - [x] spinner
@@ -47,7 +47,7 @@ Chakra extension based w/ theme reset based on HDS
   - [ ] DatePicker
   - [x] Multiline
   - [ ] MultiSelect
-  - [ ] Pagination `(ongoing)`
-  - [ ] Select `(ongoing)`
+  - [x] Pagination
+  - [x] Select
   - [x] Table
   - [x] Toast `(custom)`
