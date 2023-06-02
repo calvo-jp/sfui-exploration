@@ -19,6 +19,21 @@ export default defineConfig({
       root: "../../../",
     }),
   ],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          router: ["react-router-dom"],
+          chakra: [
+            "@chakra-ui/react",
+            "@emotion/react",
+            "@emotion/styled",
+            "framer-motion",
+          ],
+        },
+      },
+    },
+  },
   test: {
     globals: true,
     cache: {
