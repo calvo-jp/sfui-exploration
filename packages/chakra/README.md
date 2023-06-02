@@ -1,6 +1,6 @@
 # HDS Chakra
 
-Chakra extension based w/ theme reset based on HDS
+HDS theme for chakra w/ addtl complex components
 
 ## Todo
 
@@ -54,3 +54,7 @@ Chakra extension based w/ theme reset based on HDS
   - [ ] MultiSelect
   - [ ] Combobox
   - [ ] DatePicker
+  - [ ] DatePickerInput
+  - [ ] RangeDatePicker
+  - [ ] RangeDatePickerInput
+  - [ ] RangeDatePickerDropdown
