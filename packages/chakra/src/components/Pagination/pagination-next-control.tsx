@@ -1,5 +1,6 @@
 import { HTMLChakraProps, chakra, forwardRef } from "@chakra-ui/react";
 import { Pretty } from "../../types";
+import { runIfCallable } from "../../utils";
 import { ChevronRightIcon } from "./icons";
 import {
   usePaginationContext,
@@ -14,6 +15,7 @@ export const PaginationNextControl = forwardRef(function PaginationNextControl(
 ) {
   const {
     disabled,
+    onClick,
     children = (
       <chakra.svg
         as={ChevronRightIcon}
@@ -36,7 +38,8 @@ export const PaginationNextControl = forwardRef(function PaginationNextControl(
       ref={ref}
       type="button"
       disabled={shouldDisable}
-      onClick={() => {
+      onClick={(e) => {
+        runIfCallable(onClick, e);
         context.onChange(({ size, page }) => ({
           size,
           page: page + 1,

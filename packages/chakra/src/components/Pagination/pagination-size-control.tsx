@@ -34,7 +34,16 @@ export type PaginationSizeControlProps = Merge<
 >;
 
 export function PaginationSizeControl(props: PaginationSizeControlProps) {
-  const { sizes = [10, 25, 50, 100], children, ...others } = props;
+  const {
+    sizes = [10, 25, 50, 100],
+    children,
+    onClick,
+    onKeyUp,
+    onKeyDown,
+    onMouseUp,
+    onMouseDown,
+    ...others
+  } = props;
 
   const styles = usePaginationStyles();
   const context = usePaginationContext();
@@ -99,7 +108,13 @@ export function PaginationSizeControl(props: PaginationSizeControlProps) {
         type="button"
         __css={styles.size}
         {...others}
-        {...getReferenceProps()}
+        {...getReferenceProps({
+          onClick,
+          onKeyUp,
+          onKeyDown,
+          onMouseUp,
+          onMouseDown,
+        })}
       >
         <chakra.span>
           {children ?? `Show ${context.value.size} entries`}

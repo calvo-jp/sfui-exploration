@@ -1,5 +1,6 @@
 import { HTMLChakraProps, chakra, forwardRef } from "@chakra-ui/react";
 import { Merge } from "../../types";
+import { runIfCallable } from "../../utils";
 import {
   usePaginationContext,
   usePaginationStyles,
@@ -25,14 +26,14 @@ export const PaginationPageControl = forwardRef(function PaginationPageControl(
       ref={ref}
       type="button"
       onClick={(e) => {
-        onClick?.(e);
+        runIfCallable(onClick, e);
 
-        if (page.type === "ellipsis") return;
-
-        context.onChange(({ size }) => ({
-          size,
-          page: page.value,
-        }));
+        if (page.type === "page") {
+          context.onChange(({ size }) => ({
+            size,
+            page: page.value,
+          }));
+        }
       }}
       disabled={disabled || page.type === "ellipsis"}
       __css={styles.page}
