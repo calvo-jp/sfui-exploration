@@ -1,6 +1,6 @@
 import { HTMLChakraProps, chakra } from "@chakra-ui/react";
 import { forwardRef } from "react";
-import { useTableStyles } from "./TableContext";
+import { useTableStyles } from "./table-context";
 
 type TableFooterProps = HTMLChakraProps<"div">;
 

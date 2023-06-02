@@ -2,8 +2,8 @@ import { HTMLChakraProps, chakra } from "@chakra-ui/react";
 import { useMergeRefs } from "@floating-ui/react";
 import * as React from "react";
 import { Merge } from "../../types";
-import { useSelectContext, useSelectStyles } from "./SelectContext";
 import { ChevronDownIcon } from "./icons";
+import { useSelectContext, useSelectStyles } from "./select-context";
 
 export type SelectTriggerProps = Merge<HTMLChakraProps<"button">, {}>;
 

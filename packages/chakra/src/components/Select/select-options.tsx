@@ -7,7 +7,7 @@ import {
 import * as React from "react";
 import { FloatingUiPortalId } from "../../constants";
 import { Merge } from "../../types";
-import { useSelectContext, useSelectStyles } from "./SelectContext";
+import { useSelectContext, useSelectStyles } from "./select-context";
 
 export type SelectOptionsProps = Merge<HTMLChakraProps<"div">, {}>;
 

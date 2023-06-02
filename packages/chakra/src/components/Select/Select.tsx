@@ -8,7 +8,7 @@ import {
   SelectStylesProvider,
   useSelectContext,
   withSelectContext,
-} from "./SelectContext";
+} from "./select-context";
 
 interface RenderChildrenContext {
   selectedOption?: Option;

@@ -11,7 +11,7 @@ import {
   TableProvider,
   TableProviderProps,
   TableStylesProvider,
-} from "./TableContext";
+} from "./table-context";
 
 export type TableContainerProps = Merge<
   HTMLChakraProps<"div"> & ThemingProps<"Table">,

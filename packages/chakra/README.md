@@ -2,7 +2,7 @@
 
 Chakra extension based w/ theme reset based on HDS
 
-## Todo MVP
+## Todo
 
 - theme
 
@@ -26,6 +26,7 @@ Chakra extension based w/ theme reset based on HDS
   - [x] input
   - [x] menu
   - [x] modal
+  - [ ] pin-input
   - [x] popover `(Uses tooltip ui)`
   - [x] progress
   - [x] select `(native)`
