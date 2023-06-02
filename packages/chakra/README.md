@@ -4,7 +4,7 @@ Chakra extension based w/ theme reset based on HDS
 
 ## Todo
 
-- theme
+- **theme**
 
   - [x] alert
   - [x] avatar
@@ -41,13 +41,16 @@ Chakra extension based w/ theme reset based on HDS
   - [x] toast
   - [x] tooltip
 
-- components
+- **components**
 
-  - [ ] Combobox
-  - [ ] DatePicker
-  - [x] Multiline
-  - [ ] MultiSelect
-  - [x] Pagination
-  - [x] Select
-  - [x] Table
   - [x] Toast `(custom)`
+  - [x] Table
+
+        Chakra's `TableContainer` is the only component which is not themable due to it being outside of thier `TableStylesProvider`. They are currently hard-coding the styles for it. We need one which we can theme globally
+
+  - [x] Multiline
+  - [x] Select
+  - [x] Pagination
+  - [ ] Combobox
+  - [ ] MultiSelect
+  - [ ] DatePicker
