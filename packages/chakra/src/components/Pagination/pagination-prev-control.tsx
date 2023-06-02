@@ -29,9 +29,7 @@ export const PaginationPrevControl = forwardRef(function PaginationPrevControl(
 
   const styles = usePaginationStyles();
   const context = usePaginationContext();
-
-  const isFirstPage = context.value.page <= 1;
-  const shouldDisable = disabled || isFirstPage;
+  const shouldDisable = disabled || context.details.isFirstPage;
 
   return (
     <chakra.button

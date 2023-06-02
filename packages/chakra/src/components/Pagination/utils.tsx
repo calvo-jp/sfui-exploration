@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { clamp } from "../../utils";
 import { Details, Page } from "./types";
 
@@ -14,16 +15,36 @@ export function usePagination({
   total,
   siblingCount,
 }: UsePaginationArg): Details {
-  const range = getRange(page, size, total);
+  const range = useMemo(() => {
+    return getRange(page, size, total);
+  }, [
+    /* */
+    page,
+    size,
+    total,
+  ]);
 
-  const pages: Page[] = [
-    {
-      type: "page",
-      value: 1,
-    },
-  ];
+  const numOfPages = useMemo(() => {
+    return Math.ceil(total / size);
+  }, [
+    /* */
+    size,
+    total,
+  ]);
 
-  const numOfPages = Math.ceil(total / size);
+  const pages = useMemo(() => {
+    return getPages(page, size, total, siblingCount, numOfPages);
+  }, [
+    /* */
+    page,
+    size,
+    total,
+    numOfPages,
+    siblingCount,
+  ]);
+
+  const isFirstPage = page === 1;
+  const isLastPage = page >= numOfPages;
 
   console.log(numOfPages);
 
@@ -34,10 +55,24 @@ export function usePagination({
     pages,
     range,
     numOfPages,
+    isFirstPage,
+    isLastPage,
   };
 }
 
-export function getRange(page: number, size: number, total: number) {
+function getPages(
+  page: number,
+  size: number,
+  total: number,
+  siblingCount: number,
+  numOfPages: number,
+): Page[] {
+  const pages: Page[] = [];
+
+  return pages;
+}
+
+function getRange(page: number, size: number, total: number) {
   let start: number;
   let until: number;
 
@@ -50,10 +85,5 @@ export function getRange(page: number, size: number, total: number) {
   return {
     start,
     until,
-    toString() {
-      return `Page ${start}-${until} to ${until}`;
-    },
   };
 }
-
-export type UsePaginationReturn = ReturnType<typeof usePagination>;

@@ -29,10 +29,7 @@ export const PaginationNextControl = forwardRef(function PaginationNextControl(
 
   const styles = usePaginationStyles();
   const context = usePaginationContext();
-
-  const isLastPage =
-    context.value.page * context.value.size >= context.details.total;
-  const shouldDisable = disabled || isLastPage;
+  const shouldDisable = disabled || context.details.isLastPage;
 
   return (
     <chakra.button

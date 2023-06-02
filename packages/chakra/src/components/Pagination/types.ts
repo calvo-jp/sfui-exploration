@@ -25,4 +25,6 @@ export interface Details {
   range: Range;
   pages: Page[];
   numOfPages: number;
+  isFirstPage: boolean;
+  isLastPage: boolean;
 }

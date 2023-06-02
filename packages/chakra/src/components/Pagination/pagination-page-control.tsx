@@ -18,13 +18,13 @@ export const PaginationPageControl = forwardRef(function PaginationPageControl(
   const styles = usePaginationStyles();
   const context = usePaginationContext();
 
-  const shouldDisabled = disabled || type === "ellipsis";
+  const shouldDisable = disabled || type === "ellipsis";
 
   return (
     <chakra.button
       ref={ref}
       type="button"
-      disabled={shouldDisabled}
+      disabled={shouldDisable}
       onClick={(e) => {
         runIfCallable(onClick, e);
 
