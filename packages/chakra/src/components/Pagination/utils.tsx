@@ -98,7 +98,8 @@ function getPages({
   const isCloseToFirstPage = page - (doubledSiblingCount + 1) < firstPage;
   const isCloseToLastPage = lastPage < page + (doubledSiblingCount + 1);
 
-  if (doubledSiblingCount + 1 >= numOfPages) {
+  /* removes ellipsis for cases like [1,2,3,...4] */
+  if (doubledSiblingCount + 2 >= numOfPages) {
     return Array.from<unknown, Page>({ length: numOfPages }, (_, i) => ({
       type: "page",
       value: i + 1,
