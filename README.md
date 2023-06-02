@@ -113,6 +113,10 @@ Reason for this exploration is due to the problems we've encountered in developm
   New components will also have a default global theme which is based on HDS (overridable of course 👌).
   As an example, please refer to [this](https://chakra-ui.com/docs/components/alert/theming)
 
+## Why Chakra?
+
+TBD
+
 ## Development
 
 - clone repo
