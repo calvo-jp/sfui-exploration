@@ -16,7 +16,6 @@ Chakra extension based w/ theme reset based on HDS
     - [ ] subtle
     - [ ] ghost
     - [ ] link
-    - [ ] group - we could also use this in `tab`, `pagination`, etc...
   - [x] checkbox
   - [x] drawer
   - [x] form-error
