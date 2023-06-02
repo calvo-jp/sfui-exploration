@@ -44,7 +44,7 @@ Reason for this exploration is due to the problems we've encountered in developm
   </FormControl>
   ```
 
-- Harder to maintain due to the logic being tied to specific requirements instead of being flexible to cover most if not all use-cases (like what chakra does)
+- Harder to maintain due to the logic being tied to specific requirements instead of having the flexibility to cover most if not all use-cases (like what chakra does)
 
 ## Proposed Solution
 
@@ -104,14 +104,28 @@ Reason for this exploration is due to the problems we've encountered in developm
   }
   ```
 
-  This way, the user have access to all component parts where they can do whatever they want that will cater their needs. They can abstract it (but they don't have to).
-  Also, with this approach they can add styles on the fly and it looks just like they are still using chakra.
-  This as well is a lot easier to maintain
+  This way, the user have access to all component parts where they can do whatever they want to match thier reqs. They could also abstract it (but they don't have to).
+  Also, with this approach they can add styles on the fly and it looks just like they are still using chakra. On maintainers side, this is so MUCH easier to maintain
 
 - Ensure new components can be themed globally (still in a `chakra-ish` way).
 
-  New components will also have a default global theme which is based on HDS (overridable of course 👌).
-  As an example, please refer to [this](https://chakra-ui.com/docs/components/alert/theming)
+  New components will come with a default global theme which is of course based on HDS and can be overridden either on-the-fly or globally
+
+  eg. for a pagination component global theme would be something like this
+
+  ```ts
+  export const Pagination: MultiStyleConfig = {
+    parts: ["container" /* other parts */],
+    baseStyle: {
+      container: {
+        p: 4,
+        bg: "gray.50",
+      },
+    },
+
+    /* ... */
+  };
+  ```
 
 ## Why Chakra?
 
