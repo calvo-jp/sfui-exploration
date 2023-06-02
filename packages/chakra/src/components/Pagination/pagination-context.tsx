@@ -28,13 +28,8 @@ export interface PaginationState {
   details: Details;
 }
 
-const internalDefaultValue: Value = {
-  page: 1,
-  size: 10,
-};
-
 export const PaginationContext = React.createContext<PaginationState>({
-  value: internalDefaultValue,
+  value: {} as any,
   onChange: noop,
   popper: {} as any,
   details: {} as any,
@@ -59,17 +54,17 @@ export function PaginationProvider({
   const controllableState = useControllableState({
     value,
     onChange,
-    defaultValue: !value && !defaultValue ? internalDefaultValue : defaultValue,
+    defaultValue:
+      !value && !defaultValue ? { page: 1, size: 10 } : defaultValue,
   });
 
+  const popper = useSelectPopper();
   const details = usePagination({
     page: controllableState[0].page,
     size: controllableState[0].size,
     total,
     siblingCount,
   });
-
-  const popper = useSelectPopper();
 
   return (
     <PaginationContext.Provider

@@ -4,14 +4,8 @@ export interface Value {
 }
 
 export type Page =
-  | {
-      type: "ellipsis";
-      value?: never;
-    }
-  | {
-      type: "page";
-      value: number;
-    };
+  | { type: "ellipsis"; value?: never }
+  | { type: "page"; value: number };
 
 export interface Range {
   start: number;
