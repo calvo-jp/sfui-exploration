@@ -24,3 +24,9 @@ export function removeParentFragment(subject: React.ReactNode) {
     ? subject.props.children
     : subject;
 }
+
+export function getValidChildren(children: React.ReactNode) {
+  return React.Children.toArray(children).filter((child) =>
+    React.isValidElement(child),
+  ) as React.ReactElement[];
+}
