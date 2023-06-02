@@ -93,7 +93,7 @@ export function usePaginationContext() {
 }
 
 export function withPaginationContext<T extends PaginationProviderProps>(
-  Comp: ComponentWithAs<As, T>,
+  Component: ComponentWithAs<As, T>,
 ) {
   return forwardRef(function Wrapped(props: T, ref) {
     return (
@@ -104,7 +104,7 @@ export function withPaginationContext<T extends PaginationProviderProps>(
         defaultValue={props.defaultValue}
         siblingCount={props.siblingCount}
       >
-        <Comp ref={ref} {...(props as any)} />
+        <Component ref={ref} {...(props as any)} />
       </PaginationProvider>
     );
   });
