@@ -51,6 +51,6 @@ Chakra extension based w/ theme reset based on HDS
   - [x] Multiline
   - [x] Select
   - [x] Pagination
-  - [ ] Combobox
   - [ ] MultiSelect
+  - [ ] Combobox
   - [ ] DatePicker
