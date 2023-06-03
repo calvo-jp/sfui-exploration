@@ -1,5 +1,5 @@
 import { createStylesContext } from "@chakra-ui/react";
 
-export const [SelectStylesProvider, useSelectStyles] = createStylesContext(
-  "SelectStylesContext",
+export const [ComboboxStylesProvider, useComboboxStyles] = createStylesContext(
+  "ComboboxStylesContext",
 );
