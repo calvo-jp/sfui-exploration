@@ -4,6 +4,7 @@ import { Badge } from "./badge";
 import { Breadcrumb } from "./breadcrumb";
 import { Button } from "./button";
 import { Checkbox } from "./checkbox";
+import { Combobox } from "./combobox";
 import { Drawer } from "./drawer";
 import { Form } from "./form";
 import { FormError } from "./form-error";
@@ -36,6 +37,7 @@ export const components = {
   Breadcrumb,
   Button,
   Checkbox,
+  Combobox,
   Drawer,
   Form,
   FormError,

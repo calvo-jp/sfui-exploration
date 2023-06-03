@@ -4,21 +4,25 @@ import { Input } from "./input";
 
 export const Select: MultiStyleConfig = {
   parts: [
+    /* for native select */
     "field",
-    "icon",
-    /* custom select */
+    "arrow",
+    /* for custom select */
     "trigger",
     "options",
     "option",
   ],
   baseStyle: {
-    icon: {
-      w: 5,
-      h: 5,
+    arrow: {
       transform: "rotate(0deg)",
       transition: "transform 300ms ease-in-out",
       _expanded: {
         transform: "rotate(180deg)",
+      },
+
+      "& .select-arrow-icon": {
+        w: 5,
+        h: 5,
       },
     },
     trigger: {
@@ -54,7 +58,7 @@ export const Select: MultiStyleConfig = {
   variants: {
     outline(context) {
       const commons =
-        runIfCallable(Input.variants?.outline, context ?? {})?.field ?? {};
+        runIfCallable(Input.variants?.outline, context)?.field ?? {};
 
       return {
         field: {
@@ -92,7 +96,6 @@ export const Select: MultiStyleConfig = {
       ),
       option: {
         px: 3.5,
-        display: "flex",
       },
     },
   },

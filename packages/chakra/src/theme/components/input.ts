@@ -21,6 +21,7 @@ export const Input: MultiStyleConfig = {
           pointerEvents: "none",
         },
         field: {
+          outline: "none",
           border: "1px",
           boxShadow: $shadow.reference,
           borderColor: "neutral.200",

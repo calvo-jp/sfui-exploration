@@ -34,6 +34,12 @@ import {
 import { CloudIcon } from "@heroicons/react/24/outline";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
+  Combobox,
+  ComboboxArrow,
+  ComboboxControl,
+  ComboboxInput,
+  ComboboxOption,
+  ComboboxOptions,
   Multiline,
   Select,
   SelectArrow,
@@ -97,15 +103,38 @@ export function Landing() {
             <PinInputField />
             <PinInputField />
             <PinInputField />
+            <PinInputField />
           </PinInput>
         </HStack>
 
         <FormControl mt={4}>
+          <FormLabel>Search</FormLabel>
+
+          <Combobox>
+            {() => (
+              <>
+                <ComboboxControl>
+                  <ComboboxInput />
+                  <ComboboxArrow />
+                </ComboboxControl>
+
+                <ComboboxOptions>
+                  <ComboboxOption label="Option 1" value="1" />
+                  <ComboboxOption label="Option 2" value="2" />
+                  <ComboboxOption label="Option 3" value="3" />
+                </ComboboxOptions>
+              </>
+            )}
+          </Combobox>
+        </FormControl>
+
+        <FormControl mt={4}>
           <FormLabel>Select</FormLabel>
+
           <Select>
             {({ selectedOption }) => (
               <>
-                <SelectTrigger p={4}>
+                <SelectTrigger>
                   {selectedOption?.label ?? "Please Select"}
 
                   <SelectSpacer />

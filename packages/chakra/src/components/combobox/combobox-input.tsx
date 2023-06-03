@@ -3,11 +3,11 @@ import {
   HTMLChakraProps,
   chakra,
   forwardRef,
-  useFormControlProps,
+  useFormControl,
 } from "@chakra-ui/react";
 import { useMergeRefs } from "@floating-ui/react";
 import { omitFormControlProps } from "../../utils";
-import { useComboboxStyles } from "./combobox-context";
+import { useComboboxContext, useComboboxStyles } from "./combobox-context";
 
 type Omitted = "disabled" | "required" | "readOnly" | "size";
 
@@ -18,17 +18,29 @@ export interface ComboboxInputProps
 export const ComboboxInput = forwardRef<ComboboxInputProps, "input">(
   function ComboboxInput(props, ref) {
     const styles = useComboboxStyles();
+    const context = useComboboxContext();
 
-    const mergedRef = useMergeRefs([ref]);
+    const mergedRef = useMergeRefs([context.popper.refs.setReference, ref]);
 
-    const inputProps = useFormControlProps<HTMLInputElement>(props);
+    const inputProps = useFormControl<HTMLInputElement>(props);
     const ownProps = omitFormControlProps(props);
 
     return (
       <chakra.input
         ref={mergedRef}
         __css={styles.input}
-        {...inputProps}
+        value={context.popper.inputValue}
+        onChange={(e) => {
+          context.popper.setInputValue(e.target.value);
+
+          if (e.target.value) {
+            context.popper.setIsOpen(true);
+            context.popper.setActiveIndex(0);
+          } else {
+            context.popper.setIsOpen(false);
+          }
+        }}
+        {...context.popper.getReferenceProps(inputProps)}
         {...ownProps}
       />
     );

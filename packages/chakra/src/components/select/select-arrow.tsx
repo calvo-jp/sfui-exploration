@@ -5,20 +5,23 @@ import { useSelectContext, useSelectStyles } from "./select-context";
 export interface SelectArrowProps extends HTMLChakraProps<"svg"> {}
 
 export const SelectArrow = forwardRef<SelectArrowProps, "svg">(
-  function SelectArrow(props, ref) {
+  function SelectArrow({ children, ...props }, ref) {
     const context = useSelectContext();
     const styles = useSelectStyles();
 
     return (
-      <chakra.svg
+      <chakra.div
         ref={ref}
-        as={ChevronDownIcon}
         {...(context.popper.isOpen && {
           "data-expanded": true,
         })}
-        __css={styles.icon}
+        __css={styles.arrow}
         {...props}
-      />
+      >
+        {children ?? (
+          <chakra.svg as={ChevronDownIcon} className="select-arrow-icon" />
+        )}
+      </chakra.div>
     );
   },
 );

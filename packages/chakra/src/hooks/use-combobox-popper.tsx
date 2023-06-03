@@ -4,7 +4,6 @@ import {
   offset,
   shift,
   size,
-  useClick,
   useDismiss,
   useFloating,
   useInteractions,
@@ -16,6 +15,7 @@ import * as React from "react";
 
 export function useComboboxPopper() {
   const [isOpen, setIsOpen] = React.useState(false);
+  const [inputValue, setInputValue] = React.useState("");
   const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
 
   const floating = useFloating({
@@ -47,9 +47,8 @@ export function useComboboxPopper() {
   });
 
   const role = useRole(floating.context, { role: "listbox" });
-  const click = useClick(floating.context, { event: "mousedown" });
   const dismiss = useDismiss(floating.context);
-  const interactions = useInteractions([dismiss, role, listNav, click]);
+  const interactions = useInteractions([dismiss, role, listNav]);
   const transitionStyles = useTransitionStyles(floating.context, {
     duration: {
       open: 150,
@@ -67,6 +66,8 @@ export function useComboboxPopper() {
     setIsOpen,
     activeIndex,
     setActiveIndex,
+    inputValue,
+    setInputValue,
   };
 }
 
