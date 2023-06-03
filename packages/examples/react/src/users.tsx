@@ -273,10 +273,17 @@ function CreateUser() {
           </AlertDialogBody>
           <AlertDialogFooter mt={4}>
             <Flex justifyContent="flex-end" gap={3}>
-              <Button onClick={onClose} variant="outline" colorScheme="neutral">
+              <Button
+                w="90px"
+                onClick={onClose}
+                variant="outline"
+                colorScheme="neutral"
+              >
                 Cancel
               </Button>
-              <Button onClick={onClose}>Okay</Button>
+              <Button w="90px" onClick={onClose}>
+                Okay
+              </Button>
             </Flex>
           </AlertDialogFooter>
         </AlertDialogContent>
