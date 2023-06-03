@@ -1,5 +1,5 @@
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
-import { defaultToastOptions, withSFTheme } from "@sfui/chakra";
+import { defaultToastOptions, theme } from "@sfui/chakra";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Landing } from "./landing";
 import { Layout } from "./layout";
@@ -9,7 +9,7 @@ import { Users } from "./users";
 export default function App() {
   return (
     <ChakraProvider
-      theme={extendTheme(withSFTheme() /*, overrides */)}
+      theme={extendTheme(theme /*, overrides */)}
       toastOptions={defaultToastOptions}
     >
       <BrowserRouter>

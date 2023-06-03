@@ -11,7 +11,7 @@
 import * as components from "./components";
 import * as foundation from "./foundation";
 
-const theme = {
+export const theme = {
   ...foundation,
   ...components,
 };
