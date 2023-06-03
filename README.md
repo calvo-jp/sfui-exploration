@@ -163,4 +163,4 @@ npm run start:react
 
 - Go to http://localhost:4200/users
 
-![screenshot](/docs/screenshot.jpeg)
+![screenshot](/media/screenshot.jpeg)
