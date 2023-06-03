@@ -1,8 +1,9 @@
 import { HTMLChakraProps, chakra, forwardRef } from "@chakra-ui/react";
+import { Pretty } from "../../types";
 import { ChevronDownIcon } from "./icons";
 import { useSelectContext, useSelectStyles } from "./select-context";
 
-export type SelectArrowProps = HTMLChakraProps<"svg">;
+export type SelectArrowProps = Pretty<HTMLChakraProps<"svg">>;
 
 export const SelectArrow = forwardRef<SelectArrowProps, "svg">(
   function SelectArrow(props, ref) {
