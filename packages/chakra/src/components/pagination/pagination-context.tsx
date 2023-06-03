@@ -1,11 +1,10 @@
 import {
   As,
   ComponentWithAs,
-  SystemStyleObject,
+  createStylesContext,
   forwardRef,
   useControllableState,
 } from "@chakra-ui/react";
-import { createContext } from "@chakra-ui/react-context";
 import * as React from "react";
 import {
   UsePaginationReturn,
@@ -16,14 +15,8 @@ import {
 import { invariant, noop } from "../../utils";
 import { Value } from "./types";
 
-export const [PaginationStylesProvider, usePaginationStyles] = createContext<
-  Record<string, SystemStyleObject>
->({
-  name: "PaginationStylesContext",
-  errorMessage:
-    "'usePaginationStyles' returned 'undefined'. " +
-    "Seems you forgot to wrap the components in '<Pagination />'",
-});
+export const [PaginationStylesProvider, usePaginationStyles] =
+  createStylesContext("PaginationStylesContext");
 
 export interface PaginationState extends UsePaginationReturn {
   popper: UseSelectPopperReturn;

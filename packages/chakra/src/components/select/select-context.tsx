@@ -1,18 +1,12 @@
-import { SystemStyleObject, useControllableState } from "@chakra-ui/react";
-import { createContext } from "@chakra-ui/react-context";
+import { createStylesContext, useControllableState } from "@chakra-ui/react";
 import * as React from "react";
 import { UseSelectPopperReturn, useSelectPopper } from "../../hooks";
 import { Callable } from "../../types";
 import { invariant, noop } from "../../utils";
 
-export const [SelectStylesProvider, useSelectStyles] = createContext<
-  Record<string, SystemStyleObject>
->({
-  name: "SelectStylesContext",
-  errorMessage:
-    "'useSelectStyles' returned 'undefined'. " +
-    "Seems you forgot to wrap the components in '<Select />'",
-});
+export const [SelectStylesProvider, useSelectStyles] = createStylesContext(
+  "SelectStylesContext",
+);
 
 export interface Option {
   label?: string;
