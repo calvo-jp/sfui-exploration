@@ -5,7 +5,7 @@ import {
   useMultiStyleConfig,
 } from "@chakra-ui/react";
 import { Pretty } from "../../types";
-import { getJsxTextContent } from "../../utils";
+import { getJsxTextContent, omit } from "../../utils";
 import {
   CheckCircleIcon,
   ExclamationCircleIcon,
@@ -30,6 +30,7 @@ export function Toast(props: ToastProps) {
     variant = "subtle",
     isClosable = true,
     onClose,
+    render,
     styleConfig,
     orientation,
     ...others
@@ -49,6 +50,8 @@ export function Toast(props: ToastProps) {
   const rootId = others.id?.toString() ?? uuid;
   const descId = rootId + "-desc";
   const titleId = rootId + "-title";
+
+  if (render) return render(omit(props, "render"));
 
   return (
     <chakra.div

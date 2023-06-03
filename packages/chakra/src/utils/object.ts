@@ -35,3 +35,33 @@ export function assignCommonPropsToKeys<
 
   return assigned as Record<K, T>;
 }
+
+export function omit<T extends Record<string, any>, K extends keyof T>(
+  obj: T,
+  ...keys: K[]
+) {
+  const copy = { ...obj };
+
+  for (const key of keys) {
+    if (Object.prototype.hasOwnProperty.call(copy, key)) {
+      delete copy[key];
+    }
+  }
+
+  return copy as Omit<T, K>;
+}
+
+export function pick<T extends Record<string, any>, K extends keyof T>(
+  obj: T,
+  ...keys: K[]
+) {
+  const picked: Partial<Record<K, T[K]>> = {};
+
+  for (const key of keys) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      picked[key] = obj[key];
+    }
+  }
+
+  return picked as Pick<T, K>;
+}
