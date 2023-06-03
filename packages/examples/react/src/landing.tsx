@@ -5,8 +5,11 @@ import {
   FormErrorMessage,
   FormHelperText,
   FormLabel,
+  HStack,
   Icon,
   Input,
+  PinInput,
+  PinInputField,
   Popover,
   PopoverArrow,
   PopoverBody,
@@ -86,6 +89,14 @@ export function Landing() {
             <FormHelperText>This is a hint</FormHelperText>
           )}
         </FormControl>
+
+        <HStack spacing={4} mt={4}>
+          <PinInput placeholder="0">
+            <PinInputField />
+            <PinInputField />
+            <PinInputField />
+          </PinInput>
+        </HStack>
 
         <FormControl mt={4}>
           <FormLabel>Select</FormLabel>

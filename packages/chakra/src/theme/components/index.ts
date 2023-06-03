@@ -13,6 +13,7 @@ import { Input } from "./input";
 import { Menu } from "./menu";
 import { Modal } from "./modal";
 import { Pagination } from "./pagination";
+import { PinInput } from "./pin-input";
 import { Popover } from "./popover";
 import { Progress } from "./progress";
 import { Select } from "./select";
@@ -44,6 +45,7 @@ export const components = {
   Menu,
   Modal,
   Pagination,
+  PinInput,
   Popover,
   Progress,
   Select,
