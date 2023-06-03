@@ -8,7 +8,12 @@ import { useSelectContext, useSelectStyles } from "./select-context";
 interface SelectOptionBaseProps {
   value: string;
   label?: string;
-  __index?: number;
+  /**
+   *
+   * ⚠️ INTERNAL USE
+   *
+   */
+  _index?: number;
 }
 
 export type SelectOptionProps = Merge<
@@ -19,7 +24,7 @@ export type SelectOptionProps = Merge<
 export const SelectOption = forwardRef<SelectOptionProps, "div">(
   function SelectOption(props, ref) {
     const {
-      __index = 0,
+      _index = 0,
       value,
       label,
       onClick,
@@ -34,12 +39,12 @@ export const SelectOption = forwardRef<SelectOptionProps, "div">(
     const mergedRef = useMergeRefs([
       ref,
       function (node: HTMLDivElement) {
-        context.popper.listRef.current[__index] = node;
+        context.popper.listRef.current[_index] = node;
       },
     ]);
 
     const handleClick = () => {
-      context.popper.setActiveIndex(__index);
+      context.popper.setActiveIndex(_index);
       context.popper.setIsOpen(false);
       context.onChange(value);
       context.setSelectedOption({
@@ -53,7 +58,7 @@ export const SelectOption = forwardRef<SelectOptionProps, "div">(
         ref={mergedRef}
         role="option"
         tabIndex={0}
-        aria-selected={context.popper.activeIndex === __index}
+        aria-selected={context.popper.activeIndex === _index}
         __css={styles.option}
         {...others}
         {...context.popper.getItemProps({

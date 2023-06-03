@@ -19,9 +19,9 @@ export const SelectOptions = forwardRef<SelectOptionsProps, "div">(
     const context = useSelectContext();
     const mergedRef = useMergeRefs([ref, context.popper.refs.setFloating]);
 
-    const clones = React.Children.map(children, (child, __index) => {
+    const clones = React.Children.map(children, (child, _index) => {
       return React.isValidElement(child)
-        ? React.cloneElement<any>(child, { __index })
+        ? React.cloneElement<any>(child, { _index })
         : child;
     });
 
