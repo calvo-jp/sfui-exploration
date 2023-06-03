@@ -1,1 +1,1 @@
-export const FloatingUiPortalId = "floating-ui-portal";
+export const FloatingUiPortalId = "sfui-portal";
