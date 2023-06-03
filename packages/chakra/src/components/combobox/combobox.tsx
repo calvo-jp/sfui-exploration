@@ -6,7 +6,7 @@ export interface ComboboxProps
   extends React.PropsWithChildren<ThemingProps<"Combobox">> {}
 
 export function Combobox(props: ComboboxProps) {
-  const styles = useMultiStyleConfig("Combobox");
+  const styles = useMultiStyleConfig("Combobox", props);
 
   return (
     <ComboboxStylesProvider value={styles}>
