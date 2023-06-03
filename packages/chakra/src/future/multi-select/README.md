@@ -6,16 +6,16 @@
 function Component() {
   return (
     <MultiSelect>
-      {({ selectedOptions }) => (
+      {({ selectedOptions, remove }) => (
         <>
           <MultiSelectControl>
             {selectedOptions.map((selectedOption) => (
-              <MultiSelectTag key={selectedOption.value}>
-                <MultiSelectTagLabel>
+              <Tag key={selectedOption.value}>
+                <TagLabel>
                   {selectedOption.label}
-                </MultiSelectTagLabel>
+                </TagLabel>
 
-                <MultiSelectTagCloseButton />
+                <TagCloseButton onClick={remove} />
               </MultiSelectTag>
             ))}
 

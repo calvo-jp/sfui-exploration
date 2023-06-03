@@ -35,10 +35,15 @@ export const ComboboxOption = forwardRef<ComboboxOptionProps, "div">(
       const input = context.popper.refs.domReference
         .current as HTMLInputElement | null;
 
-      input?.focus();
       context.popper.setInputValue(label ?? "");
       context.popper.setIsOpen(false);
       context.onChange(value);
+      context.selectOption({
+        label,
+        value,
+      });
+
+      input?.focus();
     };
 
     const matchesSearch = !label

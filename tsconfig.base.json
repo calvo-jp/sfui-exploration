@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@sfui/chakra": ["packages/chakra/src/index.ts"]
+      "@sfui/chakra": ["packages/chakra/src/index.ts"],
+      "@sfui/chakra/future": ["packages/chakra/src/future/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

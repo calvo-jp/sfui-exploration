@@ -31,17 +31,19 @@ export const ComboboxInput = forwardRef<ComboboxInputProps, "input">(
         __css={styles.input}
         value={context.popper.inputValue}
         onChange={(e) => {
-          context.popper.setInputValue(e.target.value);
+          const newValue = e.target.value;
 
-          if (e.target.value) {
+          context.popper.setInputValue(newValue);
+
+          if (newValue) {
             context.popper.setIsOpen(true);
             context.popper.setActiveIndex(0);
           } else {
             context.popper.setIsOpen(false);
           }
         }}
-        {...context.popper.getReferenceProps(inputProps)}
         {...ownProps}
+        {...context.popper.getReferenceProps(inputProps)}
       />
     );
   },

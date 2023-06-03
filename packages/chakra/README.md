@@ -91,7 +91,7 @@ export default function App() {
   - [x] Pagination
   - [x] Select
   - [ ] Combobox _(ongoing)_
-  - [ ] MultiSelect _(planning)_
+  - [ ] MultiSelect
   - [ ] DatePicker
   - [ ] DatePickerInput _(blocked by DatePicker)_
   - [ ] RangeDatePicker _(blocked by DatePicker)_

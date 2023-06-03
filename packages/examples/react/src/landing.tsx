@@ -34,12 +34,6 @@ import {
 import { CloudIcon } from "@heroicons/react/24/outline";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
-  Combobox,
-  ComboboxArrow,
-  ComboboxControl,
-  ComboboxInput,
-  ComboboxOption,
-  ComboboxOptions,
   Multiline,
   Select,
   SelectArrow,
@@ -48,6 +42,14 @@ import {
   SelectSpacer,
   SelectTrigger,
 } from "@sfui/chakra";
+import {
+  Combobox,
+  ComboboxArrow,
+  ComboboxControl,
+  ComboboxInput,
+  ComboboxOption,
+  ComboboxOptions,
+} from "@sfui/chakra/future";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
@@ -114,7 +116,7 @@ export function Landing() {
             {() => (
               <>
                 <ComboboxControl>
-                  <ComboboxInput />
+                  <ComboboxInput placeholder="Type here" />
                   <ComboboxArrow />
                 </ComboboxControl>
 

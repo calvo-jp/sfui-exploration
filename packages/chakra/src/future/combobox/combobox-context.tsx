@@ -7,15 +7,23 @@ export const [ComboboxStylesProvider, useComboboxStyles] = createStylesContext(
   "ComboboxStylesContext",
 );
 
+interface Option {
+  label: string;
+  value: string;
+}
+
 interface ComboboxState {
   value: string;
   onChange(newValue: string): void;
   popper: UseComboboxPopperReturn;
+  selectedOption?: Option;
+  selectOption: React.Dispatch<React.SetStateAction<Option | undefined>>;
 }
 
 export const ComboboxContext = React.createContext<ComboboxState>({
   value: "",
   onChange: noop,
+  selectOption: noop,
   popper: {} as any,
 });
 
@@ -40,11 +48,15 @@ export function ComboboxProvider({
 
   const popper = useComboboxPopper();
 
+  const [selectedOption, selectOption] = React.useState<Option>();
+
   return (
     <ComboboxContext.Provider
       value={{
         value: controllable[0],
         onChange: controllable[1],
+        selectOption,
+        selectedOption,
         popper,
       }}
     >

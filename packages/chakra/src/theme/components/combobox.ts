@@ -19,7 +19,6 @@ export const Combobox: MultiStyleConfig = {
         top: "50%",
         transform: "translate(0,-50%)",
         transition: "transform 300ms ease-in-out",
-        pointerEvents: "none",
         _expanded: {
           transform: "translate(0,-50%) rotate(180deg)",
         },
