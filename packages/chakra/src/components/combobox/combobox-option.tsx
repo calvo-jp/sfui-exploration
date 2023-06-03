@@ -52,9 +52,9 @@ export const ComboboxOption = forwardRef<ComboboxOptionProps, "div">(
         ref={mergedRef}
         role="option"
         tabIndex={0}
+        aria-selected={context.popper.activeIndex === _index}
         __css={styles.option}
         {...context.popper.getItemProps({
-          "aria-selected": context.popper.activeIndex === _index,
           onClick(event) {
             handleClick();
             runIfCallable(
