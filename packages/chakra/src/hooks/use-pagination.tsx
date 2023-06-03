@@ -1,20 +1,30 @@
 import { useMemo } from "react";
-import { clamp } from "../../utils";
-import { Details, Page } from "./types";
+import { clamp } from "../utils";
+
+interface OnChangeValue {
+  page: number;
+  size: number;
+}
 
 interface UsePaginationArg {
   page: number;
   size: number;
   total: number;
   siblingCount: number;
+  onChange(newValue: OnChangeValue): void;
 }
 
 export function usePagination({
   page,
   size,
   total,
+  onChange,
   siblingCount,
-}: UsePaginationArg): Details {
+}: UsePaginationArg) {
+  const numOfPages = Math.ceil(total / size);
+  const isLastPage = page >= numOfPages;
+  const isFirstPage = page === 1;
+
   const range = useMemo(() => {
     return getRange({
       page,
@@ -23,24 +33,28 @@ export function usePagination({
     });
   }, [page, size, total]);
 
-  const numOfPages = useMemo(() => {
-    return Math.ceil(total / size);
-  }, [size, total]);
-
-  const isFirstPage = page === 1;
-  const isLastPage = page >= numOfPages;
-
   const pages = useMemo(() => {
     return getPages({
       page,
-      size,
-      total,
       numOfPages,
       siblingCount,
-      isFirstPage,
-      isLastPage,
     });
-  }, [page, size, total, numOfPages, siblingCount, isFirstPage, isLastPage]);
+  }, [page, numOfPages, siblingCount]);
+
+  const next = () => onChange({ size, page: incr(page) });
+  const prev = () => onChange({ size, page: decr(page) });
+
+  const goto = (p: number) =>
+    onChange({
+      size,
+      page: clamp(p, 1, numOfPages),
+    });
+
+  const updateSize = (s: number) =>
+    onChange({
+      size: s,
+      page: 1,
+    });
 
   return {
     page,
@@ -51,25 +65,24 @@ export function usePagination({
     numOfPages,
     isFirstPage,
     isLastPage,
+    next,
+    prev,
+    goto,
+    updateSize,
   };
+}
+
+interface GetPagesArg {
+  page: number;
+  numOfPages: number;
+  siblingCount: number;
 }
 
 function getPages({
   page,
-  size,
-  total,
   numOfPages,
-  isFirstPage,
   siblingCount,
-}: {
-  page: number;
-  size: number;
-  total: number;
-  numOfPages: number;
-  siblingCount: number;
-  isFirstPage: boolean;
-  isLastPage: boolean;
-}): Page[] {
+}: GetPagesArg): IPaginationPage[] {
   if (numOfPages <= 0) return [];
 
   /**
@@ -92,23 +105,26 @@ function getPages({
    *
    */
 
-  const firstPage = 1;
   const lastPage = numOfPages;
+  const firstPage = 1;
   const doubledSiblingCount = siblingCount + siblingCount;
   const isCloseToFirstPage = page - (doubledSiblingCount + 1) < firstPage;
   const isCloseToLastPage = lastPage < page + (doubledSiblingCount + 1);
 
   /* removes ellipsis for cases like [1,2,3,...4] */
   if (doubledSiblingCount + 2 >= numOfPages) {
-    return Array.from<unknown, Page>({ length: numOfPages }, (_, i) => ({
-      type: "page",
-      value: i + 1,
-    }));
+    return Array.from<unknown, IPaginationPage>(
+      { length: numOfPages },
+      (_, i) => ({
+        type: "page",
+        value: i + 1,
+      }),
+    );
   }
 
   if (isCloseToFirstPage) {
     return [
-      ...Array.from<unknown, Page>(
+      ...Array.from<unknown, IPaginationPage>(
         { length: doubledSiblingCount + 1 },
         (_, i) => ({
           type: "page",
@@ -134,7 +150,7 @@ function getPages({
       {
         type: "ellipsis",
       },
-      ...Array.from<unknown, Page>(
+      ...Array.from<unknown, IPaginationPage>(
         { length: doubledSiblingCount + 1 },
         (_, i) => ({
           type: "page",
@@ -152,18 +168,24 @@ function getPages({
     {
       type: "ellipsis",
     },
-    ...Array.from<unknown, Page>({ length: siblingCount }, (_, i) => ({
-      type: "page",
-      value: page - 1 - i,
-    })).reverse(),
+    ...Array.from<unknown, IPaginationPage>(
+      { length: siblingCount },
+      (_, i) => ({
+        type: "page",
+        value: page - 1 - i,
+      }),
+    ).reverse(),
     {
       type: "page",
       value: page,
     },
-    ...Array.from<unknown, Page>({ length: siblingCount }, (_, i) => ({
-      type: "page",
-      value: page + 1 + i,
-    })),
+    ...Array.from<unknown, IPaginationPage>(
+      { length: siblingCount },
+      (_, i) => ({
+        type: "page",
+        value: page + 1 + i,
+      }),
+    ),
     {
       type: "ellipsis",
     },
@@ -174,15 +196,13 @@ function getPages({
   ];
 }
 
-function getRange({
-  page,
-  size,
-  total,
-}: {
+interface GetRangeArg {
   page: number;
   size: number;
   total: number;
-}) {
+}
+
+function getRange({ page, size, total }: GetRangeArg): IPaginationRange {
   let start: number;
   let until: number;
 
@@ -196,4 +216,24 @@ function getRange({
     start,
     until,
   };
+}
+
+const incr = (v: number, n = 1) => v + n;
+const decr = (v: number, n = 1) => v - n;
+
+export type UsePaginationReturn = ReturnType<typeof usePagination>;
+
+export type IPaginationPage =
+  | {
+      type: "page";
+      value: number;
+    }
+  | {
+      type: "ellipsis";
+      value?: never;
+    };
+
+export interface IPaginationRange {
+  start: number;
+  until: number;
 }

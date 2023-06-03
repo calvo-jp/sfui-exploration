@@ -11,13 +11,15 @@ import { Merge } from "../../types";
 import { runIfCallable } from "../../utils";
 import {
   PaginationProviderProps,
+  PaginationState,
   PaginationStylesProvider,
   usePaginationContext,
   withPaginationContext,
 } from "./pagination-context";
-import { Details } from "./types";
 
-type Children = ((context: Details) => React.ReactNode) | React.ReactNode;
+type Children =
+  | ((context: PaginationState) => React.ReactNode)
+  | React.ReactNode;
 
 interface PaginationBaseProps extends PaginationProviderProps {
   children: Children;
@@ -48,7 +50,7 @@ export const Component = forwardRef(function Pagination(
   return (
     <chakra.div ref={ref} __css={styles.container} {...others}>
       <PaginationStylesProvider value={styles}>
-        {runIfCallable(children, context.details)}
+        {runIfCallable(children, context)}
       </PaginationStylesProvider>
     </chakra.div>
   );

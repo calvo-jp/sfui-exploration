@@ -51,10 +51,10 @@ HDS theme for chakra w/ addtl complex components
   - [x] Multiline
   - [x] Select
   - [x] Pagination
-  - [ ] MultiSelect
-  - [ ] Combobox
+  - [ ] Combobox _(ongoing)_
+  - [ ] MultiSelect _(ongoing)_
   - [ ] DatePicker
-  - [ ] DatePickerInput
-  - [ ] RangeDatePicker
-  - [ ] RangeDatePickerInput
-  - [ ] RangeDatePickerDropdown
+  - [ ] DatePickerInput _(blocked by DatePicker)_
+  - [ ] RangeDatePicker _(blocked by DatePicker)_
+  - [ ] RangeDatePickerInput _(blocked by RangeDatePickerInput)_
+  - [ ] RangeDatePickerDropdown _(blocked by RangeDatePickerDropdown)_

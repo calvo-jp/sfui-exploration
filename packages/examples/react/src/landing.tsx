@@ -106,7 +106,7 @@ export function Landing() {
           </Select>
         </FormControl>
 
-        <Select mt={4} isInvalid>
+        <Select mt={4}>
           {({ selectedOption }) => (
             <>
               <SelectTrigger p={4}>

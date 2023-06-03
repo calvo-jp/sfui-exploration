@@ -1,14 +1,14 @@
 import { HTMLChakraProps, chakra, forwardRef } from "@chakra-ui/react";
 import { ReactNode, useMemo } from "react";
+import { IPaginationRange } from "../../hooks";
 import { Merge } from "../../types";
 import { runIfCallable } from "../../utils";
 import {
   usePaginationContext,
   usePaginationStyles,
 } from "./pagination-context";
-import { Range } from "./types";
 
-type Children = ReactNode | ((range: Range) => ReactNode);
+type Children = ReactNode | ((range: IPaginationRange) => ReactNode);
 
 interface PaginationRangeBaseProps {
   children?: Children;
@@ -30,18 +30,14 @@ export const PaginationRange = forwardRef(function PaginationRange(
 
   const defaultLabel = useMemo(() => {
     return `Page %s-%u to %t`
-      .replace("%s", context.details.range.start.toString())
-      .replace("%u", context.details.range.until.toString())
-      .replace("%t", context.details.total.toString());
-  }, [
-    context.details.range.start,
-    context.details.range.until,
-    context.details.total,
-  ]);
+      .replace("%s", context.range.start.toString())
+      .replace("%u", context.range.until.toString())
+      .replace("%t", context.total.toString());
+  }, [context.range.start, context.range.until, context.total]);
 
   return (
     <chakra.div ref={ref} __css={styles.range} {...others}>
-      {runIfCallable(children, context.details.range) ?? defaultLabel}
+      {runIfCallable(children, context.range) ?? defaultLabel}
     </chakra.div>
   );
 });

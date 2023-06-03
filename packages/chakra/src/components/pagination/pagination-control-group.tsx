@@ -3,12 +3,12 @@ import { ReactNode } from "react";
 import { Merge } from "../../types";
 import { runIfCallable } from "../../utils";
 import {
+  PaginationState,
   usePaginationContext,
   usePaginationStyles,
 } from "./pagination-context";
-import { Details } from "./types";
 
-type Children = ReactNode | ((details: Details) => ReactNode);
+type Children = ReactNode | ((details: PaginationState) => ReactNode);
 
 interface PaginationControlGroupBaseProps {
   children?: Children;
@@ -28,7 +28,7 @@ export const PaginationControlGroup = forwardRef(
 
     return (
       <chakra.div ref={ref} __css={styles.group} {...others}>
-        {runIfCallable(children, context.details)}
+        {runIfCallable(children, context)}
       </chakra.div>
     );
   },

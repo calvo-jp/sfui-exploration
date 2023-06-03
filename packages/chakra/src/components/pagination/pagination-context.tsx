@@ -7,10 +7,14 @@ import {
 } from "@chakra-ui/react";
 import { createContext } from "@chakra-ui/react-context";
 import * as React from "react";
-import { UseSelectPopperReturn, useSelectPopper } from "../../hooks";
+import {
+  UsePaginationReturn,
+  UseSelectPopperReturn,
+  usePagination,
+  useSelectPopper,
+} from "../../hooks";
 import { invariant, noop } from "../../utils";
-import { Details, Value } from "./types";
-import { usePagination } from "./utils";
+import { Value } from "./types";
 
 export const [PaginationStylesProvider, usePaginationStyles] = createContext<
   Record<string, SystemStyleObject>
@@ -21,18 +25,27 @@ export const [PaginationStylesProvider, usePaginationStyles] = createContext<
     "Seems you forgot to wrap the components in '<Pagination />'",
 });
 
-export interface PaginationState {
-  value: Value;
-  onChange: React.Dispatch<React.SetStateAction<Value>>;
+export interface PaginationState extends UsePaginationReturn {
   popper: UseSelectPopperReturn;
-  details: Details;
 }
 
 export const PaginationContext = React.createContext<PaginationState>({
-  value: {} as any,
-  onChange: noop,
+  goto: noop,
+  next: noop,
+  prev: noop,
+  page: 1,
+  size: 10,
+  pages: [],
+  total: 0,
+  range: {
+    start: 0,
+    until: 0,
+  },
+  numOfPages: 0,
+  isLastPage: false,
+  isFirstPage: false,
+  updateSize: noop,
   popper: {} as any,
-  details: {} as any,
 });
 
 export type PaginationProviderProps = {
@@ -62,19 +75,13 @@ export function PaginationProvider({
   const details = usePagination({
     page: controllableState[0].page,
     size: controllableState[0].size,
+    onChange: controllableState[1],
     total,
     siblingCount,
   });
 
   return (
-    <PaginationContext.Provider
-      value={{
-        value: controllableState[0],
-        onChange: controllableState[1],
-        popper,
-        details,
-      }}
-    >
+    <PaginationContext.Provider value={{ ...details, popper }}>
       {children}
     </PaginationContext.Provider>
   );

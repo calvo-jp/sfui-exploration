@@ -36,10 +36,7 @@ export const PaginationSizeControl = forwardRef(function PaginationSizeControl(
   const handleSelect = (index: number) => {
     context.popper.setActiveIndex(index);
     context.popper.setIsOpen(false);
-    context.onChange({
-      page: 1,
-      size: sizes[index],
-    });
+    context.updateSize(sizes[index]);
   };
 
   return (
@@ -51,9 +48,7 @@ export const PaginationSizeControl = forwardRef(function PaginationSizeControl(
         {...context.popper.getReferenceProps()}
         {...others}
       >
-        <chakra.span>
-          {children ?? `Show ${context.value.size} entries`}
-        </chakra.span>
+        <chakra.span>{children ?? `Show ${context.size} entries`}</chakra.span>
         <chakra.svg
           as={ChevronDownIcon}
           w={4}
