@@ -22,7 +22,7 @@ export default function App() {
 
 - Add custom toast component and default options
 
-```diff
+```diff tsx
 - import { theme as sfTheme } from "@sfui/chakra";
 + import { theme as sfTheme, defaultToastOptions } from "@sfui/chakra";
 import { theme as myTheme } from "./theme-overrides";
