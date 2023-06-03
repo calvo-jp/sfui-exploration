@@ -1,4 +1,4 @@
-# Combobox (AutoComplete)
+# Combobox
 
 ## Usage
 
@@ -6,24 +6,10 @@
 function Component() {
   return (
     <Combobox>
-      <ComboboxTrigger>
-        {({ selectedOptions }) => (
-          <>
-            {selectedOptions.map((selectedOption) => (
-              <ComboboxTag key={selectedOption.value}>
-                <ComboboxTagLabel> {selectedOption.label}</ComboboxTagLabel>
-                <ComboboxTagCloseButton>
-                  {selectedOption.label}
-                </ComboboxTagCloseButton>
-              </ComboboxTag>
-            ))}
-          </>
-        )}
-
+      <ComboboxControl>
         <ComboboxInput />
-        <ComboboxClearButton />
         <ComboboxArrow />
-      </ComboboxTrigger>
+      </ComboboxControl>
 
       <ComboboxOptions>
         <ComboboxOption label="Option 1" value="1" />

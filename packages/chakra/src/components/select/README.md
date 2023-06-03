@@ -12,6 +12,9 @@ function Component() {
         <>
           <SelectTrigger>
             {selectedOption.label ?? "Select option"}
+
+            <SelectSpacer />
+            <SelectArrow />
           </SelectTrigger>
 
           <SelectOptions>

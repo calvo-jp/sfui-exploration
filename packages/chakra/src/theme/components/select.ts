@@ -15,6 +15,11 @@ export const Select: MultiStyleConfig = {
     icon: {
       w: 5,
       h: 5,
+      transform: "rotate(0deg)",
+      transition: "transform 300ms ease-in-out",
+      _expanded: {
+        transform: "rotate(180deg)",
+      },
     },
     trigger: {
       w: "full",

@@ -49,8 +49,8 @@ HDS theme for chakra w/ addtl complex components
     Chakra's `TableContainer` is the only component which is not themable due to it being outside of thier `TableStylesProvider`. They are currently hard-coding the styles for it. We need one which we can theme globally
 
   - [x] Multiline
-  - [x] Select
   - [x] Pagination
+  - [ ] Select _(ongoing)_
   - [ ] Combobox _(ongoing)_
   - [ ] MultiSelect _(ongoing)_
   - [ ] DatePicker

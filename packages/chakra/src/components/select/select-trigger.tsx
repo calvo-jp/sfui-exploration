@@ -8,7 +8,6 @@ import { useMergeRefs } from "@floating-ui/react";
 import * as React from "react";
 import { Merge } from "../../types";
 import { omitFormControlProps } from "../../utils";
-import { ChevronDownIcon } from "./icons";
 import { SelectProps } from "./select";
 import { useSelectContext, useSelectStyles } from "./select-context";
 
@@ -35,18 +34,7 @@ export const SelectTrigger = forwardRef<SelectTriggerProps, "button">(
         {...ownProps}
         {...context.popper.getReferenceProps(buttonProps)}
       >
-        <chakra.span flexGrow={1}>{children}</chakra.span>
-        <chakra.svg
-          as={ChevronDownIcon}
-          __css={{
-            ...styles.icon,
-            transform: "rotate(0deg)",
-            transition: "transform 300ms ease-in-out",
-            ...(context.popper.isOpen && {
-              transform: "rotate(180deg)",
-            }),
-          }}
-        />
+        {children}
       </chakra.button>
     );
   },
