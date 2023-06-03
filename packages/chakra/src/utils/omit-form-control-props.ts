@@ -1,6 +1,8 @@
 import { UseFormControlProps } from "@chakra-ui/react";
 
-const keys: (keyof UseFormControlProps<any>)[] = [
+type FormControlPropsKey = keyof UseFormControlProps<any>;
+
+const keys: FormControlPropsKey[] = [
   "aria-describedby",
   "disabled",
   "id",
@@ -17,11 +19,11 @@ const keys: (keyof UseFormControlProps<any>)[] = [
 export function omitFormControlProps<
   C extends HTMLElement,
   T extends UseFormControlProps<C>,
->(props: T) {
+>(props: T, whitelist: FormControlPropsKey[] = []) {
   const copy: Record<string, any> = { ...props };
 
   for (const key of keys) {
-    if (key in copy) {
+    if (!whitelist.includes(key) && key in copy) {
       delete copy[key];
     }
   }
