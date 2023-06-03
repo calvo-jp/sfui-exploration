@@ -129,7 +129,22 @@ Reason for this exploration is due to the problems we've encountered in developm
 
 ## Why Chakra?
 
-TBD
+Up until today, `emotion` (which chakra uses as part of thier styled system) is still the best option that we have. Thier still a huge gap between new libraries like `vanilla-extract/css` in terms of feature that will speed up development. Apart from that, after seeing the article made by the author of chakra, I feel like we're going to be stuck with chakra for a very long time. Here are some best things that is coming in chakra version `3 and 4`
+
+- dropping of `framer-motion` (which has the biggest bundle size) in favor of css (v3)
+- migrating from `popper` to `floating-ui` (v3)
+
+  See https://floating-ui.com/
+
+- pandas (v4)
+
+  css-in-js which uses postcss to generate css files at build time
+
+- ark-ui (v4)
+
+  unstyled components which also comes with complex components like datepicker, colorpicker, combobox, etc.
+
+While these components are not yet available in current chakra version `(2.*)`, we'll create them
 
 ## Development
 
