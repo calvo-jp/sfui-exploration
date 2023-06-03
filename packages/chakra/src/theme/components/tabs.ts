@@ -1,8 +1,5 @@
-import { MultiStyleConfig, cssVar } from "@chakra-ui/react";
-import { getThemeColor, isHdsNeutralColorScheme } from "./__utils";
-
-const $buttonVariantFgFocus = cssVar("tabs-tab-fg--button--focus");
-const $buttonVariantBgFocus = cssVar("tabs-tab-bg--button--focus");
+import { MultiStyleConfig } from "@chakra-ui/react";
+import { isHdsNeutralColorScheme } from "./__utils";
 
 export const Tabs: MultiStyleConfig = {
   parts: ["root", "tab", "tablist", "tabpanels", "tabpanel"],
@@ -42,8 +39,8 @@ export const Tabs: MultiStyleConfig = {
             mr: 4,
           },
           _selected: {
-            color: getThemeColor(theme, colorScheme, 700),
-            borderColor: getThemeColor(theme, colorScheme, 700),
+            color: `${colorScheme}.700`,
+            borderColor: `${colorScheme}.700`,
           },
         },
       };
@@ -51,22 +48,6 @@ export const Tabs: MultiStyleConfig = {
     button({ theme, colorScheme }) {
       return {
         tab: {
-          [$buttonVariantFgFocus.variable]: getThemeColor(
-            theme,
-            colorScheme,
-            700,
-          ),
-          [$buttonVariantBgFocus.variable]: getThemeColor(
-            theme,
-            colorScheme,
-            500,
-          ),
-
-          ...(isHdsNeutralColorScheme(colorScheme) && {
-            [$buttonVariantFgFocus.variable]: "neutral.800",
-            [$buttonVariantBgFocus.variable]: "neutral.100",
-          }),
-
           py: 2,
           px: 3,
           color: "neutral.600",
@@ -78,8 +59,13 @@ export const Tabs: MultiStyleConfig = {
             mr: 2,
           },
           _selected: {
-            color: $buttonVariantFgFocus.reference,
-            bgColor: $buttonVariantBgFocus.reference,
+            color: `${colorScheme}.700`,
+            bgColor: `${colorScheme}.500`,
+
+            ...(isHdsNeutralColorScheme(colorScheme) && {
+              color: "neutral.800",
+              bgColor: "neutral.100",
+            }),
           },
         },
       };
@@ -103,9 +89,9 @@ export const Tabs: MultiStyleConfig = {
             mr: 4,
           },
           _selected: {
-            color: getThemeColor(theme, colorScheme, 700),
-            bgColor: getThemeColor(theme, colorScheme, 500),
-            borderColor: getThemeColor(theme, colorScheme, 700),
+            color: `${colorScheme}.700`,
+            bgColor: `${colorScheme}.500`,
+            borderColor: `${colorScheme}.700`,
           },
         },
       };
