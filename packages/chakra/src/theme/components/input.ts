@@ -2,7 +2,7 @@ import { MultiStyleConfig, cssVar } from "@chakra-ui/react";
 import { applyOpacity } from "../../utils";
 import { getThemeColor } from "./__utils";
 
-const $shadow = cssVar("input-field-shadow");
+const $shadow = cssVar("sf-input-field-shadow");
 
 export const Input: MultiStyleConfig = {
   parts: ["field", "addon", "element"],

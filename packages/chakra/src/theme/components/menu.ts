@@ -1,7 +1,7 @@
 import { MultiStyleConfig, cssVar } from "@chakra-ui/react";
 import { applyOpacity } from "../../utils";
 
-const $shadow = cssVar("menu-shadow");
+const $shadow = cssVar("sf-menu-shadow");
 
 export const Menu: MultiStyleConfig = {
   parts: ["button", "list", "item", "groupTitle", "command", "divider"],

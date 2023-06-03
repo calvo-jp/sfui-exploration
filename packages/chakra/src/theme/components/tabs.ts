@@ -18,7 +18,7 @@ export const Tabs: MultiStyleConfig = {
     },
   },
   variants: {
-    underline({ theme, colorScheme }) {
+    underline({ colorScheme }) {
       return {
         tablist: {
           pb: 1.5,
@@ -45,7 +45,7 @@ export const Tabs: MultiStyleConfig = {
         },
       };
     },
-    button({ theme, colorScheme }) {
+    button({ colorScheme }) {
       return {
         tab: {
           py: 2,

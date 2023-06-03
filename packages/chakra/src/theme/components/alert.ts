@@ -1,11 +1,11 @@
 import { AlertStatus, MultiStyleConfig, cssVar } from "@chakra-ui/react";
 import { getThemeColor } from "./__utils";
 
-const $subtleContainerBg = cssVar("alert-container-bg");
-const $subtleContainerBorder = cssVar("alert-container-border");
-const $subtleIconFg = cssVar("alert-icon-fg");
-const $subtleTitleFg = cssVar("alert-title-fg");
-const $subtleDescFg = cssVar("alert-desc-fg");
+const $subtleContainerBg = cssVar("sf-alert-container-bg");
+const $subtleContainerBorder = cssVar("sf-alert-container-border");
+const $subtleIconFg = cssVar("sf-alert-icon-fg");
+const $subtleTitleFg = cssVar("sf-alert-title-fg");
+const $subtleDescFg = cssVar("sf-alert-desc-fg");
 
 export const Alert: MultiStyleConfig = {
   parts: ["container", "title", "description", "icon", "spinner"],
