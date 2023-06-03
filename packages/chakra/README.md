@@ -2,6 +2,45 @@
 
 HDS theme for chakra w/ addtl complex components
 
+## Usage
+
+- Include theme in `ChakraProvider` like so
+
+```jsx
+import { theme as sfTheme } from "@sfui/chakra";
+import { theme as myTheme } from "./theme-overrides";
+import { ChakraProvider } from "@chakra-ui/react";
+
+export default function App() {
+  return (
+    <ChakraProvider theme={extendTheme(sfTheme, myTheme)}>
+      <Content />
+    </ChakraProvider>
+  );
+}
+```
+
+- Add custom toast component and default options
+
+```diff
+- import { theme as sfTheme } from "@sfui/chakra";
++ import { theme as sfTheme, defaultToastOptions } from "@sfui/chakra";
+import { theme as myTheme } from "./theme-overrides";
+import { ChakraProvider } from "@chakra-ui/react";
+
+export default function App() {
+  return (
+-    <ChakraProvider theme={extendTheme(sfTheme, myTheme)}>
++    <ChakraProvider
++      theme={extendTheme(sfTheme, myTheme)}
++      toastOptions={defaultToastOptions}
++    >
+      <Content />
+    </ChakraProvider>
+  );
+}
+```
+
 ## Todo
 
 - **theme**
