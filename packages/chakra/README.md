@@ -25,7 +25,7 @@ HDS theme for chakra w/ addtl complex components
   - [x] input
   - [x] menu
   - [x] modal
-  - [ ] pin-input
+  - [x] pin-input
   - [x] popover
   - [x] progress
   - [x] select
