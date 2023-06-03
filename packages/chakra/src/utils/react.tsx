@@ -1,5 +1,5 @@
 import * as React from "react";
-import { isArray, isBoolean, isNil, isNumber, isString } from "./is";
+import { isArray, isBoolean, isNil, isNumber, isString } from "./types";
 
 export function getJsxTextContent(node: React.ReactNode): string {
   try {

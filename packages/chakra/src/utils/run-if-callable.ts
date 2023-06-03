@@ -1,4 +1,4 @@
-import { isCallable } from "./is";
+import { isCallable } from "./types";
 
 export function runIfCallable<T, U>(
   valueOrCallback: T | ((...args: U[]) => T),
