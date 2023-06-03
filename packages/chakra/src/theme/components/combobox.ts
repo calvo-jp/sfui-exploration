@@ -7,8 +7,7 @@ export const Combobox: MultiStyleConfig = {
   baseStyle(context) {
     return {
       control: {
-        display: "flex",
-        alignItems: "center",
+        pos: "relative",
       },
       input: {
         w: "full",
@@ -16,10 +15,13 @@ export const Combobox: MultiStyleConfig = {
         ...runIfCallable(Input.baseStyle, context)?.field,
       },
       arrow: {
-        transform: "rotate(0deg)",
+        pos: "absolute",
+        top: "50%",
+        transform: "translate(0,-50%)",
         transition: "transform 300ms ease-in-out",
+        pointerEvents: "none",
         _expanded: {
-          transform: "rotate(180deg)",
+          transform: "translate(0,-50%) rotate(180deg)",
         },
 
         "& .combobox-arrow-icon": {
@@ -60,8 +62,12 @@ export const Combobox: MultiStyleConfig = {
   },
   sizes: {
     md: {
+      arrow: {
+        right: 3,
+      },
       input: {
         ...runIfCallable(Input.sizes?.md)?.field,
+        pr: 3 + 5 /* arrow icon width */ + 1 /* allowance */,
       },
       option: {
         px: 3,
@@ -70,6 +76,10 @@ export const Combobox: MultiStyleConfig = {
     lg: {
       input: {
         ...runIfCallable(Input.sizes?.md)?.field,
+        pr: 3.5 + 5 /* arrow icon width */ + 1 /* allowance */,
+      },
+      arrow: {
+        right: 3.5,
       },
       option: {
         px: 3.5,
