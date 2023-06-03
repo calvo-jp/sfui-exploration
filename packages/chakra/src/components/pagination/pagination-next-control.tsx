@@ -1,5 +1,4 @@
 import { HTMLChakraProps, chakra, forwardRef } from "@chakra-ui/react";
-import { Pretty } from "../../types";
 import { runIfCallable } from "../../utils";
 import { ChevronRightIcon } from "./icons";
 import {
@@ -7,12 +6,12 @@ import {
   usePaginationStyles,
 } from "./pagination-context";
 
-export type PaginationNextControlProps = Pretty<HTMLChakraProps<"button">>;
+export interface PaginationNextControlProps extends HTMLChakraProps<"button"> {}
 
-export const PaginationNextControl = forwardRef(function PaginationNextControl(
-  props: PaginationNextControlProps,
-  ref,
-) {
+export const PaginationNextControl = forwardRef<
+  PaginationNextControlProps,
+  "button"
+>(function PaginationNextControl(props, ref) {
   const {
     disabled,
     onClick,

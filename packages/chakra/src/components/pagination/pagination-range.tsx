@@ -14,30 +14,27 @@ interface PaginationRangeBaseProps {
   children?: Children;
 }
 
-export type PaginationRangeProps = Merge<
-  HTMLChakraProps<"div">,
-  PaginationRangeBaseProps
->;
+export interface PaginationRangeProps
+  extends Merge<HTMLChakraProps<"div">, PaginationRangeBaseProps> {}
 
-export const PaginationRange = forwardRef(function PaginationRange(
-  props: PaginationRangeProps,
-  ref,
-) {
-  const { children, ...others } = props;
+export const PaginationRange = forwardRef<PaginationRangeProps, "div">(
+  function PaginationRange(props, ref) {
+    const { children, ...others } = props;
 
-  const styles = usePaginationStyles();
-  const context = usePaginationContext();
+    const styles = usePaginationStyles();
+    const context = usePaginationContext();
 
-  const defaultLabel = useMemo(() => {
-    return `Page %s-%u to %t`
-      .replace("%s", context.range.start.toString())
-      .replace("%u", context.range.until.toString())
-      .replace("%t", context.total.toString());
-  }, [context.range.start, context.range.until, context.total]);
+    const defaultLabel = useMemo(() => {
+      return `Page %s-%u to %t`
+        .replace("%s", context.range.start.toString())
+        .replace("%u", context.range.until.toString())
+        .replace("%t", context.total.toString());
+    }, [context.range.start, context.range.until, context.total]);
 
-  return (
-    <chakra.div ref={ref} __css={styles.range} {...others}>
-      {runIfCallable(children, context.range) ?? defaultLabel}
-    </chakra.div>
-  );
-});
+    return (
+      <chakra.div ref={ref} __css={styles.range} {...others}>
+        {runIfCallable(children, context.range) ?? defaultLabel}
+      </chakra.div>
+    );
+  },
+);

@@ -1,10 +1,9 @@
-import { HTMLChakraProps, chakra } from "@chakra-ui/react";
-import { forwardRef } from "react";
+import { HTMLChakraProps, chakra, forwardRef } from "@chakra-ui/react";
 import { useTableStyles } from "./table-context";
 
 type TableHeaderProps = HTMLChakraProps<"div">;
 
-export const TableHeader = forwardRef<HTMLDivElement, TableHeaderProps>(
+export const TableHeader = forwardRef<TableHeaderProps, "div">(
   function TableHeader(props, ref) {
     const { children, ...others } = props;
 

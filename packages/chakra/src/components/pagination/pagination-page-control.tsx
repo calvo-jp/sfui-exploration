@@ -12,10 +12,10 @@ export type PaginationPageControlProps = Merge<
   IPaginationPage
 >;
 
-export const PaginationPageControl = forwardRef(function PaginationPageControl(
-  props: PaginationPageControlProps,
-  ref,
-) {
+export const PaginationPageControl = forwardRef<
+  PaginationPageControlProps,
+  "button"
+>(function PaginationPageControl(props, ref) {
   const { type, value, children, disabled, onClick, ...others } = props;
 
   const styles = usePaginationStyles();

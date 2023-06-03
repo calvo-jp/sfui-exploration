@@ -25,13 +25,14 @@ interface PaginationBaseProps extends PaginationProviderProps {
   children: Children;
 }
 
-export type PaginationProps = Merge<
-  HTMLChakraProps<"div"> & ThemingProps<"Pagination">,
-  PaginationBaseProps
->;
+export interface PaginationProps
+  extends Merge<
+    HTMLChakraProps<"div"> & ThemingProps<"Pagination">,
+    PaginationBaseProps
+  > {}
 
-export const Component = forwardRef(function Pagination(
-  props: PaginationProps,
+export const Component = forwardRef<PaginationProps, "div">(function Pagination(
+  props,
   ref,
 ) {
   const styles = useMultiStyleConfig("Pagination", props);

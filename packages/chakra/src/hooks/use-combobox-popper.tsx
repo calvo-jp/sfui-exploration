@@ -17,7 +17,6 @@ import * as React from "react";
 export function useComboboxPopper() {
   const [isOpen, setIsOpen] = React.useState(false);
   const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
-  const [selectedIndex, setSelectedIndex] = React.useState<number | null>(null);
 
   const floating = useFloating({
     open: isOpen,
@@ -42,7 +41,6 @@ export function useComboboxPopper() {
   const listNav = useListNavigation(floating.context, {
     listRef,
     activeIndex,
-    selectedIndex,
     onNavigate: setActiveIndex,
     virtual: true,
     loop: true,
@@ -69,8 +67,6 @@ export function useComboboxPopper() {
     setIsOpen,
     activeIndex,
     setActiveIndex,
-    selectedIndex,
-    setSelectedIndex,
   };
 }
 

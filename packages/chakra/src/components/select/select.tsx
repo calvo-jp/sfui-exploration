@@ -30,13 +30,14 @@ interface SelectBaseProps {
 
 type Omitted = "disabled" | "required" | "readOnly" | "size";
 
-export type SelectProps = Merge<
-  Omit<HTMLChakraProps<"button">, Omitted> &
-    ThemingProps<"Select"> &
-    SelectProviderProps &
-    FormControlOptions,
-  SelectBaseProps
->;
+export interface SelectProps
+  extends Merge<
+    Omit<HTMLChakraProps<"button">, Omitted> &
+      ThemingProps<"Select"> &
+      SelectProviderProps &
+      FormControlOptions,
+    SelectBaseProps
+  > {}
 
 /**
  *

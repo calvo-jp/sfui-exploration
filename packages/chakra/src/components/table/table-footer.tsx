@@ -1,10 +1,9 @@
-import { HTMLChakraProps, chakra } from "@chakra-ui/react";
-import { forwardRef } from "react";
+import { HTMLChakraProps, chakra, forwardRef } from "@chakra-ui/react";
 import { useTableStyles } from "./table-context";
 
-type TableFooterProps = HTMLChakraProps<"div">;
+export interface TableFooterProps extends HTMLChakraProps<"div"> {}
 
-export const TableFooter = forwardRef<HTMLDivElement, TableFooterProps>(
+export const TableFooter = forwardRef<TableFooterProps, "div">(
   function TableFooter(props, ref) {
     const { children, ...others } = props;
 

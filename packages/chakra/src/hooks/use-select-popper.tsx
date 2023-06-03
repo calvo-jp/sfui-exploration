@@ -17,7 +17,6 @@ import * as React from "react";
 export function useSelectPopper() {
   const [isOpen, setIsOpen] = React.useState(false);
   const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
-  const [selectedIndex, setSelectedIndex] = React.useState<number | null>(null);
 
   const floating = useFloating({
     open: isOpen,
@@ -43,7 +42,6 @@ export function useSelectPopper() {
     loop: true,
     listRef,
     activeIndex,
-    selectedIndex,
     onNavigate: setActiveIndex,
   });
 
@@ -68,8 +66,6 @@ export function useSelectPopper() {
     setIsOpen,
     activeIndex,
     setActiveIndex,
-    selectedIndex,
-    setSelectedIndex,
   };
 }
 

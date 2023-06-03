@@ -1,9 +1,12 @@
 import { HTMLChakraProps, chakra, forwardRef } from "@chakra-ui/react";
+import { useComboboxStyles } from "./combobox-context";
 
-export type ComboboxControlProps = HTMLChakraProps<"div">;
+export interface ComboboxControlProps extends HTMLChakraProps<"div"> {}
 
 export const ComboboxControl = forwardRef<ComboboxControlProps, "div">(
   function ComboboxControl(props, ref) {
-    return <chakra.div ref={ref} />;
+    const styles = useComboboxStyles();
+
+    return <chakra.div ref={ref} __css={styles.control} {...props} />;
   },
 );

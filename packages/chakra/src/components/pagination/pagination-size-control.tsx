@@ -17,15 +17,13 @@ interface PaginationSizeControlBaseProps {
   sizes?: number[];
 }
 
-export type PaginationSizeControlProps = Merge<
-  HTMLChakraProps<"button">,
-  PaginationSizeControlBaseProps
->;
+export interface PaginationSizeControlProps
+  extends Merge<HTMLChakraProps<"button">, PaginationSizeControlBaseProps> {}
 
-export const PaginationSizeControl = forwardRef(function PaginationSizeControl(
-  props: PaginationSizeControlProps,
-  ref,
-) {
+export const PaginationSizeControl = forwardRef<
+  PaginationSizeControlProps,
+  "button"
+>(function PaginationSizeControl(props, ref) {
   const { sizes = [10, 25, 50, 100], children, ...others } = props;
 
   const styles = usePaginationStyles();

@@ -6,10 +6,9 @@ import {
 } from "@floating-ui/react";
 import * as React from "react";
 import { FloatingUiPortalId } from "../../constants";
-import { Pretty } from "../../types";
 import { useSelectContext, useSelectStyles } from "./select-context";
 
-export type SelectOptionsProps = Pretty<HTMLChakraProps<"div">>;
+export interface SelectOptionsProps extends HTMLChakraProps<"div"> {}
 
 export const SelectOptions = forwardRef<SelectOptionsProps, "div">(
   function SelectOptions(props, ref) {

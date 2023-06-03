@@ -16,10 +16,8 @@ interface SelectOptionBaseProps {
   _index?: number;
 }
 
-export type SelectOptionProps = Merge<
-  HTMLChakraProps<"div">,
-  SelectOptionBaseProps
->;
+export interface SelectOptionProps
+  extends Merge<HTMLChakraProps<"div">, SelectOptionBaseProps> {}
 
 export const SelectOption = forwardRef<SelectOptionProps, "div">(
   function SelectOption(props, ref) {

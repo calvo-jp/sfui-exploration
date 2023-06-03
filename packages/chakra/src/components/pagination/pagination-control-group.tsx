@@ -14,22 +14,21 @@ interface PaginationControlGroupBaseProps {
   children?: Children;
 }
 
-export type PaginationControlGroupProps = Merge<
-  HTMLChakraProps<"div">,
-  PaginationControlGroupBaseProps
->;
+export interface PaginationControlGroupProps
+  extends Merge<HTMLChakraProps<"div">, PaginationControlGroupBaseProps> {}
 
-export const PaginationControlGroup = forwardRef(
-  function PaginationControlGroup(props: PaginationControlGroupProps, ref) {
-    const { children, ...others } = props;
+export const PaginationControlGroup = forwardRef<
+  PaginationControlGroupProps,
+  "div"
+>(function PaginationControlGroup(props, ref) {
+  const { children, ...others } = props;
 
-    const styles = usePaginationStyles();
-    const context = usePaginationContext();
+  const styles = usePaginationStyles();
+  const context = usePaginationContext();
 
-    return (
-      <chakra.div ref={ref} __css={styles.group} {...others}>
-        {runIfCallable(children, context)}
-      </chakra.div>
-    );
-  },
-);
+  return (
+    <chakra.div ref={ref} __css={styles.group} {...others}>
+      {runIfCallable(children, context)}
+    </chakra.div>
+  );
+});

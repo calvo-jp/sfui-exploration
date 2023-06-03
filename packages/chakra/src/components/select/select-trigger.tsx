@@ -11,7 +11,8 @@ import { omitFormControlProps } from "../../utils";
 import { SelectProps } from "./select";
 import { useSelectContext, useSelectStyles } from "./select-context";
 
-export type SelectTriggerProps = Merge<SelectProps, React.PropsWithChildren>;
+export interface SelectTriggerProps
+  extends Merge<SelectProps, React.PropsWithChildren> {}
 
 export const SelectTrigger = forwardRef<SelectTriggerProps, "button">(
   function SelectTrigger(props, ref) {

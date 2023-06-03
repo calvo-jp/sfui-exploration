@@ -1,15 +1,11 @@
 import { Textarea, TextareaProps } from "@chakra-ui/react";
 import { forwardRef } from "react";
 import Autosize from "react-textarea-autosize";
-import { Merge } from "../../types";
 
-export type MultilineProps = Merge<
-  TextareaProps,
-  {
-    minRows?: number;
-    maxRows?: number;
-  }
->;
+export interface MultilineProps extends TextareaProps {
+  minRows?: number;
+  maxRows?: number;
+}
 
 export const Multiline = forwardRef<HTMLTextAreaElement, MultilineProps>(
   function Multiline(props, ref) {
