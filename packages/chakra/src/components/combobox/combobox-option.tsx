@@ -4,7 +4,7 @@ import { runIfCallable } from "../../utils";
 import { useComboboxContext, useComboboxStyles } from "./combobox-context";
 
 export interface ComboboxOptionProps extends HTMLChakraProps<"div"> {
-  label?: string;
+  label: string;
   value: string;
   _index?: number;
 }
@@ -40,6 +40,12 @@ export const ComboboxOption = forwardRef<ComboboxOptionProps, "div">(
       context.popper.setIsOpen(false);
       context.onChange(value);
     };
+
+    const matchesSearch = !label
+      .toLowerCase()
+      .startsWith(context.popper.inputValue.toLowerCase());
+
+    if (matchesSearch) return null;
 
     return (
       <chakra.div
