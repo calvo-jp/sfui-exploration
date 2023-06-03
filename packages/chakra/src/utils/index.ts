@@ -1,3 +1,4 @@
+export * from "./array";
 export * from "./chakra";
 export * from "./clamp";
 export * from "./invariant";
