@@ -20,14 +20,12 @@ export interface PaginationControlGroupProps
 export const PaginationControlGroup = forwardRef<
   PaginationControlGroupProps,
   "div"
->(function PaginationControlGroup(props, ref) {
-  const { children, ...others } = props;
-
+>(function PaginationControlGroup({ children, ...props }, ref) {
   const styles = usePaginationStyles();
   const context = usePaginationContext();
 
   return (
-    <chakra.div ref={ref} __css={styles.group} {...others}>
+    <chakra.div ref={ref} __css={styles.group} {...props}>
       {runIfCallable(children, context)}
     </chakra.div>
   );

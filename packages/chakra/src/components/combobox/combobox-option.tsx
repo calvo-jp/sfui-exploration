@@ -4,13 +4,11 @@ import { useComboboxStyles } from "./combobox-context";
 export interface ComboboxOptionProps extends HTMLChakraProps<"div"> {}
 
 export const ComboboxOption = forwardRef<ComboboxOptionProps, "div">(
-  function ComboboxOption(props, ref) {
-    const { children, ...others } = props;
-
+  function ComboboxOption({ children, ...props }, ref) {
     const styles = useComboboxStyles();
 
     return (
-      <chakra.div ref={ref} __css={styles} {...others}>
+      <chakra.div ref={ref} __css={styles} {...props}>
         {children}
       </chakra.div>
     );

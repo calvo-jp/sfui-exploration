@@ -15,15 +15,13 @@ export interface SelectTriggerProps
   extends Merge<SelectProps, React.PropsWithChildren> {}
 
 export const SelectTrigger = forwardRef<SelectTriggerProps, "button">(
-  function SelectTrigger(props, ref) {
-    const { children, ...others } = props;
-
+  function SelectTrigger({ children, ...props }, ref) {
     const styles = useSelectStyles();
     const context = useSelectContext();
 
     const mergedRef = useMergeRefs([ref, context.popper.refs.setReference]);
 
-    const noThemeProps = omitThemingProps(others);
+    const noThemeProps = omitThemingProps(props);
     const buttonProps = useFormControl<HTMLButtonElement>(noThemeProps);
     const ownProps = omitFormControlProps(buttonProps);
 

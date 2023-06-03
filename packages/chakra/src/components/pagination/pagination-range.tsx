@@ -18,9 +18,7 @@ export interface PaginationRangeProps
   extends Merge<HTMLChakraProps<"div">, PaginationRangeBaseProps> {}
 
 export const PaginationRange = forwardRef<PaginationRangeProps, "div">(
-  function PaginationRange(props, ref) {
-    const { children, ...others } = props;
-
+  function PaginationRange({ children, ...props }, ref) {
     const styles = usePaginationStyles();
     const context = usePaginationContext();
 
@@ -32,7 +30,7 @@ export const PaginationRange = forwardRef<PaginationRangeProps, "div">(
     }, [context.range.start, context.range.until, context.total]);
 
     return (
-      <chakra.div ref={ref} __css={styles.range} {...others}>
+      <chakra.div ref={ref} __css={styles.range} {...props}>
         {runIfCallable(children, context.range) ?? defaultLabel}
       </chakra.div>
     );
