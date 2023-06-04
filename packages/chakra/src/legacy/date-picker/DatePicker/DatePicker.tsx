@@ -27,8 +27,6 @@ export function DatePicker(props: DatePickerProps) {
 
   const styles = useMultiStyleConfig("DatePicker", props);
 
-  console.log(styles);
-
   return (
     <DatePickerStylesProvider value={styles}>
       <chakra.div __css={styles.container}>
