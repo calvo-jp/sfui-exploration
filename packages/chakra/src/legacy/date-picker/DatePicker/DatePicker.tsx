@@ -1,5 +1,7 @@
 import {
+  ThemingProps,
   chakra,
+  omitThemingProps,
   useControllableState,
   useMultiStyleConfig,
 } from "@chakra-ui/react";
@@ -9,26 +11,29 @@ import { v4 as uuid } from "uuid";
 import { DAYS } from "../constants";
 import { getCalendar } from "../utils";
 import { DatePickerStylesProvider } from "./DatePickerContext";
-import { DatePickerControl } from "./DatePickerControl";
+import { DatePickerHeader } from "./DatePickerHeader";
 
-export interface DatePickerProps {
+export interface DatePickerProps extends ThemingProps<"DatePicker"> {
   value?: Date;
   onChange?(selected: Date): void;
 }
 
 export function DatePicker(props: DatePickerProps) {
-  const [value, onChange] = useControllableState(props);
+  const [value, onChange] = useControllableState(omitThemingProps(props));
+
   const [baseDate, setBaseDate] = React.useState(value ?? new Date());
 
   const calendar = React.useMemo(() => getCalendar(baseDate), [baseDate]);
 
   const styles = useMultiStyleConfig("DatePicker", props);
 
+  console.log(styles);
+
   return (
     <DatePickerStylesProvider value={styles}>
-      <chakra.div sx={styles.container}>
-        <chakra.div sx={styles.calendar}>
-          <DatePickerControl
+      <chakra.div __css={styles.container}>
+        <chakra.div __css={styles.calendar}>
+          <DatePickerHeader
             value={baseDate}
             onNext={() => setBaseDate((d) => addMonths(d, 1))}
             onPrev={() => setBaseDate((d) => subMonths(d, 1))}
@@ -77,7 +82,7 @@ export function DatePicker(props: DatePickerProps) {
                               "data-placeholder": true,
                             }),
                           }}
-                          __css={styles.calendaritem}
+                          __css={styles.calendarItem}
                           data-testid={`hds.datepicker.calendar.date.${formatted}`}
                         >
                           {obj.value.getDate()}

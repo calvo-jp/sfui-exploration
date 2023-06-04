@@ -15,8 +15,9 @@ export const DatePicker: MultiStyleConfig = {
     "calendar",
     "calendaritem",
     "footer",
+    "footerlabels",
+    "footerlabel",
     "footerbutton",
-    "footerinput",
     "divider",
   ],
   baseStyle({ theme, colorMode, colorScheme }) {
@@ -35,7 +36,8 @@ export const DatePicker: MultiStyleConfig = {
         display: "flex",
         alignItems: "center",
       },
-      headerlabel: {
+
+      headerLabel: {
         flexGrow: 1,
         textAlign: "center",
         fontSize: "16px",
@@ -43,7 +45,8 @@ export const DatePicker: MultiStyleConfig = {
         lineHeight: "24px",
         color: "gray.700",
       },
-      headerbutton: {
+
+      headerButton: {
         width: "36px",
         height: "36px",
         color: "gray.500",
@@ -71,7 +74,7 @@ export const DatePicker: MultiStyleConfig = {
         paddingX: "16px",
       },
 
-      sidebaritem: {
+      sidebarItem: {
         width: "150px",
         paddingX: "16px",
         paddingY: "10px",
@@ -115,7 +118,7 @@ export const DatePicker: MultiStyleConfig = {
         },
       },
 
-      calendaritem: {
+      calendarItem: {
         width: "40px",
         height: "40px",
         color: "neutral.800",
@@ -168,7 +171,13 @@ export const DatePicker: MultiStyleConfig = {
         alignItems: "center",
       },
 
-      footerinput: {
+      footerLabels: {
+        gap: "12px",
+        display: "flex",
+        alignItems: "center",
+      },
+
+      footerLabel: {
         h: "44px",
         py: "10px",
         px: "14px",
@@ -182,33 +191,45 @@ export const DatePicker: MultiStyleConfig = {
         },
       },
 
-      footerbutton: {
-        "& button": {
-          ...runIfCallable(Button.baseStyle, {
-            theme,
-            colorMode,
-            colorScheme,
-          }),
-          ...runIfCallable(Button.sizes?.md, {
-            theme,
-            colorMode,
-            colorScheme,
-          }),
-        },
-        "& .datepicker-footerbutton-cancel": {
-          ...runIfCallable(Button.variants?.outline, {
-            theme,
-            colorMode,
-            colorScheme: "neutral",
-          }),
-        },
-        "& .datepicker-footerbutton-apply": {
-          ...runIfCallable(Button.variants?.solid, {
-            theme,
-            colorMode,
-            colorScheme,
-          }),
-        },
+      footerButtonGroup: {
+        gap: "12px",
+        display: "flex",
+      },
+
+      footerSecondaryButton: {
+        ...runIfCallable(Button.baseStyle, {
+          theme,
+          colorMode,
+          colorScheme,
+        }),
+        ...runIfCallable(Button.sizes?.md, {
+          theme,
+          colorMode,
+          colorScheme,
+        }),
+        ...runIfCallable(Button.variants?.outline, {
+          theme,
+          colorMode,
+          colorScheme: "neutral",
+        }),
+      },
+
+      footerPrimaryButton: {
+        ...runIfCallable(Button.baseStyle, {
+          theme,
+          colorMode,
+          colorScheme,
+        }),
+        ...runIfCallable(Button.sizes?.md, {
+          theme,
+          colorMode,
+          colorScheme,
+        }),
+        ...runIfCallable(Button.variants?.solid, {
+          theme,
+          colorMode,
+          colorScheme,
+        }),
       },
 
       divider: {

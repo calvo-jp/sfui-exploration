@@ -4,23 +4,23 @@ import ChevronLeftIcon from "../icons/ChevronLeftIcon";
 import ChevronRightIcon from "../icons/ChevronRightIcon";
 import { useDatePickerStylesContext } from "./DatePickerContext";
 
-export type DatePickerControl = {
+interface DatePickerHeaderProps {
   value: Date;
   onNext?(): void;
   onPrev?(): void;
   __nextButtonTestId?: string;
   __prevButtonTestId?: string;
   __selectedMonthTestId?: String;
-};
+}
 
-export function DatePickerControl({
+export function DatePickerHeader({
   value,
   onNext,
   onPrev,
   __nextButtonTestId = "hds.datepicker.shared.control.next-month",
   __prevButtonTestId = "hds.datepicker.shared.control.prev-month",
   __selectedMonthTestId = "hds.datepicker.shared.selected-month",
-}: DatePickerControl) {
+}: DatePickerHeaderProps) {
   const styles = useDatePickerStylesContext();
 
   return (
@@ -28,21 +28,21 @@ export function DatePickerControl({
       <chakra.button
         onClick={onPrev}
         tabIndex={-1}
+        __css={styles.headerButton}
         data-testid={__prevButtonTestId}
-        __css={styles.headerbutton}
       >
         <Icon as={ChevronLeftIcon} className="datepicker-headerbutton-icon" />
       </chakra.button>
 
-      <chakra.p data-testid={__selectedMonthTestId} __css={styles.headerlabel}>
+      <chakra.p __css={styles.headerLabel} data-testid={__selectedMonthTestId}>
         {format(value, "MMMM")}
       </chakra.p>
 
       <chakra.button
         onClick={onNext}
         tabIndex={-1}
+        __css={styles.headerButton}
         data-testid={__nextButtonTestId}
-        __css={styles.headerbutton}
       >
         <Icon as={ChevronRightIcon} className="datepicker-headerbutton-icon" />
       </chakra.button>

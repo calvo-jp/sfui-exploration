@@ -1,6 +1,8 @@
 import {
   Box,
   chakra,
+  HTMLChakraProps,
+  omitThemingProps,
   ThemingProps,
   useControllableState,
   useDisclosure,
@@ -21,16 +23,20 @@ import {
 } from "@floating-ui/react";
 import { format } from "date-fns";
 import * as React from "react";
+import { Merge } from "../../../types";
 import { DatePicker } from "../DatePicker/DatePicker";
 import CalendarIcon from "../icons/CalendarIcon";
 
-export interface DatePickerInputProps extends ThemingProps<"Input"> {
+interface BaseProps {
   value?: Date;
   onChange?(newValue: Date): void;
   placeholder?: string;
   dateFormat?: ((value: Date) => string) | string;
   __fieldTestId?: string;
 }
+
+export interface DatePickerInputProps
+  extends Merge<ThemingProps<"Input"> & HTMLChakraProps<"button">, BaseProps> {}
 
 const DatePickerInput$ = function DatePickerInput(
   {
@@ -115,6 +121,7 @@ const DatePickerInput$ = function DatePickerInput(
           "data-focus": true,
         })}
         data-testid={__fieldTestId}
+        {...omitThemingProps(others)}
         {...getReferenceProps()}
       >
         <chakra.svg as={CalendarIcon} w={5} h={5} color="neutral.500" />
@@ -145,7 +152,7 @@ const DatePickerInput$ = function DatePickerInput(
                   $$onChange(newValue);
                   onClose();
                 }}
-                {...others}
+                colorScheme={others.colorScheme}
               />
             </Box>
           </FloatingPortal>

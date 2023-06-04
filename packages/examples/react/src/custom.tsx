@@ -5,6 +5,7 @@ import {
   DatePickerInput,
   MultiSelectField,
   RangeDatePicker,
+  RangeDatePickerInput,
   SelectField,
 } from "@sfui/chakra";
 
@@ -17,7 +18,9 @@ export function Custom() {
         lg: 24,
       }}
     >
-      <DatePickerInput colorScheme="error" />
+      <DatePickerInput colorScheme="blue" />
+
+      <RangeDatePickerInput colorScheme="error" mt={4} />
 
       <Box mt={8}>
         <RangeDatePicker colorScheme="error" />

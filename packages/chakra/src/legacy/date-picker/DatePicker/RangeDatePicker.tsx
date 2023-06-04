@@ -16,7 +16,7 @@ import {
   DatePickerStylesProvider,
   useDatePickerStylesContext,
 } from "./DatePickerContext";
-import { DatePickerControl } from "./DatePickerControl";
+import { DatePickerHeader } from "./DatePickerHeader";
 import {
   RangeDatePickerProvider,
   useRangeDatePickerContext,
@@ -41,7 +41,7 @@ function RangeDatePickerContent({
   includePreviousMonth = true,
 }: RangeDatePickerProps) {
   const context = useRangeDatePickerContext();
-  const styles = useMultiStyleConfig("DatePicker");
+  const styles = useDatePickerStylesContext();
 
   return (
     <chakra.div __css={styles.container}>
@@ -157,7 +157,7 @@ function Calendar({
 
   return (
     <chakra.div __css={styles.calendar} {...props}>
-      <DatePickerControl
+      <DatePickerHeader
         value={baseDate}
         onNext={onNext}
         onPrev={onPrev}
@@ -216,7 +216,7 @@ function Calendar({
                             "data-placeholder": true,
                           }),
                         }}
-                        __css={styles.calendaritem}
+                        __css={styles.calendarItem}
                         data-testid={`hds.datepicker.calendar.date.${formatted}`}
                       >
                         {value.getDate()}
@@ -233,7 +233,7 @@ function Calendar({
   );
 }
 
-export const RangeDatePicker = (props: RangeDatePickerProps) => {
+export function RangeDatePicker(props: RangeDatePickerProps) {
   const styles = useMultiStyleConfig("DatePicker", props);
 
   const [selectedRangeStart, setSelectedRangeStart] = React.useState(
@@ -321,4 +321,4 @@ export const RangeDatePicker = (props: RangeDatePickerProps) => {
       </RangeDatePickerProvider>
     </DatePickerStylesProvider>
   );
-};
+}

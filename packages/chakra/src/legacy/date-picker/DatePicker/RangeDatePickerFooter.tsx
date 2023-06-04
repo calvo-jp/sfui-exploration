@@ -19,12 +19,13 @@ export function RangeDatePickerFooter({
 
   return (
     <chakra.div __css={styles.footer}>
-      {hasSelectedDetails && <SelectedRange />}
+      {hasSelectedDetails && <FooterLabel />}
 
       <Spacer />
 
-      <chakra.div display="flex" gap="12px" __css={styles.footerbutton}>
+      <chakra.div __css={styles.footerButtonGroup}>
         <chakra.button
+          __css={styles.footerSecondaryButton}
           className="datepicker-footerbutton-cancel"
           onClick={onCancel}
           data-testid="hds.range-datepicker.controls.cancel"
@@ -32,8 +33,10 @@ export function RangeDatePickerFooter({
           Cancel
         </chakra.button>
         <chakra.button
+          onClick={onApply}
           disabled={!context.dateRange.start || !context.dateRange.until}
           className="datepicker-footerbutton-apply"
+          __css={styles.footerPrimaryButton}
           data-testid="hds.range-datepicker.controls.apply"
         >
           Apply
@@ -43,7 +46,7 @@ export function RangeDatePickerFooter({
   );
 }
 
-function SelectedRange() {
+function FooterLabel() {
   const styles = useDatePickerStylesContext();
   const context = useRangeDatePickerContext();
 
@@ -57,16 +60,14 @@ function SelectedRange() {
 
   return (
     <chakra.div
-      display="flex"
-      gap="12px"
-      alignItems="center"
+      __css={styles.footerLabels}
       data-testid="hds.range-datepicker.selected-dates"
     >
       <chakra.div
         {...(!context.dateRange.start && {
           "data-empty": true,
         })}
-        __css={styles.footerinput}
+        __css={styles.footerLabel}
         date-testid="hds.range-datepicker.selected-date.start"
       >
         {start}
@@ -78,7 +79,7 @@ function SelectedRange() {
         {...(!context.dateRange.until && {
           "data-empty": true,
         })}
-        __css={styles.footerinput}
+        __css={styles.footerLabel}
         date-testid="hds.range-datepicker.selected-date.until"
       >
         {until}

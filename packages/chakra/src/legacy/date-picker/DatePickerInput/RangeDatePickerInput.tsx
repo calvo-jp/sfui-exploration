@@ -1,9 +1,13 @@
 import {
   Box,
   chakra,
+  HTMLChakraProps,
   Icon,
+  omitThemingProps,
+  ThemingProps,
   useControllableState,
   useDisclosure,
+  useMultiStyleConfig,
 } from "@chakra-ui/react";
 import {
   autoUpdate,
@@ -19,26 +23,26 @@ import {
 } from "@floating-ui/react";
 import { format } from "date-fns";
 import * as React from "react";
+import { Merge } from "../../../types";
 import { RangeDatePicker } from "../DatePicker/RangeDatePicker";
 import CalendarIcon from "../icons/CalendarIcon";
 import { DateRange } from "../types";
-import { Field } from "./components";
 
-type Size = "sm" | "md";
-
-type Value = {
+interface Value {
   start: Date;
   until: Date;
-};
+}
 
-export type RangeDatePickerInputProps = {
-  size?: Size;
+interface BaseProps {
   value?: DateRange;
   onChange?(newValue?: Value): void;
   dateFormat?: ((value?: Value) => string) | string;
   placeholder?: string;
   __fieldTestId?: string;
-};
+}
+
+export interface RangeDatePickerInputProps
+  extends Merge<ThemingProps<"Input"> & HTMLChakraProps<"button">, BaseProps> {}
 
 export const RangeDatePickerInput$ = function RangeDatePickerInput(
   {
@@ -48,10 +52,12 @@ export const RangeDatePickerInput$ = function RangeDatePickerInput(
     dateFormat,
     placeholder,
     __fieldTestId = "hds.range-datepicker-input",
-    ...formGroupProps
+    ...others
   }: RangeDatePickerInputProps,
   ref: React.ForwardedRef<HTMLButtonElement>,
 ) {
+  const css = useMultiStyleConfig("Input", others);
+
   const [$$value, $$onChange] = useControllableState({
     value,
     onChange,
@@ -117,15 +123,21 @@ export const RangeDatePickerInput$ = function RangeDatePickerInput(
 
   return (
     <>
-      <Field
+      <chakra.button
         ref={fieldRef}
-        size={size}
         type="button"
-        onClick={onToggle}
-        sx={{
-          ...(size === "sm" && { h: "40px", py: "8px", px: "12px" }),
-          ...(size === "md" && { h: "44px", py: "10px", px: "14px" }),
+        __css={{
+          ...css.field,
+          display: "flex",
+          textAlign: "left",
+          gap: 2,
         }}
+        {...(isOpen && {
+          "data-focus": true,
+        })}
+        onClick={onToggle}
+        data-testid={__fieldTestId}
+        {...omitThemingProps(others)}
         {...getReferenceProps()}
       >
         <Icon
@@ -136,7 +148,7 @@ export const RangeDatePickerInput$ = function RangeDatePickerInput(
         />
 
         <chakra.span>{value ? dateToString(value) : placeholder}</chakra.span>
-      </Field>
+      </chakra.button>
 
       {isMounted && (
         <FloatingPortal>
@@ -160,6 +172,7 @@ export const RangeDatePickerInput$ = function RangeDatePickerInput(
               }}
               hasTimeAdverbial={false}
               includePreviousMonth={false}
+              colorScheme={others.colorScheme}
             />
           </Box>
         </FloatingPortal>

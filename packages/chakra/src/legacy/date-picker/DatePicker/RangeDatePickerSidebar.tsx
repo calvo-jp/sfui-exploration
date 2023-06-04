@@ -23,7 +23,7 @@ export function RangeDatePickerSidebar() {
       {Object.values(TimeAdverbial).map((value) => (
         <chakra.button
           key={uuid()}
-          __css={styles.sidebaritem}
+          __css={styles.sidebarItem}
           {...(selected === value && {
             "data-selected": true,
           })}
