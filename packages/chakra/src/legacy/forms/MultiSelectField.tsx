@@ -57,21 +57,23 @@ interface RenderOptionContext {
   isHighlighted: boolean;
 }
 
+interface MultiSelectBaseProps<T extends string | number> {
+  name?: string;
+  placeholder?: string;
+  value?: Option<T>["value"][];
+  options?: Option<T>[];
+  onChange?(newValue: Option<T>["value"][]): void;
+  renderValue?(option: Option<T>, context: RenderValueContext): ReactNode;
+  renderOption?(option: Option<T>, context: RenderOptionContext): ReactNode;
+  __fieldTestId?: string;
+  __valueTestId?: string | ((option: Option<T>) => string);
+  __optionTestId?: string | ((option: Option<T>) => string);
+}
+
 export interface MultiSelectFieldProps<T extends string | number>
   extends Merge<
     FormGroupProps & ThemingProps<"MultiSelect">,
-    {
-      name?: string;
-      placeholder?: string;
-      value?: Option<T>["value"][];
-      options?: Option<T>[];
-      onChange?(newValue: Option<T>["value"][]): void;
-      renderValue?(option: Option<T>, context: RenderValueContext): ReactNode;
-      renderOption?(option: Option<T>, context: RenderOptionContext): ReactNode;
-      __fieldTestId?: string;
-      __valueTestId?: string | ((option: Option<T>) => string);
-      __optionTestId?: string | ((option: Option<T>) => string);
-    }
+    MultiSelectBaseProps<T>
   > {}
 
 const MultiSelectFieldInternal = function MultiSelectFieldInternal<
@@ -174,7 +176,7 @@ const MultiSelectFieldInternal = function MultiSelectFieldInternal<
             {...(isOpen && {
               "data-opened": true,
             })}
-            {...(errorMsg && {
+            {...(others.error && {
               "data-invalid": true,
             })}
             {...(isDisabled && {

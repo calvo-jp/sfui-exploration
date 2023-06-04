@@ -3,12 +3,10 @@ import {
   FormErrorMessage,
   FormHelperText,
   FormLabel,
-  SystemStyleObject,
+  HTMLChakraProps,
   useId,
 } from "@chakra-ui/react";
 import * as React from "react";
-
-type StylingProps = SystemStyleObject;
 
 type RenderChildrenContext = {
   id?: string;
@@ -21,7 +19,8 @@ type RenderChildrenContext = {
   errorMsg?: string;
 };
 
-export type FormGroupProps = StylingProps & {
+export interface FormGroupProps
+  extends Omit<HTMLChakraProps<"div">, "children"> {
   id?: string;
   hint?: string;
   label?: string;
@@ -35,7 +34,7 @@ export type FormGroupProps = StylingProps & {
   __errorTestId?: string;
   __labelTestId?: string;
   __groupTestId?: string;
-};
+}
 
 export default React.forwardRef<HTMLDivElement, FormGroupProps>(
   function FormGroup(props, ref) {
@@ -75,7 +74,7 @@ export default React.forwardRef<HTMLDivElement, FormGroupProps>(
         isReadOnly={isReadOnly}
         isRequired={isRequired}
         data-testid={__groupTestId}
-        sx={others}
+        __css={others}
       >
         {!!label && (
           <FormLabel
