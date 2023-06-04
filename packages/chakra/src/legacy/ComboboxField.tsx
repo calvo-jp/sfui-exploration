@@ -11,20 +11,19 @@ import {
 import { useCombobox } from "downshift";
 import * as React from "react";
 import { v4 as uuid } from "uuid";
+import { Nullable, Pretty } from "../types";
 import FormGroup, { FormGroupProps } from "./FormGroup";
 import ChevronDownIcon from "./icons/ChevronDownIcon";
 import CloseIcon from "./icons/CloseIcon";
-import { Nullable, Prettify, Size } from "./types";
 
-export type Option = {
+interface Option {
   label: string;
   value: string | number;
-};
+}
 
 type RenderOption<T extends Option> = (item: T) => JSX.Element;
 
 type ComboboxBaseProps<T extends Option> = {
-  size?: Size;
   name?: string;
   value?: Nullable<T["value"]>;
   options?: T[];
@@ -57,7 +56,7 @@ type ComboboxBaseProps<T extends Option> = {
   __optionTestId?: string | ((item: T) => string);
 };
 
-export type ComboboxFieldProps<T extends Option> = Prettify<
+export type ComboboxFieldProps<T extends Option> = Pretty<
   ComboboxBaseProps<T> & FormGroupProps & ThemingProps<"Combobox">
 >;
 

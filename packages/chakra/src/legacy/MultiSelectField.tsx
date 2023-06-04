@@ -35,9 +35,9 @@ import {
   useState,
 } from "react";
 import { v4 as uuid } from "uuid";
-import { FloatingUiPortalId } from "../../constants";
-import { Merge } from "../../types";
-import { invariant } from "../../utils";
+import { FloatingUiPortalId } from "../constants";
+import { Merge } from "../types";
+import { invariant } from "../utils";
 import FormGroup, { FormGroupProps } from "./FormGroup";
 import CheckIcon from "./icons/CheckIcon";
 import CloseIcon from "./icons/CloseIcon";

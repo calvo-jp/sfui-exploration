@@ -16,9 +16,9 @@ import {
 import { useSelect } from "downshift";
 import * as React from "react";
 import { v4 as uuid } from "uuid";
+import { Pretty } from "../types";
 import FormGroup, { FormGroupProps } from "./FormGroup";
 import ChevronDownIcon from "./icons/ChevronDownIcon";
-import { Prettify, Size } from "./types";
 
 interface Option {
   label: string;
@@ -29,7 +29,6 @@ type RenderOption<T extends Option> = (item: T) => JSX.Element;
 
 interface SelectFieldBaseProps<T extends Option> {
   name?: string;
-  size?: Size;
   value?: T["value"];
   onChange?(newValue: T["value"]): void;
   options?: T[];
@@ -40,7 +39,7 @@ interface SelectFieldBaseProps<T extends Option> {
   __optionTestId?: string | ((item: T) => string);
 }
 
-export type SelectFieldProps<T extends Option> = Prettify<
+export type SelectFieldProps<T extends Option> = Pretty<
   FormGroupProps & SelectFieldBaseProps<T> & ThemingProps<"Select">
 >;
 
