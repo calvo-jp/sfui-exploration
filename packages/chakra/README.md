@@ -89,11 +89,11 @@ export default function App() {
 
   - [x] Multiline
   - [x] Pagination
-  - [ ] Select
-  - [ ] Combobox
-  - [ ] MultiSelect
-  - [ ] DatePicker
-  - [ ] DatePickerInput
-  - [ ] RangeDatePicker
-  - [ ] RangeDatePickerInput
-  - [ ] RangeDatePickerDropdown
+  - [x] Select
+  - [x] Combobox
+  - [x] MultiSelect
+  - [x] DatePicker
+  - [x] DatePickerInput
+  - [x] RangeDatePicker
+  - [x] RangeDatePickerInput
+  - [x] RangeDatePickerDropdown
