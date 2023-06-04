@@ -12,10 +12,10 @@ export interface RangeCalendarObject extends CalendarObject {
   isRangeUntilDate?: boolean;
 }
 
-export type DateRange = {
+export interface DateRange {
   start: Date;
   until: Date;
-};
+}
 
 export enum TimeAdverbial {
   Today = "Today",

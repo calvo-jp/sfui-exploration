@@ -10,9 +10,9 @@ import {
   RangeDatePickerProps,
 } from "../DatePicker/RangeDatePicker";
 
-export type RangeDatePickerModalProps = RangeDatePickerProps & {
+export interface RangeDatePickerModalProps extends RangeDatePickerProps {
   children(ctx: UseDisclosureReturn): JSX.Element;
-};
+}
 
 export const RangeDatePickerModal = function RangeDatePickerModal({
   children,
