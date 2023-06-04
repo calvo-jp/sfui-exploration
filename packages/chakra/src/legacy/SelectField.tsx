@@ -39,9 +39,10 @@ interface SelectFieldBaseProps<T extends Option> {
   __optionTestId?: string | ((item: T) => string);
 }
 
-export type SelectFieldProps<T extends Option> = Pretty<
-  FormGroupProps & SelectFieldBaseProps<T> & ThemingProps<"Select">
->;
+export interface SelectFieldProps<T extends Option>
+  extends Pretty<
+    FormGroupProps & SelectFieldBaseProps<T> & ThemingProps<"Select">
+  > {}
 
 function SelectField<T extends Option>(
   props: SelectFieldProps<T>,
