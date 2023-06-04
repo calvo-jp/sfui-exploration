@@ -17,7 +17,7 @@ export function Legacy() {
         lg: 24,
       }}
     >
-      <DatePickerInput />
+      <DatePickerInput colorScheme="error" />
 
       <Box mt={8}>
         <RangeDatePicker colorScheme="error" />

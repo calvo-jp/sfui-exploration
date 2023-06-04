@@ -22,7 +22,7 @@ export function DatePicker(props: DatePickerProps) {
 
   const calendar = React.useMemo(() => getCalendar(baseDate), [baseDate]);
 
-  const styles = useMultiStyleConfig("DatePicker");
+  const styles = useMultiStyleConfig("DatePicker", props);
 
   return (
     <DatePickerStylesProvider value={styles}>

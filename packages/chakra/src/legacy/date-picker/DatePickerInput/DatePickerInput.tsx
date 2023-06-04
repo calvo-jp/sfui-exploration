@@ -1,13 +1,15 @@
 import {
   Box,
   chakra,
-  Icon,
+  ThemingProps,
   useControllableState,
   useDisclosure,
+  useMultiStyleConfig,
 } from "@chakra-ui/react";
 import {
   autoUpdate,
   flip,
+  FloatingFocusManager,
   FloatingPortal,
   offset,
   shift,
@@ -21,18 +23,14 @@ import { format } from "date-fns";
 import * as React from "react";
 import { DatePicker } from "../DatePicker/DatePicker";
 import CalendarIcon from "../icons/CalendarIcon";
-import { Field } from "./components";
 
-type Size = "sm" | "md";
-
-export type DatePickerInputProps = {
-  size?: Size;
+export interface DatePickerInputProps extends ThemingProps<"Input"> {
   value?: Date;
   onChange?(newValue: Date): void;
   placeholder?: string;
   dateFormat?: ((value: Date) => string) | string;
   __fieldTestId?: string;
-};
+}
 
 const DatePickerInput$ = function DatePickerInput(
   {
@@ -42,9 +40,12 @@ const DatePickerInput$ = function DatePickerInput(
     dateFormat,
     placeholder,
     __fieldTestId = "hds.datepicker-input",
+    ...others
   }: DatePickerInputProps,
   ref: React.ForwardedRef<HTMLButtonElement>,
 ) {
+  const css = useMultiStyleConfig("Input", others);
+
   const [$$value, $$onChange] = useControllableState({
     value,
     onChange,
@@ -77,8 +78,8 @@ const DatePickerInput$ = function DatePickerInput(
 
   const { isMounted, styles } = useTransitionStyles(context, {
     duration: {
-      open: 150,
-      close: 100,
+      open: 50,
+      close: 25,
     },
   });
 
@@ -100,52 +101,55 @@ const DatePickerInput$ = function DatePickerInput(
 
   return (
     <>
-      <Field
+      <chakra.button
         ref={fieldRef}
-        size={size}
         type="button"
         onClick={onToggle}
-        sx={{
-          ...(size === "sm" && { h: "40px", py: "8px", px: "12px" }),
-          ...(size === "md" && { h: "44px", py: "10px", px: "14px" }),
+        __css={{
+          ...css.field,
+          display: "flex",
+          textAlign: "left",
+          gap: 2,
         }}
+        {...(isOpen && {
+          "data-focus": true,
+        })}
         data-testid={__fieldTestId}
         {...getReferenceProps()}
       >
-        <Icon
-          as={CalendarIcon}
-          width="20px"
-          height="20px"
-          color="neutrals.500"
-        />
+        <chakra.svg as={CalendarIcon} w={5} h={5} color="neutral.500" />
 
-        <chakra.span>
+        <chakra.span flexGrow={1}>
           {$$value ? dateToString($$value) : placeholder}
         </chakra.span>
-      </Field>
+      </chakra.button>
 
       {isMounted && (
-        <FloatingPortal>
-          <Box
-            ref={refs.setFloating}
-            sx={{
-              top: `${y ?? 0}px`,
-              left: `${x ?? 0}px`,
-              position: strategy,
-              ...styles,
-            }}
-            data-testid="hds.range-datepicker-input.calendar-container"
-            {...getFloatingProps()}
-          >
-            <DatePicker
-              value={$$value}
-              onChange={(newValue) => {
-                $$onChange(newValue);
-                onClose();
+        <FloatingFocusManager context={context}>
+          <FloatingPortal>
+            <Box
+              ref={refs.setFloating}
+              __css={{
+                pos: strategy,
+                top: `${y ?? 0}px`,
+                left: `${x ?? 0}px`,
+                outline: "none",
+                ...styles,
               }}
-            />
-          </Box>
-        </FloatingPortal>
+              data-testid="hds.range-datepicker-input.calendar-container"
+              {...getFloatingProps()}
+            >
+              <DatePicker
+                value={$$value}
+                onChange={(newValue) => {
+                  $$onChange(newValue);
+                  onClose();
+                }}
+                {...others}
+              />
+            </Box>
+          </FloatingPortal>
+        </FloatingFocusManager>
       )}
     </>
   );

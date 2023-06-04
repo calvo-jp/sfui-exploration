@@ -12,7 +12,7 @@ export const Field = chakra<"button", FieldProps>("button", {
     textAlign: "left",
     borderWidth: "1px",
     borderStyle: "solid",
-    borderColor: "neutrals.200",
+    borderColor: "neutral.200",
     rounded: "4px",
     gap: "8px",
     boxShadow: "0px 1px 2px rgba(16, 24, 40, 0.05)",
@@ -22,13 +22,13 @@ export const Field = chakra<"button", FieldProps>("button", {
     ...(props.size === "md" && { h: "44px", py: "10px", px: "14px" }),
 
     _hover: {
-      borderColor: "neutrals.300",
+      borderColor: "neutral.300",
     },
 
     _focus: {
       outline: "none",
       boxShadow: "0px 1px 2px rgba(16, 24, 40, 0.05)",
-      borderColor: "primary.700",
+      borderColor: `${props.colorScheme}.700`,
     },
 
     _active: {
@@ -46,9 +46,9 @@ export const Field = chakra<"button", FieldProps>("button", {
     },
 
     _disabled: {
-      color: "neutrals.600",
+      color: "neutral.600",
       cursor: "not-allowed",
-      borderColor: "neutrals.100",
+      borderColor: "neutral.100",
     },
   }),
 });
