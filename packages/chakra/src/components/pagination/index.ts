@@ -5,4 +5,3 @@ export * from "./pagination-page-control";
 export * from "./pagination-prev-control";
 export * from "./pagination-range";
 export * from "./pagination-size-control";
-export * from "./pagination-spacer";

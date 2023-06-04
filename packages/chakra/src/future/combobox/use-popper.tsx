@@ -4,7 +4,6 @@ import {
   offset,
   shift,
   size,
-  useClick,
   useDismiss,
   useFloating,
   useInteractions,
@@ -14,8 +13,9 @@ import {
 } from "@floating-ui/react";
 import * as React from "react";
 
-export function useSelectPopper() {
+export function usePopper() {
   const [isOpen, setIsOpen] = React.useState(false);
+  const [inputValue, setInputValue] = React.useState("");
   const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
 
   const floating = useFloating({
@@ -39,16 +39,16 @@ export function useSelectPopper() {
 
   const listRef = React.useRef<(HTMLElement | null)[]>([]);
   const listNav = useListNavigation(floating.context, {
-    loop: true,
     listRef,
     activeIndex,
     onNavigate: setActiveIndex,
+    virtual: true,
+    loop: true,
   });
 
   const role = useRole(floating.context, { role: "listbox" });
-  const click = useClick(floating.context, { event: "mousedown" });
   const dismiss = useDismiss(floating.context);
-  const interactions = useInteractions([dismiss, role, listNav, click]);
+  const interactions = useInteractions([dismiss, role, listNav]);
   const transitionStyles = useTransitionStyles(floating.context, {
     duration: {
       open: 150,
@@ -66,7 +66,9 @@ export function useSelectPopper() {
     setIsOpen,
     activeIndex,
     setActiveIndex,
+    inputValue,
+    setInputValue,
   };
 }
 
-export type UseSelectPopperReturn = ReturnType<typeof useSelectPopper>;
+export type UsePopperReturn = ReturnType<typeof usePopper>;

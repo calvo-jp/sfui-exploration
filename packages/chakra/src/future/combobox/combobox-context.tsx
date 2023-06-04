@@ -1,7 +1,7 @@
 import { createStylesContext, useControllableState } from "@chakra-ui/react";
 import * as React from "react";
-import { UseComboboxPopperReturn, useComboboxPopper } from "../../hooks";
 import { invariant, isString, noop } from "../../utils";
+import { UsePopperReturn, usePopper } from "./use-popper";
 
 export const [ComboboxStylesProvider, useComboboxStyles] = createStylesContext(
   "ComboboxStylesContext",
@@ -15,7 +15,7 @@ interface Option {
 interface ComboboxState {
   value: string;
   onChange(newValue: string): void;
-  popper: UseComboboxPopperReturn;
+  popper: UsePopperReturn;
   selectedOption?: Option;
   selectOption: React.Dispatch<React.SetStateAction<Option | undefined>>;
 }
@@ -46,8 +46,7 @@ export function ComboboxProvider({
       !isString(value) && !isString(defaultValue) ? "" : defaultValue,
   });
 
-  const popper = useComboboxPopper();
-
+  const popper = usePopper();
   const [selectedOption, selectOption] = React.useState<Option>();
 
   return (

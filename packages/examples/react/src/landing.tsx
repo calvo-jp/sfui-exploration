@@ -23,6 +23,7 @@ import {
   RangeSliderFilledTrack,
   RangeSliderThumb,
   RangeSliderTrack,
+  Spacer,
   Spinner,
   Switch,
   Tag,
@@ -33,22 +34,13 @@ import {
 } from "@chakra-ui/react";
 import { CloudIcon } from "@heroicons/react/24/outline";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Multiline } from "@sfui/chakra";
 import {
-  Multiline,
   Select,
   SelectArrow,
   SelectOption,
   SelectOptions,
-  SelectSpacer,
   SelectTrigger,
-} from "@sfui/chakra";
-import {
-  Combobox,
-  ComboboxArrow,
-  ComboboxControl,
-  ComboboxInput,
-  ComboboxOption,
-  ComboboxOptions,
 } from "@sfui/chakra/future";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -100,59 +92,6 @@ export function Landing() {
           )}
         </FormControl>
 
-        <HStack spacing={4} mt={4}>
-          <PinInput placeholder="0">
-            <PinInputField />
-            <PinInputField />
-            <PinInputField />
-            <PinInputField />
-          </PinInput>
-        </HStack>
-
-        <FormControl mt={4}>
-          <FormLabel>Search</FormLabel>
-
-          <Combobox>
-            {() => (
-              <>
-                <ComboboxControl>
-                  <ComboboxInput placeholder="Type here" />
-                  <ComboboxArrow />
-                </ComboboxControl>
-
-                <ComboboxOptions>
-                  <ComboboxOption label="Option 1" value="1" />
-                  <ComboboxOption label="Option 2" value="2" />
-                  <ComboboxOption label="Option 3" value="3" />
-                </ComboboxOptions>
-              </>
-            )}
-          </Combobox>
-        </FormControl>
-
-        <FormControl mt={4}>
-          <FormLabel>Select</FormLabel>
-
-          <Select>
-            {({ selectedOption }) => (
-              <>
-                <SelectTrigger>
-                  {selectedOption?.label ?? "Please Select"}
-
-                  <SelectSpacer />
-                  <SelectArrow />
-                </SelectTrigger>
-
-                <SelectOptions>
-                  <SelectOption value="1" label="One" />
-                  <SelectOption value="2" label="Two" />
-                  <SelectOption value="3" label="Three" />
-                </SelectOptions>
-              </>
-            )}
-          </Select>
-        </FormControl>
-
         <FormControl mt={4}>
           <FormLabel>Message</FormLabel>
           <Multiline placeholder="Type here" />
@@ -169,6 +108,37 @@ export function Landing() {
             Login
           </Button>
         </Tooltip>
+
+        <HStack spacing={4} mt={4}>
+          <PinInput placeholder="0">
+            <PinInputField />
+            <PinInputField />
+            <PinInputField />
+            <PinInputField />
+          </PinInput>
+        </HStack>
+
+        <FormControl mt={4}>
+          <FormLabel>Select</FormLabel>
+
+          <Select>
+            {({ selectedOption }) => (
+              <>
+                <SelectTrigger>
+                  {selectedOption?.label ?? "Please Select"}
+                  <Spacer />
+                  <SelectArrow />
+                </SelectTrigger>
+
+                <SelectOptions>
+                  <SelectOption value="1" label="One" />
+                  <SelectOption value="2" label="Two" />
+                  <SelectOption value="3" label="Three" />
+                </SelectOptions>
+              </>
+            )}
+          </Select>
+        </FormControl>
       </chakra.form>
 
       <Switch mt={4} />

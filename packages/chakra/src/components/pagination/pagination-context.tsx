@@ -6,20 +6,16 @@ import {
   useControllableState,
 } from "@chakra-ui/react";
 import * as React from "react";
-import {
-  UsePaginationReturn,
-  UseSelectPopperReturn,
-  usePagination,
-  useSelectPopper,
-} from "../../hooks";
 import { invariant, noop } from "../../utils";
 import { Value } from "./types";
+import { UsePaginationReturn, usePagination } from "./use-pagination";
+import { UsePopperReturn, usePopper } from "./use-popper";
 
 export const [PaginationStylesProvider, usePaginationStyles] =
   createStylesContext("PaginationStylesContext");
 
 export interface PaginationState extends UsePaginationReturn {
-  popper: UseSelectPopperReturn;
+  popper: UsePopperReturn;
 }
 
 export const PaginationContext = React.createContext<PaginationState>({
@@ -64,7 +60,7 @@ export function PaginationProvider({
       !value && !defaultValue ? { page: 1, size: 10 } : defaultValue,
   });
 
-  const popper = useSelectPopper();
+  const popper = usePopper();
   const details = usePagination({
     page: controllableState[0].page,
     size: controllableState[0].size,

@@ -1,8 +1,8 @@
 import { createStylesContext, useControllableState } from "@chakra-ui/react";
 import * as React from "react";
-import { UseSelectPopperReturn, useSelectPopper } from "../../hooks";
 import { Callable } from "../../types";
 import { invariant, noop } from "../../utils";
+import { UsePopperReturn, usePopper } from "./use-popper";
 
 export const [SelectStylesProvider, useSelectStyles] = createStylesContext(
   "SelectStylesContext",
@@ -16,7 +16,7 @@ export interface Option {
 export interface SelectState {
   value: string;
   onChange(newValue: string): void;
-  popper: UseSelectPopperReturn;
+  popper: UsePopperReturn;
   selectedOption?: Option;
   setSelectedOption: React.Dispatch<React.SetStateAction<Option | undefined>>;
 }
@@ -46,7 +46,7 @@ export function SelectProvider({
     defaultValue: !value && !defaultValue ? "" : defaultValue,
   });
 
-  const popper = useSelectPopper();
+  const popper = usePopper();
   const [selectedOption, setSelectedOption] = React.useState<Option>();
 
   return (

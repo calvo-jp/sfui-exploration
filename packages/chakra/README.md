@@ -89,8 +89,8 @@ export default function App() {
 
   - [x] Multiline
   - [x] Pagination
-  - [x] Select
-  - [ ] Combobox _(ongoing)_
+  - [ ] Select
+  - [ ] Combobox
   - [ ] MultiSelect
   - [ ] DatePicker
   - [ ] DatePickerInput _(blocked by DatePicker)_

@@ -55,7 +55,6 @@ import {
   PaginationPrevControl,
   PaginationRange,
   PaginationSizeControl,
-  PaginationSpacer,
   TableContainer,
   TableFooter,
   TableHeader,
@@ -225,7 +224,7 @@ export function Users() {
               return (
                 <>
                   <PaginationRange />
-                  <PaginationSpacer />
+                  <Spacer />
                   <PaginationSizeControl />
                   <PaginationControlGroup>
                     <PaginationPrevControl />

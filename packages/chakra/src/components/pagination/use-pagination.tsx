@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { clamp } from "../utils";
+import { clamp } from "../../utils";
 
 interface OnChangeValue {
   page: number;
