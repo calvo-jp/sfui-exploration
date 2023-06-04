@@ -46,7 +46,7 @@ Reason for this exploration is due to the problems we've encountered in developm
 
 - Harder to maintain due to the logic being tied to specific requirements instead of having the flexibility to cover most if not all use-cases (like what chakra does)
 
-## Proposed Solution
+## Solution (based on exploration)
 
 - HDS theme as chakra's default theme
 
@@ -108,7 +108,7 @@ Reason for this exploration is due to the problems we've encountered in developm
 
 - Ensure new components can be themed globally
 
-  New components will come with a default global theme which is of based on HDS and can be overridden either on-the-fly or globally
+  New components will come with a default global theme which is based on HDS and can be overridden either on-the-fly or globally
 
   eg. for a pagination component global theme would be something like this
 
