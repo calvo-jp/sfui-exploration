@@ -1,4 +1,4 @@
-export const colors = {
+const colors_future = {
   /*
    * Removing chakra colors here
    */
@@ -223,4 +223,17 @@ export const colors = {
   black: "#000000",
   white: "#FFFFFF",
   overlay: "#344054b3" /* gray[700] w/ 0.7 opacity */,
+};
+
+const colors_legacy = {
+  neutrals: colors_future.neutral,
+  "brand.primary": colors_future.primary,
+  "interface.error": colors_future.error,
+  "interface.warning": colors_future.warning,
+  "interface.success": colors_future.success,
+};
+
+export const colors = {
+  ...colors_future,
+  ...colors_legacy,
 };
