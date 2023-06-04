@@ -81,14 +81,6 @@ export default React.forwardRef<HTMLDivElement, FormGroupProps>(
           <FormLabel
             id={labelId}
             htmlFor={formId}
-            color="neutrals.900"
-            width="fit-content"
-            fontSize="14px"
-            fontWeight="600"
-            lineHeight="14px"
-            letterSpacing="0.02em"
-            marginBottom="6px"
-            userSelect="none"
             data-testid={__labelTestId}
             _disabled={{}}
           >
@@ -112,29 +104,13 @@ export default React.forwardRef<HTMLDivElement, FormGroupProps>(
           : children}
 
         {shouldShowHint && (
-          <FormHelperText
-            id={hintId}
-            color="neutrals.700"
-            fontSize="14px"
-            lineHeight="14px"
-            letterSpacing="0.02em"
-            marginTop="6px"
-            data-testid={__hintTestId}
-          >
+          <FormHelperText id={hintId} data-testid={__hintTestId}>
             {hint}
           </FormHelperText>
         )}
 
         {shouldShowError && (
-          <FormErrorMessage
-            id={errorId}
-            color="interface.error.700"
-            fontSize="14px"
-            lineHeight="14px"
-            letterSpacing="0.02em"
-            marginTop="6px"
-            data-testid={__errorTestId}
-          >
+          <FormErrorMessage id={errorId} data-testid={__errorTestId}>
             {error}
           </FormErrorMessage>
         )}

@@ -3,7 +3,7 @@ import { runIfCallable } from "../../utils";
 import { Input } from "./input";
 
 export const Combobox: MultiStyleConfig = {
-  parts: ["control", "input", "arrow", "options", "option"],
+  parts: ["control", "input", "arrow", "options", "option", "clear"],
   baseStyle(context) {
     return {
       control: {
@@ -48,6 +48,29 @@ export const Combobox: MultiStyleConfig = {
           bg: "neutral.100",
         },
       },
+      clear: {
+        position: "absolute",
+        top: "50%",
+        right: "0",
+        transform: "translateY(-50%)",
+        width: "20px",
+        height: "20px",
+        rounded: "md",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        bgColor: "blackAlpha.200",
+        color: "blackAlpha.600",
+        transition: "colors 300ms ease-in-out",
+        _hover: {
+          color: "blackAlpha.700",
+        },
+
+        "& .combobox-clear-icon": {
+          h: 4,
+          w: 4,
+        },
+      },
     };
   },
   variants: {
@@ -60,7 +83,7 @@ export const Combobox: MultiStyleConfig = {
     },
   },
   sizes: {
-    md: {
+    sm: {
       arrow: {
         right: 3,
       },
@@ -71,8 +94,11 @@ export const Combobox: MultiStyleConfig = {
       option: {
         px: 3,
       },
+      clear: {
+        marginRight: "12px",
+      },
     },
-    lg: {
+    md: {
       input: {
         ...runIfCallable(Input.sizes?.md)?.field,
         pr: 3.5 + 5 /* arrow icon width */ + 1 /* allowance */,
@@ -82,6 +108,9 @@ export const Combobox: MultiStyleConfig = {
       },
       option: {
         px: 3.5,
+      },
+      clear: {
+        marginRight: "42px",
       },
     },
   },

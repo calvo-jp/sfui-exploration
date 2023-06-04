@@ -1,4 +1,4 @@
-import { chakra, Icon } from "@chakra-ui/react";
+import { chakra, ThemingProps, useMultiStyleConfig } from "@chakra-ui/react";
 import {
   autoUpdate,
   flip,
@@ -12,7 +12,6 @@ import { useCombobox } from "downshift";
 import * as React from "react";
 import { v4 as uuid } from "uuid";
 import FormGroup, { FormGroupProps } from "./FormGroup";
-import { useStyles } from "./hooks";
 import ChevronDownIcon from "./icons/ChevronDownIcon";
 import CloseIcon from "./icons/CloseIcon";
 import { Nullable, Prettify, Size } from "./types";
@@ -59,7 +58,7 @@ type ComboboxBaseProps<T extends Option> = {
 };
 
 export type ComboboxFieldProps<T extends Option> = Prettify<
-  ComboboxBaseProps<T> & FormGroupProps
+  ComboboxBaseProps<T> & FormGroupProps & ThemingProps<"Combobox">
 >;
 
 /*
@@ -91,13 +90,6 @@ function ComboboxField<T extends Option>(
     ...others
   } = props;
 
-  const styles = useStyles({
-    size,
-    hasLeftIcon: !!leftIcon,
-    hasRightIcon: true,
-    hasClearIcon: true,
-  });
-
   const [filteredOptions, setFilteredOptions] = React.useState(() => {
     const defaultSearch = options.find((o) => o.value === value);
 
@@ -108,6 +100,8 @@ function ComboboxField<T extends Option>(
       return matcher(defaultSearch.label, o);
     });
   });
+
+  const css = useMultiStyleConfig("Combobox");
 
   const {
     isOpen,
@@ -165,7 +159,8 @@ function ComboboxField<T extends Option>(
             ref={refs.setReference}
             position="relative"
             data-testid="hds.combobox"
-            sx={{
+            __css={{
+              ...css.control,
               "& .HdsComboboxClearButton": {
                 display: "none",
               },
@@ -176,17 +171,7 @@ function ComboboxField<T extends Option>(
               },
             }}
           >
-            {!!leftIcon && (
-              <chakra.div
-                sx={styles.leftIcon({ isDisabled })}
-                data-testid="hds.combobox.left-icon"
-              >
-                {React.cloneElement<any>(leftIcon, { sx: styles.icon() })}
-              </chakra.div>
-            )}
-
             <chakra.input
-              sx={styles.field}
               {...(isInvalid && {
                 "aria-invalid": true,
               })}
@@ -199,6 +184,7 @@ function ComboboxField<T extends Option>(
                 name,
                 placeholder,
               })}
+              __css={css.input}
               data-testid={__fieldTestId}
             />
 
@@ -211,87 +197,74 @@ function ComboboxField<T extends Option>(
                   selectItem(null);
                   openMenu();
                 }}
-                sx={styles.clearIcon}
+                sx={css.clear}
                 data-testid={__clearBtnTestId}
               >
-                <Icon as={CloseIcon} width={4} height={4} />
+                <chakra.svg as={CloseIcon} className="combobox-clear-icon" />
               </chakra.button>
             )}
 
             <chakra.button
               type="button"
-              sx={styles.rightIcon({
-                isActive: isOpen,
-                isClickable: !isDisabled,
-                isDisabled,
-              })}
+              __css={css.arrow}
               {...getToggleButtonProps({
                 disabled: isDisabled,
               })}
               data-testid="hds.combobox.controls.toggle"
             >
-              <Icon
+              <chakra.svg
                 as={ChevronDownIcon}
-                sx={styles.icon({ isRotated: isOpen })}
+                className="combobox-arrow-icon"
               />
             </chakra.button>
           </chakra.div>
 
           <FloatingPortal>
-            <chakra.nav
-              ref={refs.setFloating}
-              sx={{
-                position: strategy,
-                top: `${y ?? 0}px`,
-                left: `${x ?? 0}px`,
+            <chakra.div
+              __css={{
+                pos: strategy,
+                top: `${y}px`,
+                left: `${x}px`,
                 zIndex,
+                ...css.options,
+                ...(!isOpen && {
+                  display: "none",
+                }),
               }}
+              {...getMenuProps(
+                { ref: refs.setFloating },
+                { suppressRefError: true },
+              )}
             >
-              <chakra.ul
-                sx={{
-                  ...styles.menu,
-                  listStyleType: "none",
-                  ...(!isOpen && {
-                    display: "none",
-                  }),
-                }}
-                {...getMenuProps({}, { suppressRefError: true })}
-                data-testid="hds.combobox.options"
-              >
-                {filteredOptions.map((item, index) => {
-                  return (
-                    <chakra.li
-                      {...getItemProps({
-                        key: uuid(),
-                        item,
-                        index,
-                      })}
-                      sx={styles.menuitem()}
-                      data-testid={
-                        typeof __optionTestId === "function"
-                          ? __optionTestId(item)
-                          : __optionTestId
-                      }
-                    >
-                      {renderOption(item)}
-                    </chakra.li>
-                  );
-                })}
-
-                {!filteredOptions.length && (
-                  <chakra.li
-                    fontSize="sm"
-                    paddingY={3}
-                    paddingX={3}
-                    color="neutrals.600"
-                    textAlign="center"
-                    data-testid="hds.combobox.nomatchfound"
+              {filteredOptions.map((item, index) => {
+                return (
+                  <chakra.div
+                    {...getItemProps({
+                      key: uuid(),
+                      item,
+                      index,
+                    })}
+                    __css={css.option}
+                    data-testid={
+                      typeof __optionTestId === "function"
+                        ? __optionTestId(item)
+                        : __optionTestId
+                    }
                   >
-                    No match found
-                  </chakra.li>
-                )}
-              </chakra.ul>
-            </chakra.nav>
+                    {renderOption(item)}
+                  </chakra.div>
+                );
+              })}
+
+              {!filteredOptions.length && (
+                <chakra.div
+                  __css={css.option}
+                  data-testid="hds.combobox.nomatchfound"
+                >
+                  No match found
+                </chakra.div>
+              )}
+            </chakra.div>
           </FloatingPortal>
         </>
       )}

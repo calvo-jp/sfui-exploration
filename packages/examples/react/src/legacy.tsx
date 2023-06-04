@@ -1,5 +1,10 @@
 import { Box } from "@chakra-ui/react";
-import { DatePicker, DatePickerInput, RangeDatePicker } from "@sfui/chakra";
+import {
+  ComboboxField,
+  DatePicker,
+  DatePickerInput,
+  RangeDatePicker,
+} from "@sfui/chakra";
 
 export function Legacy() {
   return (
@@ -18,6 +23,18 @@ export function Legacy() {
 
       <Box mt={8}>
         <DatePicker />
+      </Box>
+
+      <Box mt={8}>
+        <ComboboxField
+          isClearable
+          options={[
+            { label: "Option 1", value: 1 },
+            { label: "Option 2", value: 2 },
+            { label: "Option 3", value: 3 },
+            { label: "Option 4", value: 4 },
+          ]}
+        />
       </Box>
     </Box>
   );
