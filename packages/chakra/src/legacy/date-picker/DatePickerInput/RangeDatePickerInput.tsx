@@ -90,8 +90,8 @@ export const RangeDatePickerInput$ = function RangeDatePickerInput(
 
   const { isMounted, styles } = useTransitionStyles(context, {
     duration: {
-      open: 150,
-      close: 100,
+      open: 50,
+      close: 25,
     },
   });
 
