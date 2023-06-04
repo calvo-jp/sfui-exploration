@@ -5,6 +5,7 @@ import {
   createContext as createReactContext,
   useContext as useReactContext,
 } from "react";
+import { Callable } from "../types";
 
 export function getJsxTextContent(node: React.ReactNode): string {
   try {
@@ -47,12 +48,12 @@ export interface CreateContextOptions<T> {
 
 export type CreateContextReturn<T> = [
   React.Provider<T>,
-  () => T,
+  Callable<T>,
   React.Context<T>,
 ];
 
-function getErrorMessage(hook: string, provider: string) {
-  return `${hook} returned \`undefined\`. Seems you forgot to wrap component within ${provider}`;
+function getContextErr(hook: string, provider: string) {
+  return `${hook} returned 'undefined'. Seems you forgot to wrap component within ${provider}`;
 }
 
 export function createContext<T>(options: CreateContextOptions<T> = {}) {
@@ -73,7 +74,7 @@ export function createContext<T>(options: CreateContextOptions<T> = {}) {
 
     if (!context && strict) {
       const error = new Error(
-        errorMessage ?? getErrorMessage(hookName, providerName),
+        errorMessage ?? getContextErr(hookName, providerName),
       );
       error.name = "ContextError";
       Error.captureStackTrace?.(error, useContext);
