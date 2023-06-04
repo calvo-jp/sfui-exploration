@@ -1,11 +1,11 @@
 import { HTMLChakraProps, chakra, forwardRef } from "@chakra-ui/react";
-import { IPaginationPage } from "../../hooks";
 import { Merge } from "../../types";
 import { runIfCallable } from "../../utils";
 import {
   usePaginationContext,
   usePaginationStyles,
 } from "./pagination-context";
+import { IPaginationPage } from "./use-pagination";
 
 export type PaginationPageControlProps = Merge<
   HTMLChakraProps<"button">,
@@ -31,7 +31,9 @@ export const PaginationPageControl = forwardRef<
       onClick={(e) => {
         runIfCallable(onClick, e);
 
-        if (type === "page") context.goto(value);
+        if (type === "page") {
+          context.goto(value);
+        }
       }}
       __css={styles.page}
       {...others}

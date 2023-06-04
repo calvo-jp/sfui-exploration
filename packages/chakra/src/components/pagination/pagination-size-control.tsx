@@ -17,6 +17,8 @@ interface PaginationSizeControlBaseProps {
   sizes?: number[];
 }
 
+const defaultSizes = [10, 25, 50, 100];
+
 export interface PaginationSizeControlProps
   extends Merge<HTMLChakraProps<"button">, PaginationSizeControlBaseProps> {}
 
@@ -24,7 +26,7 @@ export const PaginationSizeControl = forwardRef<
   PaginationSizeControlProps,
   "button"
 >(function PaginationSizeControl(props, ref) {
-  const { sizes = [10, 25, 50, 100], children, ...others } = props;
+  const { sizes = defaultSizes, children, ...others } = props;
 
   const styles = usePaginationStyles();
   const context = usePaginationContext();
@@ -51,7 +53,7 @@ export const PaginationSizeControl = forwardRef<
           as={ChevronDownIcon}
           w={4}
           h={4}
-          className="pagination-sizecontrol__svg"
+          className="pagination-sizecontrol-icon"
         />
       </chakra.button>
 

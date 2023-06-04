@@ -1,12 +1,12 @@
 import { HTMLChakraProps, chakra, forwardRef } from "@chakra-ui/react";
 import { ReactNode, useMemo } from "react";
-import { IPaginationRange } from "../../hooks";
 import { Merge } from "../../types";
 import { runIfCallable } from "../../utils";
 import {
   usePaginationContext,
   usePaginationStyles,
 } from "./pagination-context";
+import { IPaginationRange } from "./use-pagination";
 
 type Children = ReactNode | ((range: IPaginationRange) => ReactNode);
 

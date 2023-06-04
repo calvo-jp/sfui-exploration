@@ -12,19 +12,7 @@ export const PaginationPrevControl = forwardRef<
   PaginationPrevControlProps,
   "button"
 >(function PaginationPrevControl(props, ref) {
-  const {
-    onClick,
-    disabled,
-    children = (
-      <chakra.svg
-        as={ChevronLeftIcon}
-        w={4}
-        h={4}
-        className="pagination-prevtrigger__svg"
-      />
-    ),
-    ...others
-  } = props;
+  const { onClick, disabled, children, ...others } = props;
 
   const styles = usePaginationStyles();
   const context = usePaginationContext();
@@ -42,7 +30,14 @@ export const PaginationPrevControl = forwardRef<
       __css={styles.prev}
       {...others}
     >
-      {children}
+      {children ?? (
+        <chakra.svg
+          as={ChevronLeftIcon}
+          w={4}
+          h={4}
+          className="pagination-prevtrigger__svg"
+        />
+      )}
     </chakra.button>
   );
 });

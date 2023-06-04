@@ -3,12 +3,12 @@ import { ReactNode } from "react";
 import { Merge } from "../../types";
 import { runIfCallable } from "../../utils";
 import {
-  PaginationState,
+  IPaginationContext,
   usePaginationContext,
   usePaginationStyles,
 } from "./pagination-context";
 
-type Children = ReactNode | ((details: PaginationState) => ReactNode);
+type Children = ReactNode | ((details: IPaginationContext) => ReactNode);
 
 interface PaginationControlGroupBaseProps {
   children?: Children;

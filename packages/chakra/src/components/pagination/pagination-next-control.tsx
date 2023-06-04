@@ -12,19 +12,7 @@ export const PaginationNextControl = forwardRef<
   PaginationNextControlProps,
   "button"
 >(function PaginationNextControl(props, ref) {
-  const {
-    disabled,
-    onClick,
-    children = (
-      <chakra.svg
-        as={ChevronRightIcon}
-        w={4}
-        h={4}
-        className="pagination-nexttrigger__svg"
-      />
-    ),
-    ...others
-  } = props;
+  const { disabled, onClick, children, ...others } = props;
 
   const styles = usePaginationStyles();
   const context = usePaginationContext();
@@ -42,7 +30,14 @@ export const PaginationNextControl = forwardRef<
       __css={styles.next}
       {...others}
     >
-      {children}
+      {children ?? (
+        <chakra.svg
+          as={ChevronRightIcon}
+          w={4}
+          h={4}
+          className="pagination-nexttrigger__svg"
+        />
+      )}
     </chakra.button>
   );
 });
