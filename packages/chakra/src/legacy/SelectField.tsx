@@ -171,7 +171,7 @@ function SelectField<T extends Option>(
               )}
             >
               {options.map((item, index) => (
-                <chakra.li
+                <chakra.div
                   aria-selected={highlightedIndex === index}
                   __css={styles.option}
                   data-testid={
@@ -186,7 +186,7 @@ function SelectField<T extends Option>(
                   })}
                 >
                   {renderOption(item)}
-                </chakra.li>
+                </chakra.div>
               ))}
             </chakra.div>
           </FloatingPortal>
