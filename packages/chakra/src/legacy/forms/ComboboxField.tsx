@@ -68,6 +68,8 @@ function ComboboxField<T extends Option>(
   props: ComboboxFieldProps<T>,
   ref: React.ForwardedRef<HTMLInputElement>,
 ) {
+  const styles = useMultiStyleConfig("Combobox", props);
+
   const {
     size,
     name,
@@ -100,8 +102,6 @@ function ComboboxField<T extends Option>(
       return matcher(defaultSearch.label, o);
     });
   });
-
-  const css = useMultiStyleConfig("Combobox");
 
   const {
     isOpen,
@@ -157,10 +157,9 @@ function ComboboxField<T extends Option>(
         <>
           <chakra.div
             ref={refs.setReference}
-            position="relative"
             data-testid="hds.combobox"
             __css={{
-              ...css.control,
+              ...styles.control,
               "& .HdsComboboxClearButton": {
                 display: "none",
               },
@@ -184,7 +183,7 @@ function ComboboxField<T extends Option>(
                 name,
                 placeholder,
               })}
-              __css={css.input}
+              __css={styles.input}
               data-testid={__fieldTestId}
             />
 
@@ -197,7 +196,7 @@ function ComboboxField<T extends Option>(
                   selectItem(null);
                   openMenu();
                 }}
-                sx={css.clear}
+                sx={styles.clear}
                 data-testid={__clearBtnTestId}
               >
                 <chakra.svg as={CloseIcon} className="combobox-clear-icon" />
@@ -206,7 +205,7 @@ function ComboboxField<T extends Option>(
 
             <chakra.button
               type="button"
-              __css={css.arrow}
+              __css={styles.arrow}
               {...getToggleButtonProps({
                 disabled: isDisabled,
               })}
@@ -226,7 +225,7 @@ function ComboboxField<T extends Option>(
                 top: `${y}px`,
                 left: `${x}px`,
                 zIndex,
-                ...css.options,
+                ...styles.options,
                 ...(!isOpen && {
                   display: "none",
                 }),
@@ -244,7 +243,7 @@ function ComboboxField<T extends Option>(
                       item,
                       index,
                     })}
-                    __css={css.option}
+                    __css={styles.option}
                     data-testid={
                       typeof __optionTestId === "function"
                         ? __optionTestId(item)
@@ -258,7 +257,7 @@ function ComboboxField<T extends Option>(
 
               {!filteredOptions.length && (
                 <chakra.div
-                  __css={css.option}
+                  __css={styles.option}
                   data-testid="hds.combobox.nomatchfound"
                 >
                   No match found

@@ -1,8 +1,13 @@
-import { chakra, Icon } from "@chakra-ui/react";
 import {
+  Spacer,
+  ThemingProps,
+  chakra,
+  useMultiStyleConfig,
+} from "@chakra-ui/react";
+import {
+  FloatingPortal,
   autoUpdate,
   flip,
-  FloatingPortal,
   size as floatingSize,
   offset,
   shift,
@@ -12,18 +17,17 @@ import { useSelect } from "downshift";
 import * as React from "react";
 import { v4 as uuid } from "uuid";
 import FormGroup, { FormGroupProps } from "./FormGroup";
-import { useStyles } from "./hooks";
 import ChevronDownIcon from "./icons/ChevronDownIcon";
 import { Prettify, Size } from "./types";
 
-export type Option = {
+interface Option {
   label: string;
   value: string | number;
-};
+}
 
 type RenderOption<T extends Option> = (item: T) => JSX.Element;
 
-type SelectFieldBaseProps<T extends Option> = {
+interface SelectFieldBaseProps<T extends Option> {
   name?: string;
   size?: Size;
   value?: T["value"];
@@ -34,19 +38,18 @@ type SelectFieldBaseProps<T extends Option> = {
   renderOption?: RenderOption<T>;
   __fieldTestId?: string;
   __optionTestId?: string | ((item: T) => string);
-};
+}
 
 export type SelectFieldProps<T extends Option> = Prettify<
-  FormGroupProps & SelectFieldBaseProps<T>
+  FormGroupProps & SelectFieldBaseProps<T> & ThemingProps<"Select">
 >;
 
-/*
- * TODO: implement "isReadOnly"
- */
 function SelectField<T extends Option>(
   props: SelectFieldProps<T>,
   ref: React.ForwardedRef<HTMLButtonElement>,
 ) {
+  const styles = useMultiStyleConfig("Select", props);
+
   const {
     size,
     options = [],
@@ -60,12 +63,6 @@ function SelectField<T extends Option>(
     __optionTestId = "hds.select-field.option",
     ...formGroupProps
   } = props;
-
-  const styles = useStyles({
-    size,
-    hasRightIcon: true,
-    hasLeftIcon: !!leftIcon,
-  });
 
   const {
     isOpen,
@@ -116,35 +113,15 @@ function SelectField<T extends Option>(
 
   return (
     <FormGroup {...formGroupProps}>
-      {({
-        id,
-        isInvalid,
-        isDisabled,
-        errorId,
-        errorMsg,
-        hintId,
-        isReadOnly,
-      }) => (
-        <chakra.div>
+      {({ id, isInvalid, isDisabled, errorId, errorMsg, hintId }) => (
+        <>
           <chakra.button
             ref={ref}
             type="button"
-            sx={{
-              ...styles.field,
-              width: "full",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              userSelect: "none",
-              textAlign: "left",
-              position: "relative",
-              _placeholder: {},
-            }}
-            /* HINT */
+            __css={styles.trigger}
             {...(!hintId && {
               "aria-describedby": hintId,
             })}
-            /* ERROR */
             {...(isInvalid && {
               "aria-invalid": true,
 
@@ -153,7 +130,6 @@ function SelectField<T extends Option>(
                 "aria-describedby": errorId,
               }),
             })}
-            /* DISABLED */
             {...(isDisabled && {
               disabled: true,
             })}
@@ -163,90 +139,58 @@ function SelectField<T extends Option>(
             })}
             data-testid={__fieldTestId}
           >
-            {leftIcon && (
-              <chakra.div sx={styles.leftIcon({ isDisabled })}>
-                {React.cloneElement(leftIcon, { sx: styles.icon() })}
-              </chakra.div>
-            )}
-
-            <chakra.div
-              sx={{
-                flexGrow: 1,
-                color: "neutrals.500",
-                ...(isDisabled && {
-                  color: "neutrals.300",
-                }),
-                ...(selectedItem && {
-                  color: "neutrals.900",
-                  ...(isDisabled && {
-                    color: "neutrals.300",
-                  }),
-                }),
-              }}
-            >
+            <chakra.span>
               {selectedItem ? selectedItem.label : placeholder}
-            </chakra.div>
+            </chakra.span>
+
+            <Spacer />
 
             <chakra.div
-              sx={styles.rightIcon({
-                isActive: isOpen,
-                isClickable: true,
-                isDisabled,
-              })}
+              {...(isOpen && { "data-expanded": true })}
+              __css={styles.arrow}
             >
-              <Icon
-                as={ChevronDownIcon}
-                sx={styles.icon({
-                  isRotated: isOpen,
-                })}
-              />
+              <chakra.svg as={ChevronDownIcon} className="select-arrow-icon" />
             </chakra.div>
           </chakra.button>
 
           <FloatingPortal>
-            <chakra.nav
-              ref={refs.setFloating}
+            <chakra.div
               sx={{
-                position: strategy,
-                top: `${y ?? 0}px`,
-                left: `${x ?? 0}px`,
+                pos: strategy,
+                top: `${y}px`,
+                left: `${x}px`,
                 zIndex,
+                ...styles.options,
+                ...(!isOpen && {
+                  display: "none",
+                }),
               }}
+              {...getMenuProps(
+                { ref: refs.setFloating },
+                { suppressRefError: true },
+              )}
             >
-              <chakra.ul
-                sx={{
-                  ...styles.menu,
-                  listStyleType: "none",
-                  ...(!isOpen && {
-                    display: "none",
-                  }),
-                }}
-                {...getMenuProps({}, { suppressRefError: true })}
-              >
-                {options.map((item, index) => (
-                  <chakra.li
-                    sx={styles.menuitem({
-                      isSelected: selectedItem?.value === item.value,
-                      isHighlighted: highlightedIndex === index,
-                    })}
-                    data-testid={
-                      typeof __optionTestId === "function"
-                        ? __optionTestId(item)
-                        : __optionTestId
-                    }
-                    {...getItemProps({
-                      key: uuid(),
-                      item,
-                      index,
-                    })}
-                  >
-                    {renderOption(item)}
-                  </chakra.li>
-                ))}
-              </chakra.ul>
-            </chakra.nav>
+              {options.map((item, index) => (
+                <chakra.li
+                  aria-selected={highlightedIndex === index}
+                  __css={styles.option}
+                  data-testid={
+                    typeof __optionTestId === "function"
+                      ? __optionTestId(item)
+                      : __optionTestId
+                  }
+                  {...getItemProps({
+                    key: uuid(),
+                    item,
+                    index,
+                  })}
+                >
+                  {renderOption(item)}
+                </chakra.li>
+              ))}
+            </chakra.div>
           </FloatingPortal>
-        </chakra.div>
+        </>
       )}
     </FormGroup>
   );
