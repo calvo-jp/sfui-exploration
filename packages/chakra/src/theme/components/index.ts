@@ -14,6 +14,7 @@ import { Heading } from "./heading";
 import { Input } from "./input";
 import { Menu } from "./menu";
 import { Modal } from "./modal";
+import { MultiSelect } from "./multi-select";
 import { Pagination } from "./pagination";
 import { PinInput } from "./pin-input";
 import { Popover } from "./popover";
@@ -48,6 +49,7 @@ export const components = {
   Input,
   Menu,
   Modal,
+  MultiSelect,
   Pagination,
   PinInput,
   Popover,

@@ -3,11 +3,15 @@ import {
   ComboboxField,
   DatePicker,
   DatePickerInput,
+  MultiSelectField,
   RangeDatePicker,
   SelectField,
 } from "@sfui/chakra";
+import { useState } from "react";
 
 export function Legacy() {
+  const [items, setItems] = useState<(string | number)[]>([]);
+
   return (
     <Box
       p={{
@@ -24,6 +28,20 @@ export function Legacy() {
 
       <Box mt={8}>
         <DatePicker />
+      </Box>
+
+      <Box mt={8}>
+        <MultiSelectField
+          colorScheme="success"
+          options={[
+            { label: "Option 1", value: 1 },
+            { label: "Option 2", value: 2 },
+            { label: "Option 3", value: 3 },
+            { label: "Option 4", value: 4 },
+          ]}
+          value={items}
+          onChange={setItems}
+        />
       </Box>
 
       <Box mt={8}>

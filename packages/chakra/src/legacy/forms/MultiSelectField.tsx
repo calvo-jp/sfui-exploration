@@ -1,4 +1,12 @@
-import { Icon, chakra } from "@chakra-ui/react";
+import {
+  Icon,
+  Tag,
+  TagCloseButton,
+  TagLabel,
+  chakra,
+  useControllableState,
+  useMultiStyleConfig,
+} from "@chakra-ui/react";
 import {
   FloatingFocusManager,
   FloatingPortal,
@@ -27,6 +35,8 @@ import {
   useState,
 } from "react";
 import { v4 as uuid } from "uuid";
+import { FloatingUiPortalId } from "../../constants";
+import { Merge } from "../../types";
 import { invariant } from "../../utils";
 import FormGroup, { FormGroupProps } from "./FormGroup";
 import CheckIcon from "./icons/CheckIcon";
@@ -47,19 +57,22 @@ interface RenderOptionContext {
   isHighlighted: boolean;
 }
 
-export type MultiSelectFieldProps<T extends string | number> =
-  FormGroupProps & {
-    name?: string;
-    placeholder?: string;
-    value?: Option<T>["value"][];
-    options?: Option<T>[];
-    onChange?(newValue: Option<T>["value"][]): void;
-    renderValue?(option: Option<T>, context: RenderValueContext): ReactNode;
-    renderOption?(option: Option<T>, context: RenderOptionContext): ReactNode;
-    __fieldTestId?: string;
-    __valueTestId?: string | ((option: Option<T>) => string);
-    __optionTestId?: string | ((option: Option<T>) => string);
-  };
+export interface MultiSelectFieldProps<T extends string | number>
+  extends Merge<
+    FormGroupProps,
+    {
+      name?: string;
+      placeholder?: string;
+      value?: Option<T>["value"][];
+      options?: Option<T>[];
+      onChange?(newValue: Option<T>["value"][]): void;
+      renderValue?(option: Option<T>, context: RenderValueContext): ReactNode;
+      renderOption?(option: Option<T>, context: RenderOptionContext): ReactNode;
+      __fieldTestId?: string;
+      __valueTestId?: string | ((option: Option<T>) => string);
+      __optionTestId?: string | ((option: Option<T>) => string);
+    }
+  > {}
 
 const MultiSelectFieldInternal = function MultiSelectFieldInternal<
   T extends string | number,
@@ -68,7 +81,7 @@ const MultiSelectFieldInternal = function MultiSelectFieldInternal<
     name,
     zIndex = "modal",
     placeholder,
-    value = [],
+    value,
     onChange,
     options = [],
     renderValue,
@@ -80,6 +93,14 @@ const MultiSelectFieldInternal = function MultiSelectFieldInternal<
   }: MultiSelectFieldProps<T>,
   ref: ForwardedRef<HTMLInputElement>,
 ) {
+  const styles = useMultiStyleConfig("MultiSelect");
+
+  const [$$value, $$onChange] = useControllableState({
+    value,
+    onChange,
+    defaultValue: [],
+  });
+
   const [isOpen, setIsOpen] = useState(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -116,7 +137,7 @@ const MultiSelectFieldInternal = function MultiSelectFieldInternal<
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [inputValue, setInputValue] = useState("");
 
-  const listRef = useRef<HTMLLIElement[]>([]);
+  const listRef = useRef<HTMLElement[]>([]);
   const listNavigation = useListNavigation(context, {
     listRef,
     loop: true,
@@ -125,7 +146,7 @@ const MultiSelectFieldInternal = function MultiSelectFieldInternal<
     virtual: true,
   });
 
-  const { isMounted, styles } = useTransitionStyles(context);
+  const transition = useTransitionStyles(context);
   const { getReferenceProps, getFloatingProps, getItemProps } = useInteractions(
     [click, focus, dismiss, listNavigation],
   );
@@ -148,7 +169,7 @@ const MultiSelectFieldInternal = function MultiSelectFieldInternal<
     <>
       <FormGroup {...formGroupProps}>
         {({ id, errorId, errorMsg, isDisabled, isReadOnly, hintId }) => (
-          <Container
+          <chakra.div
             ref={refs.setReference}
             {...(isOpen && {
               "data-opened": true,
@@ -164,9 +185,10 @@ const MultiSelectFieldInternal = function MultiSelectFieldInternal<
                 inputRef.current?.focus();
               },
             })}
+            __css={styles.container}
             data-testid="hds.multi-select.container"
           >
-            {value.map((v, _, arr) => {
+            {$$value.map((v, _, arr) => {
               /* get actual option */
               const option = options.find((o) => o.value === v);
 
@@ -174,7 +196,7 @@ const MultiSelectFieldInternal = function MultiSelectFieldInternal<
 
               /* removes option from value */
               const onClose = () => {
-                onChange?.(arr.filter((i) => i !== option.value));
+                $$onChange(arr.filter((i) => i !== option.value));
                 inputRef.current?.focus();
               };
 
@@ -199,6 +221,7 @@ const MultiSelectFieldInternal = function MultiSelectFieldInternal<
                 >
                   <TagLabel>{option.label}</TagLabel>
                   <TagCloseButton
+                    type="button"
                     onClick={(e) => {
                       e.preventDefault();
                       e.stopPropagation();
@@ -207,13 +230,13 @@ const MultiSelectFieldInternal = function MultiSelectFieldInternal<
                     }}
                     data-testid="hds.multi-select.control.unselect-value"
                   >
-                    <Icon as={CloseIcon} w={3} h={3} />
+                    <chakra.svg as={CloseIcon} w={3} h={3} />
                   </TagCloseButton>
                 </Tag>
               );
             })}
 
-            <Field
+            <chakra.input
               id={id}
               ref={inputMergedRef}
               name={name}
@@ -233,17 +256,17 @@ const MultiSelectFieldInternal = function MultiSelectFieldInternal<
 
                   setActiveIndex(null);
 
-                  const isSelected = value.some(
+                  const isSelected = $$value.some(
                     (optionValue) => optionValue === option.value,
                   );
 
                   const newValue = isSelected
-                    ? value.filter(
+                    ? $$value.filter(
                         (optionValue) => optionValue !== option.value,
                       )
-                    : [...value, option.value];
+                    : [...$$value, option.value];
 
-                  onChange?.(newValue);
+                  $$onChange(newValue);
                 }
               }}
               {...{
@@ -256,215 +279,89 @@ const MultiSelectFieldInternal = function MultiSelectFieldInternal<
                   "aria-errormessage": errorMsg,
                 }),
               }}
+              __css={styles.input}
             />
-          </Container>
+          </chakra.div>
         )}
       </FormGroup>
 
-      <FloatingPortal>
-        {isMounted && (
+      {transition.isMounted && (
+        <FloatingPortal id={FloatingUiPortalId}>
           <FloatingFocusManager context={context} initialFocus={-1}>
-            <Menu
+            <chakra.div
               ref={refs.setFloating}
               sx={{
                 pos: strategy,
                 top: `${y}px`,
                 left: `${x}px`,
                 zIndex,
-                ...styles,
+                ...transition.styles,
+                ...styles.menu,
               }}
               {...getFloatingProps()}
+              __css={styles.menu}
               data-testid="hds.multi-select.menu-wrapper"
             >
-              <MenuList data-testid="hds.multi-select.menu">
-                {filteredOptions.map((option, index) => {
-                  const isSelected = value.some((v) => v === option.value);
-                  const isHighlighted = activeIndex === index;
+              {filteredOptions.map((option, index) => {
+                const isSelected = $$value.some((v) => v === option.value);
+                /*
+                const isHighlighted = activeIndex === index;
+                */
 
-                  return (
-                    <MenuItem
-                      key={uuid()}
-                      tabIndex={0}
-                      ref={(node) => {
-                        if (node) {
-                          listRef.current[index] = node;
-                        }
-                      }}
-                      {...getItemProps({
-                        onClick(e) {
-                          e.preventDefault();
-                          e.stopPropagation();
-
-                          const newValue = isSelected
-                            ? value.filter(
-                                (optionValue) => optionValue !== option.value,
-                              )
-                            : [...value, option.value];
-
-                          onChange?.(newValue);
-                          inputRef.current?.focus();
-                          setIsOpen(false);
-                        },
-                      })}
-                      data-testid={
-                        typeof __optionTestId === "function"
-                          ? __optionTestId(option)
-                          : __optionTestId
+                return (
+                  <chakra.div
+                    key={uuid()}
+                    tabIndex={0}
+                    ref={(node) => {
+                      if (node) {
+                        listRef.current[index] = node;
                       }
-                    >
-                      {renderOption ? (
-                        renderOption(option, {
-                          index,
-                          isSelected,
-                          isHighlighted,
-                        })
-                      ) : (
-                        <Option
-                          {...(isSelected && {
-                            "data-selected": true,
-                          })}
-                          {...(isHighlighted && {
-                            "data-highlighted": true,
-                          })}
-                        >
-                          <chakra.span flexGrow={1}>{option.label}</chakra.span>
+                    }}
+                    {...getItemProps({
+                      onClick(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
 
-                          {isSelected && (
-                            <chakra.span color="brand.primary.700">
-                              <Icon as={CheckIcon} w={4} h={4} />
-                            </chakra.span>
-                          )}
-                        </Option>
-                      )}
-                    </MenuItem>
-                  );
-                })}
+                        const newValue = isSelected
+                          ? $$value.filter((o) => o !== option.value)
+                          : [...$$value, option.value];
 
-                {filteredOptions.length === 0 && (
-                  <Option
-                    fontSize="sm"
-                    color="neutrals.600"
-                    justifyContent="center"
-                    data-testid="hds.multi-select.nomatchfound"
+                        $$onChange(newValue);
+                        inputRef.current?.focus();
+                        setIsOpen(false);
+                      },
+                    })}
+                    __css={styles.menuitem}
+                    data-testid={
+                      typeof __optionTestId === "function"
+                        ? __optionTestId(option)
+                        : __optionTestId
+                    }
                   >
-                    No match found
-                  </Option>
-                )}
-              </MenuList>
-            </Menu>
+                    <chakra.span flexGrow={1}>{option.label}</chakra.span>
+
+                    {isSelected && (
+                      <chakra.span color="brand.primary.700">
+                        <Icon as={CheckIcon} w={4} h={4} />
+                      </chakra.span>
+                    )}
+                  </chakra.div>
+                );
+              })}
+
+              {filteredOptions.length === 0 && (
+                <chakra.div __css={styles.menuitem}>No match found</chakra.div>
+              )}
+            </chakra.div>
           </FloatingFocusManager>
-        )}
-      </FloatingPortal>
+        </FloatingPortal>
+      )}
     </>
   );
 };
 
-const Field = chakra("input", {
-  baseStyle: {
-    outline: "none",
-    _placeholder: {
-      color: "neutrals.500",
-    },
-  },
-});
-
-const Container = chakra("div", {
-  baseStyle: {
-    gap: "6px",
-    display: "flex",
-    flexWrap: "wrap",
-    border: "1px solid",
-    borderColor: "neutrals.200",
-    rounded: "4px",
-    paddingX: "14px",
-    paddingY: "10px",
-    minHeight: "48px",
-    boxShadow: "0px 1px 2px rgba(16, 24, 40, 0.05)",
-
-    _hover: {
-      borderColor: "neutrals.300",
-    },
-
-    "&[data-opened]": {
-      borderColor: "brand.primary.700",
-    },
-
-    "&[data-invalid]": {
-      borderColor: "interface.error.700",
-    },
-  },
-});
-
-const Menu = chakra("nav", {
-  baseStyle: {
-    overflow: "hidden",
-    borderWidth: "1px",
-    borderColor: "neutrals.200",
-    borderRadius: "8px",
-    bgColor: "white",
-  },
-});
-
-const MenuList = chakra("ul", {
-  baseStyle: {
-    listStyle: "none",
-  },
-});
-
-const MenuItem = chakra("li", {
-  baseStyle: {
-    cursor: "pointer",
-  },
-});
-
-const Option = chakra("div", {
-  baseStyle: {
-    display: "flex",
-    alignItems: "center",
-    paddingY: "13px",
-    paddingX: "14px",
-    transition: "colors 300ms ease-in-out",
-
-    "&[data-selected]": {},
-
-    "&[data-highlighted]": {
-      bgColor: "neutrals.100",
-    },
-  },
-});
-
-const Tag = chakra("div", {
-  baseStyle: {
-    height: "24px",
-    border: "1px solid",
-    borderColor: "neutrals.200",
-    rounded: "6px",
-    paddingX: "4px",
-    paddingY: "2px",
-    gap: "3px",
-    display: "flex",
-    alignItems: "center",
-  },
-});
-
-const TagLabel = chakra("span", {
-  baseStyle: {
-    fontSize: "14px",
-    lineHeight: "20px",
-    color: "neutrals.700",
-  },
-});
-
-const TagCloseButton = chakra("div", {
-  baseStyle: {
-    cursor: "pointer",
-    display: "flex",
-    padding: "2px",
-    rounded: "4px",
-    _hover: {
-      bgColor: "blackAlpha.200",
-    },
-  },
-});
-
-export default forwardRef(MultiSelectFieldInternal);
+export default forwardRef(MultiSelectFieldInternal) as <
+  T extends string | number,
+>(
+  props: MultiSelectFieldProps<T> & { ref?: ForwardedRef<HTMLInputElement> },
+) => JSX.Element;
