@@ -204,9 +204,7 @@ const MultiSelectFieldInternal = function MultiSelectFieldInternal<
               if (renderValue) {
                 return (
                   <Fragment key={uuid()}>
-                    {renderValue(option, {
-                      onClose,
-                    })}
+                    {renderValue(option, { onClose })}
                   </Fragment>
                 );
               }
@@ -214,13 +212,14 @@ const MultiSelectFieldInternal = function MultiSelectFieldInternal<
               return (
                 <Tag
                   key={uuid()}
+                  __css={styles.tag}
                   data-testid={
                     typeof __valueTestId === "function"
                       ? __valueTestId(option)
                       : __valueTestId
                   }
                 >
-                  <TagLabel>{option.label}</TagLabel>
+                  <TagLabel __css={styles.taglabel}>{option.label}</TagLabel>
                   <TagCloseButton
                     type="button"
                     onClick={(e) => {
@@ -229,6 +228,7 @@ const MultiSelectFieldInternal = function MultiSelectFieldInternal<
 
                       onClose();
                     }}
+                    __css={styles.tagclose}
                     data-testid="hds.multi-select.control.unselect-value"
                   >
                     <chakra.svg as={CloseIcon} w={3} h={3} />
