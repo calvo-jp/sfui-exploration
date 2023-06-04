@@ -1,4 +1,10 @@
-import { Box, chakra, Icon, useDisclosure } from "@chakra-ui/react";
+import {
+  Box,
+  chakra,
+  Icon,
+  useControllableState,
+  useDisclosure,
+} from "@chakra-ui/react";
 import {
   autoUpdate,
   flip,
@@ -16,7 +22,6 @@ import * as React from "react";
 import { RangeDatePicker } from "../DatePicker/RangeDatePicker";
 import CalendarIcon from "../icons/CalendarIcon";
 import { DateRange } from "../types";
-import { noop } from "../utils";
 import { Field } from "./components";
 
 type Size = "sm" | "md";
@@ -39,7 +44,7 @@ export const RangeDatePickerInput$ = function RangeDatePickerInput(
   {
     size = "md",
     value,
-    onChange = noop,
+    onChange,
     dateFormat,
     placeholder,
     __fieldTestId = "hds.range-datepicker-input",
@@ -47,6 +52,11 @@ export const RangeDatePickerInput$ = function RangeDatePickerInput(
   }: RangeDatePickerInputProps,
   ref: React.ForwardedRef<HTMLButtonElement>,
 ) {
+  const [$$value, $$onChange] = useControllableState({
+    value,
+    onChange,
+  });
+
   const { isOpen, onOpen, onClose, onToggle } = useDisclosure();
 
   const { refs, strategy, x, y, context } = useFloating({
@@ -142,9 +152,10 @@ export const RangeDatePickerInput$ = function RangeDatePickerInput(
             {...getFloatingProps()}
           >
             <RangeDatePicker
+              value={$$value}
               onCancel={onClose}
               onApply={(newValue) => {
-                onChange?.(newValue);
+                $$onChange(newValue);
                 onClose();
               }}
               hasTimeAdverbial={false}

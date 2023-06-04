@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/react";
-import { DatePicker, RangeDatePicker } from "@sfui/chakra";
+import { DatePicker, DatePickerInput, RangeDatePicker } from "@sfui/chakra";
 
 export function Legacy() {
   return (
@@ -10,7 +10,9 @@ export function Legacy() {
         lg: 24,
       }}
     >
-      <Box>
+      <DatePickerInput />
+
+      <Box mt={8}>
         <RangeDatePicker colorScheme="error" />
       </Box>
 

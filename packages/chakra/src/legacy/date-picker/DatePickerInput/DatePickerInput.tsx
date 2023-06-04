@@ -1,4 +1,10 @@
-import { Box, chakra, Icon, useDisclosure } from "@chakra-ui/react";
+import {
+  Box,
+  chakra,
+  Icon,
+  useControllableState,
+  useDisclosure,
+} from "@chakra-ui/react";
 import {
   autoUpdate,
   flip,
@@ -15,7 +21,6 @@ import { format } from "date-fns";
 import * as React from "react";
 import { DatePicker } from "../DatePicker/DatePicker";
 import CalendarIcon from "../icons/CalendarIcon";
-import { noop } from "../utils";
 import { Field } from "./components";
 
 type Size = "sm" | "md";
@@ -33,13 +38,18 @@ const DatePickerInput$ = function DatePickerInput(
   {
     size = "md",
     value,
-    onChange = noop,
+    onChange,
     dateFormat,
     placeholder,
     __fieldTestId = "hds.datepicker-input",
   }: DatePickerInputProps,
   ref: React.ForwardedRef<HTMLButtonElement>,
 ) {
+  const [$$value, $$onChange] = useControllableState({
+    value,
+    onChange,
+  });
+
   const { isOpen, onOpen, onClose, onToggle } = useDisclosure();
 
   const { refs, strategy, x, y, context } = useFloating({
@@ -99,6 +109,7 @@ const DatePickerInput$ = function DatePickerInput(
           ...(size === "sm" && { h: "40px", py: "8px", px: "12px" }),
           ...(size === "md" && { h: "44px", py: "10px", px: "14px" }),
         }}
+        data-testid={__fieldTestId}
         {...getReferenceProps()}
       >
         <Icon
@@ -108,7 +119,9 @@ const DatePickerInput$ = function DatePickerInput(
           color="neutrals.500"
         />
 
-        <chakra.span>{value ? dateToString(value) : placeholder}</chakra.span>
+        <chakra.span>
+          {$$value ? dateToString($$value) : placeholder}
+        </chakra.span>
       </Field>
 
       {isMounted && (
@@ -125,9 +138,9 @@ const DatePickerInput$ = function DatePickerInput(
             {...getFloatingProps()}
           >
             <DatePicker
-              value={value}
+              value={$$value}
               onChange={(newValue) => {
-                onChange(newValue);
+                $$onChange(newValue);
                 onClose();
               }}
             />
