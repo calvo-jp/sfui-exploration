@@ -134,18 +134,18 @@ function TimeAdverbialMenu() {
             paddingY: "10px",
             textAlign: "left",
             rounded: "6px",
-            color: "neutrals.700",
+            color: "neutral.700",
             fontSize: "14px",
             lineHeight: "20px",
             transition: "all 300ms ease-in-out",
             _hover: {
-              color: "neutrals.900",
+              color: "neutral.900",
               fontWeight: "medium",
             },
 
             ...(selected === value && {
-              color: "neutrals.900",
-              bgColor: "neutrals.100",
+              color: "neutral.900",
+              bgColor: "neutral.100",
               fontWeight: "medium",
               _hover: {},
             }),
@@ -218,10 +218,10 @@ const SelectedDateItem = chakra("div", {
     px: "14px",
     minW: "125px",
     border: "1px",
-    borderColor: "neutrals.200",
+    borderColor: "neutral.200",
     rounded: "4px",
     '&[data-placeholder="true"]': {
-      color: "neutrals.500",
+      color: "neutral.500",
     },
   },
 });

@@ -4,8 +4,11 @@ import {
   ModalOverlay,
   useDisclosure,
   UseDisclosureReturn,
-} from '@chakra-ui/react';
-import { RangeDatePicker, RangeDatePickerProps } from '../DatePicker/RangeDatePicker';
+} from "@chakra-ui/react";
+import {
+  RangeDatePicker,
+  RangeDatePickerProps,
+} from "../DatePicker/RangeDatePicker";
 
 export type RangeDatePickerModalProps = RangeDatePickerProps & {
   children(ctx: UseDisclosureReturn): JSX.Element;
@@ -32,7 +35,7 @@ export const RangeDatePickerModal = function RangeDatePickerModal({
         blockScrollOnMount
         lockFocusAcrossFrames
       >
-        <ModalOverlay bgColor="rgba(52, 64, 84, 0.7)" backdropFilter="blur(8px)" />
+        <ModalOverlay />
         <ModalContent
           bgColor="transparent"
           width="auto"
