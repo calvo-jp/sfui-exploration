@@ -1,11 +1,11 @@
-import { chakra } from '@chakra-ui/react';
-import { addMonths, format, isEqual, subMonths } from 'date-fns';
-import * as React from 'react';
-import { v4 as uuid } from 'uuid';
-import { DAYS } from '../constants';
-import { useStyles } from '../hooks';
-import { getCalendar, noop } from '../utils';
-import { DatePickerControl } from './DatePickerControl';
+import { chakra } from "@chakra-ui/react";
+import { addMonths, format, isEqual, subMonths } from "date-fns";
+import * as React from "react";
+import { v4 as uuid } from "uuid";
+import { DAYS } from "../constants";
+import { useStyles } from "../hooks";
+import { getCalendar, noop } from "../utils";
+import { DatePickerControl } from "./DatePickerControl";
 
 export type DatePickerProps = {
   value?: Date;
@@ -29,7 +29,10 @@ export function DatePicker({ value, onChange = noop }: DatePickerProps) {
         __selectedMonthTestId="hds.datepicker.selected-month"
       />
 
-      <chakra.table sx={styles.calendarMain()} data-testid="hds.datepicker.calendar">
+      <chakra.table
+        sx={styles.calendarMain()}
+        data-testid="hds.datepicker.calendar"
+      >
         <chakra.thead>
           <chakra.tr>
             {DAYS.map((d) => (
@@ -48,7 +51,7 @@ export function DatePicker({ value, onChange = noop }: DatePickerProps) {
           {calendar.map((arr) => (
             <chakra.tr key={uuid()}>
               {arr.map(({ isToday, isPlaceholder, ...obj }) => {
-                const formatted = format(obj.value, 'yyyy-MM-dd');
+                const formatted = format(obj.value, "yyyy-MM-dd");
                 const isSelected = !!value && isEqual(obj.value, value);
 
                 return (

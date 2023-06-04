@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { DateRange } from '../types';
-import { noop, sortDates } from '../utils';
+import * as React from "react";
+import { DateRange } from "../types";
+import { noop, sortDates } from "../utils";
 
 enum LastUpdated {
   START,
@@ -47,10 +47,16 @@ export function RangeDatePickerProvider({
   value,
   children,
 }: React.PropsWithChildren<RangeDatePickerProps>) {
-  const [selectedRangeStart, setSelectedRangeStart] = React.useState(value?.start);
-  const [selectedRangeUntil, setSelectedRangeUntil] = React.useState(value?.until);
+  const [selectedRangeStart, setSelectedRangeStart] = React.useState(
+    value?.start,
+  );
+  const [selectedRangeUntil, setSelectedRangeUntil] = React.useState(
+    value?.until,
+  );
 
-  const [lastUpdated, setLastUpdated] = React.useState<LastUpdated | undefined>();
+  const [lastUpdated, setLastUpdated] = React.useState<
+    LastUpdated | undefined
+  >();
   const [currentDate, setCurrentDate] = React.useState(new Date());
 
   const updateSelectedRange = (date: Date) => {
@@ -70,7 +76,10 @@ export function RangeDatePickerProvider({
 
   const dateRange = React.useMemo(() => {
     if (selectedRangeStart && selectedRangeUntil) {
-      const [start, until] = sortDates([selectedRangeStart, selectedRangeUntil]);
+      const [start, until] = sortDates([
+        selectedRangeStart,
+        selectedRangeUntil,
+      ]);
 
       return {
         start,

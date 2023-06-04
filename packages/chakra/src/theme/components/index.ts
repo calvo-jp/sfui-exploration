@@ -5,6 +5,7 @@ import { Breadcrumb } from "./breadcrumb";
 import { Button } from "./button";
 import { Checkbox } from "./checkbox";
 import { Combobox } from "./combobox";
+import { DatePicker } from "./date-picker";
 import { Drawer } from "./drawer";
 import { Form } from "./form";
 import { FormError } from "./form-error";
@@ -38,6 +39,7 @@ export const components = {
   Button,
   Checkbox,
   Combobox,
+  DatePicker,
   Drawer,
   Form,
   FormError,

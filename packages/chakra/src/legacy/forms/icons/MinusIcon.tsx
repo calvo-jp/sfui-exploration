@@ -1,10 +1,10 @@
-import * as React from 'react';
+import * as React from "react";
 
 export default function MinusIcon({
   isChecked,
   isIndeterminate,
   ...props
-}: React.ComponentProps<'svg'> & {
+}: React.ComponentProps<"svg"> & {
   isChecked?: boolean;
   isIndeterminate?: boolean;
 }) {
