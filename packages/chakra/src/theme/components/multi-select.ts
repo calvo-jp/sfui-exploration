@@ -15,17 +15,15 @@ export const MultiSelect: MultiStyleConfig = {
   ],
   baseStyle({ colorScheme }) {
     return {
-      container: {
+      control: {
         gap: "6px",
         display: "flex",
         flexWrap: "wrap",
         border: "1px",
         borderColor: "neutral.200",
         rounded: "4px",
-        paddingX: "14px",
-        paddingY: "10px",
-        minHeight: "48px",
         boxShadow: "0px 1px 2px " + applyOpacity(colors.gray[800], 5),
+        overflow: "hidden",
 
         _hover: {
           borderColor: "neutral.300",
@@ -39,7 +37,7 @@ export const MultiSelect: MultiStyleConfig = {
           borderColor: `${colorScheme}.700`,
         },
 
-        "&[data-invalid]": {
+        _invalid: {
           borderColor: "error.700",
         },
       },
@@ -58,8 +56,8 @@ export const MultiSelect: MultiStyleConfig = {
         overflow: "hidden",
       },
       option: {
-        py: 1.5,
-        px: 3.5,
+        py: "6px",
+        px: "14px",
         cursor: "pointer",
         display: "flex",
         alignItems: "center",
@@ -71,6 +69,15 @@ export const MultiSelect: MultiStyleConfig = {
         },
       },
     };
+  },
+  sizes: {
+    md: {
+      control: {
+        px: "14px",
+        py: "8px",
+        minH: "48px",
+      },
+    },
   },
   defaultProps: {
     size: "md",

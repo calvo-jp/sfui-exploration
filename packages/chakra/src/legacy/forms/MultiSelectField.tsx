@@ -188,7 +188,7 @@ const MultiSelectFieldInternal = function MultiSelectFieldInternal<
                 inputRef.current?.focus();
               },
             })}
-            __css={styles.container}
+            __css={styles.control}
             data-testid="hds.multi-select.container"
           >
             {$$value.map((v, _, arr) => {

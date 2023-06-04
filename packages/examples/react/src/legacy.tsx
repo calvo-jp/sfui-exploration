@@ -29,6 +29,7 @@ export function Legacy() {
 
       <Box mt={8}>
         <MultiSelectField
+          size="md"
           colorScheme="success"
           options={[
             { label: "Option 1", value: 1 },
