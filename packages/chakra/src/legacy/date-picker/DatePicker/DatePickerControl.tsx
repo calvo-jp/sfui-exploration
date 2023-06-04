@@ -1,8 +1,8 @@
 import { chakra, Icon } from "@chakra-ui/react";
 import { format } from "date-fns";
-import { useStyles } from "../hooks";
 import ChevronLeftIcon from "../icons/ChevronLeftIcon";
 import ChevronRightIcon from "../icons/ChevronRightIcon";
+import { useDatePickerStylesContext } from "./DatePickerContext";
 
 export type DatePickerControl = {
   value: Date;
@@ -21,23 +21,20 @@ export function DatePickerControl({
   __prevButtonTestId = "hds.datepicker.shared.control.prev-month",
   __selectedMonthTestId = "hds.datepicker.shared.selected-month",
 }: DatePickerControl) {
-  const styles = useStyles();
+  const styles = useDatePickerStylesContext();
 
   return (
-    <chakra.div display="flex" alignItems="center">
+    <chakra.div __css={styles.header}>
       <chakra.button
         onClick={onPrev}
         tabIndex={-1}
         data-testid={__prevButtonTestId}
-        sx={styles.calendarControlButton()}
+        __css={styles.headerbutton}
       >
-        <Icon as={ChevronLeftIcon} sx={styles.calendarControlIcon()} />
+        <Icon as={ChevronLeftIcon} className="datepicker-headerbutton-icon" />
       </chakra.button>
 
-      <chakra.p
-        data-testid={__selectedMonthTestId}
-        sx={styles.calendarControlLabel()}
-      >
+      <chakra.p data-testid={__selectedMonthTestId} __css={styles.headerlabel}>
         {format(value, "MMMM")}
       </chakra.p>
 
@@ -45,9 +42,9 @@ export function DatePickerControl({
         onClick={onNext}
         tabIndex={-1}
         data-testid={__nextButtonTestId}
-        sx={styles.calendarControlButton()}
+        __css={styles.headerbutton}
       >
-        <Icon as={ChevronRightIcon} sx={styles.calendarControlIcon()} />
+        <Icon as={ChevronRightIcon} className="datepicker-headerbutton-icon" />
       </chakra.button>
     </chakra.div>
   );

@@ -1,9 +1,5 @@
-import { Box, Button } from "@chakra-ui/react";
-import {
-  DatePickerInput,
-  RangeDatePicker,
-  RangeDatePickerDropdown,
-} from "@sfui/chakra";
+import { Box } from "@chakra-ui/react";
+import { DatePicker, RangeDatePicker } from "@sfui/chakra";
 
 export function Legacy() {
   return (
@@ -15,21 +11,11 @@ export function Legacy() {
       }}
     >
       <Box>
-        <RangeDatePickerDropdown>
-          {({ onToggle }) => (
-            <Button onClick={onToggle} variant="outline" colorScheme="neutral">
-              Select dates
-            </Button>
-          )}
-        </RangeDatePickerDropdown>
+        <RangeDatePicker colorScheme="error" />
       </Box>
 
       <Box mt={8}>
-        <RangeDatePicker />
-      </Box>
-
-      <Box mt={8}>
-        <DatePickerInput placeholder="Select date" />
+        <DatePicker />
       </Box>
     </Box>
   );

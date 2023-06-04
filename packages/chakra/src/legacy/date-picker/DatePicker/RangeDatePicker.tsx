@@ -1,250 +1,106 @@
-import { Button, chakra } from "@chakra-ui/react";
+import {
+  HTMLChakraProps,
+  ThemingProps,
+  chakra,
+  useMultiStyleConfig,
+} from "@chakra-ui/react";
 import { addMonths, endOfDay, format, startOfDay, subMonths } from "date-fns";
 import * as React from "react";
 import { v4 as uuid } from "uuid";
+import { Merge } from "../../../types";
 import { invariant } from "../../../utils";
 import { DAYS } from "../constants";
-import { useStyles } from "../hooks";
-import { DateRange, TimeAdverbial } from "../types";
-import { getDateRangeByTimeAdverbial, getRangeCalendar, noop } from "../utils";
+import { DateRange } from "../types";
+import { getRangeCalendar, noop, sortDates } from "../utils";
+import {
+  DatePickerStylesProvider,
+  useDatePickerStylesContext,
+} from "./DatePickerContext";
 import { DatePickerControl } from "./DatePickerControl";
 import {
   RangeDatePickerProvider,
   useRangeDatePickerContext,
-} from "./RangeDatePickerProvider";
+} from "./RangeDatePickerContext";
+import { RangeDatePickerFooter } from "./RangeDatePickerFooter";
+import { RangeDatePickerSidebar } from "./RangeDatePickerSidebar";
+import { LastUpdated } from "./types";
 
-export type RangeDatePickerProps = {
+export interface RangeDatePickerProps extends ThemingProps<"DatePicker"> {
   value?: DateRange;
   events?: Date[];
   onApply?(value: DateRange): void;
   onCancel?(currentValue: Partial<DateRange>): void;
   hasTimeAdverbial?: boolean;
   includePreviousMonth?: boolean;
-};
+}
 
-function RangeDatePickerInternal({
+function RangeDatePickerContent({
   onApply,
   onCancel,
   hasTimeAdverbial = true,
   includePreviousMonth = true,
 }: RangeDatePickerProps) {
   const context = useRangeDatePickerContext();
+  const styles = useMultiStyleConfig("DatePicker");
 
   return (
-    <chakra.div
-      width="fit-content"
-      rounded="8px"
-      border="1px"
-      borderColor="gray.100"
-      bgColor="white"
-    >
-      <chakra.div display="flex">
-        {hasTimeAdverbial && (
-          <React.Fragment>
-            <TimeAdverbialMenu />
-            <Divider />
-          </React.Fragment>
-        )}
+    <chakra.div __css={styles.container}>
+      {hasTimeAdverbial && (
+        <>
+          <RangeDatePickerSidebar />
+          <Divider orientation="horizontal" />
+        </>
+      )}
 
-        <chakra.div>
-          <chakra.div display="flex">
-            {includePreviousMonth && (
-              <React.Fragment>
-                <PreviousCalendar />
-                <Divider />
-              </React.Fragment>
-            )}
+      <chakra.div>
+        <chakra.div display="flex">
+          {includePreviousMonth && (
+            <>
+              <PreviousCalendar />
+              <Divider orientation="horizontal" />
+            </>
+          )}
 
-            <CurrentCalendar />
-          </chakra.div>
-
-          <Divider isHorizontal />
-
-          <chakra.div display="flex" padding="16px" alignItems="center">
-            {includePreviousMonth && <SelectedDates />}
-
-            <chakra.div flexGrow={1} />
-
-            <chakra.div display="flex" gap="12px">
-              <Button
-                variant="outline"
-                colorScheme="neutral"
-                onClick={() => {
-                  onCancel?.({
-                    start: context.dateRange.start
-                      ? startOfDay(context.dateRange.start)
-                      : undefined,
-                    until: context.dateRange.until
-                      ? endOfDay(context.dateRange.until)
-                      : undefined,
-                  });
-
-                  context.reset();
-                }}
-                data-testid="hds.range-datepicker.controls.cancel"
-              >
-                Cancel
-              </Button>
-              <Button
-                isDisabled={
-                  !context.dateRange.start || !context.dateRange.until
-                }
-                onClick={() => {
-                  const { start, until } = context.dateRange;
-
-                  invariant(start && until);
-
-                  context.reset();
-                  onApply?.({
-                    start: startOfDay(start),
-                    until: endOfDay(until),
-                  });
-                }}
-                data-testid="hds.range-datepicker.controls.apply"
-              >
-                Apply
-              </Button>
-            </chakra.div>
-          </chakra.div>
+          <CurrentCalendar />
         </chakra.div>
+
+        <Divider />
+
+        <RangeDatePickerFooter
+          hasSelectedDetails={includePreviousMonth}
+          onCancel={() => {
+            onCancel?.({
+              start: context.dateRange.start
+                ? startOfDay(context.dateRange.start)
+                : undefined,
+              until: context.dateRange.until
+                ? endOfDay(context.dateRange.until)
+                : undefined,
+            });
+
+            context.reset();
+          }}
+          onApply={() => {
+            const { start, until } = context.dateRange;
+
+            invariant(start && until);
+
+            context.reset();
+            onApply?.({
+              start: startOfDay(start),
+              until: endOfDay(until),
+            });
+          }}
+        />
       </chakra.div>
     </chakra.div>
   );
 }
 
-function TimeAdverbialMenu() {
-  const context = useRangeDatePickerContext();
+function Divider({ orientation }: { orientation?: "horizontal" | "vertical" }) {
+  const styles = useDatePickerStylesContext();
 
-  const [selected, setSelected] = React.useState<TimeAdverbial | undefined>();
-
-  React.useEffect(() => {
-    return () => {
-      setSelected(undefined);
-    };
-  }, []);
-
-  return (
-    <chakra.div display="flex" flexDir="column" paddingY="12px" paddingX="16px">
-      {Object.values(TimeAdverbial).map((value) => (
-        <chakra.button
-          key={uuid()}
-          sx={{
-            width: "150px",
-            paddingX: "16px",
-            paddingY: "10px",
-            textAlign: "left",
-            rounded: "6px",
-            color: "neutral.700",
-            fontSize: "14px",
-            lineHeight: "20px",
-            transition: "all 300ms ease-in-out",
-            _hover: {
-              color: "neutral.900",
-              fontWeight: "medium",
-            },
-
-            ...(selected === value && {
-              color: "neutral.900",
-              bgColor: "neutral.100",
-              fontWeight: "medium",
-              _hover: {},
-            }),
-          }}
-          tabIndex={-1}
-          onClick={() => {
-            setSelected(value);
-
-            const dateRange = getDateRangeByTimeAdverbial(value);
-            context.updateSelectedRangeHard(dateRange);
-
-            if (dateRange.start) {
-              context.setCurrentDate(dateRange.start);
-            } else {
-              context.setCurrentDate(new Date());
-            }
-
-            if (value === TimeAdverbial.AllTime) context.reset();
-          }}
-          data-testid={`hds.range-datepicker.controls.time-adverb.${value}`}
-        >
-          {value}
-        </chakra.button>
-      ))}
-    </chakra.div>
-  );
-}
-
-function SelectedDates() {
-  const context = useRangeDatePickerContext();
-
-  const start = context.dateRange.start
-    ? format(context.dateRange.start, "MMM dd, yyyy")
-    : "Select date";
-
-  const until = context.dateRange.until
-    ? format(context.dateRange.until, "MMM dd, yyyy")
-    : "Select date";
-
-  return (
-    <chakra.div
-      display="flex"
-      gap="12px"
-      alignItems="center"
-      data-testid="hds.range-datepicker.selected-dates"
-    >
-      <SelectedDateItem
-        data-placeholder={!context.dateRange.start}
-        date-testid="hds.range-datepicker.selected-date.start"
-      >
-        {start}
-      </SelectedDateItem>
-
-      <chakra.div w="8px" borderTop="2px" borderColor="Gray.500" />
-
-      <SelectedDateItem
-        data-placeholder={!context.dateRange.until}
-        date-testid="hds.range-datepicker.selected-date.until"
-      >
-        {until}
-      </SelectedDateItem>
-    </chakra.div>
-  );
-}
-
-const SelectedDateItem = chakra("div", {
-  baseStyle: {
-    h: "44px",
-    py: "10px",
-    px: "14px",
-    minW: "125px",
-    border: "1px",
-    borderColor: "neutral.200",
-    rounded: "4px",
-    '&[data-placeholder="true"]': {
-      color: "neutral.500",
-    },
-  },
-});
-
-function Divider({ isHorizontal }: { isHorizontal?: boolean }) {
-  return (
-    <chakra.div
-      sx={{
-        borderStyle: "solid",
-        borderColor: "gray.100",
-
-        ...(isHorizontal && {
-          width: "full",
-          borderTopWidth: "1px",
-        }),
-
-        ...(!isHorizontal && {
-          alignSelf: "stretch",
-          borderLeftWidth: "1px",
-        }),
-      }}
-    />
-  );
+  return <chakra.div __css={styles.divider} data-orientation={orientation} />;
 }
 
 function CurrentCalendar() {
@@ -275,20 +131,24 @@ function PreviousCalendar() {
   );
 }
 
-type CalendarProps = {
-  baseDate: Date;
-  onSelect?(date: Date): void;
-  onNext?(): void;
-  onPrev?(): void;
-};
+type CalendarProps = Merge<
+  HTMLChakraProps<"div">,
+  {
+    baseDate: Date;
+    onSelect?(date: Date): void;
+    onNext?(): void;
+    onPrev?(): void;
+  }
+>;
 
 function Calendar({
   baseDate,
   onSelect = noop,
   onNext,
   onPrev,
+  ...props
 }: CalendarProps) {
-  const styles = useStyles();
+  const styles = useDatePickerStylesContext();
   const context = useRangeDatePickerContext();
   const calendar = getRangeCalendar(baseDate, {
     start: context.dateRange.start,
@@ -296,7 +156,7 @@ function Calendar({
   });
 
   return (
-    <chakra.div sx={styles.calendar()}>
+    <chakra.div __css={styles.calendar} {...props}>
       <DatePickerControl
         value={baseDate}
         onNext={onNext}
@@ -306,16 +166,12 @@ function Calendar({
         __selectedMonthTestId="hds.range-datepicker.selected-month"
       />
 
-      <chakra.table
-        sx={styles.calendarMain()}
-        data-testid="hds.range-datepicker.calendar"
-      >
+      <chakra.table data-testid="hds.range-datepicker.calendar">
         <chakra.thead>
           <chakra.tr>
             {DAYS.map((d) => (
               <chakra.th
                 key={uuid()}
-                sx={styles.calendarWeek()}
                 data-testid="hds.range-datepicker.calendar.weekday"
               >
                 {d}
@@ -346,12 +202,21 @@ function Calendar({
                         onClick={() => {
                           onSelect(value);
                         }}
-                        sx={styles.calendarDate({
-                          isToday,
-                          isSelected,
-                          isPlaceholder,
-                          isWithinRange,
-                        })}
+                        {...{
+                          ...(isToday && {
+                            "data-today": true,
+                          }),
+                          ...(isWithinRange && {
+                            "data-inrange": true,
+                          }),
+                          ...(isSelected && {
+                            "data-selected": true,
+                          }),
+                          ...(isPlaceholder && {
+                            "data-placeholder": true,
+                          }),
+                        }}
+                        __css={styles.calendaritem}
                         data-testid={`hds.datepicker.calendar.date.${formatted}`}
                       >
                         {value.getDate()}
@@ -369,9 +234,91 @@ function Calendar({
 }
 
 export const RangeDatePicker = (props: RangeDatePickerProps) => {
+  const styles = useMultiStyleConfig("DatePicker", props);
+
+  const [selectedRangeStart, setSelectedRangeStart] = React.useState(
+    props.value?.start,
+  );
+
+  const [selectedRangeUntil, setSelectedRangeUntil] = React.useState(
+    props.value?.until,
+  );
+
+  const [currentDate, setCurrentDate] = React.useState(new Date());
+  const [lastUpdated, setLastUpdated] = React.useState<LastUpdated>();
+
+  const updateSelectedRange = (date: Date) => {
+    if (lastUpdated === LastUpdated.START) {
+      setSelectedRangeUntil(date);
+      setLastUpdated(LastUpdated.UNTIL);
+    } else {
+      setSelectedRangeStart(date);
+      setLastUpdated(LastUpdated.START);
+    }
+  };
+
+  const updateSelectedRangeHard = (dateRange: DateRange) => {
+    setSelectedRangeStart(dateRange.start);
+    setSelectedRangeUntil(dateRange.until);
+  };
+
+  const dateRange = React.useMemo(() => {
+    if (selectedRangeStart && selectedRangeUntil) {
+      const [start, until] = sortDates([
+        selectedRangeStart,
+        selectedRangeUntil,
+      ]);
+
+      return {
+        start,
+        until,
+      };
+    }
+
+    return {
+      start: selectedRangeStart,
+      until: selectedRangeUntil,
+    };
+  }, [
+    //
+    selectedRangeStart,
+    selectedRangeUntil,
+  ]);
+
+  const reset = () => {
+    setSelectedRangeStart(undefined);
+    setSelectedRangeUntil(undefined);
+    setLastUpdated(undefined);
+    setCurrentDate(new Date());
+  };
+
+  React.useEffect(() => {
+    return () => {
+      setSelectedRangeStart(undefined);
+      setSelectedRangeUntil(undefined);
+      setLastUpdated(undefined);
+      setCurrentDate(new Date());
+    };
+  }, []);
+
   return (
-    <RangeDatePickerProvider value={props.value}>
-      <RangeDatePickerInternal {...props} />
-    </RangeDatePickerProvider>
+    <DatePickerStylesProvider value={styles}>
+      <RangeDatePickerProvider
+        value={{
+          ...props,
+          currentDate,
+          dateRange,
+          reset,
+          setCurrentDate,
+          updateSelectedRange,
+          updateSelectedRangeHard,
+          lastUpdated,
+          selectedRangeStart,
+          selectedRangeUntil,
+        }}
+      >
+        <RangeDatePickerContent {...props} />
+      </RangeDatePickerProvider>
+    </DatePickerStylesProvider>
   );
 };
