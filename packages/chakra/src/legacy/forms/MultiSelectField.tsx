@@ -1,8 +1,8 @@
 import {
-  Icon,
   Tag,
   TagCloseButton,
   TagLabel,
+  ThemingProps,
   chakra,
   useControllableState,
   useMultiStyleConfig,
@@ -59,7 +59,7 @@ interface RenderOptionContext {
 
 export interface MultiSelectFieldProps<T extends string | number>
   extends Merge<
-    FormGroupProps,
+    FormGroupProps & ThemingProps<"MultiSelect">,
     {
       name?: string;
       placeholder?: string;
@@ -89,11 +89,11 @@ const MultiSelectFieldInternal = function MultiSelectFieldInternal<
     __fieldTestId = "hds.multi-select.field",
     __valueTestId = "hds.multi-select.value",
     __optionTestId = "hds.multi-select.option",
-    ...formGroupProps
+    ...others
   }: MultiSelectFieldProps<T>,
   ref: ForwardedRef<HTMLInputElement>,
 ) {
-  const styles = useMultiStyleConfig("MultiSelect");
+  const styles = useMultiStyleConfig("MultiSelect", others);
 
   const [$$value, $$onChange] = useControllableState({
     value,
@@ -167,7 +167,7 @@ const MultiSelectFieldInternal = function MultiSelectFieldInternal<
 
   return (
     <>
-      <FormGroup {...formGroupProps}>
+      <FormGroup {...others}>
         {({ id, errorId, errorMsg, isDisabled, isReadOnly, hintId }) => (
           <chakra.div
             ref={refs.setReference}
@@ -291,16 +291,15 @@ const MultiSelectFieldInternal = function MultiSelectFieldInternal<
           <FloatingFocusManager context={context} initialFocus={-1}>
             <chakra.div
               ref={refs.setFloating}
-              sx={{
+              __css={{
                 pos: strategy,
                 top: `${y}px`,
                 left: `${x}px`,
                 zIndex,
                 ...transition.styles,
-                ...styles.menu,
+                ...styles.options,
               }}
               {...getFloatingProps()}
-              __css={styles.menu}
               data-testid="hds.multi-select.menu-wrapper"
             >
               {filteredOptions.map((option, index) => {
@@ -332,7 +331,7 @@ const MultiSelectFieldInternal = function MultiSelectFieldInternal<
                         setIsOpen(false);
                       },
                     })}
-                    __css={styles.menuitem}
+                    __css={styles.option}
                     data-testid={
                       typeof __optionTestId === "function"
                         ? __optionTestId(option)
@@ -342,9 +341,13 @@ const MultiSelectFieldInternal = function MultiSelectFieldInternal<
                     <chakra.span flexGrow={1}>{option.label}</chakra.span>
 
                     {isSelected && (
-                      <chakra.span color="brand.primary.700">
-                        <Icon as={CheckIcon} w={4} h={4} />
-                      </chakra.span>
+                      <chakra.svg
+                        as={CheckIcon}
+                        w={4}
+                        h={4}
+                        color="success.700"
+                        className="multiselect-check-icon"
+                      />
                     )}
                   </chakra.div>
                 );

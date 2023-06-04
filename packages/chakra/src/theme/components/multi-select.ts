@@ -49,22 +49,25 @@ export const MultiSelect: MultiStyleConfig = {
           color: "neutral.500",
         },
       },
-      menu: {
-        overflow: "hidden",
-        borderWidth: "1px",
+      options: {
+        bg: "white",
+        outline: "none",
+        border: "1px",
         borderColor: "neutral.200",
-        borderRadius: "8px",
-        bgColor: "white",
+        rounded: "4px",
+        overflow: "hidden",
       },
-      menuitem: {
+      option: {
+        py: 1.5,
+        px: 3.5,
         cursor: "pointer",
         display: "flex",
         alignItems: "center",
-        paddingY: "12px",
-        paddingX: "14px",
-        transition: "colors 300ms ease-in-out",
+        fontSize: "14px",
+        lineHeight: "20px",
+        outline: "none",
         _selected: {
-          bgColor: "neutral.100",
+          bg: "neutral.100",
         },
       },
     };
