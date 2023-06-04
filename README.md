@@ -76,7 +76,7 @@ Reason for this exploration is due to the problems we've encountered in developm
   - `DatePicker`
   - `RangeDatePicker`
 
-- Design new components in a `chakra-ish` way. eg for a custom `Select` component
+- Redesign custom components where user have access to most if not all parts of the component. eg for Select
 
   ```tsx
   function Component() {
@@ -104,12 +104,11 @@ Reason for this exploration is due to the problems we've encountered in developm
   }
   ```
 
-  This way, the user have access to all component parts where they can do whatever they want to match thier reqs. They could also abstract it (but they don't have to).
-  Also, with this approach they can add styles on the fly and it looks just like they are still using chakra. On maintainers side, this is so MUCH easier to maintain
+  This way, the user can add direct styling to part of the component without having to go thru global theming which will affect everything. In some cases they can also remove what they don't need to match thier reqs. They could also abstract it (but they don't have to).
 
-- Ensure new components can be themed globally (still in a `chakra-ish` way).
+- Ensure new components can be themed globally
 
-  New components will come with a default global theme which is of course based on HDS and can be overridden either on-the-fly or globally
+  New components will come with a default global theme which is of based on HDS and can be overridden either on-the-fly or globally
 
   eg. for a pagination component global theme would be something like this
 

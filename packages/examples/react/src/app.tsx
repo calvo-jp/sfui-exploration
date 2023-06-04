@@ -1,9 +1,9 @@
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { defaultToastOptions, theme } from "@sfui/chakra";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Custom } from "./custom";
 import { Landing } from "./landing";
 import { Layout } from "./layout";
-import { Legacy } from "./legacy";
 import { User } from "./user";
 import { Users } from "./users";
 
@@ -19,7 +19,7 @@ export default function App() {
             <Route path="/" element={<Landing />} />
             <Route path="/users" element={<Users />} />
             <Route path="/users/:id" element={<User />} />
-            <Route path="legacy" element={<Legacy />} />
+            <Route path="/custom" element={<Custom />} />
           </Route>
         </Routes>
       </BrowserRouter>

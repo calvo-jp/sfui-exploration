@@ -8,7 +8,7 @@ import {
   SelectField,
 } from "@sfui/chakra";
 
-export function Legacy() {
+export function Custom() {
   return (
     <Box
       p={{
