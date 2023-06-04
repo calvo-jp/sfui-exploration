@@ -31,7 +31,11 @@ export const MultiSelect: MultiStyleConfig = {
           borderColor: "neutral.300",
         },
 
-        "&[data-opened]": {
+        _focusWithin: {
+          borderColor: `${colorScheme}.700`,
+        },
+
+        _expanded: {
           borderColor: `${colorScheme}.700`,
         },
 

@@ -7,11 +7,8 @@ import {
   RangeDatePicker,
   SelectField,
 } from "@sfui/chakra";
-import { useState } from "react";
 
 export function Legacy() {
-  const [items, setItems] = useState<(string | number)[]>([]);
-
   return (
     <Box
       p={{
@@ -39,8 +36,6 @@ export function Legacy() {
             { label: "Option 3", value: 3 },
             { label: "Option 4", value: 4 },
           ]}
-          value={items}
-          onChange={setItems}
         />
       </Box>
 

@@ -180,6 +180,9 @@ const MultiSelectFieldInternal = function MultiSelectFieldInternal<
             {...(isDisabled && {
               "data-disabled": true,
             })}
+            {...(isOpen && {
+              "aria-expanded": true,
+            })}
             {...getReferenceProps({
               onClick() {
                 inputRef.current?.focus();
@@ -189,12 +192,10 @@ const MultiSelectFieldInternal = function MultiSelectFieldInternal<
             data-testid="hds.multi-select.container"
           >
             {$$value.map((v, _, arr) => {
-              /* get actual option */
               const option = options.find((o) => o.value === v);
 
               invariant(option);
 
-              /* removes option from value */
               const onClose = () => {
                 $$onChange(arr.filter((i) => i !== option.value));
                 inputRef.current?.focus();
