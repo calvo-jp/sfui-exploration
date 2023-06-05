@@ -94,28 +94,7 @@ export function Landing() {
           <Multiline placeholder="Type here" />
         </FormControl>
 
-        <Tooltip label="This is a tooltip" hasArrow>
-          <Button
-            w="full"
-            mt={6}
-            type="submit"
-            isLoading={formState.isSubmitting}
-            /* colorScheme="error" */
-          >
-            Login
-          </Button>
-        </Tooltip>
-
-        <HStack spacing={4} mt={4}>
-          <PinInput placeholder="0">
-            <PinInputField />
-            <PinInputField />
-            <PinInputField />
-            <PinInputField />
-          </PinInput>
-        </HStack>
-
-        <FormControl mt={4}>
+        <FormControl mt={6}>
           <FormLabel>Select</FormLabel>
 
           <Select>
@@ -124,6 +103,30 @@ export function Landing() {
             <option value="3">Option 3</option>
           </Select>
         </FormControl>
+
+        <Tooltip label="This is a tooltip" hasArrow>
+          <Button
+            w="full"
+            mt={6}
+            type="submit"
+            isLoading={formState.isSubmitting}
+          >
+            Primary
+          </Button>
+        </Tooltip>
+
+        <Button w="full" mt={4} type="submit" colorScheme="error">
+          Danger
+        </Button>
+
+        <HStack spacing={4} mt={6}>
+          <PinInput placeholder="0">
+            <PinInputField />
+            <PinInputField />
+            <PinInputField />
+            <PinInputField />
+          </PinInput>
+        </HStack>
       </chakra.form>
 
       <Switch mt={4} />
