@@ -139,14 +139,12 @@ export function Users() {
                 <Td>{user.email}</Td>
                 <Td>
                   <AvatarGroup max={5} size="sm">
-                    {new Array(10).fill(null).map((_, index) => {
-                      return (
-                        <Avatar
-                          key={index}
-                          src={`https://i.pravatar.cc/150?u=${index}`}
-                        />
-                      );
-                    })}
+                    {Array.from({ length: 10 }).map((_, i) => (
+                      <Avatar
+                        key={i}
+                        src={`https://i.pravatar.cc/150?u=${i}`}
+                      />
+                    ))}
                   </AvatarGroup>
                 </Td>
                 <Td>
