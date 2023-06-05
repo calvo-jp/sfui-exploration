@@ -23,7 +23,7 @@ import {
   RangeSliderFilledTrack,
   RangeSliderThumb,
   RangeSliderTrack,
-  Spacer,
+  Select,
   Spinner,
   Switch,
   Tag,
@@ -35,13 +35,6 @@ import {
 import { CloudIcon } from "@heroicons/react/24/outline";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Multiline } from "@sfui/chakra";
-import {
-  Select,
-  SelectArrow,
-  SelectOption,
-  SelectOptions,
-  SelectTrigger,
-} from "@sfui/chakra/future";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
@@ -79,7 +72,11 @@ export function Landing() {
           navigate("/");
         })}
       >
-        <Input placeholder="johndoe@dumm.y" {...register("email")} />
+        <FormControl>
+          <FormLabel>Email</FormLabel>
+          <Input placeholder="johndoe@dumm.y" {...register("email")} />{" "}
+          <FormErrorMessage>{formState.errors.email?.message}</FormErrorMessage>
+        </FormControl>
 
         <FormControl isInvalid={!!formState.errors.password} mt={4}>
           <FormLabel>Password</FormLabel>
@@ -122,21 +119,9 @@ export function Landing() {
           <FormLabel>Select</FormLabel>
 
           <Select>
-            {({ selectedOption }) => (
-              <>
-                <SelectTrigger>
-                  {selectedOption?.label ?? "Please Select"}
-                  <Spacer />
-                  <SelectArrow />
-                </SelectTrigger>
-
-                <SelectOptions>
-                  <SelectOption value="1" label="One" />
-                  <SelectOption value="2" label="Two" />
-                  <SelectOption value="3" label="Three" />
-                </SelectOptions>
-              </>
-            )}
+            <option value="1">Option 1</option>
+            <option value="2">Option 2</option>
+            <option value="3">Option 3</option>
           </Select>
         </FormControl>
       </chakra.form>
