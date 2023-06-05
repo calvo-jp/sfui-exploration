@@ -1,29 +1,21 @@
 import { createStylesContext } from "@chakra-ui/react";
-import * as React from "react";
+import { createContext } from "../../utils";
 
 export const [TableStylesProvider, useTableStyles] = createStylesContext(
   "CustomTableStylesContext",
 );
 
-interface TableState {
+interface TableContext {
+  /**
+   *
+   * NOT IMPLEMENTED YET
+   *
+   */
   isLoading?: boolean;
 }
 
-export const TableContext = React.createContext<TableState>({});
-
-export type TableProviderProps = TableState;
-
-export function TableProvider({
-  children,
-  isLoading,
-}: React.PropsWithChildren<TableState>) {
-  return (
-    <TableContext.Provider
-      value={{
-        isLoading,
-      }}
-    >
-      {children}
-    </TableContext.Provider>
-  );
-}
+export const [TableProvider, useTableContext] = createContext<TableContext>({
+  name: "CustomTableContext",
+  hookName: "useCustomTableContext",
+  providerName: "<CustomTableProvider />",
+});
