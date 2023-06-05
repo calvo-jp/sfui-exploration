@@ -72,13 +72,13 @@ export function Landing() {
           navigate("/");
         })}
       >
-        <FormControl>
+        <FormControl isInvalid={!!formState.errors.email}>
           <FormLabel>Email</FormLabel>
-          <Input placeholder="johndoe@dumm.y" {...register("email")} />{" "}
+          <Input placeholder="johndoe@dumm.y" {...register("email")} />
           <FormErrorMessage>{formState.errors.email?.message}</FormErrorMessage>
         </FormControl>
 
-        <FormControl isInvalid={!!formState.errors.password} mt={4}>
+        <FormControl mt={4} isInvalid={!!formState.errors.password}>
           <FormLabel>Password</FormLabel>
           <Input placeholder="Enter password" {...register("password")} />
           <FormErrorMessage>
@@ -171,8 +171,11 @@ export function Landing() {
 }
 
 const schema = z.object({
-  email: z.string().email(),
-  password: z.string().min(5).max(50),
+  email: z.string().email("Malformed email"),
+  password: z
+    .string()
+    .min(5, "Password too short")
+    .max(50, "Password too long"),
 });
 
 function sleep(seconds = 2.5) {
