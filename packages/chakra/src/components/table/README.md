@@ -5,7 +5,7 @@
 ```tsx
 function Component() {
   return (
-    <TableContainer>
+    <TableContainer variant="outline">
       <TableHeader>
         <Flex>
           <Box>
