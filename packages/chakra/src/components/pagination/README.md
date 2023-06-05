@@ -7,7 +7,9 @@ function Component() {
   return (
     <Pagination>
       <PaginationRange /* Page 1-10 of 100 */ />
-      <PaginationSpacer />
+
+      <Spacer />
+
       <PaginationSizeControl sizes={[5, 25, 50, 100]} />
       <PaginationControlGroup>
         {({ pages }) => (
@@ -34,7 +36,7 @@ function Component() {
     <Pagination>
       {({ pages /* , page, size */ }) => (
         <>
-          <PaginationSpacer />
+          <Spacer />
 
           <PaginationRange /* Page 1-10 of 100 */ />
 
