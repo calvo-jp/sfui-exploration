@@ -6,11 +6,6 @@ export const [TableStylesProvider, useTableStyles] = createStylesContext(
 );
 
 interface TableContext {
-  /**
-   *
-   * NOT IMPLEMENTED YET
-   *
-   */
   isLoading?: boolean;
 }
 

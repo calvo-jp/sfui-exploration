@@ -11,7 +11,20 @@ import { TableProvider, TableStylesProvider } from "./table-context";
 
 export interface TableContainerProps
   extends HTMLChakraProps<"div">,
-    ThemingProps<"Table"> {}
+    ThemingProps<"Table"> {
+  /**
+   *
+   * This will add `data-loading` attribute to all table parts
+   * which you can leverage to add style like so
+   *
+   * @example
+   * _loading: {
+   *    bg: "gray.50"
+   * }
+   *
+   */
+  isLoading?: boolean;
+}
 
 export const TableContainer = forwardRef<TableContainerProps, "div">(
   function TableContainer(props, ref) {
@@ -21,6 +34,7 @@ export const TableContainer = forwardRef<TableContainerProps, "div">(
       colorScheme,
       orientation,
       styleConfig,
+      isLoading,
       children,
       ...others
     } = props;
@@ -34,9 +48,18 @@ export const TableContainer = forwardRef<TableContainerProps, "div">(
     });
 
     return (
-      <TableProvider value={{}}>
+      <TableProvider
+        value={{
+          isLoading,
+        }}
+      >
         <TableStylesProvider value={styles}>
-          <chakra.div ref={ref} __css={styles.container} {...others}>
+          <chakra.div
+            ref={ref}
+            __css={styles.container}
+            {...(isLoading && { "data-loading": true })}
+            {...others}
+          >
             {React.Children.map(children, (child) => {
               if (React.isValidElement(child) && child.type === Table) {
                 return (
@@ -55,6 +78,7 @@ export const TableContainer = forwardRef<TableContainerProps, "div">(
                       colorScheme,
                       styleConfig,
                       orientation,
+                      ...(isLoading && { "data-loading": true }),
                     })}
                   </chakra.div>
                 );
